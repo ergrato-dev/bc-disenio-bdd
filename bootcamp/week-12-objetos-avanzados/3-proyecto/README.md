@@ -1,52 +1,82 @@
-# Proyecto Semana 12 — Capa de objetos avanzados para el sistema de e-commerce: vistas, funciones y triggers
+# Proyecto Semana 12 — ShopHub: Capa de Objetos Avanzados
 
-> **Fase:** Modelo Físico &nbsp;|&nbsp; **Semana:** 12 de 14
+## Contexto de Negocio
 
-## 📋 Contexto del Negocio
+**ShopHub** es una plataforma de e-commerce en crecimiento. El equipo de
+ingeniería ya diseñó el modelo de datos (Semana 10) y lo optimizó con
+índices (Semana 11). Ahora necesitan construir la **capa de objetos
+avanzados** que hará al sistema más robusto, observable y fácil de mantener:
 
-<!-- TODO: Describir el contexto de negocio del proyecto (2-3 párrafos) -->
+- **Vistas** para simplificar el acceso de los equipos de datos y soporte
+- **Funciones** para encapsular cálculos y validaciones reutilizables
+- **Triggers** para garantizar la integridad sin depender de la aplicación
+- **Procedimientos** para orquestar operaciones multi-paso con transacciones
+- **Auditoría** automática para cumplir los requisitos del negocio
 
-## 🎯 Objetivo
+## Requerimientos Funcionales
 
-Aplicar los conceptos aprendidos en la Semana 12 para diseñar e implementar una solución
-de base de datos que resuelva el problema planteado.
+### RF-01 — Auditoría Automática
 
-## 📐 Requerimientos
+Toda modificación en `orders` y `products` debe quedar registrada
+automáticamente en una tabla de auditoría con: tabla afectada, operación
+(`INSERT`/`UPDATE`/`DELETE`), estado previo (JSONB), estado nuevo (JSONB),
+usuario de BD y timestamp.
 
-<!-- TODO: Listar los requerimientos funcionales del sistema (entidades, relaciones, reglas de negocio) -->
+### RF-02 — Vistas para el Equipo de Datos
 
-### Requerimientos funcionales
+- `vw_product_catalog`: productos activos con nombre de categoría (si existe)
+  y stock actual
+- `vw_customer_order_summary`: por cliente, total de órdenes, revenue total,
+  promedio por orden y fecha de última compra
+- `vw_low_stock`: productos con `product_stock < 10` y al menos una venta
+  registrada
+- `mvw_monthly_revenue`: **vista materializada** con revenue mensual total,
+  número de órdenes y clientes únicos (solo órdenes en estado `delivered`)
 
-- [ ] RF-01:
-- [ ] RF-02:
-- [ ] RF-03:
+### RF-03 — Funciones de Negocio
 
-### Restricciones de diseño
+- `fn_apply_discount(p_product_id UUID, p_pct NUMERIC)`: devuelve el precio
+  con descuento aplicado; valida que el porcentaje esté entre 0 y 100
+- `fn_get_customer_stats(p_customer_id UUID)`: retorna una tabla con
+  métricas del cliente (total órdenes, total gastado, promedio, primera y
+  última compra)
+- `fn_validate_stock(p_product_id UUID, p_qty INT)`: devuelve `TRUE` si hay
+  suficiente stock para la cantidad solicitada, `FALSE` en caso contrario
 
-- [ ] Aplicar las convenciones de nomenclatura del bootcamp
-- [ ] Normalizar hasta mínimo 3FN (salvo justificación documentada)
-- [ ] Todas las `FOREIGN KEY` deben tener política `ON DELETE` explícita
+### RF-04 — Triggers de Integridad
 
-## 📦 Entregables
+- `trg_products_before_update`: antes de actualizar un producto, verificar
+  que el nuevo `product_price` no sea negativo; si lo es, lanzar excepción
+- `trg_orders_after_insert`: después de crear una orden, insertar un
+  registro de auditoría con el estado inicial
 
-- [ ] Scripts de vistas, funciones y triggers documentados
-- [ ] Script de prueba de transacciones con `ROLLBACK` y `SAVEPOINT`
+### RF-05 — Procedimiento para Completar Pedidos
 
-## 🚀 Instrucciones
+`sp_complete_order(p_order_id UUID)`: orquesta el cierre completo de una
+orden. Dentro de la misma transacción:
+1. Cambia `order_status` a `'delivered'`
+2. Descuenta el stock de cada producto en los `order_items`
+3. Recalcula y persiste `order_total` usando `fn_calculate_order_total`
+4. Si falla el descuento de stock (stock insuficiente), hace rollback de
+   toda la operación
 
-1. Trabaja en el directorio `starter/`
-2. Lee los comentarios `-- TODO:` en cada archivo y completa el código
-3. Prueba tu solución ejecutando los scripts en PostgreSQL 16+
-4. Documenta tus decisiones de diseño en este README
+### RF-06 — Test de Transacción
 
-## ✅ Criterios de Aceptación
+Demostrar el uso de `SAVEPOINT` en el flujo de creación de una orden:
+intentar aplicar un cupón (que puede fallar), y si falla, usar
+`ROLLBACK TO SAVEPOINT` para deshacer solo la parte del cupón sin perder
+la orden ya creada.
 
-- [ ] Todos los scripts SQL ejecutan sin errores en PostgreSQL 16+
-- [ ] Las constraints nombradas siguen la convención `tipo_tabla_columna`
-- [ ] El diseño está justificado en comentarios SQL o en este README
+---
 
-## 🔗 Referencias
+## Entregables
 
-- [Semana 12 — Teoría](../1-teoria/)
-- [Semana 12 — Prácticas](../2-practicas/)
-- [Documentación PostgreSQL 16](https://www.postgresql.org/docs/16/)
+Al finalizar el proyecto debes tener:
+
+1. `starter/shophub-advanced-objects.sql` con **todos los TODOs completados**
+2. Evidencia de que los scripts ejecutan sin errores en PostgreSQL 16+
+3. Capturas o texto de las consultas de verificación al final del script
+
+---
+
+← [Semana 11](../../week-11-indices-optimizacion/README.md) | → [Semana 13](../../week-13-patrones-diseno/README.md)

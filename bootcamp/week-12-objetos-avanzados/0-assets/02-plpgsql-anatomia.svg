@@ -1,0 +1,116 @@
+<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="36" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">Anatomía de una Función PL/pgSQL</text>
+  <text x="460" y="56" fill="#6c7086" font-size="13" text-anchor="middle">Estructura, variables, control de flujo y tipos de retorno</text>
+
+  <!-- ─── Main code block (left) ─── -->
+  <rect x="20" y="70" width="560" height="400" rx="8" fill="#181825" stroke="#45475a" stroke-width="1"/>
+
+  <!-- Signature section highlight -->
+  <rect x="20" y="70" width="560" height="58" rx="8" fill="#1e3a5f" stroke="none"/>
+  <rect x="20" y="110" width="560" height="18" rx="0" fill="#1e3a5f" stroke="none"/>
+
+  <!-- Code lines -->
+  <!-- line 1: CREATE OR REPLACE FUNCTION -->
+  <text x="36" y="92" fill="#89b4fa" font-size="12" font-family="monospace">CREATE OR REPLACE FUNCTION</text>
+  <text x="305" y="92" fill="#a6e3a1" font-size="12" font-family="monospace"> fn_calculate_order_total(</text>
+  <text x="36" y="110" fill="#cdd6f4" font-size="12" font-family="monospace">    p_order_id  UUID</text>
+  <text x="36" y="126" fill="#89b4fa" font-size="12" font-family="monospace">)  RETURNS</text>
+  <text x="130" y="126" fill="#f9e2af" font-size="12" font-family="monospace"> NUMERIC(12,2)</text>
+
+  <!-- DECLARE section highlight -->
+  <rect x="20" y="133" width="560" height="58" rx="0" fill="#2a1a3e" stroke="none"/>
+  <text x="36" y="150" fill="#89b4fa" font-size="12" font-family="monospace">LANGUAGE plpgsql  STABLE</text>
+  <text x="36" y="166" fill="#89b4fa" font-size="12" font-family="monospace">AS $$</text>
+  <text x="36" y="183" fill="#cba6f7" font-size="12" font-family="monospace">DECLARE</text>
+  <text x="36" y="200" fill="#cdd6f4" font-size="12" font-family="monospace">    v_total    NUMERIC(12,2) := 0;</text>
+  <text x="36" y="218" fill="#cdd6f4" font-size="12" font-family="monospace">    v_tax_rate NUMERIC(5,4)  := 0.16;</text>
+
+  <!-- BEGIN/END section highlight -->
+  <rect x="20" y="225" width="560" height="175" rx="0" fill="#1a2a1a" stroke="none"/>
+  <text x="36" y="242" fill="#a6e3a1" font-size="12" font-family="monospace">BEGIN</text>
+
+  <text x="36" y="260" fill="#6c7086" font-size="12" font-family="monospace">    SELECT COALESCE(SUM(oi.order_item_price * oi.order_item_quantity), 0)</text>
+  <text x="36" y="276" fill="#6c7086" font-size="12" font-family="monospace">      INTO v_total</text>
+  <text x="36" y="292" fill="#6c7086" font-size="12" font-family="monospace">      FROM order_items oi WHERE oi.order_id = p_order_id;</text>
+
+  <text x="36" y="312" fill="#cba6f7" font-size="12" font-family="monospace">    IF</text>
+  <text x="60" y="312" fill="#6c7086" font-size="12" font-family="monospace"> NOT FOUND</text>
+  <text x="145" y="312" fill="#cba6f7" font-size="12" font-family="monospace"> THEN</text>
+  <text x="36" y="328" fill="#f38ba8" font-size="12" font-family="monospace">        RAISE EXCEPTION</text>
+  <text x="199" y="328" fill="#6c7086" font-size="12" font-family="monospace"> 'Orden % no encontrada', p_order_id;</text>
+  <text x="36" y="344" fill="#cba6f7" font-size="12" font-family="monospace">    END IF;</text>
+
+  <!-- RETURN highlight -->
+  <rect x="20" y="350" width="560" height="30" rx="0" fill="#2d1e00" stroke="none"/>
+  <text x="36" y="370" fill="#f9e2af" font-size="12" font-family="monospace">    RETURN</text>
+  <text x="103" y="370" fill="#cdd6f4" font-size="12" font-family="monospace"> v_total * (1 + v_tax_rate);</text>
+
+  <text x="36" y="398" fill="#a6e3a1" font-size="12" font-family="monospace">END;</text>
+  <text x="36" y="416" fill="#89b4fa" font-size="12" font-family="monospace">$$;</text>
+
+  <!-- Bottom of code block rounded -->
+  <rect x="20" y="440" width="560" height="30" rx="0" fill="#181825" stroke="none"/>
+  <text x="36" y="459" fill="#6c7086" font-size="11" font-family="monospace">-- Uso: SELECT fn_calculate_order_total('...uuid...');</text>
+
+  <!-- ─── Right panel: annotations ─── -->
+
+  <!-- SIGNATURE -->
+  <rect x="598" y="70" width="302" height="74" rx="6" fill="#1e3a5f" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="614" y="88" fill="#89b4fa" font-size="12" font-weight="700">FIRMA (Signature)</text>
+  <text x="614" y="106" fill="#cdd6f4" font-size="11">Nombre, parámetros (tipo + modo)</text>
+  <text x="614" y="122" fill="#cdd6f4" font-size="11">y tipo de retorno (RETURNS)</text>
+  <text x="614" y="136" fill="#6c7086" font-size="10">STABLE / IMMUTABLE / VOLATILE</text>
+  <!-- Arrow -->
+  <line x1="590" y1="103" x2="580" y2="103" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="580,99 580,107 575,103" fill="#89b4fa"/>
+
+  <!-- DECLARE -->
+  <rect x="598" y="158" width="302" height="74" rx="6" fill="#2a1a3e" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="614" y="176" fill="#cba6f7" font-size="12" font-weight="700">DECLARE</text>
+  <text x="614" y="194" fill="#cdd6f4" font-size="11">Variables locales con tipo y valor</text>
+  <text x="614" y="210" fill="#cdd6f4" font-size="11">inicial opcional (  :=  )</text>
+  <text x="614" y="224" fill="#6c7086" font-size="10">Puede omitirse si no hay variables</text>
+  <!-- Arrow -->
+  <line x1="590" y1="191" x2="580" y2="191" stroke="#cba6f7" stroke-width="1.5"/>
+  <polygon points="580,187 580,195 575,191" fill="#cba6f7"/>
+
+  <!-- BEGIN / END -->
+  <rect x="598" y="246" width="302" height="84" rx="6" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="614" y="264" fill="#a6e3a1" font-size="12" font-weight="700">BEGIN … END</text>
+  <text x="614" y="282" fill="#cdd6f4" font-size="11">Cuerpo de lógica. Puede contener:</text>
+  <text x="614" y="298" fill="#6c7086" font-size="11">IF / ELSIF / ELSE / END IF</text>
+  <text x="614" y="314" fill="#6c7086" font-size="11">FOR x IN query LOOP / END LOOP</text>
+  <text x="614" y="328" fill="#6c7086" font-size="11">WHILE cond LOOP / END LOOP</text>
+  <!-- Arrow -->
+  <line x1="590" y1="305" x2="580" y2="305" stroke="#a6e3a1" stroke-width="1.5"/>
+  <polygon points="580,301 580,309 575,305" fill="#a6e3a1"/>
+
+  <!-- RETURN -->
+  <rect x="598" y="344" width="302" height="60" rx="6" fill="#2d1e00" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="614" y="362" fill="#f9e2af" font-size="12" font-weight="700">RETURN</text>
+  <text x="614" y="380" fill="#cdd6f4" font-size="11">Devuelve el valor al caller.</text>
+  <text x="614" y="396" fill="#6c7086" font-size="10">RETURNS VOID → no devuelve valor</text>
+  <!-- Arrow -->
+  <line x1="590" y1="370" x2="580" y2="370" stroke="#f9e2af" stroke-width="1.5"/>
+  <polygon points="580,366 580,374 575,370" fill="#f9e2af"/>
+
+  <!-- RAISE panel -->
+  <rect x="598" y="418" width="302" height="52" rx="6" fill="#1e1e2e" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="614" y="436" fill="#f38ba8" font-size="12" font-weight="700">RAISE</text>
+  <text x="614" y="454" fill="#cdd6f4" font-size="11">NOTICE → mensaje informativo (no detiene)</text>
+  <text x="614" y="467" fill="#cdd6f4" font-size="11">EXCEPTION → lanza error (aborta)</text>
+  <!-- Arrow -->
+  <line x1="590" y1="444" x2="580" y2="444" stroke="#f38ba8" stroke-width="1.5"/>
+  <polygon points="580,440 580,448 575,444" fill="#f38ba8"/>
+
+  <!-- Bottom note: LANGUAGE sql vs plpgsql -->
+  <rect x="20" y="474" width="880" height="20" rx="4" fill="#181825"/>
+  <text x="35" y="488" fill="#89b4fa" font-size="10" font-weight="600">LANGUAGE sql</text>
+  <text x="120" y="488" fill="#6c7086" font-size="10">— Una sola sentencia SQL, sin control de flujo. Más rápido para lógica simple.</text>
+  <text x="490" y="488" fill="#cba6f7" font-size="10" font-weight="600">LANGUAGE plpgsql</text>
+  <text x="592" y="488" fill="#6c7086" font-size="10">— Con variables, IF, LOOP, RAISE. Para lógica compleja.</text>
+</svg>

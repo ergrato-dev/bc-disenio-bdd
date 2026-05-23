@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="960" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="480" y="34" text-anchor="middle" fill="#cdd6f4" font-size="17" font-weight="700">Anti-patrones vs Buenas Prácticas de Diseño</text>
+  <text x="480" y="54" text-anchor="middle" fill="#6c7086" font-size="11">Los 5 errores más frecuentes y cómo corregirlos</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="68" width="450" height="30" rx="6" fill="#f38ba8" opacity="0.85"/>
+  <text x="245" y="88" text-anchor="middle" fill="#1e1e2e" font-size="13" font-weight="700">Anti-patrón ❌</text>
+
+  <rect x="490" y="68" width="450" height="30" rx="6" fill="#a6e3a1" opacity="0.85"/>
+  <text x="715" y="88" text-anchor="middle" fill="#1e1e2e" font-size="13" font-weight="700">Buena Práctica ✅</text>
+
+  <!-- Divider vertical -->
+  <line x1="480" y1="68" x2="480" y2="490" stroke="#45475a" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- Row 1: PK type -->
+  <rect x="20" y="106" width="450" height="54" rx="6" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="35" y="122" fill="#6c7086" font-size="9">PK GENÉRICA · SERIAL</text>
+  <text x="35" y="138" fill="#f38ba8" font-size="10" font-family="monospace">id  SERIAL  PRIMARY KEY</text>
+  <text x="35" y="152" fill="#a6adc8" font-size="9">Sin nombre de entidad, secuencial, no portable</text>
+
+  <rect x="490" y="106" width="450" height="54" rx="6" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="505" y="122" fill="#6c7086" font-size="9">PK CON UUID AUTO-DOCUMENTADO</text>
+  <text x="505" y="138" fill="#a6e3a1" font-size="10" font-family="monospace">product_id  UUID  DEFAULT gen_random_uuid()</text>
+  <text x="505" y="152" fill="#a6adc8" font-size="9">Nombre de entidad incluido, portable entre sistemas</text>
+
+  <!-- Row 2: FK without ON DELETE -->
+  <rect x="20" y="168" width="450" height="54" rx="6" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="35" y="184" fill="#6c7086" font-size="9">FK SIN POLÍTICA ON DELETE</text>
+  <text x="35" y="200" fill="#f38ba8" font-size="10" font-family="monospace">REFERENCES orders(id)</text>
+  <text x="35" y="214" fill="#a6adc8" font-size="9">Comportamiento al borrar depende del motor, impredecible</text>
+
+  <rect x="490" y="168" width="450" height="54" rx="6" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="505" y="184" fill="#6c7086" font-size="9">FK CON POLÍTICA EXPLÍCITA</text>
+  <text x="505" y="200" fill="#a6e3a1" font-size="10" font-family="monospace">REFERENCES orders(order_id)  ON DELETE RESTRICT</text>
+  <text x="505" y="214" fill="#a6adc8" font-size="9">Comportamiento documentado, seguro e intencional</text>
+
+  <!-- Row 3: TIMESTAMP vs TIMESTAMPTZ -->
+  <rect x="20" y="230" width="450" height="54" rx="6" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="35" y="246" fill="#6c7086" font-size="9">TIMESTAMP SIN ZONA HORARIA</text>
+  <text x="35" y="262" fill="#f38ba8" font-size="10" font-family="monospace">created_at  TIMESTAMP  DEFAULT NOW()</text>
+  <text x="35" y="276" fill="#a6adc8" font-size="9">Ambiguo en sistemas con múltiples zonas horarias</text>
+
+  <rect x="490" y="230" width="450" height="54" rx="6" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="505" y="246" fill="#6c7086" font-size="9">TIMESTAMPTZ + NOT NULL EXPLÍCITO</text>
+  <text x="505" y="262" fill="#a6e3a1" font-size="10" font-family="monospace">created_at  TIMESTAMPTZ  NOT NULL  DEFAULT NOW()</text>
+  <text x="505" y="276" fill="#a6adc8" font-size="9">Consistente, seguro y portable entre regiones</text>
+
+  <!-- Row 4: No indexes on FK -->
+  <rect x="20" y="292" width="450" height="54" rx="6" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="35" y="308" fill="#6c7086" font-size="9">FK SIN ÍNDICE</text>
+  <text x="35" y="324" fill="#f38ba8" font-size="10" font-family="monospace">-- sin índice en customer_id</text>
+  <text x="35" y="338" fill="#a6adc8" font-size="9">Seq Scan en JOINs → degradación con volumen alto</text>
+
+  <rect x="490" y="292" width="450" height="54" rx="6" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="505" y="308" fill="#6c7086" font-size="9">ÍNDICE EN COLUMNA FK</text>
+  <text x="505" y="324" fill="#a6e3a1" font-size="10" font-family="monospace">CREATE INDEX ix_orders_customer_id ON orders(customer_id);</text>
+  <text x="505" y="338" fill="#a6adc8" font-size="9">Index Scan en JOINs → consultas rápidas a escala</text>
+
+  <!-- Row 5: DELETE vs Soft delete -->
+  <rect x="20" y="354" width="450" height="54" rx="6" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="35" y="370" fill="#6c7086" font-size="9">BORRADO FÍSICO</text>
+  <text x="35" y="386" fill="#f38ba8" font-size="10" font-family="monospace">DELETE FROM appointments WHERE appointment_id = $1;</text>
+  <text x="35" y="400" fill="#a6adc8" font-size="9">Pérdida de trazabilidad, inauditable, irreversible</text>
+
+  <rect x="490" y="354" width="450" height="54" rx="6" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="505" y="370" fill="#6c7086" font-size="9">SOFT DELETE CON FECHA</text>
+  <text x="505" y="386" fill="#a6e3a1" font-size="10" font-family="monospace">UPDATE appointments SET deleted_at = NOW() WHERE ...;</text>
+  <text x="505" y="400" fill="#a6adc8" font-size="9">Conserva historial, auditable, reversible</text>
+
+  <!-- Footer -->
+  <rect x="20" y="422" width="920" height="36" rx="6" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="480" y="437" text-anchor="middle" fill="#a6adc8" font-size="10">Estos 5 patrones aparecen en el 80% de los diseños deficientes revisados en la industria.</text>
+  <text x="480" y="452" text-anchor="middle" fill="#f9e2af" font-size="10">Corrígelos antes de que lleguen a producción — son los primeros que revisará cualquier DBA experimentado.</text>
+</svg>

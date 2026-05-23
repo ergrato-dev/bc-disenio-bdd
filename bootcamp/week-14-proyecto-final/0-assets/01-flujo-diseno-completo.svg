@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="960" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="480" y="36" text-anchor="middle" fill="#cdd6f4" font-size="18" font-weight="700">Pipeline Completo de Diseño de Bases de Datos</text>
+  <text x="480" y="56" text-anchor="middle" fill="#6c7086" font-size="12">Semanas 1–14 · Bootcamp Diseño de BDD Zero to Hero</text>
+
+  <!-- Stage boxes: 6 stages, evenly spaced -->
+  <!-- Stage 1: Análisis (blue) -->
+  <rect x="20" y="100" width="138" height="180" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="20" y="100" width="138" height="32" rx="8" fill="#89b4fa"/>
+  <rect x="20" y="120" width="138" height="12" fill="#89b4fa"/>
+  <text x="89" y="121" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Análisis</text>
+  <text x="89" y="134" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">de Requerimientos</text>
+  <text x="89" y="158" text-anchor="middle" fill="#cdd6f4" font-size="10">Semanas 1–2</text>
+  <text x="89" y="176" text-anchor="middle" fill="#a6adc8" font-size="9">• Reqs funcionales</text>
+  <text x="89" y="190" text-anchor="middle" fill="#a6adc8" font-size="9">• Actores y reglas</text>
+  <text x="89" y="204" text-anchor="middle" fill="#a6adc8" font-size="9">• Entidades detectadas</text>
+  <text x="89" y="218" text-anchor="middle" fill="#a6adc8" font-size="9">• Cardinalidades</text>
+  <text x="89" y="232" text-anchor="middle" fill="#a6adc8" font-size="9">• Restricciones negocio</text>
+  <!-- Tool -->
+  <rect x="30" y="254" width="118" height="20" rx="4" fill="#181825"/>
+  <text x="89" y="267" text-anchor="middle" fill="#89b4fa" font-size="9">draw.io / papel</text>
+
+  <!-- Arrow 1 -->
+  <line x1="158" y1="190" x2="176" y2="190" stroke="#45475a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2: Modelo Conceptual (purple) -->
+  <rect x="178" y="100" width="138" height="180" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="2"/>
+  <rect x="178" y="100" width="138" height="32" rx="8" fill="#cba6f7"/>
+  <rect x="178" y="120" width="138" height="12" fill="#cba6f7"/>
+  <text x="247" y="121" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Modelo</text>
+  <text x="247" y="134" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Conceptual (ER)</text>
+  <text x="247" y="158" text-anchor="middle" fill="#cdd6f4" font-size="10">Semanas 3–5</text>
+  <text x="247" y="176" text-anchor="middle" fill="#a6adc8" font-size="9">• Entidades y atributos</text>
+  <text x="247" y="190" text-anchor="middle" fill="#a6adc8" font-size="9">• Cardinalidades exactas</text>
+  <text x="247" y="204" text-anchor="middle" fill="#a6adc8" font-size="9">• Entidades débiles</text>
+  <text x="247" y="218" text-anchor="middle" fill="#a6adc8" font-size="9">• Relaciones ternarias</text>
+  <text x="247" y="232" text-anchor="middle" fill="#a6adc8" font-size="9">• Herencia/especialización</text>
+  <rect x="188" y="254" width="118" height="20" rx="4" fill="#181825"/>
+  <text x="247" y="267" text-anchor="middle" fill="#cba6f7" font-size="9">draw.io · notación ER</text>
+
+  <!-- Arrow 2 -->
+  <line x1="316" y1="190" x2="334" y2="190" stroke="#45475a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3: Modelo Lógico (yellow) -->
+  <rect x="336" y="100" width="138" height="180" rx="8" fill="#313244" stroke="#f9e2af" stroke-width="2"/>
+  <rect x="336" y="100" width="138" height="32" rx="8" fill="#f9e2af"/>
+  <rect x="336" y="120" width="138" height="12" fill="#f9e2af"/>
+  <text x="405" y="121" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Modelo</text>
+  <text x="405" y="134" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Lógico · Normalización</text>
+  <text x="405" y="158" text-anchor="middle" fill="#cdd6f4" font-size="10">Semanas 6–9</text>
+  <text x="405" y="176" text-anchor="middle" fill="#a6adc8" font-size="9">• ER → Relacional</text>
+  <text x="405" y="190" text-anchor="middle" fill="#a6adc8" font-size="9">• 1FN, 2FN, 3FN, FNBC</text>
+  <text x="405" y="204" text-anchor="middle" fill="#a6adc8" font-size="9">• Tablas puente M:N</text>
+  <text x="405" y="218" text-anchor="middle" fill="#a6adc8" font-size="9">• PKs y FKs definidas</text>
+  <text x="405" y="232" text-anchor="middle" fill="#a6adc8" font-size="9">• Restricciones de integridad</text>
+  <rect x="346" y="254" width="118" height="20" rx="4" fill="#181825"/>
+  <text x="405" y="267" text-anchor="middle" fill="#f9e2af" font-size="9">dbdiagram.io (DBML)</text>
+
+  <!-- Arrow 3 -->
+  <line x1="474" y1="190" x2="492" y2="190" stroke="#45475a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4: Modelo Físico (green) -->
+  <rect x="494" y="100" width="138" height="180" rx="8" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="494" y="100" width="138" height="32" rx="8" fill="#a6e3a1"/>
+  <rect x="494" y="120" width="138" height="12" fill="#a6e3a1"/>
+  <text x="563" y="121" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Modelo</text>
+  <text x="563" y="134" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Físico · DDL</text>
+  <text x="563" y="158" text-anchor="middle" fill="#cdd6f4" font-size="10">Semana 10</text>
+  <text x="563" y="176" text-anchor="middle" fill="#a6adc8" font-size="9">• CREATE TABLE + tipos</text>
+  <text x="563" y="190" text-anchor="middle" fill="#a6adc8" font-size="9">• UUID, TIMESTAMPTZ</text>
+  <text x="563" y="204" text-anchor="middle" fill="#a6adc8" font-size="9">• Constraints nombradas</text>
+  <text x="563" y="218" text-anchor="middle" fill="#a6adc8" font-size="9">• Schemas y secuencias</text>
+  <text x="563" y="232" text-anchor="middle" fill="#a6adc8" font-size="9">• ON DELETE policies</text>
+  <rect x="504" y="254" width="118" height="20" rx="4" fill="#181825"/>
+  <text x="563" y="267" text-anchor="middle" fill="#a6e3a1" font-size="9">pgAdmin / DBeaver</text>
+
+  <!-- Arrow 4 -->
+  <line x1="632" y1="190" x2="650" y2="190" stroke="#45475a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 5: Optimización (blue) -->
+  <rect x="652" y="100" width="138" height="180" rx="8" fill="#313244" stroke="#89dceb" stroke-width="2"/>
+  <rect x="652" y="100" width="138" height="32" rx="8" fill="#89dceb"/>
+  <rect x="652" y="120" width="138" height="12" fill="#89dceb"/>
+  <text x="721" y="121" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Optimización</text>
+  <text x="721" y="134" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Índices + Objetos</text>
+  <text x="721" y="158" text-anchor="middle" fill="#cdd6f4" font-size="10">Semanas 11–12</text>
+  <text x="721" y="176" text-anchor="middle" fill="#a6adc8" font-size="9">• B-tree, Hash, GIN</text>
+  <text x="721" y="190" text-anchor="middle" fill="#a6adc8" font-size="9">• EXPLAIN ANALYZE</text>
+  <text x="721" y="204" text-anchor="middle" fill="#a6adc8" font-size="9">• Vistas y funciones</text>
+  <text x="721" y="218" text-anchor="middle" fill="#a6adc8" font-size="9">• Triggers + ACID</text>
+  <text x="721" y="232" text-anchor="middle" fill="#a6adc8" font-size="9">• Procedimientos</text>
+  <rect x="662" y="254" width="118" height="20" rx="4" fill="#181825"/>
+  <text x="721" y="267" text-anchor="middle" fill="#89dceb" font-size="9">psql · EXPLAIN ANALYZE</text>
+
+  <!-- Arrow 5 -->
+  <line x1="790" y1="190" x2="808" y2="190" stroke="#45475a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 6: Patrones Avanzados (red/pink) -->
+  <rect x="810" y="100" width="138" height="180" rx="8" fill="#313244" stroke="#f38ba8" stroke-width="2"/>
+  <rect x="810" y="100" width="138" height="32" rx="8" fill="#f38ba8"/>
+  <rect x="810" y="120" width="138" height="12" fill="#f38ba8"/>
+  <text x="879" y="121" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Patrones</text>
+  <text x="879" y="134" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="700">Avanzados</text>
+  <text x="879" y="158" text-anchor="middle" fill="#cdd6f4" font-size="10">Semana 13</text>
+  <text x="879" y="176" text-anchor="middle" fill="#a6adc8" font-size="9">• Soft delete</text>
+  <text x="879" y="190" text-anchor="middle" fill="#a6adc8" font-size="9">• Auditoría + historial</text>
+  <text x="879" y="204" text-anchor="middle" fill="#a6adc8" font-size="9">• Jerarquías recursivas</text>
+  <text x="879" y="218" text-anchor="middle" fill="#a6adc8" font-size="9">• Multi-tenancy + RLS</text>
+  <text x="879" y="232" text-anchor="middle" fill="#a6adc8" font-size="9">• WITH RECURSIVE</text>
+  <rect x="820" y="254" width="118" height="20" rx="4" fill="#181825"/>
+  <text x="879" y="267" text-anchor="middle" fill="#f38ba8" font-size="9">PostgreSQL 16 RLS</text>
+
+  <!-- Bottom timeline bar -->
+  <rect x="20" y="300" width="920" height="36" rx="6" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="480" y="314" text-anchor="middle" fill="#6c7086" font-size="10">Fases del Bootcamp</text>
+  <text x="89" y="328" text-anchor="middle" fill="#89b4fa" font-size="9">Fundamentos</text>
+  <text x="247" y="328" text-anchor="middle" fill="#cba6f7" font-size="9">Conceptual</text>
+  <text x="405" y="328" text-anchor="middle" fill="#f9e2af" font-size="9">Lógico</text>
+  <text x="563" y="328" text-anchor="middle" fill="#a6e3a1" font-size="9">Físico</text>
+  <text x="721" y="328" text-anchor="middle" fill="#89dceb" font-size="9">Performance</text>
+  <text x="879" y="328" text-anchor="middle" fill="#f38ba8" font-size="9">Avanzado</text>
+
+  <!-- Footer note -->
+  <text x="480" y="380" text-anchor="middle" fill="#6c7086" font-size="11">Cada etapa produce un entregable verificable. El pipeline es iterativo: los modelos se refinan a medida que avanza el diseño.</text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#45475a"/>
+    </marker>
+  </defs>
+</svg>

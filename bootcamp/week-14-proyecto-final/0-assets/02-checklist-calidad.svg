@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="960" height="520" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="480" y="34" text-anchor="middle" fill="#cdd6f4" font-size="17" font-weight="700">Checklist de Calidad — Diseño de Bases de Datos</text>
+  <text x="480" y="54" text-anchor="middle" fill="#6c7086" font-size="11">Verifica cada ítem antes de entregar o enviar a revisión técnica</text>
+
+  <!-- Column 1: Nomenclatura (blue) -->
+  <rect x="20" y="70" width="215" height="340" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="20" y="70" width="215" height="30" rx="8" fill="#89b4fa"/>
+  <rect x="20" y="88" width="215" height="12" fill="#89b4fa"/>
+  <text x="127" y="91" text-anchor="middle" fill="#1e1e2e" font-size="12" font-weight="700">Nomenclatura</text>
+  <!-- items -->
+  <text x="35" y="118" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="118" fill="#cdd6f4" font-size="10">snake_case, plural en tablas</text>
+  <text x="35" y="138" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="138" fill="#cdd6f4" font-size="10">PK: entity_id (sin "id" genérico)</text>
+  <text x="35" y="158" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="158" fill="#cdd6f4" font-size="10">Prefijo entidad en atributos</text>
+  <text x="35" y="178" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="178" fill="#cdd6f4" font-size="10">Constraints nombradas explícitas</text>
+  <text x="35" y="198" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="198" fill="#cdd6f4" font-size="10">Objetos en inglés, docs en español</text>
+  <text x="35" y="218" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="218" fill="#cdd6f4" font-size="10">Keywords SQL en MAYÚSCULAS</text>
+  <text x="35" y="238" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="238" fill="#cdd6f4" font-size="10">Índices: ix_tabla_columna</text>
+  <text x="35" y="258" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="258" fill="#cdd6f4" font-size="10">Vistas: vw_nombre_descriptivo</text>
+  <text x="35" y="278" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="278" fill="#cdd6f4" font-size="10">Funciones: fn_verbo_sustantivo</text>
+  <text x="35" y="298" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="52" y="298" fill="#cdd6f4" font-size="10">Triggers: trg_tabla_evento</text>
+  <!-- category badge -->
+  <rect x="30" y="380" width="195" height="22" rx="4" fill="#181825"/>
+  <text x="127" y="395" text-anchor="middle" fill="#89b4fa" font-size="9">sem. 1–2 · convenciones globales</text>
+
+  <!-- Column 2: Integridad (purple) -->
+  <rect x="249" y="70" width="215" height="340" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="2"/>
+  <rect x="249" y="70" width="215" height="30" rx="8" fill="#cba6f7"/>
+  <rect x="249" y="88" width="215" height="12" fill="#cba6f7"/>
+  <text x="356" y="91" text-anchor="middle" fill="#1e1e2e" font-size="12" font-weight="700">Integridad y Tipos</text>
+  <text x="264" y="118" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="118" fill="#cdd6f4" font-size="10">PK: UUID DEFAULT gen_random_uuid()</text>
+  <text x="264" y="138" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="138" fill="#cdd6f4" font-size="10">NOT NULL explícito donde aplica</text>
+  <text x="264" y="158" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="158" fill="#cdd6f4" font-size="10">FK con ON DELETE explícito</text>
+  <text x="264" y="178" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="178" fill="#cdd6f4" font-size="10">CHECK para estados y rangos</text>
+  <text x="264" y="198" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="198" fill="#cdd6f4" font-size="10">TIMESTAMPTZ (no TIMESTAMP)</text>
+  <text x="264" y="218" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="218" fill="#cdd6f4" font-size="10">NUMERIC(p,s) para dinero</text>
+  <text x="264" y="238" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="238" fill="#cdd6f4" font-size="10">UNIQUE donde el negocio lo requiere</text>
+  <text x="264" y="258" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="258" fill="#cdd6f4" font-size="10">Normalizado hasta 3FN mínimo</text>
+  <text x="264" y="278" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="278" fill="#cdd6f4" font-size="10">Desnormalización justificada</text>
+  <text x="264" y="298" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="281" y="298" fill="#cdd6f4" font-size="10">M:N materializada en tabla puente</text>
+  <rect x="259" y="380" width="195" height="22" rx="4" fill="#181825"/>
+  <text x="356" y="395" text-anchor="middle" fill="#cba6f7" font-size="9">sem. 7–9 · normalización e integridad</text>
+
+  <!-- Column 3: Performance (yellow) -->
+  <rect x="478" y="70" width="215" height="340" rx="8" fill="#313244" stroke="#f9e2af" stroke-width="2"/>
+  <rect x="478" y="70" width="215" height="30" rx="8" fill="#f9e2af"/>
+  <rect x="478" y="88" width="215" height="12" fill="#f9e2af"/>
+  <text x="585" y="91" text-anchor="middle" fill="#1e1e2e" font-size="12" font-weight="700">Performance e Índices</text>
+  <text x="493" y="118" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="118" fill="#cdd6f4" font-size="10">Índice en cada columna FK</text>
+  <text x="493" y="138" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="138" fill="#cdd6f4" font-size="10">Índice en columnas WHERE frecuentes</text>
+  <text x="493" y="158" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="158" fill="#cdd6f4" font-size="10">Índice compuesto multi-columna</text>
+  <text x="493" y="178" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="178" fill="#cdd6f4" font-size="10">Índice parcial WHERE filtro frecuente</text>
+  <text x="493" y="198" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="198" fill="#cdd6f4" font-size="10">EXPLAIN ANALYZE verificado</text>
+  <text x="493" y="218" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="218" fill="#cdd6f4" font-size="10">No hay índices duplicados</text>
+  <text x="493" y="238" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="238" fill="#cdd6f4" font-size="10">Tipo de índice correcto (B-tree/GIN)</text>
+  <text x="493" y="258" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="258" fill="#cdd6f4" font-size="10">No se indexó tabla pequeña sin razón</text>
+  <text x="493" y="278" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="278" fill="#cdd6f4" font-size="10">Vistas para queries complejas</text>
+  <text x="493" y="298" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="510" y="298" fill="#cdd6f4" font-size="10">Vista materializada si es analítica</text>
+  <rect x="488" y="380" width="195" height="22" rx="4" fill="#181825"/>
+  <text x="585" y="395" text-anchor="middle" fill="#f9e2af" font-size="9">sem. 11 · índices y planes de ejecución</text>
+
+  <!-- Column 4: Patrones Avanzados (green) -->
+  <rect x="707" y="70" width="233" height="340" rx="8" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="707" y="70" width="233" height="30" rx="8" fill="#a6e3a1"/>
+  <rect x="707" y="88" width="233" height="12" fill="#a6e3a1"/>
+  <text x="823" y="91" text-anchor="middle" fill="#1e1e2e" font-size="12" font-weight="700">Patrones Avanzados</text>
+  <text x="722" y="118" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="118" fill="#cdd6f4" font-size="10">Soft delete: columna deleted_at</text>
+  <text x="722" y="138" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="138" fill="#cdd6f4" font-size="10">Vista vw_active_* con WHERE IS NULL</text>
+  <text x="722" y="158" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="158" fill="#cdd6f4" font-size="10">UNIQUE parcial para filas activas</text>
+  <text x="722" y="178" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="178" fill="#cdd6f4" font-size="10">Auditoría: created_at / updated_at</text>
+  <text x="722" y="198" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="198" fill="#cdd6f4" font-size="10">Trigger AFTER para *_history</text>
+  <text x="722" y="218" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="218" fill="#cdd6f4" font-size="10">Jerarquía: modelo elegido justificado</text>
+  <text x="722" y="238" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="238" fill="#cdd6f4" font-size="10">WITH RECURSIVE para árbol/jerarquía</text>
+  <text x="722" y="258" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="258" fill="#cdd6f4" font-size="10">Multi-tenancy: tenant_id en tablas</text>
+  <text x="722" y="278" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="278" fill="#cdd6f4" font-size="10">RLS habilitado con políticas CRUD</text>
+  <text x="722" y="298" fill="#a6e3a1" font-size="12">☐</text>
+  <text x="739" y="298" fill="#cdd6f4" font-size="10">Función/proc para lógica transaccional</text>
+  <rect x="717" y="380" width="213" height="22" rx="4" fill="#181825"/>
+  <text x="823" y="395" text-anchor="middle" fill="#a6e3a1" font-size="9">sem. 12–13 · objetos y patrones avanzados</text>
+
+  <!-- Footer banner -->
+  <rect x="20" y="426" width="920" height="40" rx="6" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="480" y="442" text-anchor="middle" fill="#a6adc8" font-size="11" font-weight="600">Si todos los ítems relevantes están marcados →</text>
+  <text x="480" y="458" text-anchor="middle" fill="#a6e3a1" font-size="11" font-weight="600">El diseño está listo para revisión técnica o para enviarse a producción</text>
+</svg>

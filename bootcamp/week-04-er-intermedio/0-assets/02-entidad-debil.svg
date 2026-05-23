@@ -68,17 +68,17 @@
   <rect x="530" y="96" width="200" height="8" fill="#45475a"/>
   <text x="630" y="94" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#89b4fa" text-anchor="middle">orders</text>
   <line x1="530" y1="120" x2="730" y2="120" stroke="#45475a" stroke-width="1"/>
-  <text x="545" y="115" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; id</text>
-  <text x="680" y="115" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint PK</text>
+  <text x="545" y="115" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; order_id</text>
+  <text x="680" y="115" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid PK</text>
   <line x1="530" y1="136" x2="730" y2="136" stroke="#45475a" stroke-width="1"/>
   <text x="545" y="131" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">order_date</text>
   <text x="680" y="131" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">date</text>
   <line x1="530" y1="152" x2="730" y2="152" stroke="#45475a" stroke-width="1"/>
-  <text x="545" y="147" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">status</text>
+  <text x="545" y="147" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">order_status</text>
   <text x="680" y="147" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">varchar(20)</text>
   <line x1="530" y1="168" x2="730" y2="168" stroke="#45475a" stroke-width="1"/>
   <text x="545" y="181" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">customer_id</text>
-  <text x="680" y="181" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint FK</text>
+  <text x="680" y="181" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid FK</text>
 
   <!-- FK Arrow: orders → order_items -->
   <line x1="630" y1="194" x2="630" y2="240" stroke="#cba6f7" stroke-width="2" stroke-dasharray="5,3"/>
@@ -98,16 +98,16 @@
   <line x1="530" y1="298" x2="730" y2="298" stroke="#45475a" stroke-width="1"/>
   <!-- order_id: FK + PK -->
   <text x="545" y="293" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#94e2d5">&#128279; order_id</text>
-  <text x="680" y="293" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint FK+PK</text>
+  <text x="680" y="293" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid FK+PK</text>
   <line x1="530" y1="314" x2="730" y2="314" stroke="#45475a" stroke-width="1"/>
   <!-- line_number: partial key + PK -->
   <text x="545" y="309" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; line_number</text>
   <text x="680" y="309" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">smallint PK</text>
   <line x1="530" y1="330" x2="730" y2="330" stroke="#45475a" stroke-width="1"/>
   <text x="545" y="325" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">product_id</text>
-  <text x="680" y="325" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint FK</text>
+  <text x="680" y="325" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid FK</text>
   <line x1="530" y1="346" x2="730" y2="346" stroke="#45475a" stroke-width="1"/>
-  <text x="545" y="341" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">quantity</text>
+  <text x="545" y="341" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">item_quantity</text>
   <text x="680" y="341" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">smallint</text>
   <line x1="530" y1="362" x2="730" y2="362" stroke="#45475a" stroke-width="1"/>
   <text x="545" y="378" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" font-style="italic">PK (order_id, line_number)</text>

@@ -100,7 +100,7 @@ atributos adicionales en este dominio.
 
 ```sql
 CREATE TABLE product_categories (
-    product_id  BIGINT      NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    product_id  UUID        NOT NULL REFERENCES products(product_id) ON DELETE CASCADE,
     category    VARCHAR(60) NOT NULL,
     PRIMARY KEY (product_id, category)
 );

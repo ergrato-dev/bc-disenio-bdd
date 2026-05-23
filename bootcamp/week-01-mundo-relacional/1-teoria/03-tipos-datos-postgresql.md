@@ -34,17 +34,18 @@ consecuencias directas en:
 |---|---|---|---|
 | `SMALLINT` | −32 768 a 32 767 | 2 | Contadores pequeños, estados, flags |
 | `INTEGER` | −2 147 483 648 a 2 147 483 647 | 4 | IDs de tablas pequeñas, cantidades |
-| `BIGINT` | −9.2×10¹⁸ a 9.2×10¹⁸ | 8 | PKs de tablas grandes, identificadores externos |
+| `BIGINT` | −9.2×10¹⁸ a 9.2×10¹⁸ | 8 | Números de secuencia visibles, IDs de sistemas legacy |
 
 ```sql
--- ✅ Usar BIGINT para PKs en tablas con crecimiento indeterminado
-id          BIGINT  GENERATED ALWAYS AS IDENTITY CONSTRAINT pk_products PRIMARY KEY
+-- ✅ Usar UUID para todas las PKs (recomendado en PostgreSQL 16+)
+product_id  UUID     DEFAULT gen_random_uuid() CONSTRAINT pk_products PRIMARY KEY
 
 -- ✅ Usar SMALLINT para valores acotados
-stock_units SMALLINT NOT NULL CONSTRAINT ck_products_stock CHECK (stock_units >= 0)
+product_stock SMALLINT NOT NULL CONSTRAINT ck_products_stock CHECK (product_stock >= 0)
 
--- ❌ No usar INTEGER para PKs en sistemas que escalan
-id          SERIAL  -- SERIAL usa INTEGER internamente; se puede agotar con ~2 mil millones de filas
+-- ❌ No usar SERIAL ni BIGSERIAL para PKs en código nuevo
+id          SERIAL  -- SERIAL usa INTEGER internamente y es obsoleto
+id          BIGSERIAL -- BIGSERIAL es BIGINT + secuencia manual; usar UUID en su lugar
 ```
 
 ### Decimales exactos vs. aproximados
@@ -145,24 +146,25 @@ Un `UUID` (Universally Unique Identifier) es un identificador de 128 bits que pu
 generarse de forma distribuida sin coordinación central.
 
 ```sql
--- ✅ UUID como PK — útil cuando múltiples sistemas generan IDs
+-- ✅ UUID como PK — recomendado para todas las tablas
 CREATE TABLE events (
-    id          UUID        NOT NULL DEFAULT gen_random_uuid()
+    event_id    UUID        DEFAULT gen_random_uuid()
                             CONSTRAINT pk_events PRIMARY KEY,
     event_type  VARCHAR(50) NOT NULL,
     occurred_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 ```
 
-**Cuándo preferir UUID sobre BIGINT:**
-- Necesitas generar IDs en el cliente antes de insertar
-- Múltiples bases de datos que se sincronizan entre sí
-- Quieres que los IDs sean opacos (no revelen el volumen de registros)
+**UUID es la elección preferida para PKs en PostgreSQL 16+:**
+- `gen_random_uuid()` genera UUID v4 de forma nativa, sin extensiones
+- Seguro para sistemas distribuidos (no revela el volumen de registros)
+- Ideal para APIs públicas: los IDs son opacos
+- Se puede generar en el cliente antes de insertar
 
-**Cuándo preferir BIGINT:**
-- El ID solo se genera en la BD
-- El rendimiento de índices es crítico (BIGINT 2× más rápido en índices)
-- La tabla crece a miles de millones de filas
+**Cuándo usar `BIGINT GENERATED ALWAYS AS IDENTITY` en lugar de UUID:**
+- Números de orden/factura visibles al cliente (`ORDER-001`, `INV-00042`)
+- El rendimiento de índices es crítico (BIGINT es 2× más rápido en índices B-tree muy grandes)
+- Integración con sistemas legacy que requieren enteros
 
 ---
 
@@ -173,14 +175,14 @@ consultarlo** con operadores nativos.
 
 ```sql
 CREATE TABLE products (
-    id          BIGINT  GENERATED ALWAYS AS IDENTITY CONSTRAINT pk_products PRIMARY KEY,
-    sku         VARCHAR(50) NOT NULL UNIQUE,
-    name        VARCHAR(200) NOT NULL,
-    attributes  JSONB   -- atributos variables según categoría del producto
+    product_id      UUID        DEFAULT gen_random_uuid() CONSTRAINT pk_products PRIMARY KEY,
+    product_sku     VARCHAR(50) NOT NULL UNIQUE,
+    product_name    VARCHAR(200) NOT NULL,
+    attributes      JSONB       -- atributos variables según categoría del producto
 );
 
 -- Insertar
-INSERT INTO products (sku, name, attributes)
+INSERT INTO products (product_sku, product_name, attributes)
 VALUES (
     'LAPTOP-001',
     'ThinkPad X1 Carbon',
@@ -188,7 +190,7 @@ VALUES (
 );
 
 -- Consultar por atributo JSON
-SELECT name FROM products
+SELECT product_name FROM products
 WHERE attributes->>'color' = 'black'
   AND (attributes->>'ram_gb')::INTEGER >= 16;
 ```
@@ -208,7 +210,7 @@ WHERE attributes->>'color' = 'black'
 
 | Dominio | Tipo recomendado | Anti-patrón |
 |---|---|---|
-| PK auto-incremental | `BIGINT GENERATED ALWAYS AS IDENTITY` | `SERIAL`, `INT` |
+| PK (recomendado) | `UUID DEFAULT gen_random_uuid()` | `SERIAL`, `BIGSERIAL`, `BIGINT GENERATED ALWAYS AS IDENTITY` |
 | Nombre, email, código | `VARCHAR(n)` con n adecuado | `TEXT` para campos acotados |
 | Descripción libre | `TEXT` | `VARCHAR(9999)` |
 | Precio, monto | `NUMERIC(12, 2)` | `FLOAT`, `REAL` |
@@ -226,7 +228,7 @@ WHERE attributes->>'color' = 'black'
 - **Usa el tipo más específico** — no todo es `VARCHAR` y `INTEGER`
 - **NUMERIC** para dinero, nunca FLOAT
 - **TIMESTAMPTZ** siempre (con zona horaria), nunca TIMESTAMP
-- **BIGINT GENERATED ALWAYS AS IDENTITY** para PKs, evita SERIAL
+- **UUID DEFAULT gen_random_uuid()** para PKs, nunca SERIAL ni BIGSERIAL
 - **BOOLEAN** para flags, nunca SMALLINT ni CHAR(1)
 - **JSONB** es una herramienta poderosa, pero no reemplaza la normalización
 

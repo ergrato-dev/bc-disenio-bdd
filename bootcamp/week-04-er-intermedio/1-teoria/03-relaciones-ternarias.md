@@ -68,17 +68,17 @@ Esto la convierte en una relación `M:N:P` (todos son "muchos").
 ### En el modelo físico: tabla ternaria
 
 ```sql
-CREATE TABLE suppliers  (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL);
-CREATE TABLE products   (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL);
-CREATE TABLE projects   (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL);
+CREATE TABLE suppliers  (supplier_id UUID DEFAULT gen_random_uuid() PRIMARY KEY, supplier_name VARCHAR(100) NOT NULL);
+CREATE TABLE products   (product_id  UUID DEFAULT gen_random_uuid() PRIMARY KEY, product_name  VARCHAR(100) NOT NULL);
+CREATE TABLE projects   (project_id  UUID DEFAULT gen_random_uuid() PRIMARY KEY, project_name  VARCHAR(100) NOT NULL);
 
 -- La ternaria se convierte en tabla con 3 FKs
 CREATE TABLE supplies (
-    supplier_id  BIGINT        NOT NULL REFERENCES suppliers(id) ON DELETE RESTRICT,
-    product_id   BIGINT        NOT NULL REFERENCES products(id)  ON DELETE RESTRICT,
-    project_id   BIGINT        NOT NULL REFERENCES projects(id)  ON DELETE RESTRICT,
-    quantity     INTEGER       NOT NULL CHECK (quantity > 0),
-    supply_date  DATE          NOT NULL DEFAULT CURRENT_DATE,
+    supplier_id     UUID          NOT NULL REFERENCES suppliers(supplier_id) ON DELETE RESTRICT,
+    product_id      UUID          NOT NULL REFERENCES products(product_id)   ON DELETE RESTRICT,
+    project_id      UUID          NOT NULL REFERENCES projects(project_id)   ON DELETE RESTRICT,
+    supply_quantity INTEGER       NOT NULL CHECK (supply_quantity > 0),
+    supply_date     DATE          NOT NULL DEFAULT CURRENT_DATE,
     PRIMARY KEY (supplier_id, product_id, project_id)  -- PK ternaria
 );
 ```
@@ -147,18 +147,18 @@ STUDENT ──────o<───── ENROLLMENT ─────>o──�
 ### En el modelo físico
 
 ```sql
-CREATE TABLE students  (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, ...);
-CREATE TABLE courses   (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, ...);
+CREATE TABLE students  (student_id UUID DEFAULT gen_random_uuid() PRIMARY KEY, ...);
+CREATE TABLE courses   (course_id  UUID DEFAULT gen_random_uuid() PRIMARY KEY, ...);
 
 -- La entidad asociativa: tiene FK a ambas + atributos propios
 CREATE TABLE enrollments (
-    id               BIGINT      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    student_id       BIGINT      NOT NULL REFERENCES students(id) ON DELETE RESTRICT,
-    course_id        BIGINT      NOT NULL REFERENCES courses(id)  ON DELETE RESTRICT,
+    enrollment_id    UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+    student_id       UUID        NOT NULL REFERENCES students(student_id) ON DELETE RESTRICT,
+    course_id        UUID        NOT NULL REFERENCES courses(course_id)   ON DELETE RESTRICT,
     enrollment_date  DATE        NOT NULL DEFAULT CURRENT_DATE,
-    final_grade      NUMERIC(4,2),      -- NULL mientras el semestre no termina
-    status           VARCHAR(20) NOT NULL DEFAULT 'enrolled'
-                     CHECK (status IN ('enrolled', 'withdrawn', 'passed', 'failed')),
+    enrollment_grade NUMERIC(4,2),      -- NULL mientras el semestre no termina
+    enrollment_status VARCHAR(20) NOT NULL DEFAULT 'enrolled'
+                     CHECK (enrollment_status IN ('enrolled', 'withdrawn', 'passed', 'failed')),
     UNIQUE (student_id, course_id)      -- un estudiante no puede inscribirse dos veces al mismo curso
 );
 ```

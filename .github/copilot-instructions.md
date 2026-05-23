@@ -235,24 +235,24 @@ A diferencia de los ejercicios, el proyecto SÍ usa TODOs:
 ### Nomenclatura de Objetos
 
 ```sql
--- ✅ BIEN — snake_case para tablas y columnas
+-- ✅ BIEN — UUID como PK + columnas auto-documentadas con prefijo de entidad
 CREATE TABLE order_items (
-    id              SERIAL          PRIMARY KEY,
-    order_id        INTEGER         NOT NULL,
-    product_id      INTEGER         NOT NULL,
-    quantity        SMALLINT        NOT NULL CHECK (quantity > 0),
-    unit_price      NUMERIC(10, 2)  NOT NULL CHECK (unit_price >= 0),
-    created_at      TIMESTAMPTZ     NOT NULL DEFAULT NOW()
+    order_item_id       UUID            DEFAULT gen_random_uuid() PRIMARY KEY,
+    order_id            UUID            NOT NULL,
+    product_id          UUID            NOT NULL,
+    order_item_quantity SMALLINT        NOT NULL CHECK (order_item_quantity > 0),
+    order_item_price    NUMERIC(10, 2)  NOT NULL CHECK (order_item_price >= 0),
+    created_at          TIMESTAMPTZ     NOT NULL DEFAULT NOW()
 );
 
 -- ✅ BIEN — nombres de constraints explícitos (patrón: tipo_tabla_columna)
 ALTER TABLE order_items
     ADD CONSTRAINT fk_order_items_order_id
-        FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+        FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     ADD CONSTRAINT fk_order_items_product_id
-        FOREIGN KEY (product_id) REFERENCES products(id);
+        FOREIGN KEY (product_id) REFERENCES products(product_id);
 
--- ❌ MAL — nombre de columna ambiguo, sin constraint explícito
+-- ❌ MAL — id genérico, columnas sin prefijo, sin constraint explícito
 CREATE TABLE items (id INT, oid INT, pid INT, qty INT);
 ```
 
@@ -278,24 +278,28 @@ select u.id, u.email, count(o.id) from users u join orders o on o.customer_id=u.
 
 ### Tipos de Datos PostgreSQL (Recomendados)
 
-| Caso de uso                     | Tipo recomendado                               |
-| ------------------------------- | ---------------------------------------------- |
-| Clave primaria auto-incremental | `BIGSERIAL` (o `GENERATED ALWAYS AS IDENTITY`) |
-| Texto corto (nombre, email)     | `VARCHAR(n)`                                   |
-| Texto largo sin límite          | `TEXT`                                         |
-| Entero pequeño (estados, flags) | `SMALLINT`                                     |
-| Entero estándar                 | `INTEGER`                                      |
-| Decimal exacto (dinero)         | `NUMERIC(precision, scale)`                    |
-| Fecha y hora con zona           | `TIMESTAMPTZ`                                  |
-| Solo fecha                      | `DATE`                                         |
-| Booleano                        | `BOOLEAN`                                      |
-| UUID                            | `UUID` (con `gen_random_uuid()`)               |
-| JSON estructurado               | `JSONB`                                        |
+| Caso de uso                     | Tipo recomendado                      |
+| ------------------------------- | ------------------------------------- |
+| **Clave primaria (PK)**         | `UUID DEFAULT gen_random_uuid()` ✅   |
+| PK secuencial (alternativa)     | `BIGINT GENERATED ALWAYS AS IDENTITY` |
+| Texto corto (nombre, email)     | `VARCHAR(n)`                          |
+| Texto largo sin límite          | `TEXT`                                |
+| Entero pequeño (estados, flags) | `SMALLINT`                            |
+| Entero estándar                 | `INTEGER`                             |
+| Decimal exacto (dinero)         | `NUMERIC(precision, scale)`           |
+| Fecha y hora con zona           | `TIMESTAMPTZ`                         |
+| Solo fecha                      | `DATE`                                |
+| Booleano                        | `BOOLEAN`                             |
+| JSON estructurado               | `JSONB`                               |
 
 ### Naming Conventions
 
 - **Tablas:** `snake_case`, plural (`users`, `order_items`, `product_categories`)
-- **Columnas:** `snake_case`, singular (`user_id`, `created_at`, `is_active`)
+- **Columnas:** `snake_case`, singular. **Regla de auto-documentación:** toda columna debe llevar el nombre de la entidad como prefijo (`{entidad}_{atributo}`), excepto metadatos universales (`created_at`, `updated_at`, `deleted_at`) y columnas FK que ya lo son por convención (`customer_id`, `product_id`):
+  - PK: `user_id`, `product_id`, `order_id` — **nunca** el genérico `id`
+  - Atributos: `user_name`, `product_price`, `order_status`, `booking_date`
+  - Metadatos de auditoría: `created_at`, `updated_at`, `deleted_at` ← sin prefijo
+- **PK con UUID:** usar `UUID DEFAULT gen_random_uuid()` para todas las claves primarias. Usar `BIGINT GENERATED ALWAYS AS IDENTITY` solo cuando se requiera secuencia explícita (ej. número de factura visible al cliente).
 - **Constraints:** `tipo_tabla_columna`
   - PK: `pk_users`
   - FK: `fk_orders_customer_id`
@@ -327,27 +331,28 @@ select u.id, u.email, count(o.id) from users u join orders o on o.customer_id=u.
 // ============================================
 // Modelo Lógico: Sistema de E-Commerce
 // Versión: 1.0 | Fecha: 2026-05-22
+// Convención: UUID como PK + columnas auto-documentadas
 // ============================================
 
 Table users {
-  id          bigserial   [pk, note: "Clave primaria"]
-  email       varchar(150) [not null, unique]
-  full_name   varchar(100) [not null]
+  user_id     uuid        [pk, default: `gen_random_uuid()`, note: "Clave primaria"]
+  user_email  varchar(150) [not null, unique]
+  user_name   varchar(100) [not null]
   is_active   boolean     [not null, default: true]
   created_at  timestamptz [not null, default: `now()`]
 
   indexes {
-    email [unique, name: "uq_users_email"]
+    user_email [unique, name: "uq_users_email"]
     created_at [name: "ix_users_created_at"]
   }
 }
 
 Table orders {
-  id          bigserial   [pk]
-  customer_id bigint      [not null, ref: > users.id]
-  status      varchar(20) [not null, note: "pending|confirmed|shipped|delivered|cancelled"]
-  total       numeric(10,2) [not null]
-  created_at  timestamptz [not null, default: `now()`]
+  order_id     uuid        [pk, default: `gen_random_uuid()`]
+  customer_id  uuid        [not null, ref: > users.user_id]
+  order_status varchar(20) [not null, note: "pending|confirmed|shipped|delivered|cancelled"]
+  order_total  numeric(10,2) [not null]
+  created_at   timestamptz [not null, default: `now()`]
 }
 ```
 
@@ -481,10 +486,11 @@ Cuando trabajes en este proyecto:
 ### Generación de SQL
 
 1. **Usa siempre sintaxis PostgreSQL moderna (16+)**
-   - Preferir `GENERATED ALWAYS AS IDENTITY` sobre `SERIAL` en código nuevo
+   - **PK con UUID:** `UUID DEFAULT gen_random_uuid()` para todas las nuevas tablas — nunca `SERIAL` ni `BIGSERIAL` para PKs
+   - Usar `BIGINT GENERATED ALWAYS AS IDENTITY` solo para secuencias visibles al negocio (número de factura, número de orden)
    - Usar `TIMESTAMPTZ` en lugar de `TIMESTAMP` para columnas de fecha/hora
-   - Usar `gen_random_uuid()` para UUIDs
    - Aprovechar tipos nativos (`JSONB`, `ARRAY`, tipos enumerados)
+   - **Columnas auto-documentadas:** PK como `{entidad}_id` (ej. `product_id`, `order_id`); atributos con prefijo (ej. `product_name`, `order_status`); excepto `created_at`, `updated_at`, `deleted_at`
 
 2. **Entorno de Desarrollo**
    - ✅ Docker + docker compose para PostgreSQL y pgAdmin

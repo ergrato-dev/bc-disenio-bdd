@@ -81,7 +81,7 @@
 
   <!-- Business rule -->
   <text x="450" y="345" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Cada libro pertenece a exactamente una editorial (||). Una editorial puede tener cero o muchos libros (o&lt;).</text>
-  <text x="450" y="361" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">La FK va en el lado N: LIBRO.editorial_id → EDITORIAL.id</text>
+  <text x="450" y="361" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">La FK va en el lado N: LIBRO.editorial_id → EDITORIAL.editorial_id</text>
   <text x="450" y="377" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">Variante: usar |&lt; si una editorial debe tener al menos un libro publicado.</text>
 
   <!-- ══════════════════════════════════════════════════════ -->

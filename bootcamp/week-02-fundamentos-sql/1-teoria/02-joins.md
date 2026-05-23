@@ -27,10 +27,10 @@ la igualdad entre una **clave foránea** y la **clave primaria** que referencia:
 -- Patrón general
 SELECT ...
 FROM   tabla_a AS a
-JOIN   tabla_b AS b  ON b.id = a.tabla_b_id
+JOIN   tabla_b AS b  ON b.tabla_b_id = a.tabla_b_id
 ```
 
-La condición `ON b.id = a.tabla_b_id` es el **predicado de JOIN**.
+La condición `ON b.tabla_b_id = a.tabla_b_id` es el **predicado de JOIN**.
 Puedes usar cualquier expresión booleana, pero la igualdad de claves es el 95% de los casos.
 
 ---
@@ -43,11 +43,11 @@ Si un registro no tiene par en la otra tabla, **no aparece**.
 ```sql
 -- ¿Qué pedidos existen y quién los hizo?
 SELECT
-    o.id            AS pedido_id,
-    c.full_name     AS cliente,
+    o.order_id      AS pedido_id,
+    c.customer_name AS cliente,
     o.created_at    AS fecha
 FROM orders         AS o
-INNER JOIN customers AS c  ON c.id = o.customer_id
+INNER JOIN customers AS c  ON c.customer_id = o.customer_id
 ORDER BY o.created_at DESC;
 ```
 
@@ -96,11 +96,11 @@ Espejo del LEFT JOIN: devuelve todas las filas de la tabla **derecha**
 ```sql
 -- Equivalente al LEFT JOIN anterior, con tablas invertidas
 SELECT
-    c.id,
-    c.full_name
+    c.customer_id,
+    c.customer_name
 FROM orders      AS o
-RIGHT JOIN customers AS c  ON c.id = o.customer_id
-WHERE o.id IS NULL;
+RIGHT JOIN customers AS c  ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL;
 ```
 
 > **Consejo práctico:** en la mayoría de casos puedes reescribir un RIGHT JOIN
@@ -117,10 +117,10 @@ rellena con `NULL`.
 ```sql
 -- Ver todos los clientes y todos los pedidos, emparejados donde sea posible
 SELECT
-    c.full_name  AS cliente,
-    o.id         AS pedido_id
+    c.customer_name  AS cliente,
+    o.order_id       AS pedido_id
 FROM customers   AS c
-FULL JOIN orders AS o  ON o.customer_id = c.id;
+FULL JOIN orders AS o  ON o.customer_id = c.customer_id;
 ```
 
 **Caso de uso:** auditoría de integridad referencial, comparar dos conjuntos de datos.
@@ -134,7 +134,7 @@ Raramente se usa en producción, pero es útil para generar combinaciones.
 
 ```sql
 -- 3 tallas × 4 colores = 12 variantes posibles
-SELECT sizes.name AS talla, colors.name AS color
+SELECT sizes.size_name AS talla, colors.color_name AS color
 FROM sizes
 CROSS JOIN colors;
 ```
@@ -151,17 +151,17 @@ Puedes encadenar tantos JOINs como necesites:
 ```sql
 -- Pedido + cliente + ítems del pedido + producto de cada ítem
 SELECT
-    o.id                AS pedido_id,
-    c.full_name         AS cliente,
-    p.name              AS producto,
-    oi.quantity,
-    oi.unit_price,
-    oi.quantity * oi.unit_price  AS subtotal
+    o.order_id              AS pedido_id,
+    c.customer_name         AS cliente,
+    p.product_name          AS producto,
+    oi.item_quantity,
+    oi.item_unit_price,
+    oi.item_quantity * oi.item_unit_price  AS subtotal
 FROM orders             AS o
-INNER JOIN customers    AS c   ON c.id  = o.customer_id
-INNER JOIN order_items  AS oi  ON oi.order_id = o.id
-INNER JOIN products     AS p   ON p.id  = oi.product_id
-ORDER BY o.id, p.name;
+INNER JOIN customers    AS c   ON c.customer_id  = o.customer_id
+INNER JOIN order_items  AS oi  ON oi.order_id    = o.order_id
+INNER JOIN products     AS p   ON p.product_id   = oi.product_id
+ORDER BY o.order_id, p.product_name;
 ```
 
 **Tip de legibilidad:** alinea los alias y los predicados ON en columna para que
@@ -175,13 +175,13 @@ la cadena de joins sea fácil de seguir.
 subcategorías, etc.):
 
 ```sql
--- employees tiene la columna manager_id que apunta al id del mismo empleado
+-- employees tiene la columna manager_id que apunta al employee_id del mismo empleado
 SELECT
-    e.full_name    AS empleado,
-    m.full_name    AS supervisor
+    e.employee_name    AS empleado,
+    m.employee_name    AS supervisor
 FROM employees     AS e
-LEFT JOIN employees AS m  ON m.id = e.manager_id
-ORDER BY m.full_name NULLS FIRST;
+LEFT JOIN employees AS m  ON m.employee_id = e.manager_id
+ORDER BY m.employee_name NULLS FIRST;
 ```
 
 ---
@@ -192,7 +192,7 @@ ORDER BY m.full_name NULLS FIRST;
 |-------|-------------|----------|
 | Filas duplicadas inesperadas | JOIN con relación 1:N sin agrupar devuelve más filas de las esperadas | Verificar la cardinalidad antes de hacer el JOIN |
 | Confundir LEFT con RIGHT | Olvidar cuál tabla es "la principal" | Nombrar siempre la tabla más importante en FROM; usar LEFT JOIN |
-| Predicado ON incorrecto | `ON a.id = b.id` cuando debería ser `ON b.a_id = a.id` | Revisar las claves foráneas del modelo |
+| Predicado ON incorrecto | `ON a.order_id = b.order_id` cuando debería ser `ON b.customer_id = a.customer_id` | Revisar las claves foráneas del modelo |
 | NULL después de LEFT JOIN | Los valores NULL de la tabla derecha rompen cálculos | Usar COALESCE para valores por defecto |
 | Producto cartesiano accidental | Olvidar la condición ON en un JOIN | El plan de ejecución mostrará un Hash Join sin predicado |
 

@@ -33,7 +33,7 @@ de integridad básicos.
 ### Restricciones de diseño
 
 - Aplicar las convenciones de nomenclatura del bootcamp (snake_case, plural para tablas)
-- Usar `BIGINT GENERATED ALWAYS AS IDENTITY` para todas las claves primarias
+- Usar `UUID DEFAULT gen_random_uuid()` para todas las claves primarias
 - Usar `TIMESTAMPTZ` para marcas de tiempo; `DATE` para fechas sin hora
 - Todas las `FOREIGN KEY` deben declarar política `ON DELETE` explícita
 - Las constraints deben seguir el patrón de nombres del bootcamp (`pk_`, `fk_`, `uq_`, `ck_`)

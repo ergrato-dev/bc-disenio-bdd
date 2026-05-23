@@ -16,10 +16,10 @@
   <line x1="225" y1="96" x2="225" y2="132" stroke="#1e1e2e" stroke-width="1"/>
   <line x1="510" y1="96" x2="510" y2="132" stroke="#1e1e2e" stroke-width="1"/>
   <line x1="660" y1="96" x2="660" y2="132" stroke="#1e1e2e" stroke-width="1"/>
-  <text x="142" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">id</text>
-  <text x="367" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">title</text>
-  <text x="585" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">author</text>
-  <text x="715" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">year</text>
+  <text x="142" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">book_id</text>
+  <text x="367" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">book_title</text>
+  <text x="585" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">book_author</text>
+  <text x="715" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#a6e3a1">book_year</text>
 
   <!-- Fila 1 -->
   <rect x="60" y="132" width="660" height="36" fill="#1e1e2e"/>

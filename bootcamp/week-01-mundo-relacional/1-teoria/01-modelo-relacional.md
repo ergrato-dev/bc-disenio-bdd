@@ -72,13 +72,13 @@ mediante la **clave primaria** (`PRIMARY KEY`): una columna (o conjunto de colum
 cuyos valores identifican de forma única cada fila.
 
 ```sql
--- La columna `id` garantiza que cada libro sea único
+-- La columna `book_id` garantiza que cada libro sea único
 CREATE TABLE books (
-    id      BIGINT  GENERATED ALWAYS AS IDENTITY
-                    CONSTRAINT pk_books PRIMARY KEY,
-    title   TEXT    NOT NULL,
-    author  TEXT    NOT NULL,
-    year    SMALLINT
+    book_id     UUID        DEFAULT gen_random_uuid()
+                            CONSTRAINT pk_books PRIMARY KEY,
+    book_title  TEXT        NOT NULL,
+    book_author TEXT        NOT NULL,
+    book_year   SMALLINT
 );
 ```
 
@@ -136,22 +136,22 @@ clave primaria de otra tabla, estableciendo una restricción de integridad refer
 ```sql
 -- Tabla principal: autores
 CREATE TABLE authors (
-    id          BIGINT      GENERATED ALWAYS AS IDENTITY
-                            CONSTRAINT pk_authors PRIMARY KEY,
+    author_id   UUID         DEFAULT gen_random_uuid()
+                             CONSTRAINT pk_authors PRIMARY KEY,
     full_name   VARCHAR(150) NOT NULL,
     nationality VARCHAR(50)
 );
 
 -- Tabla dependiente: libros — referencia a authors
 CREATE TABLE books (
-    id          BIGINT      GENERATED ALWAYS AS IDENTITY
-                            CONSTRAINT pk_books PRIMARY KEY,
-    title       TEXT        NOT NULL,
-    author_id   BIGINT      NOT NULL,
-    year        SMALLINT,
+    book_id     UUID         DEFAULT gen_random_uuid()
+                             CONSTRAINT pk_books PRIMARY KEY,
+    book_title  TEXT         NOT NULL,
+    author_id   UUID         NOT NULL,
+    book_year   SMALLINT,
 
     CONSTRAINT fk_books_author_id
-        FOREIGN KEY (author_id) REFERENCES authors(id)
+        FOREIGN KEY (author_id) REFERENCES authors(author_id)
         ON DELETE RESTRICT
 );
 ```

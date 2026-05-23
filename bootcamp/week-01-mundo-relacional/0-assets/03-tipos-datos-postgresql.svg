@@ -19,9 +19,9 @@
   <text x="280" y="136" text-anchor="end" font-size="10" fill="#585b70">±2.1B · 4B</text>
   <text x="48" y="150" font-size="10" fill="#6c7086">cantidades, IDs pequeños</text>
 
-  <text x="48" y="170" font-size="11" font-weight="700" fill="#a6e3a1">BIGINT ✓ PKs</text>
+  <text x="48" y="170" font-size="11" font-weight="700" fill="#585b70">BIGINT — secuencias</text>
   <text x="280" y="170" text-anchor="end" font-size="10" fill="#585b70">±9.2×10¹⁸ · 8B</text>
-  <text x="48" y="184" font-size="10" fill="#6c7086">PKs, IDs de sistemas grandes</text>
+  <text x="48" y="184" font-size="10" fill="#6c7086">números de factura, contadores visibles</text>
 
   <text x="48" y="204" font-size="11" font-weight="700" fill="#a6e3a1">NUMERIC(p,s) ✓ dinero</text>
   <text x="48" y="218" font-size="10" fill="#6c7086">precios, montos financieros</text>
@@ -83,10 +83,10 @@
   <rect x="48" y="328" width="120" height="12" rx="3" fill="#313244"/>
   <text x="108" y="338" text-anchor="middle" font-size="9" fill="#f38ba8">nunca SMALLINT o CHAR(1)</text>
 
-  <text x="48" y="360" font-size="11" font-weight="700" fill="#a6e3a1">UUID</text>
+  <text x="48" y="360" font-size="11" font-weight="700" fill="#a6e3a1">UUID ✓ PKs</text>
   <text x="385" y="360" text-anchor="end" font-size="10" fill="#585b70">128 bits</text>
-  <text x="48" y="374" font-size="10" fill="#6c7086">IDs distribuidos, opacos al exterior</text>
-  <text x="48" y="388" font-size="10" fill="#6c7086">gen_random_uuid() · pgcrypto</text>
+  <text x="48" y="374" font-size="10" fill="#6c7086">PK principal — distribuido, opaco al exterior</text>
+  <text x="48" y="388" font-size="10" fill="#6c7086">gen_random_uuid() — nativo en PostgreSQL 16</text>
 
   <text x="48" y="408" font-size="11" font-weight="700" fill="#cdd6f4">JSONB</text>
   <text x="385" y="408" text-anchor="end" font-size="10" fill="#585b70">JSON binario indexable</text>
@@ -100,8 +100,8 @@
   <rect x="415" y="275" width="375" height="13" fill="#f38ba8"/>
   <text x="602" y="279" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">Reglas de oro</text>
 
-  <text x="433" y="308" font-size="11" fill="#a6e3a1">✓ PK autoincremental:</text>
-  <text x="433" y="322" font-size="10" fill="#cdd6f4">  BIGINT GENERATED ALWAYS AS IDENTITY</text>
+  <text x="433" y="308" font-size="11" fill="#a6e3a1">✓ PK — siempre UUID:</text>
+  <text x="433" y="322" font-size="10" fill="#cdd6f4">  UUID DEFAULT gen_random_uuid()</text>
 
   <text x="433" y="342" font-size="11" fill="#a6e3a1">✓ Dinero / precios:</text>
   <text x="433" y="356" font-size="10" fill="#cdd6f4">  NUMERIC(12, 2) — nunca FLOAT</text>

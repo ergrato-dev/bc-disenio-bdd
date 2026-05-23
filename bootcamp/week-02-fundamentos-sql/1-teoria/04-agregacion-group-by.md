@@ -83,17 +83,17 @@ Lo más habitual es combinar GROUP BY con JOINs para mostrar información legibl
 ```sql
 -- ¿Cuántos pedidos tiene cada cliente, mostrando su nombre?
 SELECT
-    c.full_name                 AS cliente,
-    COUNT(o.id)                 AS total_pedidos,
-    COALESCE(SUM(o.total), 0)   AS total_gastado
+    c.customer_name             AS cliente,
+    COUNT(o.order_id)           AS total_pedidos,
+    COALESCE(SUM(o.order_total), 0) AS total_gastado
 FROM customers   AS c
-LEFT JOIN orders AS o  ON o.customer_id = c.id
-GROUP BY c.id, c.full_name
+LEFT JOIN orders AS o  ON o.customer_id = c.customer_id
+GROUP BY c.customer_id, c.customer_name
 ORDER BY total_gastado DESC;
 ```
 
-> Nota: agrupamos por `c.id` y `c.full_name`. En PostgreSQL, `GROUP BY c.id`
-> es suficiente si `full_name` es funcionalmente dependiente de `id` (es su PK).
+> Nota: agrupamos por `c.customer_id` y `c.customer_name`. En PostgreSQL, `GROUP BY c.customer_id`
+> es suficiente si `customer_name` es funcionalmente dependiente de `customer_id` (es su PK).
 > Sin embargo, escribir ambas es más portátil y explícito.
 
 ---
@@ -115,11 +115,11 @@ HAVING COUNT(*) > 5;
 -- ¿Qué categorías tienen ventas totales superiores a $10 000?
 SELECT
     p.category_id,
-    SUM(oi.quantity * oi.unit_price) AS ventas_totales
+    SUM(oi.item_quantity * oi.item_unit_price) AS ventas_totales
 FROM order_items  AS oi
-INNER JOIN products AS p  ON p.id = oi.product_id
+INNER JOIN products AS p  ON p.product_id = oi.product_id
 GROUP BY p.category_id
-HAVING SUM(oi.quantity * oi.unit_price) > 10000
+HAVING SUM(oi.item_quantity * oi.item_unit_price) > 10000
 ORDER BY ventas_totales DESC;
 ```
 
@@ -129,7 +129,7 @@ ORDER BY ventas_totales DESC;
 -- WHERE filtra ANTES de agrupar (más eficiente: reduce filas que se procesan)
 SELECT category_id, COUNT(*)
 FROM products
-WHERE price > 10        -- filtra productos baratos antes de agrupar
+WHERE product_price > 10        -- filtra productos baratos antes de agrupar
 GROUP BY category_id;
 
 -- HAVING filtra DESPUÉS de agrupar (opera sobre el resultado del grupo)
@@ -141,7 +141,7 @@ HAVING COUNT(*) > 5;    -- solo categorías con más de 5 productos
 -- Puedes combinar ambos
 SELECT category_id, COUNT(*) AS total
 FROM products
-WHERE price > 10        -- filtra primero por precio
+WHERE product_price > 10        -- filtra primero por precio
 GROUP BY category_id
 HAVING COUNT(*) > 5     -- luego filtra por cantidad de productos en el grupo
 ORDER BY total DESC;
@@ -177,14 +177,14 @@ Esto explica por qué:
 -- STRING_AGG: concatena valores de un grupo en una cadena
 SELECT
     category_id,
-    STRING_AGG(name, ', ' ORDER BY name) AS productos
+    STRING_AGG(product_name, ', ' ORDER BY product_name) AS productos
 FROM products
 GROUP BY category_id;
 
 -- ARRAY_AGG: reúne valores en un array
 SELECT
     customer_id,
-    ARRAY_AGG(DISTINCT status ORDER BY status) AS estados_pedidos
+    ARRAY_AGG(DISTINCT order_status ORDER BY order_status) AS estados_pedidos
 FROM orders
 GROUP BY customer_id;
 
@@ -211,16 +211,16 @@ SELECT COUNT(DISTINCT customer_id) AS clientes_con_pedidos FROM orders;
 -- Informe de ventas por categoría: nombre, total vendido, ticket promedio,
 -- número de pedidos — solo categorías con más de 3 pedidos
 SELECT
-    cat.name                                     AS categoria,
-    COUNT(DISTINCT o.id)                         AS total_pedidos,
-    SUM(oi.quantity * oi.unit_price)             AS ingresos_totales,
-    ROUND(AVG(oi.quantity * oi.unit_price), 2)   AS ticket_promedio
+    cat.category_name                                    AS categoria,
+    COUNT(DISTINCT o.order_id)                           AS total_pedidos,
+    SUM(oi.item_quantity * oi.item_unit_price)           AS ingresos_totales,
+    ROUND(AVG(oi.item_quantity * oi.item_unit_price), 2) AS ticket_promedio
 FROM categories         AS cat
-INNER JOIN products     AS p    ON p.category_id = cat.id
-INNER JOIN order_items  AS oi   ON oi.product_id = p.id
-INNER JOIN orders       AS o    ON o.id = oi.order_id
-GROUP BY cat.id, cat.name
-HAVING COUNT(DISTINCT o.id) > 3
+INNER JOIN products     AS p    ON p.category_id     = cat.category_id
+INNER JOIN order_items  AS oi   ON oi.product_id     = p.product_id
+INNER JOIN orders       AS o    ON o.order_id        = oi.order_id
+GROUP BY cat.category_id, cat.category_name
+HAVING COUNT(DISTINCT o.order_id) > 3
 ORDER BY ingresos_totales DESC;
 ```
 

@@ -100,17 +100,17 @@ WHERE (status = 'pending' OR status = 'processing')
 
 ```sql
 -- Ascendente (por defecto)
-SELECT id, name, price FROM products ORDER BY price ASC;
-SELECT id, name, price FROM products ORDER BY price;      -- ASC es el default
+SELECT product_id, product_name, product_price FROM products ORDER BY product_price ASC;
+SELECT product_id, product_name, product_price FROM products ORDER BY product_price;      -- ASC es el default
 
 -- Descendente
-SELECT id, name, price FROM products ORDER BY price DESC;
+SELECT product_id, product_name, product_price FROM products ORDER BY product_price DESC;
 
 -- Múltiples columnas: primero por precio, luego alfabéticamente
-SELECT id, name, price FROM products ORDER BY price DESC, name ASC;
+SELECT product_id, product_name, product_price FROM products ORDER BY product_price DESC, product_name ASC;
 
 -- Por posición de columna (evitar en código real, frágil ante cambios de esquema)
-SELECT id, name, price FROM products ORDER BY 3 DESC;
+SELECT product_id, product_name, product_price FROM products ORDER BY 3 DESC;
 ```
 
 ### NULL en ORDER BY
@@ -118,7 +118,7 @@ SELECT id, name, price FROM products ORDER BY 3 DESC;
 Por defecto en PostgreSQL, los NULL aparecen **al final** en ORDER ASC y **al inicio** en ORDER DESC. Puedes controlarlo:
 
 ```sql
-SELECT id, name, deleted_at
+SELECT product_id, product_name, deleted_at
 FROM products
 ORDER BY deleted_at ASC NULLS LAST;   -- NULL siempre al final
 ```
@@ -129,16 +129,16 @@ ORDER BY deleted_at ASC NULLS LAST;   -- NULL siempre al final
 
 ```sql
 -- Traer solo los primeros 10 resultados
-SELECT id, name, price
+SELECT product_id, product_name, product_price
 FROM products
-ORDER BY price DESC
+ORDER BY product_price DESC
 LIMIT 10;
 
 -- Página 3 de resultados (10 por página)
 -- Página 1: OFFSET 0, Página 2: OFFSET 10, Página 3: OFFSET 20
-SELECT id, name, price
+SELECT product_id, product_name, product_price
 FROM products
-ORDER BY price DESC
+ORDER BY product_price DESC
 LIMIT  10
 OFFSET 20;
 ```

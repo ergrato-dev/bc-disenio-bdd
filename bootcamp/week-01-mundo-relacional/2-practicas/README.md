@@ -178,7 +178,7 @@ Ejecuta el siguiente script en el Query Tool:
 ```sql
 -- Crear una tabla simple de prueba
 CREATE TABLE bootcamp.test_table (
-    id          BIGINT      GENERATED ALWAYS AS IDENTITY
+    test_id     UUID        DEFAULT gen_random_uuid()
                             CONSTRAINT pk_test_table PRIMARY KEY,
     message     TEXT        NOT NULL,
     created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -198,15 +198,15 @@ INSERT INTO bootcamp.test_table (message) VALUES
     ('El entorno funciona correctamente');
 
 -- Consultar los datos
-SELECT id, message, created_at
+SELECT test_id, message, created_at
 FROM bootcamp.test_table
-ORDER BY id;
+ORDER BY created_at;
 ```
 
 Observa que:
-- El campo `id` se generó automáticamente (1, 2, 3)
+- El campo `test_id` se generó automáticamente como UUID v4 (ej. `a3f8c2d1-...`)
 - El campo `created_at` se rellenó con la fecha y hora actuales (con zona horaria)
-- El resultado viene ordenado por `id` gracias a `ORDER BY`
+- El resultado viene ordenado por `created_at` gracias a `ORDER BY`
 
 ---
 

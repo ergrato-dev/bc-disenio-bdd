@@ -53,9 +53,9 @@ dentro de su pedido**:
                     ┌─────────────────┐
                     │     ORDER       │
                     │─────────────────│
-                    │ id (PK)         │
+                    │ order_id (PK)   │
                     │ order_date      │
-                    │ status          │
+                    │ order_status    │
                     └────────┬────────┘
                              │
                              │ ||──|< (identificación: total, muchos ítems)
@@ -66,8 +66,8 @@ dentro de su pedido**:
                     │ order_id (FK+PK)│
                     │ line_number (PK)│  ← clave parcial (discriminador)
                     │ product_id (FK) │
-                    │ quantity        │
-                    │ unit_price      │
+                    │ item_quantity   │
+                    │ item_unit_price │
                     └─────────────────┘
 ```
 
@@ -79,18 +79,18 @@ La PK de la entidad débil es **compuesta**: incluye la FK a la entidad fuerte +
 
 ```sql
 CREATE TABLE orders (
-    id          BIGINT      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    order_id    UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
     order_date  DATE        NOT NULL DEFAULT CURRENT_DATE,
-    status      VARCHAR(20) NOT NULL DEFAULT 'pending',
-    customer_id BIGINT      NOT NULL REFERENCES customers(id) ON DELETE RESTRICT
+    order_status VARCHAR(20) NOT NULL DEFAULT 'pending',
+    customer_id UUID        NOT NULL REFERENCES customers(customer_id) ON DELETE RESTRICT
 );
 
 CREATE TABLE order_items (
-    order_id     BIGINT         NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-    line_number  SMALLINT       NOT NULL CHECK (line_number > 0),
-    product_id   BIGINT         NOT NULL REFERENCES products(id) ON DELETE RESTRICT,
-    quantity     SMALLINT       NOT NULL CHECK (quantity > 0),
-    unit_price   NUMERIC(10,2)  NOT NULL CHECK (unit_price >= 0),
+    order_id        UUID           NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+    line_number     SMALLINT       NOT NULL CHECK (line_number > 0),
+    product_id      UUID           NOT NULL REFERENCES products(product_id) ON DELETE RESTRICT,
+    item_quantity   SMALLINT       NOT NULL CHECK (item_quantity > 0),
+    item_unit_price NUMERIC(10,2)  NOT NULL CHECK (item_unit_price >= 0),
     PRIMARY KEY (order_id, line_number)   -- PK compuesta: FK + discriminador
 );
 ```
@@ -108,28 +108,28 @@ y en el Hotel Las Flores.
 
 ```sql
 CREATE TABLE hotels (
-    id      BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name    VARCHAR(100) NOT NULL,
-    city    VARCHAR(80)  NOT NULL
+    hotel_id   UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    hotel_name VARCHAR(100) NOT NULL,
+    hotel_city VARCHAR(80)  NOT NULL
 );
 
 -- Opción A: PK compuesta (fiel al modelo débil)
 CREATE TABLE rooms (
-    hotel_id  BIGINT      NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
-    number    VARCHAR(10) NOT NULL,           -- clave parcial: '101', '202'
-    room_type VARCHAR(20) NOT NULL,
-    price     NUMERIC(8,2) NOT NULL,
-    PRIMARY KEY (hotel_id, number)
+    hotel_id       UUID         NOT NULL REFERENCES hotels(hotel_id) ON DELETE CASCADE,
+    room_number    VARCHAR(10)  NOT NULL,           -- clave parcial: '101', '202'
+    room_type      VARCHAR(20)  NOT NULL,
+    room_price     NUMERIC(8,2) NOT NULL,
+    PRIMARY KEY (hotel_id, room_number)
 );
 
 -- Opción B: PK sustituta (más común en práctica)
 CREATE TABLE rooms (
-    id        BIGINT      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    hotel_id  BIGINT      NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
-    number    VARCHAR(10) NOT NULL,
-    room_type VARCHAR(20) NOT NULL,
-    price     NUMERIC(8,2) NOT NULL,
-    UNIQUE (hotel_id, number)               -- garantía de unicidad del "number" por hotel
+    room_id    UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    hotel_id   UUID         NOT NULL REFERENCES hotels(hotel_id) ON DELETE CASCADE,
+    room_number VARCHAR(10) NOT NULL,
+    room_type  VARCHAR(20)  NOT NULL,
+    room_price NUMERIC(8,2) NOT NULL,
+    UNIQUE (hotel_id, room_number)               -- garantía de unicidad del "room_number" por hotel
 );
 ```
 
@@ -160,7 +160,7 @@ Y se documenta que la PK de la débil incluye la FK como parte de su clave.
 
 ## 📖 Cuándo NO es entidad débil: la trampa del surrogate key
 
-Si asignas un `id BIGSERIAL` a cada entidad desde el principio, técnicamente ninguna
+Si asignas un UUID a cada entidad desde el principio, técnicamente ninguna
 entidad es "débil" desde el punto de vista físico. Pero el concepto sigue siendo válido
 en el **modelo conceptual**:
 
@@ -170,7 +170,7 @@ en el **modelo conceptual**:
 | ¿Tiene sentido `ORDER_ITEM` fuera del contexto de `ORDER`? | No → entidad débil |
 | ¿Cuál es la clave natural de `ORDER_ITEM`? | `order_id + line_number` |
 
-Incluso con un `id` sustituto, el modelo debe capturar la restricción con:
+Incluso con un UUID sustituto, el modelo debe capturar la restricción con:
 - `ON DELETE CASCADE` en la FK
 - Constraint `UNIQUE (order_id, line_number)` para la clave natural
 

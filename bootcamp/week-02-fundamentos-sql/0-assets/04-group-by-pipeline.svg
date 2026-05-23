@@ -11,7 +11,7 @@
   <rect x="40" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
   <text x="105" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#6c7086">Tabla orders</text>
   <!-- filas de ejemplo -->
-  <text x="105" y="134" text-anchor="middle" font-size="10" fill="#cdd6f4">id  cust  total</text>
+  <text x="105" y="134" text-anchor="middle" font-size="10" fill="#cdd6f4">order_id  cust_name  order_total</text>
   <line x1="56" y1="140" x2="154" y2="140" stroke="#313244" stroke-width="1"/>
   <text x="105" y="157" text-anchor="middle" font-size="10" fill="#a6adc8">1   Ana   120</text>
   <text x="105" y="173" text-anchor="middle" font-size="10" fill="#a6adc8">2   Bob    80</text>
@@ -49,7 +49,7 @@
   <rect x="214" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#f38ba8" stroke-width="1.5"/>
   <text x="279" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#f38ba8">WHERE</text>
   <text x="279" y="126" text-anchor="middle" font-size="10" fill="#6c7086">Filas filtradas</text>
-  <text x="279" y="150" text-anchor="middle" font-size="10" fill="#cdd6f4">id  cust  total</text>
+  <text x="279" y="150" text-anchor="middle" font-size="10" fill="#cdd6f4">order_id  cust_name  order_total</text>
   <line x1="228" y1="156" x2="328" y2="156" stroke="#313244" stroke-width="1"/>
   <text x="279" y="173" text-anchor="middle" font-size="10" fill="#a6adc8">1   Ana   120</text>
   <text x="279" y="189" text-anchor="middle" font-size="10" fill="#a6adc8">2   Bob    80</text>

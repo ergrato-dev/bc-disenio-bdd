@@ -37,18 +37,18 @@ de diseño es: ¿hasta dónde descomponemos?
 ```sql
 -- ❌ Antipatrón: guardar todo junto
 CREATE TABLE customers (
-    id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    full_name   TEXT NOT NULL   -- "García, María Elena" — no se puede filtrar por apellido
+    customer_id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    customer_full_name TEXT NOT NULL   -- "García, María Elena" — no se puede filtrar por apellido
 );
 
 -- ✅ Correctamente descompuesto
 CREATE TABLE customers (
-    id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_name  VARCHAR(80) NOT NULL,
-    last_name   VARCHAR(80) NOT NULL,
+    customer_id         UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    customer_first_name VARCHAR(80)  NOT NULL,
+    customer_last_name  VARCHAR(80)  NOT NULL,
     -- Derivado: no se almacena; se genera en la consulta
     -- full_name AS (last_name || ', ' || first_name)  -- en PostgreSQL: columna generada
-    created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    created_at          TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 ```
 
@@ -68,9 +68,9 @@ valores en una columna viola este principio y crea problemas graves:
 ```sql
 -- ❌ Antipatrón: lista de valores en una columna
 CREATE TABLE products (
-    id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name        VARCHAR(100) NOT NULL,
-    categories  TEXT  -- "electrónica,computadoras,laptops" ← NUNCA así
+    product_id         UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    product_name       VARCHAR(100) NOT NULL,
+    product_categories TEXT  -- "electrónica,computadoras,laptops" ← NUNCA así
 );
 
 -- Problema 1: ¿Cómo busco todos los productos de categoría "computadoras"?
@@ -95,21 +95,21 @@ Todo atributo multivaluado se transforma en una **tabla independiente** con:
 ```sql
 -- ✅ Correcto: tabla separada para el atributo multivaluado
 CREATE TABLE products (
-    id    BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name  VARCHAR(100) NOT NULL
+    product_id   UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE product_categories (
-    product_id  BIGINT      NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    product_id  UUID        NOT NULL REFERENCES products(product_id) ON DELETE CASCADE,
     category    VARCHAR(50) NOT NULL,
     PRIMARY KEY (product_id, category)   -- PK compuesta: un producto no repite categoría
 );
 
 -- Ahora podemos:
--- Buscar por categoría:     SELECT * FROM products p JOIN product_categories pc ON pc.product_id = p.id WHERE pc.category = 'laptops'
+-- Buscar por categoría:     SELECT * FROM products p JOIN product_categories pc ON pc.product_id = p.product_id WHERE pc.category = 'laptops'
 -- Contar por categoría:     SELECT category, COUNT(*) FROM product_categories GROUP BY category
--- Agregar categoría:        INSERT INTO product_categories VALUES (42, 'gaming')
--- Eliminar categoría:       DELETE FROM product_categories WHERE product_id = 42 AND category = 'gaming'
+-- Agregar categoría:        INSERT INTO product_categories VALUES (gen_random_uuid(), 'gaming')
+-- Eliminar categoría:       DELETE FROM product_categories WHERE product_id = '...' AND category = 'gaming'
 ```
 
 ---
@@ -144,7 +144,7 @@ El idioma no tiene descripción, no participa en otras relaciones. → **Atribut
 
 ```sql
 CREATE TABLE book_languages (
-    book_id   BIGINT      NOT NULL REFERENCES books(id) ON DELETE CASCADE,
+    book_id   UUID        NOT NULL REFERENCES books(book_id) ON DELETE CASCADE,
     language  CHAR(2)     NOT NULL,  -- código ISO: 'es', 'en', 'fr'
     PRIMARY KEY (book_id, language)
 );
@@ -156,15 +156,15 @@ descripción, imagen, categoría padre (jerarquía), y se usa en menús de naveg
 
 ```sql
 CREATE TABLE categories (
-    id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name        VARCHAR(80) NOT NULL,
-    description TEXT,
-    parent_id   BIGINT REFERENCES categories(id)  -- jerarquía
+    category_id   UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    category_name VARCHAR(80)  NOT NULL,
+    description   TEXT,
+    parent_id     UUID         REFERENCES categories(category_id)  -- jerarquía
 );
 
 CREATE TABLE product_categories (
-    product_id   BIGINT NOT NULL REFERENCES products(id)   ON DELETE CASCADE,
-    category_id  BIGINT NOT NULL REFERENCES categories(id) ON DELETE RESTRICT,
+    product_id   UUID NOT NULL REFERENCES products(product_id)   ON DELETE CASCADE,
+    category_id  UUID NOT NULL REFERENCES categories(category_id) ON DELETE RESTRICT,
     PRIMARY KEY (product_id, category_id)
 );
 ```
@@ -178,15 +178,15 @@ columnas generadas (`GENERATED ALWAYS AS`):
 
 ```sql
 CREATE TABLE employees (
-    id            BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_name    VARCHAR(80) NOT NULL,
-    last_name     VARCHAR(80) NOT NULL,
-    hire_date     DATE NOT NULL,
+    employee_id         UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    employee_first_name VARCHAR(80)  NOT NULL,
+    employee_last_name  VARCHAR(80)  NOT NULL,
+    hire_date           DATE         NOT NULL,
     -- Columna generada: calculada automáticamente, almacenada en disco
-    full_name     TEXT GENERATED ALWAYS AS (last_name || ', ' || first_name) STORED,
+    employee_full_name  TEXT GENERATED ALWAYS AS (employee_last_name || ', ' || employee_first_name) STORED,
     -- Antigüedad en años: en PostgreSQL, los GENERATED no pueden usar funciones volátiles
     -- Se calcula en consulta: EXTRACT(YEAR FROM age(hire_date)) AS years_of_service
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    created_at          TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 ```
 

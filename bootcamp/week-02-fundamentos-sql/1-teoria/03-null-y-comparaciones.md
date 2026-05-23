@@ -164,17 +164,17 @@ ORDER BY deleted_at ASC NULLS LAST;
 ```sql
 -- NOT NULL prohíbe insertar NULL en esa columna
 CREATE TABLE products (
-    id    BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name  VARCHAR(100) NOT NULL,  -- obligatorio
-    sku   VARCHAR(20),            -- opcional, puede ser NULL
-    price NUMERIC(10,2) NOT NULL  -- obligatorio
+    product_id    UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    product_name  VARCHAR(100) NOT NULL,  -- obligatorio
+    product_sku   VARCHAR(20),            -- opcional, puede ser NULL
+    product_price NUMERIC(10,2) NOT NULL  -- obligatorio
 );
 
 -- UNIQUE permite múltiples NULL (cada NULL es distinto de los demás)
 CREATE TABLE customers (
-    id    BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    email VARCHAR(150) UNIQUE,   -- NULL está permitido y no choca con otros NULL
-    phone VARCHAR(20) UNIQUE
+    customer_id    UUID         DEFAULT gen_random_uuid() PRIMARY KEY,
+    customer_email VARCHAR(150) UNIQUE,   -- NULL está permitido y no choca con otros NULL
+    customer_phone VARCHAR(20)  UNIQUE
 );
 ```
 

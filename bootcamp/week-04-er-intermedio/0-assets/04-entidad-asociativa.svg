@@ -38,7 +38,7 @@
   <rect x="30" y="158" width="360" height="80" rx="6" fill="#2d1a1a" stroke="#f38ba8" stroke-width="1.5"/>
   <text x="210" y="180" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#f38ba8" text-anchor="middle">Problema: la relaci&#243;n tiene atributos propios</text>
   <text x="210" y="198" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">enrollment_date: &#191;de qui&#233;n es? &#191;del estudiante? &#191;del curso?</text>
-  <text x="210" y="214" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">final_grade: pertenece a la combinaci&#243;n espec&#237;fica</text>
+  <text x="210" y="214" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">enrollment_grade: pertenece a la combinaci&#243;n espec&#237;fica</text>
   <text x="210" y="230" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">status: &#191;otros objetos referencian esta inscripci&#243;n?</text>
 
   <!-- Physical table BEFORE (pivot simple) -->
@@ -48,7 +48,7 @@
   <text x="210" y="270" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#9399b2" text-anchor="middle">student_courses (tabla pivote simple)</text>
   <line x1="30" y1="294" x2="390" y2="294" stroke="#45475a" stroke-width="1"/>
   <text x="45" y="289" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#94e2d5">student_id &#183; course_id</text>
-  <text x="375" y="289" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">FK+PK</text>
+  <text x="375" y="289" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid FK+PK</text>
   <text x="45" y="309" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f38ba8" font-style="italic">&#191;D&#243;nde van enrollment_date, final_grade, status?</text>
 
   <!-- CENTER ARROW -->
@@ -78,19 +78,19 @@
   <rect x="610" y="206" width="160" height="8" fill="#1a3d1a"/>
   <text x="690" y="205" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#a6e3a1" text-anchor="middle">ENROLLMENT</text>
   <line x1="610" y1="230" x2="770" y2="230" stroke="#45475a" stroke-width="1"/>
-  <text x="624" y="225" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; id</text>
-  <text x="762" y="225" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint PK</text>
+  <text x="624" y="225" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; enrollment_id</text>
+  <text x="762" y="225" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid PK</text>
   <line x1="610" y1="244" x2="770" y2="244" stroke="#45475a" stroke-width="1"/>
   <text x="624" y="239" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#94e2d5">&#128279; student_id</text>
-  <text x="762" y="239" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">FK</text>
+  <text x="762" y="239" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid FK</text>
   <line x1="610" y1="258" x2="770" y2="258" stroke="#45475a" stroke-width="1"/>
   <text x="624" y="253" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#94e2d5">&#128279; course_id</text>
-  <text x="762" y="253" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">FK</text>
+  <text x="762" y="253" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">uuid FK</text>
   <line x1="610" y1="272" x2="770" y2="272" stroke="#45475a" stroke-width="1"/>
   <text x="624" y="267" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">enrollment_date</text>
   <text x="762" y="267" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">date</text>
   <line x1="610" y1="286" x2="770" y2="286" stroke="#45475a" stroke-width="1"/>
-  <text x="624" y="281" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">final_grade</text>
+  <text x="624" y="281" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">enrollment_grade</text>
   <text x="762" y="281" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">numeric(4,2)</text>
 
   <!-- Lines: STUDENT → ENROLLMENT and ENROLLMENT → COURSE -->
@@ -122,7 +122,7 @@
   <!-- Column 1 -->
   <rect x="30" y="380" width="260" height="52" rx="6" fill="#1a2d1a" stroke="#a6e3a1" stroke-width="1.5"/>
   <text x="160" y="400" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1" text-anchor="middle">La relaci&#243;n tiene atributos</text>
-  <text x="160" y="418" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">enrollment_date, final_grade, status</text>
+  <text x="160" y="418" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">enrollment_date, enrollment_grade, status</text>
 
   <!-- Column 2 -->
   <rect x="320" y="380" width="260" height="52" rx="6" fill="#1a2d1a" stroke="#a6e3a1" stroke-width="1.5"/>
@@ -137,7 +137,7 @@
   <!-- Footer -->
   <rect x="0" y="446" width="900" height="30" fill="#181825"/>
   <line x1="0" y1="446" x2="900" y2="446" stroke="#45475a" stroke-width="1"/>
-  <text x="450" y="466" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle">Entidad asociativa: PK sustituta id + UNIQUE (student_id, course_id) &#160;&#183;&#160; Puede ser referenciada por otras tablas &#160;&#183;&#160; Tiene nombre de negocio</text>
+  <text x="450" y="466" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle">Entidad asociativa: PK propia enrollment_id + UNIQUE (student_id, course_id) &#160;&#183;&#160; Puede ser referenciada por otras tablas &#160;&#183;&#160; Tiene nombre de negocio</text>
 
   <!-- Footer 2 (legend) -->
   <rect x="0" y="476" width="900" height="30" fill="#181825"/>

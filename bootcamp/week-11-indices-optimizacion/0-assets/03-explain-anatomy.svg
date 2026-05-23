@@ -1,4 +1,5 @@
-<svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+<svg viewBox="0 0 920 460"
+  xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
   <!-- Background -->
   <rect width="920" height="460" fill="#1e1e2e"/>
 
@@ -9,7 +10,7 @@
   <rect x="20" y="44" width="535" height="310" rx="8" fill="#181825"/>
   <text x="30" y="62" fill="#89b4fa" font-size="9" font-weight="700">-- EXPLAIN (ANALYZE, BUFFERS) sobre orders</text>
   <!-- line 1 -->
-  <text x="30"  y="82" fill="#a6e3a1" font-size="9">Hash Join</text>
+  <text x="30" y="82" fill="#a6e3a1" font-size="9">Hash Join</text>
   <text x="104" y="82" fill="#cdd6f4" font-size="9"> (cost=</text>
   <text x="163" y="82" fill="#f9e2af" font-size="9">150.00..820.00</text>
   <text x="261" y="82" fill="#cdd6f4" font-size="9"> rows=</text>
@@ -18,45 +19,45 @@
   <text x="368" y="82" fill="#cba6f7" font-size="9">512</text>
   <text x="385" y="82" fill="#cdd6f4" font-size="9">)</text>
   <!-- line 2 -->
-  <text x="30"  y="97" fill="#cdd6f4" font-size="9">  Hash Cond: (order_items.order_id = orders.order_id)</text>
+  <text x="30" y="97" fill="#cdd6f4" font-size="9">  Hash Cond: (order_items.order_id = orders.order_id)</text>
   <!-- line 3 -->
-  <text x="30"  y="112" fill="#45475a" font-size="9">  Actual Time=</text>
+  <text x="30" y="112" fill="#45475a" font-size="9">  Actual Time=</text>
   <text x="120" y="112" fill="#a6e3a1" font-size="9">3.141..289.457</text>
   <text x="215" y="112" fill="#45475a" font-size="9"> rows=</text>
   <text x="249" y="112" fill="#a6e3a1" font-size="9">1983</text>
   <text x="274" y="112" fill="#45475a" font-size="9"> loops=</text>
   <text x="314" y="112" fill="#a6e3a1" font-size="9">1</text>
   <!-- line 4 sep -->
-  <text x="30"  y="127" fill="#89b4fa" font-size="9">  Buffers: shared hit=</text>
+  <text x="30" y="127" fill="#89b4fa" font-size="9">  Buffers: shared hit=</text>
   <text x="168" y="127" fill="#89b4fa" font-size="9">1204</text>
   <text x="196" y="127" fill="#89b4fa" font-size="9"> read=</text>
   <text x="228" y="127" fill="#f38ba8" font-size="9">312</text>
   <!-- line 5 -->
-  <text x="30"  y="148" fill="#a6e3a1" font-size="9">  -&gt; Seq Scan on order_items</text>
+  <text x="30" y="148" fill="#a6e3a1" font-size="9">  -&gt; Seq Scan on order_items</text>
   <text x="195" y="148" fill="#cdd6f4" font-size="9"> (cost=</text>
   <text x="234" y="148" fill="#f9e2af" font-size="9">0.00..3820.00</text>
   <text x="313" y="148" fill="#cdd6f4" font-size="9"> rows=</text>
   <text x="348" y="148" fill="#cba6f7" font-size="9">250000</text>
   <text x="390" y="148" fill="#cdd6f4" font-size="9">)</text>
   <!-- line 6 -->
-  <text x="30"  y="163" fill="#45475a" font-size="9">       Actual Time=</text>
+  <text x="30" y="163" fill="#45475a" font-size="9">       Actual Time=</text>
   <text x="141" y="163" fill="#a6e3a1" font-size="9">0.040..95.820</text>
   <text x="228" y="163" fill="#45475a" font-size="9"> rows=</text>
   <text x="262" y="163" fill="#f38ba8" font-size="9">249870</text>
   <text x="305" y="163" fill="#45475a" font-size="9"> loops=</text>
   <text x="345" y="163" fill="#a6e3a1" font-size="9">1</text>
   <!-- line 7 -->
-  <text x="30"  y="184" fill="#a6e3a1" font-size="9">  -&gt; Hash</text>
+  <text x="30" y="184" fill="#a6e3a1" font-size="9">  -&gt; Hash</text>
   <!-- line 8 -->
-  <text x="30"  y="199" fill="#a6e3a1" font-size="9">      -&gt; Index Scan using ix_orders_pk on orders</text>
+  <text x="30" y="199" fill="#a6e3a1" font-size="9">      -&gt; Index Scan using ix_orders_pk on orders</text>
   <!-- line 9 -->
-  <text x="30"  y="214" fill="#cdd6f4" font-size="9">          (cost=</text>
+  <text x="30" y="214" fill="#cdd6f4" font-size="9">          (cost=</text>
   <text x="110" y="214" fill="#f9e2af" font-size="9">0.42..4.44</text>
   <text x="166" y="214" fill="#cdd6f4" font-size="9"> rows=</text>
   <text x="200" y="214" fill="#cba6f7" font-size="9">2</text>
   <text x="210" y="214" fill="#cdd6f4" font-size="9"> width=200)</text>
   <!-- line 10 -->
-  <text x="30"  y="229" fill="#45475a" font-size="9">           Actual Time=</text>
+  <text x="30" y="229" fill="#45475a" font-size="9">           Actual Time=</text>
   <text x="157" y="229" fill="#a6e3a1" font-size="9">0.021..0.023</text>
   <text x="234" y="229" fill="#45475a" font-size="9"> rows=</text>
   <text x="268" y="229" fill="#a6e3a1" font-size="9">2</text>
@@ -126,7 +127,7 @@
   <rect x="20" y="362" width="880" height="22" rx="8" fill="#45475a"/>
   <text x="460" y="377" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">Flujo de Lectura del Plan</text>
   <!-- boxes -->
-  <rect x="40"  y="392" width="140" height="42" rx="4" fill="#181825"/>
+  <rect x="40" y="392" width="140" height="42" rx="4" fill="#181825"/>
   <text x="110" y="408" fill="#a6e3a1" font-size="9" text-anchor="middle">1. Nodo más interno</text>
   <text x="110" y="422" fill="#cdd6f4" font-size="8" text-anchor="middle">(se ejecuta primero)</text>
 

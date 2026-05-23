@@ -1,4 +1,5 @@
-<svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+<svg viewBox="0 0 920 420"
+  xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
   <!-- Background -->
   <rect width="920" height="420" fill="#1e1e2e"/>
 
@@ -11,7 +12,7 @@
   <text x="104" y="67" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">B-tree</text>
   <rect x="30" y="82" width="148" height="248" rx="5" fill="#181825"/>
   <text x="104" y="99" fill="#89b4fa" font-size="9" font-weight="700" text-anchor="middle">Operadores</text>
-  <text x="38" y="114" fill="#a6e3a1" font-size="9">=  &lt;  &lt;=  &gt;  &gt;=</text>
+  <text x="38" y="114" fill="#a6e3a1" font-size="9">=  &lt; &lt;=  &gt; &gt;=</text>
   <text x="38" y="127" fill="#a6e3a1" font-size="9">BETWEEN</text>
   <text x="38" y="140" fill="#a6e3a1" font-size="9">LIKE 'prefijo%'</text>
   <text x="38" y="153" fill="#a6e3a1" font-size="9">IS NULL / IS NOT NULL</text>
@@ -121,12 +122,12 @@
   <rect x="20" y="355" width="880" height="55" rx="8" fill="#313244"/>
   <rect x="20" y="355" width="880" height="22" rx="8" fill="#45475a"/>
   <text x="460" y="370" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">Árbol de Decisión</text>
-  <text x="60"  y="390" fill="#89b4fa" font-size="9">= / &lt; / &gt; / ORDER BY → B-tree</text>
+  <text x="60" y="390" fill="#89b4fa" font-size="9">= / &lt; / &gt; / ORDER BY → B-tree</text>
   <text x="230" y="390" fill="#cba6f7" font-size="9">Solo = en texto largo → Hash</text>
   <text x="400" y="390" fill="#a6e3a1" font-size="9">JSONB / arrays / FTS → GIN</text>
   <text x="580" y="390" fill="#f9e2af" font-size="9">Timestamps secuenciales → BRIN</text>
   <text x="760" y="390" fill="#f38ba8" font-size="9">Rangos / solapamiento → GiST</text>
-  <text x="60"  y="403" fill="#45475a" font-size="8">(por defecto)</text>
+  <text x="60" y="403" fill="#45475a" font-size="8">(por defecto)</text>
   <text x="230" y="403" fill="#45475a" font-size="8">(micro-opt.)</text>
   <text x="400" y="403" fill="#45475a" font-size="8">(USING GIN)</text>
   <text x="580" y="403" fill="#45475a" font-size="8">(USING BRIN)</text>

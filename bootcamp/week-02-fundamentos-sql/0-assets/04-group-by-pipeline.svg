@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Fondo -->
+  <rect width="900" height="560" fill="#1e1e2e" rx="12"/>
+
+  <!-- Título -->
+  <text x="450" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#cdd6f4">GROUP BY y Funciones de Agregación</text>
+  <text x="450" y="64" text-anchor="middle" font-size="13" fill="#6c7086">Pipeline de procesamiento · WHERE vs HAVING · funciones esenciales</text>
+
+  <!-- ===== PIPELINE ===== -->
+  <!-- Bloque 1: Tabla completa -->
+  <rect x="40" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="105" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#6c7086">Tabla orders</text>
+  <!-- filas de ejemplo -->
+  <text x="105" y="134" text-anchor="middle" font-size="10" fill="#cdd6f4">id  cust  total</text>
+  <line x1="56" y1="140" x2="154" y2="140" stroke="#313244" stroke-width="1"/>
+  <text x="105" y="157" text-anchor="middle" font-size="10" fill="#a6adc8">1   Ana   120</text>
+  <text x="105" y="173" text-anchor="middle" font-size="10" fill="#a6adc8">2   Bob    80</text>
+  <text x="105" y="189" text-anchor="middle" font-size="10" fill="#a6adc8">3   Ana   200</text>
+  <text x="105" y="205" text-anchor="middle" font-size="10" fill="#a6adc8">4   Bob    50</text>
+  <text x="105" y="221" text-anchor="middle" font-size="10" fill="#a6adc8">5   Ana    90</text>
+  <text x="105" y="237" text-anchor="middle" font-size="10" fill="#a6adc8">6   Bob   300</text>
+  <text x="105" y="268" text-anchor="middle" font-size="10" font-style="italic" fill="#6c7086">N filas</text>
+
+  <!-- Flecha 1→2 -->
+  <path d="M 174 190 L 210 190" stroke="#f38ba8" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
+  <text x="192" y="183" text-anchor="middle" font-size="9" fill="#f38ba8">WHERE</text>
+  <text x="192" y="198" text-anchor="middle" font-size="9" fill="#f38ba8">total&gt;60</text>
+
+  <!-- Definición flecha -->
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f38ba8"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#89dceb"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a6e3a1"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#fab387"/>
+    </marker>
+    <marker id="arrowYellow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f9e2af"/>
+    </marker>
+  </defs>
+
+  <!-- Bloque 2: Filtrado por WHERE -->
+  <rect x="214" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="279" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#f38ba8">WHERE</text>
+  <text x="279" y="126" text-anchor="middle" font-size="10" fill="#6c7086">Filas filtradas</text>
+  <text x="279" y="150" text-anchor="middle" font-size="10" fill="#cdd6f4">id  cust  total</text>
+  <line x1="228" y1="156" x2="328" y2="156" stroke="#313244" stroke-width="1"/>
+  <text x="279" y="173" text-anchor="middle" font-size="10" fill="#a6adc8">1   Ana   120</text>
+  <text x="279" y="189" text-anchor="middle" font-size="10" fill="#a6adc8">2   Bob    80</text>
+  <text x="279" y="205" text-anchor="middle" font-size="10" fill="#a6adc8">3   Ana   200</text>
+  <text x="279" y="221" text-anchor="middle" font-size="10" fill="#6c7086" text-decoration="line-through">4  Bob  50 ✗</text>
+  <text x="279" y="237" text-anchor="middle" font-size="10" fill="#a6adc8">5   Ana    90</text>
+  <text x="279" y="253" text-anchor="middle" font-size="10" fill="#a6adc8">6   Bob   300</text>
+  <text x="279" y="272" text-anchor="middle" font-size="10" font-style="italic" fill="#6c7086">5 filas</text>
+
+  <!-- Flecha 2→3 -->
+  <path d="M 348 190 L 384 190" stroke="#89dceb" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="366" y="183" text-anchor="middle" font-size="9" fill="#89dceb">GROUP</text>
+  <text x="366" y="198" text-anchor="middle" font-size="9" fill="#89dceb">BY cust</text>
+
+  <!-- Bloque 3: Grupos -->
+  <rect x="388" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#89dceb" stroke-width="1.5"/>
+  <text x="453" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#89dceb">GROUP BY</text>
+  <text x="453" y="126" text-anchor="middle" font-size="10" fill="#6c7086">Grupos formados</text>
+  <!-- Grupo Ana -->
+  <rect x="402" y="138" width="102" height="60" fill="#89dceb" fill-opacity="0.10" rx="4"/>
+  <text x="453" y="153" text-anchor="middle" font-size="10" fill="#89dceb" font-weight="600">Ana</text>
+  <text x="453" y="169" text-anchor="middle" font-size="10" fill="#a6adc8">120, 200, 90</text>
+  <text x="453" y="187" text-anchor="middle" font-size="10" fill="#a6adc8">SUM=410  COUNT=3</text>
+  <!-- Grupo Bob -->
+  <rect x="402" y="210" width="102" height="60" fill="#a6e3a1" fill-opacity="0.10" rx="4"/>
+  <text x="453" y="225" text-anchor="middle" font-size="10" fill="#a6e3a1" font-weight="600">Bob</text>
+  <text x="453" y="241" text-anchor="middle" font-size="10" fill="#a6adc8">80, 300</text>
+  <text x="453" y="259" text-anchor="middle" font-size="10" fill="#a6adc8">SUM=380  COUNT=2</text>
+  <text x="453" y="280" text-anchor="middle" font-size="10" font-style="italic" fill="#6c7086">2 grupos</text>
+
+  <!-- Flecha 3→4 -->
+  <path d="M 522 190 L 558 190" stroke="#cba6f7" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="540" y="183" text-anchor="middle" font-size="9" fill="#cba6f7">HAVING</text>
+  <text x="540" y="198" text-anchor="middle" font-size="9" fill="#cba6f7">SUM&gt;400</text>
+
+  <!-- Bloque 4: HAVING -->
+  <rect x="562" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="627" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#cba6f7">HAVING</text>
+  <text x="627" y="126" text-anchor="middle" font-size="10" fill="#6c7086">Grupos filtrados</text>
+  <!-- Grupo Ana pasa -->
+  <rect x="576" y="138" width="102" height="60" fill="#a6e3a1" fill-opacity="0.15" rx="4"/>
+  <text x="627" y="153" text-anchor="middle" font-size="10" fill="#a6e3a1" font-weight="600">Ana ✓</text>
+  <text x="627" y="169" text-anchor="middle" font-size="10" fill="#a6adc8">SUM = 410</text>
+  <text x="627" y="187" text-anchor="middle" font-size="10" fill="#a6adc8">COUNT = 3</text>
+  <!-- Grupo Bob no pasa -->
+  <rect x="576" y="210" width="102" height="60" fill="#313244" rx="4"/>
+  <text x="627" y="232" text-anchor="middle" font-size="10" fill="#6c7086" text-decoration="line-through">Bob ✗</text>
+  <text x="627" y="250" text-anchor="middle" font-size="10" fill="#6c7086">SUM = 380</text>
+  <text x="627" y="280" text-anchor="middle" font-size="10" font-style="italic" fill="#6c7086">1 grupo</text>
+
+  <!-- Flecha 4→5 -->
+  <path d="M 696 190 L 730 190" stroke="#89b4fa" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="713" y="183" text-anchor="middle" font-size="9" fill="#89b4fa">SELECT</text>
+
+  <!-- Bloque 5: Resultado -->
+  <rect x="734" y="90" width="130" height="200" fill="#181825" rx="8" stroke="#89b4fa" stroke-width="2"/>
+  <text x="799" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#89b4fa">Resultado</text>
+  <text x="799" y="134" text-anchor="middle" font-size="10" fill="#cdd6f4">cliente   total</text>
+  <line x1="748" y1="140" x2="850" y2="140" stroke="#313244" stroke-width="1"/>
+  <text x="799" y="158" text-anchor="middle" font-size="11" fill="#a6e3a1">Ana       410</text>
+  <text x="799" y="280" text-anchor="middle" font-size="10" font-style="italic" fill="#6c7086">1 fila</text>
+
+  <!-- ===== SECCIÓN INFERIOR: WHERE vs HAVING ===== -->
+  <rect x="40" y="310" width="820" height="90" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="450" y="332" text-anchor="middle" font-size="14" font-weight="700" fill="#cdd6f4">WHERE vs HAVING</text>
+  <!-- WHERE -->
+  <rect x="56" y="342" width="380" height="48" fill="#f38ba8" fill-opacity="0.12" rx="6"/>
+  <text x="246" y="360" text-anchor="middle" font-size="12" font-weight="700" fill="#f38ba8">WHERE — filtra FILAS (antes de agrupar)</text>
+  <text x="246" y="380" text-anchor="middle" font-size="11" font-family="monospace" fill="#cdd6f4">WHERE total &gt; 60  — opera sobre datos crudos</text>
+  <!-- HAVING -->
+  <rect x="444" y="342" width="400" height="48" fill="#cba6f7" fill-opacity="0.12" rx="6"/>
+  <text x="644" y="360" text-anchor="middle" font-size="12" font-weight="700" fill="#cba6f7">HAVING — filtra GRUPOS (después de agrupar)</text>
+  <text x="644" y="380" text-anchor="middle" font-size="11" font-family="monospace" fill="#cdd6f4">HAVING SUM(total) &gt; 400  — opera sobre agregados</text>
+
+  <!-- ===== SECCIÓN INFERIOR 2: Funciones ===== -->
+  <rect x="40" y="416" width="820" height="124" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="450" y="438" text-anchor="middle" font-size="14" font-weight="700" fill="#cdd6f4">Funciones de Agregación esenciales</text>
+
+  <!-- 5 columnas -->
+  <text x="120" y="462" text-anchor="middle" font-size="13" fill="#89b4fa" font-weight="700">COUNT(*)</text>
+  <text x="120" y="480" text-anchor="middle" font-size="11" fill="#a6adc8">Cuenta filas</text>
+  <text x="120" y="495" text-anchor="middle" font-size="11" fill="#6c7086">(incluye NULL)</text>
+
+  <text x="276" y="462" text-anchor="middle" font-size="13" fill="#a6e3a1" font-weight="700">SUM(col)</text>
+  <text x="276" y="480" text-anchor="middle" font-size="11" fill="#a6adc8">Suma valores</text>
+  <text x="276" y="495" text-anchor="middle" font-size="11" fill="#6c7086">(ignora NULL)</text>
+
+  <text x="450" y="462" text-anchor="middle" font-size="13" fill="#f9e2af" font-weight="700">AVG(col)</text>
+  <text x="450" y="480" text-anchor="middle" font-size="11" fill="#a6adc8">Promedio</text>
+  <text x="450" y="495" text-anchor="middle" font-size="11" fill="#6c7086">(excluye NULL del divisor)</text>
+
+  <text x="624" y="462" text-anchor="middle" font-size="13" fill="#fab387" font-weight="700">MIN / MAX</text>
+  <text x="624" y="480" text-anchor="middle" font-size="11" fill="#a6adc8">Mínimo / Máximo</text>
+  <text x="624" y="495" text-anchor="middle" font-size="11" fill="#6c7086">funciona con texto y fechas</text>
+
+  <text x="800" y="462" text-anchor="middle" font-size="13" fill="#cba6f7" font-weight="700">COUNT(DISTINCT)</text>
+  <text x="800" y="480" text-anchor="middle" font-size="11" fill="#a6adc8">Valores únicos</text>
+  <text x="800" y="495" text-anchor="middle" font-size="11" fill="#6c7086">no-NULL</text>
+
+  <!-- Regla GROUP BY -->
+  <rect x="56" y="508" width="748" height="24" fill="#313244" rx="4"/>
+  <text x="430" y="524" text-anchor="middle" font-size="12" fill="#f9e2af">Regla: toda columna en SELECT fuera de una función de agregación debe estar en GROUP BY</text>
+</svg>

@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" width="900" height="580" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Fondo -->
+  <rect width="900" height="580" fill="#1e1e2e" rx="12"/>
+
+  <!-- Título -->
+  <text x="450" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#cdd6f4">NULL: el valor desconocido</text>
+  <text x="450" y="64" text-anchor="middle" font-size="13" fill="#6c7086">Lógica de tres valores · comparaciones · funciones esenciales</text>
+
+  <!-- ===== SECCIÓN 1: Qué es NULL ===== -->
+  <rect x="40" y="84" width="260" height="160" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="170" y="107" text-anchor="middle" font-size="14" font-weight="700" fill="#cba6f7">NULL no es...</text>
+
+  <text x="60" y="130" font-size="13" fill="#f38ba8">✗</text>
+  <text x="78" y="130" font-size="12" fill="#cdd6f4">Cero</text>
+  <text x="60" y="152" font-size="13" fill="#f38ba8">✗</text>
+  <text x="78" y="152" font-size="12" fill="#cdd6f4">Cadena vacía  ''</text>
+  <text x="60" y="174" font-size="13" fill="#f38ba8">✗</text>
+  <text x="78" y="174" font-size="12" fill="#cdd6f4">FALSE</text>
+  <text x="60" y="196" font-size="13" fill="#a6e3a1">✓</text>
+  <text x="78" y="196" font-size="12" fill="#a6e3a1">Valor desconocido / ausente</text>
+  <text x="60" y="218" font-size="13" fill="#a6e3a1">✓</text>
+  <text x="78" y="218" font-size="12" fill="#a6e3a1">Produce UNKNOWN en comparaciones</text>
+
+  <!-- ===== SECCIÓN 2: Comparaciones ===== -->
+  <rect x="316" y="84" width="260" height="160" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="446" y="107" text-anchor="middle" font-size="14" font-weight="700" fill="#cba6f7">Comparaciones</text>
+
+  <text x="336" y="130" font-size="12" font-family="monospace" fill="#f38ba8">phone = NULL</text>
+  <text x="500" y="130" font-size="11" fill="#6c7086">→  UNKNOWN (0 filas)</text>
+  <text x="336" y="150" font-size="12" font-family="monospace" fill="#f38ba8">NULL = NULL</text>
+  <text x="500" y="150" font-size="11" fill="#6c7086">→  UNKNOWN !</text>
+  <text x="336" y="174" font-size="12" font-family="monospace" fill="#a6e3a1">phone IS NULL</text>
+  <text x="500" y="174" font-size="11" fill="#a6adc8">→  TRUE / FALSE</text>
+  <text x="336" y="194" font-size="12" font-family="monospace" fill="#a6e3a1">phone IS NOT NULL</text>
+  <text x="500" y="194" font-size="11" fill="#a6adc8">→  TRUE / FALSE</text>
+  <text x="336" y="218" font-size="12" font-family="monospace" fill="#89b4fa">a IS DISTINCT FROM b</text>
+  <text x="500" y="218" font-size="11" fill="#a6adc8">→  NULL-safe</text>
+
+  <!-- ===== SECCIÓN 3: Funciones ===== -->
+  <rect x="592" y="84" width="268" height="160" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="726" y="107" text-anchor="middle" font-size="14" font-weight="700" fill="#cba6f7">Funciones clave</text>
+
+  <text x="610" y="130" font-size="12" font-family="monospace" fill="#89b4fa">COALESCE(a, b, c)</text>
+  <text x="610" y="148" font-size="11" fill="#a6adc8">Primer valor no-NULL de la lista</text>
+  <line x1="610" y1="158" x2="850" y2="158" stroke="#313244" stroke-width="1"/>
+  <text x="610" y="175" font-size="12" font-family="monospace" fill="#89b4fa">NULLIF(a, b)</text>
+  <text x="610" y="193" font-size="11" fill="#a6adc8">NULL si a = b, si no devuelve a</text>
+  <line x1="610" y1="203" x2="850" y2="203" stroke="#313244" stroke-width="1"/>
+  <text x="610" y="220" font-size="12" font-family="monospace" fill="#89b4fa">CONCAT(a, ' ', b)</text>
+  <text x="610" y="235" font-size="11" fill="#a6adc8">Ignora NULL (a diferencia de ||)</text>
+
+  <!-- ===== SECCIÓN 4: Tabla de verdad AND ===== -->
+  <rect x="40" y="262" width="260" height="170" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="170" y="283" text-anchor="middle" font-size="13" font-weight="700" fill="#89b4fa">AND — tabla de verdad</text>
+
+  <!-- Encabezados -->
+  <text x="80" y="302" text-anchor="middle" font-size="11" fill="#89b4fa" font-weight="600">A</text>
+  <text x="170" y="302" text-anchor="middle" font-size="11" fill="#89b4fa" font-weight="600">B</text>
+  <text x="260" y="302" text-anchor="middle" font-size="11" fill="#89b4fa" font-weight="600">A AND B</text>
+  <line x1="56" y1="308" x2="290" y2="308" stroke="#313244" stroke-width="1"/>
+
+  <text x="80" y="325" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+  <text x="170" y="325" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+  <text x="260" y="325" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+
+  <text x="80" y="343" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+  <text x="170" y="343" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+  <text x="260" y="343" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+
+  <text x="80" y="361" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+  <text x="170" y="361" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+  <text x="260" y="361" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+
+  <text x="80" y="379" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+  <text x="170" y="379" text-anchor="middle" font-size="11" fill="#6c7086">cualquiera</text>
+  <text x="260" y="379" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+
+  <text x="80" y="397" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+  <text x="170" y="397" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+  <text x="260" y="397" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+
+  <!-- ===== SECCIÓN 5: Tabla de verdad OR ===== -->
+  <rect x="316" y="262" width="260" height="170" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="446" y="283" text-anchor="middle" font-size="13" font-weight="700" fill="#a6e3a1">OR — tabla de verdad</text>
+
+  <text x="356" y="302" text-anchor="middle" font-size="11" fill="#a6e3a1" font-weight="600">A</text>
+  <text x="446" y="302" text-anchor="middle" font-size="11" fill="#a6e3a1" font-weight="600">B</text>
+  <text x="536" y="302" text-anchor="middle" font-size="11" fill="#a6e3a1" font-weight="600">A OR B</text>
+  <line x1="330" y1="308" x2="566" y2="308" stroke="#313244" stroke-width="1"/>
+
+  <text x="356" y="325" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+  <text x="446" y="325" text-anchor="middle" font-size="11" fill="#6c7086">cualquiera</text>
+  <text x="536" y="325" text-anchor="middle" font-size="11" fill="#a6e3a1">TRUE</text>
+
+  <text x="356" y="343" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+  <text x="446" y="343" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+  <text x="536" y="343" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+
+  <text x="356" y="361" text-anchor="middle" font-size="11" fill="#f38ba8">FALSE</text>
+  <text x="446" y="361" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+  <text x="536" y="361" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+
+  <text x="356" y="379" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+  <text x="446" y="379" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+  <text x="536" y="379" text-anchor="middle" font-size="11" fill="#f9e2af">UNKNOWN</text>
+
+  <!-- ===== SECCIÓN 6: Agregación con NULL ===== -->
+  <rect x="592" y="262" width="268" height="170" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="726" y="283" text-anchor="middle" font-size="13" font-weight="700" fill="#fab387">Agregación con NULL</text>
+  <text x="726" y="300" text-anchor="middle" font-size="11" fill="#6c7086">ratings: (5, 3, NULL, 4, NULL)</text>
+
+  <text x="610" y="323" font-size="11" font-family="monospace" fill="#cdd6f4">COUNT(*)         →</text>
+  <text x="780" y="323" text-anchor="middle" font-size="11" fill="#a6e3a1">5</text>
+  <text x="610" y="341" font-size="11" font-family="monospace" fill="#cdd6f4">COUNT(rating)    →</text>
+  <text x="780" y="341" text-anchor="middle" font-size="11" fill="#f9e2af">3 (ignora NULL)</text>
+  <text x="610" y="359" font-size="11" font-family="monospace" fill="#cdd6f4">SUM(rating)      →</text>
+  <text x="780" y="359" text-anchor="middle" font-size="11" fill="#a6e3a1">12</text>
+  <text x="610" y="377" font-size="11" font-family="monospace" fill="#cdd6f4">AVG(rating)      →</text>
+  <text x="780" y="377" text-anchor="middle" font-size="11" fill="#f9e2af">4.0 (no 2.4 !)</text>
+
+  <rect x="608" y="394" width="244" height="30" fill="#313244" rx="4"/>
+  <text x="730" y="414" text-anchor="middle" font-size="11" fill="#f9e2af">AVG = 12 / 3, no 12 / 5</text>
+
+  <!-- ===== SECCIÓN INFERIOR ===== -->
+  <rect x="40" y="450" width="820" height="110" fill="#181825" rx="8" stroke="#313244" stroke-width="1.5"/>
+  <text x="460" y="472" text-anchor="middle" font-size="13" font-weight="700" fill="#cdd6f4">Patrones más comunes con NULL</text>
+
+  <text x="66" y="496" font-size="12" font-family="monospace" fill="#f38ba8">-- ❌ Nunca:</text>
+  <text x="66" y="514" font-size="12" font-family="monospace" fill="#cdd6f4">WHERE phone = NULL</text>
+  <text x="66" y="532" font-size="12" font-family="monospace" fill="#cdd6f4">10 + NULL  →  NULL</text>
+  <text x="66" y="550" font-size="12" font-family="monospace" fill="#cdd6f4">'Hi ' || NULL  →  NULL</text>
+
+  <line x1="330" y1="462" x2="330" y2="550" stroke="#313244" stroke-width="1"/>
+
+  <text x="356" y="496" font-size="12" font-family="monospace" fill="#a6e3a1">-- ✅ Siempre:</text>
+  <text x="356" y="514" font-size="12" font-family="monospace" fill="#cdd6f4">WHERE phone IS NULL / IS NOT NULL</text>
+  <text x="356" y="532" font-size="12" font-family="monospace" fill="#cdd6f4">10 + COALESCE(qty, 0)</text>
+  <text x="356" y="550" font-size="12" font-family="monospace" fill="#cdd6f4">CONCAT('Hi ', first_name)</text>
+
+  <line x1="660" y1="462" x2="660" y2="550" stroke="#313244" stroke-width="1"/>
+
+  <text x="680" y="496" font-size="12" fill="#89b4fa" font-weight="600">COALESCE:</text>
+  <text x="680" y="514" font-size="11" fill="#cdd6f4">COALESCE(phone, 'N/A')</text>
+  <text x="680" y="532" font-size="11" fill="#cdd6f4">→ 'N/A' si phone es NULL</text>
+  <text x="680" y="550" font-size="11" fill="#cdd6f4">→ el valor si no es NULL</text>
+</svg>

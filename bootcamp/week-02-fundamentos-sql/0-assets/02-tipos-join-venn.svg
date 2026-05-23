@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Fondo -->
+  <rect width="920" height="560" fill="#1e1e2e" rx="12"/>
+
+  <!-- Título -->
+  <text x="460" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#cdd6f4">Tipos de JOIN en SQL</text>
+  <text x="460" y="64" text-anchor="middle" font-size="13" fill="#6c7086">Contexto: tabla A = customers · tabla B = orders · relación: customer_id</text>
+
+  <!-- ======== INNER JOIN ======== -->
+  <g transform="translate(40,90)">
+    <text x="100" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#89b4fa">INNER JOIN</text>
+    <!-- Círculo A -->
+    <circle cx="76" cy="90" r="58" fill="#89b4fa" fill-opacity="0.18" stroke="#89b4fa" stroke-width="2"/>
+    <!-- Círculo B -->
+    <circle cx="124" cy="90" r="58" fill="#89b4fa" fill-opacity="0.18" stroke="#89b4fa" stroke-width="2"/>
+    <!-- Intersección resaltada -->
+    <clipPath id="clipA1"><circle cx="124" cy="90" r="58"/></clipPath>
+    <circle cx="76" cy="90" r="58" fill="#89b4fa" fill-opacity="0.50" clip-path="url(#clipA1)"/>
+    <!-- Labels -->
+    <text x="55" y="94" text-anchor="middle" font-size="11" fill="#cdd6f4">A</text>
+    <text x="145" y="94" text-anchor="middle" font-size="11" fill="#cdd6f4">B</text>
+    <text x="100" y="94" text-anchor="middle" font-size="11" font-weight="700" fill="#1e1e2e">✓</text>
+    <text x="100" y="168" text-anchor="middle" font-size="11" fill="#a6adc8">Solo coincidencias</text>
+    <text x="100" y="183" text-anchor="middle" font-size="11" fill="#a6adc8">en ambas tablas</text>
+    <text x="100" y="210" text-anchor="middle" font-size="11" fill="#6c7086" font-style="italic">Clientes CON pedidos</text>
+  </g>
+
+  <!-- ======== LEFT JOIN ======== -->
+  <g transform="translate(260,90)">
+    <text x="100" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#a6e3a1">LEFT JOIN</text>
+    <!-- Círculo A completo resaltado -->
+    <circle cx="76" cy="90" r="58" fill="#a6e3a1" fill-opacity="0.40" stroke="#a6e3a1" stroke-width="2"/>
+    <!-- Círculo B tenue -->
+    <circle cx="124" cy="90" r="58" fill="#a6e3a1" fill-opacity="0.10" stroke="#a6e3a1" stroke-width="2" stroke-dasharray="4 3"/>
+    <!-- Labels -->
+    <text x="52" y="94" text-anchor="middle" font-size="11" fill="#cdd6f4">A ✓</text>
+    <text x="145" y="94" text-anchor="middle" font-size="11" fill="#6c7086">B</text>
+    <text x="100" y="168" text-anchor="middle" font-size="11" fill="#a6adc8">Todos de A</text>
+    <text x="100" y="183" text-anchor="middle" font-size="11" fill="#a6adc8">+ coincidencias de B</text>
+    <text x="100" y="210" text-anchor="middle" font-size="11" fill="#6c7086" font-style="italic">Todos los clientes</text>
+    <text x="100" y="224" text-anchor="middle" font-size="11" fill="#6c7086" font-style="italic">(con o sin pedidos)</text>
+  </g>
+
+  <!-- ======== LEFT ANTI-JOIN ======== -->
+  <g transform="translate(480,90)">
+    <text x="100" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f38ba8">LEFT ANTI-JOIN</text>
+    <text x="100" y="38" text-anchor="middle" font-size="11" fill="#6c7086">(LEFT JOIN + WHERE B.id IS NULL)</text>
+    <!-- Círculo A sin intersección -->
+    <circle cx="76" cy="90" r="58" fill="#f38ba8" fill-opacity="0.30" stroke="#f38ba8" stroke-width="2"/>
+    <!-- Círculo B blanco para "restar" visualmente -->
+    <clipPath id="clipAnti"><circle cx="76" cy="90" r="58"/></clipPath>
+    <circle cx="124" cy="90" r="58" fill="#1e1e2e" clip-path="url(#clipAnti)" stroke="none"/>
+    <!-- B outline tenue -->
+    <circle cx="124" cy="90" r="58" fill="none" stroke="#f38ba8" stroke-width="2" stroke-dasharray="4 3"/>
+    <!-- Labels -->
+    <text x="46" y="94" text-anchor="middle" font-size="11" fill="#cdd6f4">A ✓</text>
+    <text x="145" y="94" text-anchor="middle" font-size="11" fill="#6c7086">B</text>
+    <text x="100" y="168" text-anchor="middle" font-size="11" fill="#a6adc8">Solo los de A</text>
+    <text x="100" y="183" text-anchor="middle" font-size="11" fill="#a6adc8">sin par en B</text>
+    <text x="100" y="210" text-anchor="middle" font-size="11" fill="#6c7086" font-style="italic">Clientes SIN pedidos</text>
+  </g>
+
+  <!-- ======== FULL JOIN ======== -->
+  <g transform="translate(700,90)">
+    <text x="100" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f9e2af">FULL JOIN</text>
+    <!-- Ambos círculos resaltados -->
+    <circle cx="76" cy="90" r="58" fill="#f9e2af" fill-opacity="0.30" stroke="#f9e2af" stroke-width="2"/>
+    <circle cx="124" cy="90" r="58" fill="#f9e2af" fill-opacity="0.30" stroke="#f9e2af" stroke-width="2"/>
+    <!-- Labels -->
+    <text x="50" y="94" text-anchor="middle" font-size="11" fill="#cdd6f4">A ✓</text>
+    <text x="150" y="94" text-anchor="middle" font-size="11" fill="#cdd6f4">B ✓</text>
+    <text x="100" y="168" text-anchor="middle" font-size="11" fill="#a6adc8">Todos de A y B</text>
+    <text x="100" y="183" text-anchor="middle" font-size="11" fill="#a6adc8">NULL donde no hay par</text>
+    <text x="100" y="210" text-anchor="middle" font-size="11" fill="#6c7086" font-style="italic">Auditoría / comparación</text>
+  </g>
+
+  <!-- Separador -->
+  <line x1="40" y1="334" x2="880" y2="334" stroke="#313244" stroke-width="1.5"/>
+
+  <!-- ===== TABLA DE SINTAXIS ===== -->
+  <text x="460" y="360" text-anchor="middle" font-size="14" font-weight="700" fill="#cdd6f4">Patrones de código</text>
+
+  <!-- INNER -->
+  <rect x="40" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#89b4fa" stroke-width="1"/>
+  <text x="140" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#89b4fa">INNER JOIN</text>
+  <text x="56" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
+  <text x="56" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">INNER JOIN orders AS o</text>
+  <text x="56" y="438" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.id</text>
+
+  <!-- LEFT -->
+  <rect x="256" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="356" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#a6e3a1">LEFT JOIN</text>
+  <text x="272" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
+  <text x="272" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">LEFT JOIN orders AS o</text>
+  <text x="272" y="438" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.id</text>
+
+  <!-- ANTI-JOIN -->
+  <rect x="472" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#f38ba8" stroke-width="1"/>
+  <text x="572" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#f38ba8">ANTI-JOIN (sin pedidos)</text>
+  <text x="488" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">... LEFT JOIN orders AS o</text>
+  <text x="488" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.id</text>
+  <text x="488" y="438" font-size="10" font-family="monospace" fill="#f38ba8">WHERE o.id IS NULL</text>
+
+  <!-- FULL -->
+  <rect x="688" y="373" width="192" height="82" fill="#181825" rx="6" stroke="#f9e2af" stroke-width="1"/>
+  <text x="784" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#f9e2af">FULL JOIN</text>
+  <text x="704" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
+  <text x="704" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">FULL JOIN orders AS o</text>
+  <text x="704" y="438" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.id</text>
+
+  <!-- Nota final -->
+  <rect x="40" y="468" width="840" height="68" fill="#313244" rx="8"/>
+  <text x="460" y="489" text-anchor="middle" font-size="12" font-weight="700" fill="#f9e2af">Regla práctica</text>
+  <text x="460" y="508" text-anchor="middle" font-size="12" fill="#cdd6f4">Coloca siempre la tabla "principal" en FROM y usa LEFT JOIN para las tablas que pueden no tener coincidencias.</text>
+  <text x="460" y="526" text-anchor="middle" font-size="12" fill="#a6adc8">Evita RIGHT JOIN — un LEFT JOIN con tablas invertidas es equivalente y más legible.</text>
+</svg>

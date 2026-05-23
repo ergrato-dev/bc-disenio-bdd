@@ -1,4 +1,5 @@
-<svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+<svg viewBox="0 0 920 420"
+  xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
   <!-- Background -->
   <rect width="920" height="420" fill="#1e1e2e"/>
 

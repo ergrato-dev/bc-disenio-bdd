@@ -1,4 +1,5 @@
-<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+<svg viewBox="0 0 920 500"
+  xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
   <!-- Background -->
   <rect width="920" height="500" fill="#1e1e2e"/>
 
@@ -27,7 +28,7 @@
   <text x="36" y="166" fill="#89b4fa" font-size="12" font-family="monospace">AS $$</text>
   <text x="36" y="183" fill="#cba6f7" font-size="12" font-family="monospace">DECLARE</text>
   <text x="36" y="200" fill="#cdd6f4" font-size="12" font-family="monospace">    v_total    NUMERIC(12,2) := 0;</text>
-  <text x="36" y="218" fill="#cdd6f4" font-size="12" font-family="monospace">    v_tax_rate NUMERIC(5,4)  := 0.16;</text>
+  <text x="36" y="218" fill="#cdd6f4" font-size="12" font-family="monospace">    v_tax_rate NUMERIC(5,4) := 0.16;</text>
 
   <!-- BEGIN/END section highlight -->
   <rect x="20" y="225" width="560" height="175" rx="0" fill="#1a2a1a" stroke="none"/>
@@ -72,7 +73,7 @@
   <rect x="598" y="158" width="302" height="74" rx="6" fill="#2a1a3e" stroke="#cba6f7" stroke-width="1.5"/>
   <text x="614" y="176" fill="#cba6f7" font-size="12" font-weight="700">DECLARE</text>
   <text x="614" y="194" fill="#cdd6f4" font-size="11">Variables locales con tipo y valor</text>
-  <text x="614" y="210" fill="#cdd6f4" font-size="11">inicial opcional (  :=  )</text>
+  <text x="614" y="210" fill="#cdd6f4" font-size="11">inicial opcional ( :=  )</text>
   <text x="614" y="224" fill="#6c7086" font-size="10">Puede omitirse si no hay variables</text>
   <!-- Arrow -->
   <line x1="590" y1="191" x2="580" y2="191" stroke="#cba6f7" stroke-width="1.5"/>

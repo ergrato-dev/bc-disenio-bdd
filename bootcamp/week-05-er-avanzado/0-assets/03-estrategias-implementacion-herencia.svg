@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1e1e2e"/>
+
+  <!-- Main title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">Tres Estrategias de Implementación de Herencia IS-A</text>
+
+  <!-- Vertical dividers -->
+  <line x1="300" y1="32" x2="300" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="600" y1="32" x2="600" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- ════════════
+       COL 1: STI
+       ════════════ -->
+  <!-- Header -->
+  <rect x="10" y="34" width="280" height="32" rx="3" fill="#1d3a2a"/>
+  <text x="150" y="55" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1">1. Tabla Única (STI)</text>
+
+  <!-- Table box -->
+  <rect x="20" y="80" width="258" height="226" rx="4" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+
+  <!-- Table name bar -->
+  <rect x="20" y="80" width="258" height="28" rx="4" fill="#2a4a38"/>
+  <text x="149" y="99" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1">persons</text>
+
+  <!-- Columns -->
+  <text x="32" y="124" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#89b4fa">person_id    uuid    PK</text>
+  <text x="32" y="142" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#f9e2af">person_type  varchar NOT NULL</text>
+  <text x="32" y="160" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">person_name  varchar NOT NULL</text>
+  <line x1="28" y1="168" x2="272" y2="168" stroke="#45475a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="32" y="183" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#6c7086">-- Solo para MÉDICO</text>
+  <text x="32" y="198" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">doctor_lic   varchar</text>
+  <text x="32" y="214" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">doctor_spec  varchar</text>
+  <line x1="28" y1="222" x2="272" y2="222" stroke="#45475a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="32" y="237" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#6c7086">-- Solo para PACIENTE</text>
+  <text x="32" y="252" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">patient_ins  varchar</text>
+  <text x="32" y="268" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">patient_type varchar</text>
+  <text x="32" y="296" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#f38ba8">⚠ NULL en columnas de subtipo</text>
+
+  <!-- Pros/Cons -->
+  <text x="150" y="328" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">✓ Sin JOIN — consultas simples</text>
+  <text x="150" y="346" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#f38ba8">✗ Muchos NULL</text>
+  <text x="150" y="362" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#f38ba8">✗ No aplica NOT NULL en subtipos</text>
+
+  <!-- When to use -->
+  <rect x="20" y="378" width="258" height="42" rx="3" fill="#252535"/>
+  <text x="149" y="394" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">Usar cuando:</text>
+  <text x="149" y="410" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Pocos subtipos, pocos atributos propios</text>
+
+  <!-- ════════════
+       COL 2: CTI
+       ════════════ -->
+  <!-- Header -->
+  <rect x="310" y="34" width="280" height="32" rx="3" fill="#1d2e3a"/>
+  <text x="450" y="55" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89b4fa">2. Tabla por Subclase (CTI)</text>
+
+  <!-- Supertipo table -->
+  <rect x="340" y="80" width="220" height="102" rx="4" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="340" y="80" width="220" height="28" rx="4" fill="#1d2e3a"/>
+  <text x="450" y="99" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89b4fa">persons</text>
+  <text x="352" y="124" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#89b4fa">person_id    uuid  PK</text>
+  <text x="352" y="142" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">person_name  varchar</text>
+  <text x="352" y="160" font-family="Inter, Roboto, monospace, sans-serif" font-size="11" fill="#cdd6f4">person_email varchar</text>
+
+  <!-- FK lines (CTI) -->
+  <line x1="390" y1="182" x2="360" y2="210" stroke="#cba6f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="510" y1="182" x2="540" y2="210" stroke="#cba6f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- doctors subtable -->
+  <rect x="310" y="210" width="180" height="88" rx="4" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="310" y="210" width="180" height="26" rx="4" fill="#2a2040"/>
+  <text x="400" y="227" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">doctors</text>
+  <text x="320" y="252" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cba6f7">person_id  uuid  PK+FK</text>
+  <text x="320" y="268" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">doctor_lic varchar</text>
+  <text x="320" y="284" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">doctor_spec varchar</text>
+
+  <!-- patients subtable -->
+  <rect x="510" y="210" width="180" height="88" rx="4" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="510" y="210" width="180" height="26" rx="4" fill="#2a2040"/>
+  <text x="600" y="227" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">patients</text>
+  <text x="520" y="252" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cba6f7">person_id  uuid  PK+FK</text>
+  <text x="520" y="268" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">patient_ins varchar</text>
+  <text x="520" y="284" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">patient_type varchar</text>
+
+  <!-- Pros/Cons -->
+  <text x="450" y="328" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">✓ Diseño limpio y normalizado</text>
+  <text x="450" y="346" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#a6e3a1">✓ NOT NULL aplicable en subtipos</text>
+  <text x="450" y="362" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#f38ba8">✗ Requiere JOIN para datos completos</text>
+
+  <!-- When to use -->
+  <rect x="320" y="378" width="258" height="42" rx="3" fill="#252535"/>
+  <text x="449" y="394" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">Usar cuando:</text>
+  <text x="449" y="410" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Integridad fuerte, subtipos con muchos atributos</text>
+
+  <!-- ════════════════════
+       COL 3: Concrete
+       ════════════════════ -->
+  <!-- Header -->
+  <rect x="610" y="34" width="280" height="32" rx="3" fill="#2a1d2e"/>
+  <text x="750" y="55" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#cba6f7">3. Tabla por Clase Concreta</text>
+
+  <!-- doctors_full table -->
+  <rect x="620" y="80" width="248" height="118" rx="4" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="620" y="80" width="248" height="26" rx="4" fill="#2a2040"/>
+  <text x="744" y="97" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">doctors</text>
+  <text x="632" y="122" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#89b4fa">doctor_id   uuid    PK</text>
+  <text x="632" y="138" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">doctor_name varchar</text>
+  <text x="632" y="154" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">doctor_email varchar</text>
+  <text x="632" y="170" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">doctor_lic  varchar</text>
+  <text x="632" y="186" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">doctor_spec varchar</text>
+
+  <!-- patients_full table -->
+  <rect x="620" y="212" width="248" height="104" rx="4" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="620" y="212" width="248" height="26" rx="4" fill="#2a2040"/>
+  <text x="744" y="229" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">patients</text>
+  <text x="632" y="254" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#89b4fa">patient_id   uuid    PK</text>
+  <text x="632" y="270" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">patient_name  varchar</text>
+  <text x="632" y="286" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">patient_email varchar</text>
+  <text x="632" y="302" font-family="Inter, Roboto, monospace, sans-serif" font-size="10" fill="#cdd6f4">patient_ins   varchar</text>
+
+  <!-- Duplicate marker -->
+  <text x="744" y="326" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">⚠ name + email repetidos en ambas</text>
+
+  <!-- Pros/Cons -->
+  <text x="750" y="346" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">✓ Sin JOIN — tablas autocontenidas</text>
+  <text x="750" y="362" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#f38ba8">✗ Columnas comunes duplicadas</text>
+
+  <!-- When to use -->
+  <rect x="620" y="378" width="258" height="42" rx="3" fill="#252535"/>
+  <text x="749" y="394" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">Usar cuando:</text>
+  <text x="749" y="410" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Subtipos raramente consultados juntos</text>
+
+  <!-- Bottom legend -->
+  <text x="450" y="462" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#6c7086">Jerarquía modelada: PERSONA → {MÉDICO, PACIENTE}</text>
+  <text x="450" y="478" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#45475a">El modelo conceptual es idéntico en los tres casos — solo cambia la implementación física</text>
+</svg>

@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+  <!-- Background -->
+  <rect width="900" height="480" fill="#1e1e2e"/>
+
+  <!-- Main title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">DBML — Jerarquía IS-A con Class Table Inheritance</text>
+
+  <!-- Vertical divider -->
+  <line x1="448" y1="34" x2="448" y2="470" stroke="#45475a" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- ═══════════════
+       LEFT: DBML CODE
+       ═══════════════ -->
+  <!-- Header -->
+  <rect x="10" y="34" width="428" height="26" rx="3" fill="#252535"/>
+  <text x="224" y="51" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#89b4fa">DBML (entrada en dbdiagram.io)</text>
+
+  <!-- Code block background -->
+  <rect x="10" y="62" width="428" height="390" rx="4" fill="#181825"/>
+
+  <!-- DBML code lines — syntax highlighted -->
+  <!-- Comment -->
+  <text x="22" y="84" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">// Supertipo</text>
+  <!-- Table keyword -->
+  <text x="22" y="103" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cba6f7">Table </text>
+  <text x="65" y="103" font-family="Consolas, Monaco, monospace" font-size="11" fill="#a6e3a1">vehicles </text>
+  <text x="130" y="103" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cdd6f4">{</text>
+  <!-- Column: vehicle_id -->
+  <text x="34" y="121" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">vehicle_id</text>
+  <text x="122" y="121" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">    uuid</text>
+  <text x="168" y="121" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">  [pk, default: `gen_random_uuid()`]</text>
+  <!-- Column: vehicle_brand -->
+  <text x="34" y="139" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">vehicle_brand</text>
+  <text x="134" y="139" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af"> varchar(80)</text>
+  <text x="228" y="139" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086"> [not null]</text>
+  <!-- Column: vehicle_year -->
+  <text x="34" y="157" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">vehicle_year</text>
+  <text x="130" y="157" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">  smallint</text>
+  <text x="200" y="157" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">   [not null]</text>
+  <!-- Column: vehicle_plate -->
+  <text x="34" y="175" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">vehicle_plate</text>
+  <text x="134" y="175" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af"> varchar(20)</text>
+  <text x="228" y="175" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086"> [not null, unique]</text>
+  <text x="22" y="193" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cdd6f4">}</text>
+
+  <!-- Blank line -->
+  <!-- Table: cars -->
+  <text x="22" y="218" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">// Subtipo — PK es también FK (1-1)</text>
+  <text x="22" y="237" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cba6f7">Table </text>
+  <text x="65" y="237" font-family="Consolas, Monaco, monospace" font-size="11" fill="#a6e3a1">cars </text>
+  <text x="100" y="237" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cdd6f4">{</text>
+  <text x="34" y="255" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">vehicle_id</text>
+  <text x="122" y="255" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">    uuid</text>
+  <text x="166" y="255" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f38ba8">  [pk, </text>
+  <text x="208" y="255" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f38ba8">ref: - vehicles.vehicle_id</text>
+  <text x="374" y="255" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f38ba8">]</text>
+  <text x="34" y="273" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">car_doors</text>
+  <text x="116" y="273" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">     smallint</text>
+  <text x="196" y="273" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">   [not null, default: 4]</text>
+  <text x="34" y="291" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">car_trunk_l</text>
+  <text x="126" y="291" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">    integer</text>
+  <text x="22" y="309" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cdd6f4">}</text>
+
+  <!-- Table: trucks -->
+  <text x="22" y="334" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cba6f7">Table </text>
+  <text x="65" y="334" font-family="Consolas, Monaco, monospace" font-size="11" fill="#a6e3a1">trucks </text>
+  <text x="112" y="334" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cdd6f4">{</text>
+  <text x="34" y="352" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">vehicle_id</text>
+  <text x="122" y="352" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">    uuid</text>
+  <text x="166" y="352" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f38ba8">  [pk, ref: - vehicles.vehicle_id]</text>
+  <text x="34" y="370" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">truck_cap</text>
+  <text x="108" y="370" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">    numeric(10,2) </text>
+  <text x="244" y="370" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">[not null]</text>
+  <text x="34" y="388" font-family="Consolas, Monaco, monospace" font-size="11" fill="#89b4fa">truck_axles</text>
+  <text x="120" y="388" font-family="Consolas, Monaco, monospace" font-size="11" fill="#f9e2af">  smallint</text>
+  <text x="196" y="388" font-family="Consolas, Monaco, monospace" font-size="11" fill="#6c7086">      [not null, default: 2]</text>
+  <text x="22" y="406" font-family="Consolas, Monaco, monospace" font-size="11" fill="#cdd6f4">}</text>
+
+  <!-- Annotation: ref type -->
+  <rect x="20" y="424" width="418" height="22" rx="3" fill="#252535"/>
+  <text x="229" y="439" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">ref: -  →  relación 1-1  (herencia CTI)   vs   ref: &gt;  →  relación N-1</text>
+
+  <!-- ════════════════════
+       RIGHT: DIAGRAM VIEW
+       ════════════════════ -->
+  <!-- Header -->
+  <rect x="458" y="34" width="432" height="26" rx="3" fill="#252535"/>
+  <text x="674" y="51" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">Diagrama generado en dbdiagram.io</text>
+
+  <!-- vehicles table (supertipo) -->
+  <rect x="564" y="66" width="220" height="122" rx="4" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="564" y="66" width="220" height="28" rx="4" fill="#1d2e3a"/>
+  <text x="674" y="85" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89b4fa">vehicles</text>
+  <line x1="564" y1="94" x2="784" y2="94" stroke="#313244" stroke-width="1"/>
+  <text x="576" y="112" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">🔑 vehicle_id  uuid</text>
+  <text x="576" y="130" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   vehicle_brand varchar</text>
+  <text x="576" y="148" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   vehicle_year  smallint</text>
+  <text x="576" y="166" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   vehicle_plate varchar</text>
+
+  <!-- FK lines (1-1) -->
+  <line x1="600" y1="188" x2="534" y2="228" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="548" y="218" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">1-1</text>
+  <line x1="748" y1="188" x2="814" y2="228" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="792" y="218" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">1-1</text>
+
+  <!-- cars table -->
+  <rect x="462" y="228" width="180" height="100" rx="4" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <rect x="462" y="228" width="180" height="24" rx="4" fill="#2a2040"/>
+  <text x="552" y="245" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">cars</text>
+  <text x="474" y="268" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">🔑🔗 vehicle_id uuid</text>
+  <text x="474" y="286" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   car_doors  smallint</text>
+  <text x="474" y="304" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   car_trunk  integer</text>
+
+  <!-- trucks table -->
+  <rect x="706" y="228" width="182" height="100" rx="4" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <rect x="706" y="228" width="182" height="24" rx="4" fill="#2a2040"/>
+  <text x="797" y="245" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">trucks</text>
+  <text x="718" y="268" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">🔑🔗 vehicle_id uuid</text>
+  <text x="718" y="286" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   truck_cap   numeric</text>
+  <text x="718" y="304" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   truck_axles smallint</text>
+
+  <!-- Export button mockup -->
+  <rect x="560" y="360" width="228" height="34" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="674" y="382" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89b4fa">Export → PostgreSQL SQL</text>
+
+  <!-- Arrow from button to DDL annotation -->
+  <line x1="674" y1="394" x2="674" y2="418" stroke="#89b4fa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="674" y="434" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#a6e3a1">DDL listo para ejecutar en PostgreSQL 16+</text>
+
+  <!-- Legend: 🔑 = PK, 🔗 = FK -->
+  <text x="674" y="460" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">🔑 = PRIMARY KEY   🔗 = FOREIGN KEY (1-1 en CTI)</text>
+</svg>

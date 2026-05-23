@@ -1,0 +1,224 @@
+// ============================================================
+// Proyecto Semana 05: ConnectPro — Red Social Profesional
+// Archivo: connectpro.dbml
+//
+// Instrucciones:
+//   1. Lee el README.md del proyecto para entender el dominio
+//   2. Completa cada sección marcada con TODO
+//   3. Pega el contenido en https://dbdiagram.io para visualizar
+//   4. Verifica que no haya errores de sintaxis antes de entregar
+//
+// Convenciones:
+//   - PK: uuid [pk, default: `gen_random_uuid()`]
+//   - Columnas: auto-documentadas con prefijo de entidad
+//   - Metadatos de auditoría: created_at, updated_at (sin prefijo)
+//   - ref: -  para relaciones 1-1 (herencia CTI)
+//   - ref: >  para relaciones N-1
+//   - ref: <> para relaciones N-N
+// ============================================================
+
+
+// ─────────────────────────────────────────────────────────────
+// 1. USUARIOS — supertipo base de todos los usuarios
+// ─────────────────────────────────────────────────────────────
+
+Table users {
+  user_id        uuid         [pk, default: `gen_random_uuid()`]
+  user_name      varchar(100) [not null]
+  user_email     varchar(150) [not null, unique]
+  user_password  varchar(255) [not null, note: "Almacenar solo el hash, nunca texto plano"]
+  user_photo_url text
+
+  // TODO: Agrega la columna discriminadora para el tipo de cuenta (básica o premium)
+  // Pista: debe ser NOT NULL porque la cobertura es TOTAL
+
+  created_at timestamptz [not null, default: `now()`]
+
+  indexes {
+    user_email [unique, name: 'uq_users_email']
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 2. JERARQUÍA 1: Tipo de Cuenta — Total + Exclusiva
+//    Subtipos: basic_accounts, premium_accounts
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla basic_accounts
+// Pista: En CTI, la PK del subtipo es también FK al supertipo (ref: -)
+// La cuenta básica no tiene atributos propios adicionales, pero la tabla
+// debe existir para mantener la integridad del modelo CTI.
+
+// Table basic_accounts {
+//   TODO: columna PK+FK hacia users
+// }
+
+
+// TODO: Completa la tabla premium_accounts con los atributos correctos
+// Atributos requeridos: fecha inicio, fecha fin, tipo de suscripción (mensual/anual)
+
+// Table premium_accounts {
+//   TODO: columna PK+FK hacia users (ref: -)
+//   TODO: premium_start_date
+//   TODO: premium_end_date
+//   TODO: premium_subscription_type — nota: debe restringir a 'monthly' | 'annual'
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 3. JERARQUÍA 2: Rol en Plataforma — Parcial + Inclusiva
+//    Subtipos: professionals, recruiters
+//    Un usuario puede ser ninguno, uno, o ambos roles.
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla professionals
+// Atributos: headline (titular de perfil), summary, industry_sector
+
+// Table professionals {
+//   TODO: columna PK+FK hacia users (ref: -)
+//   TODO: professional_headline
+//   TODO: professional_summary
+//   TODO: professional_industry_sector
+// }
+
+
+// TODO: Completa la tabla recruiters
+// Atributos: empresa contratante, área de reclutamiento, ofertas activas
+
+// Table recruiters {
+//   TODO: columna PK+FK hacia users (ref: -)
+//   TODO: recruiter_company_name
+//   TODO: recruiter_area
+//   TODO: recruiter_active_postings (valor por defecto: 0)
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 4. EMPRESAS
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla companies
+// Atributos: nombre, industria, sitio web, descripción, tamaño
+
+// Table companies {
+//   TODO: company_id
+//   TODO: company_name (único)
+//   TODO: company_industry
+//   TODO: company_website
+//   TODO: company_description
+//   TODO: company_size — nota: startup | sme | corporate
+//   created_at timestamptz [not null, default: `now()`]
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 5. EXPERIENCIA LABORAL
+//    Cada professional puede tener múltiples experiencias.
+//    La empresa puede o no estar registrada en ConnectPro.
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla experiences
+// Atributos: cargo, fecha inicio, fecha fin (nullable), descripción del rol
+// FK hacia professionals (staff) y hacia companies (nullable)
+
+// Table experiences {
+//   TODO: experience_id
+//   TODO: FK hacia professionals.user_id
+//   TODO: FK hacia companies.company_id (nullable — puede ser empresa externa)
+//   TODO: experience_title (cargo)
+//   TODO: experience_company_name_ext — nombre de empresa si no está en ConnectPro
+//   TODO: experience_start_date
+//   TODO: experience_end_date (null si es empleo actual)
+//   TODO: experience_description
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 6. CONEXIONES ENTRE USUARIOS
+//    Relación reflexiva: usuario ↔ usuario
+//    Estado: pending | accepted | rejected
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla connections
+// Pista: Es una relación reflexiva (usuario A conecta con usuario B)
+// Evita conexiones duplicadas: el par (requester_id, addressee_id) debe ser único.
+
+// Table connections {
+//   TODO: connection_id
+//   TODO: requester_id (FK → users)
+//   TODO: addressee_id (FK → users)
+//   TODO: connection_status — nota: pending | accepted | rejected
+//   TODO: created_at
+//
+//   indexes {
+//     TODO: índice único sobre (requester_id, addressee_id)
+//   }
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 7. PUBLICACIONES
+//    Los usuarios publican contenido. Una publicación puede
+//    ser comentario de otra (estructura auto-referencial).
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla posts
+// Atributos: contenido, URL de imagen (opcional), fecha, contador de reacciones
+// FK auto-referencial: parent_post_id → posts.post_id (para comentarios)
+
+// Table posts {
+//   TODO: post_id
+//   TODO: FK hacia users (autor)
+//   TODO: post_content (text)
+//   TODO: post_image_url (nullable)
+//   TODO: post_reaction_count (default 0)
+//   TODO: parent_post_id (FK auto-referencial, nullable — null si no es comentario)
+//   TODO: created_at
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 8. OFERTAS DE TRABAJO
+//    Publicadas por recruiters. Los professionals se postulan.
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla job_postings
+// Atributos: título, descripción, ubicación, modalidad, rango salarial (nullable), estado
+
+// Table job_postings {
+//   TODO: job_posting_id
+//   TODO: FK hacia recruiters.user_id
+//   TODO: FK hacia companies.company_id
+//   TODO: job_posting_title
+//   TODO: job_posting_description
+//   TODO: job_posting_location
+//   TODO: job_posting_modality  — nota: on_site | remote | hybrid
+//   TODO: job_posting_salary_min (nullable)
+//   TODO: job_posting_salary_max (nullable)
+//   TODO: job_posting_status    — nota: active | closed | paused
+//   TODO: created_at
+// }
+
+
+// ─────────────────────────────────────────────────────────────
+// 9. POSTULACIONES
+//    Un professional se postula a una oferta de trabajo.
+// ─────────────────────────────────────────────────────────────
+
+// TODO: Completa la tabla applications
+// Atributos: fecha, estado, carta de presentación (opcional)
+
+// Table applications {
+//   TODO: application_id
+//   TODO: FK hacia professionals.user_id
+//   TODO: FK hacia job_postings.job_posting_id
+//   TODO: application_date
+//   TODO: application_status — nota: sent | under_review | accepted | rejected
+//   TODO: application_cover_letter (text, nullable)
+//
+//   indexes {
+//     TODO: índice único sobre (professional_user_id, job_posting_id)
+//           — un professional no puede postularse dos veces a la misma oferta
+//   }
+// }

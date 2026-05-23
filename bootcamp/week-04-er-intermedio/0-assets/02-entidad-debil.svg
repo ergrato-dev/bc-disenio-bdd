@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560">
+  <!-- Background -->
+  <rect width="900" height="560" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="34" font-family="Inter,Roboto,system-ui,sans-serif" font-size="17" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Entidad D&#233;bil: ORDER &#8594; ORDER_ITEM</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- LEFT: Conceptual (Chen notation simplified)                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <text x="215" y="60" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#9399b2" text-anchor="middle">Chen (Conceptual)</text>
+
+  <!-- Strong Entity: ORDER -->
+  <rect x="60" y="75" width="150" height="50" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="135" y="106" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">ORDER</text>
+
+  <!-- Identifying relationship diamond (double) -->
+  <polygon points="215,130 255,160 215,190 175,160" fill="#2d2d3e" stroke="#fab387" stroke-width="2"/>
+  <polygon points="215,136 249,160 215,184 181,160" fill="#2d2d3e" stroke="#fab387" stroke-width="1.5"/>
+  <text x="215" y="165" font-family="Inter,Roboto,system-ui,sans-serif" font-size="10" fill="#fab387" text-anchor="middle">contiene</text>
+
+  <!-- Weak Entity: ORDER_ITEM (double border) -->
+  <rect x="272" y="140" width="150" height="44" rx="5" fill="#2a2a3e" stroke="#cba6f7" stroke-width="2"/>
+  <rect x="276" y="144" width="142" height="36" rx="3" fill="none" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="347" y="167" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#cba6f7" text-anchor="middle">ORDER_ITEM</text>
+
+  <!-- Connecting lines: ORDER — diamond — ORDER_ITEM -->
+  <line x1="210" y1="100" x2="215" y2="130" stroke="#6c7086" stroke-width="2"/>
+  <line x1="255" y1="160" x2="272" y2="162" stroke="#6c7086" stroke-width="2"/>
+
+  <!-- Participation markers: || at ORDER side -->
+  <line x1="214" y1="122" x2="208" y2="122" stroke="#f9e2af" stroke-width="2.5"/>
+  <line x1="214" y1="118" x2="208" y2="118" stroke="#f9e2af" stroke-width="2.5"/>
+
+  <!-- Partial key of ORDER_ITEM: line_number (dashed underline) -->
+  <ellipse cx="347" cy="228" rx="42" ry="20" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="347" y="233" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cba6f7" text-anchor="middle">line_no</text>
+  <!-- Dashed underline = partial key -->
+  <line x1="324" y1="237" x2="370" y2="237" stroke="#cba6f7" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="347" y1="208" x2="347" y2="184" stroke="#585b70" stroke-width="1.5"/>
+
+  <!-- Attribute: quantity -->
+  <ellipse cx="230" cy="228" rx="38" ry="20" fill="#313244" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="230" y="233" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#a6e3a1" text-anchor="middle">quantity</text>
+  <line x1="250" y1="208" x2="300" y2="184" stroke="#585b70" stroke-width="1.5"/>
+
+  <!-- Legend panel -->
+  <rect x="60" y="270" width="300" height="80" rx="6" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="75" y="292" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" font-weight="bold" fill="#cdd6f4">Identificaci&#243;n completa:</text>
+  <text x="75" y="310" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2">&#183; Clave de ORDER_ITEM =</text>
+  <text x="75" y="326" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">    order.id + line_no</text>
+  <text x="75" y="342" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" font-style="italic">    (clave parcial)</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- CENTER ARROW                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <text x="450" y="185" font-family="Inter,Roboto,system-ui,sans-serif" font-size="28" fill="#f9e2af" text-anchor="middle">&#8594;</text>
+  <text x="450" y="208" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">modelo f&#237;sico</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- RIGHT: Physical model (two tables with composite PK)              -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <text x="685" y="60" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#9399b2" text-anchor="middle">Modelo F&#237;sico</text>
+
+  <!-- Table: orders -->
+  <rect x="530" y="74" width="200" height="120" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="530" y="74" width="200" height="30" rx="6" fill="#45475a"/>
+  <rect x="530" y="96" width="200" height="8" fill="#45475a"/>
+  <text x="630" y="94" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#89b4fa" text-anchor="middle">orders</text>
+  <line x1="530" y1="120" x2="730" y2="120" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="115" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; id</text>
+  <text x="680" y="115" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint PK</text>
+  <line x1="530" y1="136" x2="730" y2="136" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="131" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">order_date</text>
+  <text x="680" y="131" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">date</text>
+  <line x1="530" y1="152" x2="730" y2="152" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="147" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">status</text>
+  <text x="680" y="147" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">varchar(20)</text>
+  <line x1="530" y1="168" x2="730" y2="168" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="181" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">customer_id</text>
+  <text x="680" y="181" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint FK</text>
+
+  <!-- FK Arrow: orders → order_items -->
+  <line x1="630" y1="194" x2="630" y2="240" stroke="#cba6f7" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="625,240 635,240 630,250" fill="#cba6f7"/>
+  <!-- Cardinality labels -->
+  <text x="642" y="210" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">||</text>
+  <text x="642" y="238" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cba6f7">|&lt;</text>
+  <text x="660" y="224" font-family="Inter,Roboto,system-ui,sans-serif" font-size="10" fill="#9399b2">CASCADE</text>
+
+  <!-- Table: order_items (weak entity) -->
+  <rect x="530" y="252" width="200" height="150" rx="6" fill="#2a2a3e" stroke="#cba6f7" stroke-width="2"/>
+  <!-- Double border effect -->
+  <rect x="534" y="256" width="192" height="142" rx="4" fill="none" stroke="#cba6f7" stroke-width="1"/>
+  <rect x="530" y="252" width="200" height="30" rx="6" fill="#3d2d5a"/>
+  <rect x="530" y="274" width="200" height="8" fill="#3d2d5a"/>
+  <text x="630" y="272" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#cba6f7" text-anchor="middle">order_items</text>
+  <line x1="530" y1="298" x2="730" y2="298" stroke="#45475a" stroke-width="1"/>
+  <!-- order_id: FK + PK -->
+  <text x="545" y="293" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#94e2d5">&#128279; order_id</text>
+  <text x="680" y="293" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint FK+PK</text>
+  <line x1="530" y1="314" x2="730" y2="314" stroke="#45475a" stroke-width="1"/>
+  <!-- line_number: partial key + PK -->
+  <text x="545" y="309" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#f9e2af">&#128273; line_number</text>
+  <text x="680" y="309" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">smallint PK</text>
+  <line x1="530" y1="330" x2="730" y2="330" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="325" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">product_id</text>
+  <text x="680" y="325" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">bigint FK</text>
+  <line x1="530" y1="346" x2="730" y2="346" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="341" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4">quantity</text>
+  <text x="680" y="341" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="end">smallint</text>
+  <line x1="530" y1="362" x2="730" y2="362" stroke="#45475a" stroke-width="1"/>
+  <text x="545" y="378" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" font-style="italic">PK (order_id, line_number)</text>
+
+  <!-- PK compound annotation -->
+  <rect x="530" y="414" width="200" height="40" rx="4" fill="#1a1a2e" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="630" y="431" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" font-weight="bold" fill="#f9e2af" text-anchor="middle">PK compuesta = FK + clave parcial</text>
+  <text x="630" y="447" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">(order_id, line_number)</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- Crow's Foot notation label at bottom                              -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="60" y="380" width="360" height="50" rx="6" fill="#181825" stroke="#45475a" stroke-width="1"/>
+  <text x="240" y="400" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#cdd6f4" text-anchor="middle">En notaci&#243;n Crow&#39;s Foot</text>
+  <text x="240" y="420" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">ORDER &#160;&#160; || &#8212;&#8212; |&lt; &#160;&#160; ORDER_ITEM</text>
+
+  <!-- Footer -->
+  <rect x="0" y="528" width="900" height="32" fill="#181825"/>
+  <text x="450" y="548" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle">&#128273; clave primaria &#160;&#183;&#160; &#128279; clave for&#225;nea &#160;&#183;&#160; doble borde = entidad d&#233;bil &#160;&#183;&#160; clave parcial subrayada discontinua &#160;&#183;&#160; || obligatorio en entidad fuerte</text>
+</svg>

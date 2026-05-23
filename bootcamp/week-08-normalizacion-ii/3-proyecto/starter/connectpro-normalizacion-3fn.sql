@@ -1,0 +1,295 @@
+-- ============================================================
+-- ConnectPro — Normalización a 3FN/FNBC
+-- Semana 08 | Bootcamp Diseño de Bases de Datos Relacionales
+-- ============================================================
+-- Instrucciones:
+--   1. Ejecuta la Sección A para crear el esquema de partida
+--   2. Completa los TODOs en la Sección B (normalización)
+--   3. Verifica con las consultas de la Sección C
+--   4. Completa el análisis FNBC en la Sección D
+-- ============================================================
+
+
+-- ============================================================
+-- SECCIÓN A: Esquema de partida (heredado de Semana 07)
+-- VIOLACIONES DE 3FN intencionales — NO modificar esta sección
+-- ============================================================
+
+-- DROP SCHEMA IF EXISTS connectpro CASCADE;
+-- CREATE SCHEMA connectpro;
+-- SET search_path TO connectpro;
+
+-- ============================================================
+-- Tabla users — viola 3FN:
+--   user_id → user_country_code → user_country_name  (transitiva ❌)
+-- ============================================================
+-- CREATE TABLE users (
+--     user_id            UUID         NOT NULL DEFAULT gen_random_uuid(),
+--     user_name          VARCHAR(100) NOT NULL,
+--     user_email         VARCHAR(150) NOT NULL,
+--     user_country_code  CHAR(2)      NOT NULL,
+--     user_country_name  VARCHAR(60)  NOT NULL,  -- ❌ dep. transitiva
+--     created_at         TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+--
+--     CONSTRAINT pk_users       PRIMARY KEY (user_id),
+--     CONSTRAINT uq_users_email UNIQUE (user_email)
+-- );
+
+-- ============================================================
+-- Tabla companies
+-- ============================================================
+-- CREATE TABLE companies (
+--     company_id   UUID         NOT NULL DEFAULT gen_random_uuid(),
+--     company_name VARCHAR(120) NOT NULL,
+--     company_size VARCHAR(20)  NOT NULL,
+--     created_at   TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+--
+--     CONSTRAINT pk_companies PRIMARY KEY (company_id)
+-- );
+
+-- ============================================================
+-- Tabla job_postings — viola 3FN:
+--   job_posting_id → job_category_id → job_category_name  (transitiva ❌)
+--   job_applications_count: desnormalización deliberada (ver Sección D)
+-- ============================================================
+-- CREATE TABLE job_postings (
+--     job_posting_id          UUID         NOT NULL DEFAULT gen_random_uuid(),
+--     company_id              UUID         NOT NULL,
+--     job_title               VARCHAR(150) NOT NULL,
+--     job_category_id         SMALLINT     NOT NULL,
+--     job_category_name       VARCHAR(80)  NOT NULL,  -- ❌ dep. transitiva
+--     job_description         TEXT,
+--     job_applications_count  INTEGER      NOT NULL DEFAULT 0,  -- desnormalizado
+--     created_at              TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+--
+--     CONSTRAINT pk_job_postings    PRIMARY KEY (job_posting_id),
+--     CONSTRAINT fk_job_postings_company
+--         FOREIGN KEY (company_id)  REFERENCES companies(company_id)
+--             ON DELETE CASCADE
+-- );
+
+-- ============================================================
+-- Tabla job_applications
+-- ============================================================
+-- CREATE TABLE job_applications (
+--     job_application_id   UUID         NOT NULL DEFAULT gen_random_uuid(),
+--     job_posting_id       UUID         NOT NULL,
+--     user_id              UUID         NOT NULL,
+--     application_status   VARCHAR(20)  NOT NULL DEFAULT 'pending',
+--     applied_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+--
+--     CONSTRAINT pk_job_applications         PRIMARY KEY (job_application_id),
+--     CONSTRAINT uq_job_applications_unique  UNIQUE (job_posting_id, user_id),
+--     CONSTRAINT fk_job_applications_posting
+--         FOREIGN KEY (job_posting_id)       REFERENCES job_postings(job_posting_id)
+--             ON DELETE CASCADE,
+--     CONSTRAINT fk_job_applications_user
+--         FOREIGN KEY (user_id)              REFERENCES users(user_id)
+--             ON DELETE CASCADE
+-- );
+
+-- ============================================================
+-- Datos de prueba para la Sección A
+-- ============================================================
+-- INSERT INTO companies (company_id, company_name, company_size) VALUES
+--     ('c0000001-0000-0000-0000-000000000001', 'TechCorp SA',      'large'),
+--     ('c0000001-0000-0000-0000-000000000002', 'StartupXYZ',       'small'),
+--     ('c0000001-0000-0000-0000-000000000003', 'Consultoría Delta', 'medium');
+--
+-- INSERT INTO users
+--     (user_id, user_name, user_email, user_country_code, user_country_name) VALUES
+--     ('u0000001-0000-0000-0000-000000000001',
+--      'Ana Torres', 'ana@example.com', 'MX', 'México'),
+--     ('u0000001-0000-0000-0000-000000000002',
+--      'Carlos Vega', 'carlos@example.com', 'MX', 'México'),
+--     ('u0000001-0000-0000-0000-000000000003',
+--      'Laura Ruiz', 'laura@example.com', 'CO', 'Colombia'),
+--     ('u0000001-0000-0000-0000-000000000004',
+--      'Pedro Silva', 'pedro@example.com', 'AR', 'Argentina');
+--
+-- INSERT INTO job_postings
+--     (job_posting_id, company_id, job_title,
+--      job_category_id, job_category_name, job_applications_count) VALUES
+--     ('j0000001-0000-0000-0000-000000000001',
+--      'c0000001-0000-0000-0000-000000000001',
+--      'Backend Engineer Senior', 1, 'Tecnología', 0),
+--     ('j0000001-0000-0000-0000-000000000002',
+--      'c0000001-0000-0000-0000-000000000002',
+--      'Product Manager', 2, 'Gestión', 0),
+--     ('j0000001-0000-0000-0000-000000000003',
+--      'c0000001-0000-0000-0000-000000000001',
+--      'Frontend Developer', 1, 'Tecnología', 0),
+--     ('j0000001-0000-0000-0000-000000000004',
+--      'c0000001-0000-0000-0000-000000000003',
+--      'Consultor de Datos', 3, 'Consultoría', 0);
+
+
+-- ============================================================
+-- SECCIÓN B: Normalización a 3FN — COMPLETA LOS TODOs
+-- ============================================================
+
+-- ------------------------------------------------------------
+-- TODO RF-01: Crear la tabla countries
+-- Extrae la dependencia transitiva: user_country_code → user_country_name
+-- Usa country_code CHAR(2) como PK (clave natural ISO 3166-1 alpha-2)
+-- ------------------------------------------------------------
+-- CREATE TABLE connectpro.countries (
+--     country_code  CHAR(2)     NOT NULL,
+--     country_name  VARCHAR(60) NOT NULL,
+--
+--     -- TODO: Agregar constraint PRIMARY KEY con nombre pk_countries
+--
+-- );
+
+-- TODO RF-01b: Poblar countries con los valores únicos de users
+-- INSERT INTO connectpro.countries (country_code, country_name)
+-- SELECT DISTINCT ... FROM connectpro.users ORDER BY ...;
+
+-- TODO RF-01c: Modificar tabla users
+-- Agregar la FK a countries y eliminar la columna user_country_name
+-- ALTER TABLE connectpro.users
+--     -- TODO: ADD CONSTRAINT fk_users_country ...
+--     -- TODO: DROP COLUMN user_country_name
+-- ;
+
+
+-- ------------------------------------------------------------
+-- TODO RF-02: Crear la tabla job_categories
+-- Extrae la dependencia transitiva: job_category_id → job_category_name
+-- Usa SMALLINT GENERATED ALWAYS AS IDENTITY como PK
+-- ------------------------------------------------------------
+-- CREATE TABLE connectpro.job_categories (
+--     job_category_id    SMALLINT    NOT NULL GENERATED ALWAYS AS IDENTITY,
+--     job_category_name  VARCHAR(80) NOT NULL,
+--
+--     -- TODO: Agregar constraint PRIMARY KEY con nombre pk_job_categories
+--     -- TODO: Agregar constraint UNIQUE con nombre uq_job_categories_name
+--
+-- );
+
+-- TODO RF-02b: Poblar job_categories con los valores únicos de job_postings
+-- INSERT INTO connectpro.job_categories (job_category_id, job_category_name)
+-- OVERRIDING SYSTEM VALUE
+-- SELECT DISTINCT ... FROM connectpro.job_postings ORDER BY ...;
+
+-- TODO RF-02c: Modificar tabla job_postings
+-- Agregar la FK a job_categories y eliminar job_category_name
+-- ALTER TABLE connectpro.job_postings
+--     -- TODO: ADD CONSTRAINT fk_job_postings_category ...
+--     -- TODO: DROP COLUMN job_category_name
+-- ;
+
+
+-- ============================================================
+-- SECCIÓN C: Verificación — Consultas Diagnóstico
+-- ============================================================
+
+-- TODO RF-03a: Verificar que ya no hay transitivas en users
+-- Comprobar: ¿algún country_code tiene más de un country_name en la BD?
+-- SELECT ...
+-- FROM connectpro.countries
+-- GROUP BY ...
+-- HAVING ...;
+-- Resultado esperado: 0 filas (si la tabla countries es coherente)
+
+-- TODO RF-03b: Verificar que ya no hay transitivas en job_postings
+-- SELECT ...
+-- FROM connectpro.job_categories
+-- GROUP BY ...
+-- HAVING ...;
+-- Resultado esperado: 0 filas
+
+-- TODO RF-03c: Reconstruir la vista completa usando JOINs
+-- (Verificar que no se perdió información — lossless join)
+-- SELECT
+--     u.user_name,
+--     u.user_email,
+--     co.country_name,
+--     jp.job_title,
+--     jc.job_category_name,
+--     jp.job_applications_count
+-- FROM connectpro.users        u
+-- JOIN connectpro.countries    co ON co.country_code    = u.user_country_code
+-- JOIN connectpro.job_postings jp ON jp.company_id      IN (
+--     SELECT company_id FROM connectpro.companies LIMIT 4)
+-- JOIN connectpro.job_categories jc ON jc.job_category_id = jp.job_category_id
+-- LIMIT 10;
+
+
+-- ============================================================
+-- SECCIÓN D: Análisis FNBC + Documentación de Desnormalización
+-- ============================================================
+
+-- TODO RF-04: Analiza si el modelo final está en FNBC.
+-- Para cada tabla, identifica todas las FDs y verifica si el
+-- determinante es siempre superclave.
+--
+-- Completa el análisis en comentarios:
+--
+-- countries:
+--   country_code → country_name
+--   ¿country_code es superclave? → TODO: responde aquí
+--   ¿Está en FNBC? → TODO: responde aquí
+--
+-- users:
+--   user_id → user_name, user_email, user_country_code
+--   ¿user_id es superclave? → TODO: responde aquí
+--   ¿Está en FNBC? → TODO: responde aquí
+--
+-- job_categories:
+--   job_category_id → job_category_name
+--   ¿job_category_id es superclave? → TODO: responde aquí
+--   ¿Está en FNBC? → TODO: responde aquí
+--
+-- job_postings:
+--   job_posting_id → company_id, job_title, job_category_id, ...
+--   ¿job_posting_id es superclave? → TODO: responde aquí
+--   ¿Está en FNBC? → TODO: responde aquí
+
+
+-- ------------------------------------------------------------
+-- TODO RF-05: Documentar la decisión de desnormalización
+-- Completa el bloque de documentación con tu análisis
+-- ------------------------------------------------------------
+-- ============================================================
+-- DECISIÓN DE DISEÑO: job_applications_count en job_postings
+-- Fecha: [completar] | Autor: [completar]
+-- ============================================================
+-- JUSTIFICACIÓN:
+--   TODO: Explica por qué se mantiene este contador pre-calculado
+--   en lugar de usar COUNT(*) sobre job_applications.
+--
+-- TRADE-OFF ACEPTADO:
+--   TODO: Describe el riesgo de inconsistencia y bajo qué
+--   circunstancias podría quedar desactualizado.
+--
+-- MECANISMO DE SINCRONIZACIÓN:
+--   TODO: Describe qué trigger haría falta para mantener
+--   job_applications_count sincronizado. No es necesario
+--   implementarlo ahora — solo describir qué haría.
+--
+-- ALTERNATIVA DESCARTADA:
+--   TODO: ¿Por qué no se usa una vista materializada
+--   o un COUNT en tiempo real?
+-- ============================================================
+
+
+-- ------------------------------------------------------------
+-- TODO RF-06: Esqueleto del trigger de sincronización
+-- (No necesita funcionar — solo demostrar comprensión del patrón)
+-- ------------------------------------------------------------
+-- CREATE OR REPLACE FUNCTION connectpro.fn_sync_application_count()
+-- RETURNS TRIGGER LANGUAGE plpgsql AS $$
+-- BEGIN
+--     -- TODO: Actualizar job_postings.job_applications_count
+--     -- para la oferta afectada (NEW.job_posting_id o OLD.job_posting_id)
+--     -- usando COUNT(*) FROM job_applications WHERE job_posting_id = ...
+--
+--     RETURN NULL;
+-- END;
+-- $$;
+--
+-- CREATE TRIGGER trg_job_applications_after_change
+-- AFTER INSERT OR DELETE ON connectpro.job_applications
+-- -- TODO: Completar la instrucción FOR EACH ROW EXECUTE FUNCTION ...
+-- ;

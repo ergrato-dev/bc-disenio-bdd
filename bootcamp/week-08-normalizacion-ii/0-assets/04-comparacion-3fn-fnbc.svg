@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" width="920" height="380" font-family="Inter, Roboto, system-ui, sans-serif">
+
+  <!-- Background -->
+  <rect width="920" height="380" fill="#1e1e2e" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="920" height="48" fill="#181825" rx="12"/>
+  <rect x="0" y="36" width="920" height="12" fill="#181825"/>
+  <text x="460" y="30" fill="#cdd6f4" font-size="15" font-weight="700" text-anchor="middle">Comparación 3FN vs FNBC — Resumen y Jerarquía</text>
+
+  <!-- ======== Comparison table ======== -->
+  <rect x="16" y="62" width="558" height="276" fill="#313244" rx="8"/>
+
+  <!-- Table header -->
+  <rect x="16" y="62" width="558" height="32" fill="#181825" rx="8"/>
+  <rect x="16" y="82" width="558" height="12" fill="#181825"/>
+  <text x="200" y="82" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">Criterio</text>
+  <text x="420" y="82" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">3FN</text>
+  <text x="530" y="82" fill="#cba6f7" font-size="12" font-weight="700" text-anchor="middle">FNBC</text>
+
+  <!-- Divider lines -->
+  <line x1="16" y1="94" x2="574" y2="94" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="122" x2="574" y2="122" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="150" x2="574" y2="150" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="178" x2="574" y2="178" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="206" x2="574" y2="206" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="234" x2="574" y2="234" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="262" x2="574" y2="262" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="290" x2="574" y2="290" stroke="#45475a" stroke-width="1"/>
+  <line x1="16" y1="318" x2="574" y2="318" stroke="#45475a" stroke-width="1"/>
+
+  <!-- Column separators -->
+  <line x1="298" y1="62" x2="298" y2="338" stroke="#45475a" stroke-width="1"/>
+  <line x1="466" y1="62" x2="466" y2="338" stroke="#45475a" stroke-width="1"/>
+
+  <!-- Row 1: Condición -->
+  <text x="28" y="112" fill="#cdd6f4" font-size="11">Condición FD X→A</text>
+  <text x="308" y="108" fill="#cdd6f4" font-size="10">X superclave</text>
+  <text x="308" y="120" fill="#cdd6f4" font-size="10">O A primo</text>
+  <text x="476" y="112" fill="#cba6f7" font-size="10">X siempre superclave</text>
+
+  <!-- Row 2: Atributos primos -->
+  <text x="28" y="140" fill="#cdd6f4" font-size="11">Excepciones para primos</text>
+  <text x="380" y="140" fill="#a6e3a1" font-size="12" text-anchor="middle">✅ Sí</text>
+  <text x="516" y="140" fill="#f38ba8" font-size="12" text-anchor="middle">❌ No</text>
+
+  <!-- Row 3: Anomalías -->
+  <text x="28" y="168" fill="#cdd6f4" font-size="11">Elimina todas las anomalías</text>
+  <text x="380" y="168" fill="#f9e2af" font-size="11" text-anchor="middle">No siempre</text>
+  <text x="516" y="168" fill="#a6e3a1" font-size="11" text-anchor="middle">Sí (cuando aplica)</text>
+
+  <!-- Row 4: Descomposición sin pérdida -->
+  <text x="28" y="196" fill="#cdd6f4" font-size="11">Descomposición sin pérdida</text>
+  <text x="380" y="196" fill="#a6e3a1" font-size="11" text-anchor="middle">Garantizada (síntesis)</text>
+  <text x="516" y="192" fill="#f9e2af" font-size="10" text-anchor="middle">No siempre</text>
+  <text x="516" y="204" fill="#f9e2af" font-size="10" text-anchor="middle">garantizada</text>
+
+  <!-- Row 5: Cuando difieren -->
+  <text x="28" y="222" fill="#cdd6f4" font-size="11">¿Cuándo difieren?</text>
+  <text x="308" y="218" fill="#cdd6f4" font-size="10">Múltiples CKs solapadas</text>
+  <text x="308" y="230" fill="#cdd6f4" font-size="10">con FD no-superclave</text>
+  <text x="476" y="222" fill="#cdd6f4" font-size="10">En el mismo caso</text>
+
+  <!-- Row 6: Uso práctico -->
+  <text x="28" y="250" fill="#cdd6f4" font-size="11">Uso en producción</text>
+  <text x="380" y="250" fill="#a6e3a1" font-size="11" text-anchor="middle">Muy frecuente</text>
+  <text x="516" y="246" fill="#cdd6f4" font-size="10" text-anchor="middle">Cuando anomalías</text>
+  <text x="516" y="258" fill="#cdd6f4" font-size="10" text-anchor="middle">son críticas</text>
+
+  <!-- Row 7: Recomendación -->
+  <text x="28" y="278" fill="#cdd6f4" font-size="11">Recomendación</text>
+  <text x="308" y="274" fill="#cdd6f4" font-size="10">Preferir si la descomposición</text>
+  <text x="308" y="286" fill="#cdd6f4" font-size="10">FNBC pierde FDs</text>
+  <text x="476" y="274" fill="#cdd6f4" font-size="10">Para máxima</text>
+  <text x="476" y="286" fill="#cdd6f4" font-size="10">eliminación de anomalías</text>
+
+  <!-- Row 8: Ejemplo clásico -->
+  <text x="28" y="306" fill="#cdd6f4" font-size="11">Ejemplo distintivo</text>
+  <text x="308" y="302" fill="#a6e3a1" font-size="10">cursa(est, mat, prof)</text>
+  <text x="308" y="314" fill="#a6e3a1" font-size="10">está en 3FN ✅</text>
+  <text x="476" y="302" fill="#f38ba8" font-size="10">cursa(est, mat, prof)</text>
+  <text x="476" y="314" fill="#f38ba8" font-size="10">viola FNBC ❌</text>
+
+  <!-- Row 9: Definition summary -->
+  <text x="28" y="330" fill="#89b4fa" font-size="10" font-weight="700">Definición rápida</text>
+  <text x="308" y="326" fill="#89b4fa" font-size="10">No-primo no depende</text>
+  <text x="308" y="338" fill="#89b4fa" font-size="10">transitivamente de la CK</text>
+  <text x="476" y="326" fill="#cba6f7" font-size="10">Todo determinante</text>
+  <text x="476" y="338" fill="#cba6f7" font-size="10">es superclave</text>
+
+  <!-- ======== RIGHT: NF Inclusion diagram ======== -->
+  <rect x="592" y="62" width="312" height="276" fill="#313244" rx="8"/>
+  <rect x="592" y="62" width="312" height="30" fill="#181825" rx="8"/>
+  <rect x="592" y="82" width="312" height="10" fill="#181825"/>
+  <text x="748" y="81" fill="#cba6f7" font-size="13" font-weight="700" text-anchor="middle">Jerarquía de Inclusión</text>
+
+  <!-- Concentric ovals -->
+  <ellipse cx="748" cy="210" rx="148" ry="112" fill="#181825" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="604" y="220" fill="#89b4fa" font-size="11" font-weight="700">1FN</text>
+  <text x="604" y="234" fill="#cdd6f4" font-size="9">No grupos repetidos</text>
+
+  <ellipse cx="748" cy="210" rx="118" ry="88" fill="#1e1e2e" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="636" y="220" fill="#a6e3a1" font-size="11" font-weight="700">2FN</text>
+  <text x="636" y="234" fill="#cdd6f4" font-size="9">Sin deps. parciales</text>
+
+  <ellipse cx="748" cy="210" rx="88" ry="64" fill="#313244" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="666" y="210" fill="#f9e2af" font-size="11" font-weight="700">3FN</text>
+  <text x="666" y="224" fill="#cdd6f4" font-size="9">Sin transitivas</text>
+
+  <ellipse cx="748" cy="210" rx="54" ry="38" fill="#45475a" stroke="#cba6f7" stroke-width="2"/>
+  <text x="748" y="205" fill="#cba6f7" font-size="13" font-weight="800" text-anchor="middle">FNBC</text>
+  <text x="748" y="221" fill="#cdd6f4" font-size="9" text-anchor="middle">Más estricta</text>
+
+  <!-- Legend note -->
+  <rect x="600" y="308" width="296" height="22" fill="#181825" rx="4"/>
+  <text x="748" y="323" fill="#45475a" font-size="10" text-anchor="middle">Cada nivel incluye a todos los anteriores</text>
+
+  <!-- Footer -->
+  <text x="460" y="368" fill="#45475a" font-size="10" text-anchor="middle">Bootcamp Diseño de Bases de Datos Relacionales — Semana 08</text>
+</svg>

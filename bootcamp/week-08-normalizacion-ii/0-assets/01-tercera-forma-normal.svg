@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" width="920" height="540" font-family="Inter, Roboto, system-ui, sans-serif">
+
+  <!-- Background -->
+  <rect width="920" height="540" fill="#1e1e2e" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="920" height="48" fill="#181825" rx="12"/>
+  <rect x="0" y="36" width="920" height="12" fill="#181825"/>
+  <text x="460" y="30" fill="#cdd6f4" font-size="15" font-weight="700" text-anchor="middle">Tercera Forma Normal (3FN) — Antes y Después</text>
+
+  <!-- ======== LEFT PANEL: BEFORE (2FN, violates 3FN) ======== -->
+  <rect x="16" y="60" width="380" height="300" fill="#313244" rx="8"/>
+  <rect x="16" y="60" width="380" height="32" fill="#f38ba8" rx="8"/>
+  <rect x="16" y="80" width="380" height="12" fill="#f38ba8"/>
+  <text x="206" y="81" fill="#1e1e2e" font-size="13" font-weight="700" text-anchor="middle">invoices_2fn — en 2FN pero NO en 3FN</text>
+
+  <!-- Column rows -->
+  <rect x="16" y="92" width="380" height="22" fill="#45475a"/>
+  <text x="28" y="107" fill="#a6e3a1" font-size="12" font-weight="700">invoice_id</text>
+  <text x="260" y="107" fill="#89b4fa" font-size="11">UUID PK</text>
+  <text x="340" y="107" fill="#a6e3a1" font-size="11">✅ directa</text>
+
+  <rect x="16" y="114" width="380" height="22" fill="#313244"/>
+  <text x="28" y="129" fill="#cdd6f4" font-size="12">customer_id</text>
+  <text x="260" y="129" fill="#89b4fa" font-size="11">UUID</text>
+  <text x="340" y="129" fill="#a6e3a1" font-size="11">✅ directa</text>
+
+  <rect x="16" y="136" width="380" height="22" fill="#45475a"/>
+  <text x="28" y="151" fill="#f38ba8" font-size="12">customer_name</text>
+  <text x="260" y="151" fill="#89b4fa" font-size="11">VARCHAR</text>
+  <text x="340" y="151" fill="#f38ba8" font-size="11">❌ transitiva</text>
+
+  <rect x="16" y="158" width="380" height="22" fill="#313244"/>
+  <text x="28" y="173" fill="#f38ba8" font-size="12">customer_city_id</text>
+  <text x="260" y="173" fill="#89b4fa" font-size="11">INTEGER</text>
+  <text x="340" y="173" fill="#f38ba8" font-size="11">❌ transitiva</text>
+
+  <rect x="16" y="180" width="380" height="22" fill="#45475a"/>
+  <text x="28" y="195" fill="#f38ba8" font-size="12">city_name</text>
+  <text x="260" y="195" fill="#89b4fa" font-size="11">VARCHAR</text>
+  <text x="340" y="195" fill="#f38ba8" font-size="11">❌ doble transit.</text>
+
+  <rect x="16" y="202" width="380" height="22" fill="#313244"/>
+  <text x="28" y="217" fill="#cdd6f4" font-size="12">salesperson_id</text>
+  <text x="260" y="217" fill="#89b4fa" font-size="11">UUID</text>
+  <text x="340" y="217" fill="#a6e3a1" font-size="11">✅ directa</text>
+
+  <rect x="16" y="224" width="380" height="22" fill="#45475a"/>
+  <text x="28" y="239" fill="#f38ba8" font-size="12">salesperson_name</text>
+  <text x="260" y="239" fill="#89b4fa" font-size="11">VARCHAR</text>
+  <text x="340" y="239" fill="#f38ba8" font-size="11">❌ transitiva</text>
+
+  <rect x="16" y="246" width="380" height="22" fill="#313244"/>
+  <text x="28" y="261" fill="#cdd6f4" font-size="12">invoice_date</text>
+  <text x="260" y="261" fill="#89b4fa" font-size="11">DATE</text>
+  <text x="340" y="261" fill="#a6e3a1" font-size="11">✅ directa</text>
+
+  <rect x="16" y="268" width="380" height="22" fill="#45475a"/>
+  <text x="28" y="283" fill="#cdd6f4" font-size="12">invoice_total</text>
+  <text x="260" y="283" fill="#89b4fa" font-size="11">NUMERIC</text>
+  <text x="340" y="283" fill="#a6e3a1" font-size="11">✅ directa</text>
+
+  <rect x="16" y="290" width="380" height="70" fill="#181825" rx="0"/>
+  <rect x="16" y="358" width="380" height="2" fill="#313244"/>
+  <!-- FD chains annotations -->
+  <text x="28" y="306" fill="#f9e2af" font-size="11">invoice_id → customer_id → customer_name</text>
+  <text x="28" y="322" fill="#f9e2af" font-size="11">invoice_id → customer_id → customer_city_id → city_name</text>
+  <text x="28" y="338" fill="#f9e2af" font-size="11">invoice_id → salesperson_id → salesperson_name</text>
+  <text x="28" y="354" fill="#f38ba8" font-size="10" font-style="italic">cada flecha intermedia = dependencia transitiva ❌</text>
+
+  <!-- Center arrow -->
+  <text x="418" y="195" fill="#89b4fa" font-size="20" font-weight="700" text-anchor="middle">→</text>
+  <text x="418" y="215" fill="#cba6f7" font-size="12" text-anchor="middle" font-weight="700">3FN</text>
+
+  <!-- ======== RIGHT PANEL: AFTER (4 tables in 3FN) ======== -->
+  <!-- invoices (clean) -->
+  <rect x="460" y="60" width="200" height="158" fill="#313244" rx="6"/>
+  <rect x="460" y="60" width="200" height="28" fill="#a6e3a1" rx="6"/>
+  <rect x="460" y="80" width="200" height="8" fill="#a6e3a1"/>
+  <text x="560" y="78" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">invoices</text>
+  <text x="472" y="102" fill="#a6e3a1" font-size="11" font-weight="700">invoice_id</text>
+  <text x="620" y="102" fill="#89b4fa" font-size="10">UUID PK</text>
+  <text x="472" y="118" fill="#cdd6f4" font-size="11">customer_id</text>
+  <text x="620" y="118" fill="#f9e2af" font-size="10">UUID FK</text>
+  <text x="472" y="134" fill="#cdd6f4" font-size="11">salesperson_id</text>
+  <text x="620" y="134" fill="#f9e2af" font-size="10">UUID FK</text>
+  <text x="472" y="150" fill="#cdd6f4" font-size="11">invoice_date</text>
+  <text x="620" y="150" fill="#89b4fa" font-size="10">DATE</text>
+  <text x="472" y="166" fill="#cdd6f4" font-size="11">invoice_total</text>
+  <text x="620" y="166" fill="#89b4fa" font-size="10">NUMERIC</text>
+  <text x="472" y="206" fill="#a6e3a1" font-size="10">✅ Solo deps. directas</text>
+
+  <!-- customers -->
+  <rect x="460" y="230" width="200" height="118" fill="#313244" rx="6"/>
+  <rect x="460" y="230" width="200" height="28" fill="#89b4fa" rx="6"/>
+  <rect x="460" y="250" width="200" height="8" fill="#89b4fa"/>
+  <text x="560" y="248" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">customers</text>
+  <text x="472" y="272" fill="#a6e3a1" font-size="11" font-weight="700">customer_id</text>
+  <text x="620" y="272" fill="#89b4fa" font-size="10">UUID PK</text>
+  <text x="472" y="288" fill="#cdd6f4" font-size="11">customer_name</text>
+  <text x="620" y="288" fill="#89b4fa" font-size="10">VARCHAR</text>
+  <text x="472" y="304" fill="#cdd6f4" font-size="11">customer_city_id</text>
+  <text x="620" y="304" fill="#f9e2af" font-size="10">INT FK</text>
+  <text x="472" y="330" fill="#a6e3a1" font-size="10">✅ 3FN</text>
+
+  <!-- cities -->
+  <rect x="690" y="230" width="210" height="98" fill="#313244" rx="6"/>
+  <rect x="690" y="230" width="210" height="28" fill="#cba6f7" rx="6"/>
+  <rect x="690" y="250" width="210" height="8" fill="#cba6f7"/>
+  <text x="795" y="248" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">cities</text>
+  <text x="702" y="272" fill="#a6e3a1" font-size="11" font-weight="700">city_id</text>
+  <text x="858" y="272" fill="#89b4fa" font-size="10">INT PK</text>
+  <text x="702" y="288" fill="#cdd6f4" font-size="11">city_name</text>
+  <text x="858" y="288" fill="#89b4fa" font-size="10">VARCHAR</text>
+  <text x="702" y="304" fill="#cdd6f4" font-size="11">city_country</text>
+  <text x="858" y="304" fill="#89b4fa" font-size="10">CHAR(2)</text>
+  <text x="702" y="320" fill="#a6e3a1" font-size="10">✅ 3FN</text>
+
+  <!-- salespersons -->
+  <rect x="690" y="60" width="210" height="98" fill="#313244" rx="6"/>
+  <rect x="690" y="60" width="210" height="28" fill="#f9e2af" rx="6"/>
+  <rect x="690" y="80" width="210" height="8" fill="#f9e2af"/>
+  <text x="795" y="78" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">salespersons</text>
+  <text x="702" y="102" fill="#a6e3a1" font-size="11" font-weight="700">salesperson_id</text>
+  <text x="858" y="102" fill="#89b4fa" font-size="10">UUID PK</text>
+  <text x="702" y="118" fill="#cdd6f4" font-size="11">salesperson_name</text>
+  <text x="858" y="118" fill="#89b4fa" font-size="10">VARCHAR</text>
+  <text x="702" y="134" fill="#cdd6f4" font-size="11">created_at</text>
+  <text x="858" y="134" fill="#89b4fa" font-size="10">TIMESTAMPTZ</text>
+  <text x="702" y="150" fill="#a6e3a1" font-size="10">✅ 3FN</text>
+
+  <!-- FK arrows right panel -->
+  <!-- invoices → customers -->
+  <line x1="560" y1="218" x2="560" y2="230" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- invoices → salespersons -->
+  <line x1="660" y1="105" x2="690" y2="105" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- customers → cities -->
+  <line x1="660" y1="294" x2="690" y2="294" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ======== ALGORITHM BOTTOM BAR ======== -->
+  <rect x="16" y="378" width="888" height="100" fill="#181825" rx="8"/>
+  <text x="460" y="398" fill="#cba6f7" font-size="13" font-weight="700" text-anchor="middle">Algoritmo 3-Pasos para Eliminar Dependencias Transitivas</text>
+
+  <!-- Step 1 -->
+  <rect x="26" y="408" width="270" height="60" fill="#313244" rx="6"/>
+  <text x="161" y="425" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">Paso 1: Identificar</text>
+  <text x="161" y="443" fill="#cdd6f4" font-size="11" text-anchor="middle">¿Existe PK → B → C donde</text>
+  <text x="161" y="458" fill="#cdd6f4" font-size="11" text-anchor="middle">B no es superclave?</text>
+
+  <!-- Step 2 -->
+  <rect x="316" y="408" width="270" height="60" fill="#313244" rx="6"/>
+  <text x="451" y="425" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">Paso 2: Extraer</text>
+  <text x="451" y="443" fill="#cdd6f4" font-size="11" text-anchor="middle">Nueva tabla: B como PK,</text>
+  <text x="451" y="458" fill="#cdd6f4" font-size="11" text-anchor="middle">C como columna</text>
+
+  <!-- Step 3 -->
+  <rect x="606" y="408" width="290" height="60" fill="#313244" rx="6"/>
+  <text x="751" y="425" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">Paso 3: Enlazar</text>
+  <text x="751" y="443" fill="#cdd6f4" font-size="11" text-anchor="middle">Reemplazar C por FK → B</text>
+  <text x="751" y="458" fill="#cdd6f4" font-size="11" text-anchor="middle">en la tabla original</text>
+
+  <!-- arrows between steps -->
+  <text x="300" y="442" fill="#89b4fa" font-size="16" text-anchor="middle">→</text>
+  <text x="590" y="442" fill="#89b4fa" font-size="16" text-anchor="middle">→</text>
+
+  <!-- Footer -->
+  <text x="460" y="528" fill="#45475a" font-size="10" text-anchor="middle">Bootcamp Diseño de Bases de Datos Relacionales — Semana 08</text>
+</svg>

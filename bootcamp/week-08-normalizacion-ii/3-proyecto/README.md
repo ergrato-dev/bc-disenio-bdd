@@ -1,43 +1,93 @@
-# Proyecto Semana 08 — Esquema final normalizado de la red social con decisiones documentadas
+# Proyecto Semana 08 — ConnectPro: Llevar el Modelo a 3FN/FNBC
 
 > **Fase:** Modelo Lógico &nbsp;|&nbsp; **Semana:** 08 de 14
 
-## 📋 Contexto del Negocio
+## Contexto del Negocio
 
-<!-- TODO: Describir el contexto de negocio del proyecto (2-3 párrafos) -->
+**ConnectPro** es la red social profesional que comenzaste a modelar en las semanas 06 y 07.
+El equipo de ingeniería revisó el esquema en 2FN y descubrió que dos tablas importantes
+aún contienen dependencias transitivas. Además, el product manager solicitó mantener un
+contador de postulaciones en cada oferta de trabajo para mejorar el rendimiento del listado
+principal — una decisión que hay que documentar y justificar técnicamente.
 
-## 🎯 Objetivo
+Tu misión en este proyecto es llevar el modelo a **3FN y FNBC** donde sea posible, y
+documentar con criterio técnico las decisiones de desnormalización que sean justificadas.
 
-Aplicar los conceptos aprendidos en la Semana 08 para diseñar e implementar una solución
-de base de datos que resuelva el problema planteado.
+## Objetivo
 
-## 📐 Requerimientos
+- Identificar y clasificar todas las dependencias transitivas en el esquema heredado
+- Extraer las entidades faltantes (`countries`, `job_categories`) mediante el algoritmo de síntesis
+- Verificar si el modelo resultante también está en FNBC
+- Documentar la decisión de desnormalización de `job_applications_count` con el formato estándar
 
-<!-- TODO: Listar los requerimientos funcionales del sistema (entidades, relaciones, reglas de negocio) -->
+## Esquema de Partida (heredado de Semana 07 — con violaciones 3FN)
 
-### Requerimientos funcionales
+El esquema está en `starter/connectpro-normalizacion-3fn.sql`. Contiene dos tablas con
+violaciones 3FN intencionales que debes corregir:
 
-- [ ] RF-01:
-- [ ] RF-02:
-- [ ] RF-03:
+### Violación 1 — `users`: dependencia transitiva de país
 
-### Restricciones de diseño
+```
+user_id → user_country_code → user_country_name   (transitiva ❌)
+```
 
-- [ ] Aplicar las convenciones de nomenclatura del bootcamp
-- [ ] Normalizar hasta mínimo 3FN (salvo justificación documentada)
-- [ ] Todas las `FOREIGN KEY` deben tener política `ON DELETE` explícita
+La columna `user_country_name` depende de `user_country_code`, no directamente
+de `user_id`. Si un país cambia de nombre oficial, hay que actualizar todas las
+filas de usuarios de ese país.
 
-## 📦 Entregables
+### Violación 2 — `job_postings`: dependencia transitiva de categoría
 
-- [ ] Script DDL final normalizado hasta 3FN/FNBC
-- [ ] Informe de decisiones: qué se normalizó y qué no (y por qué)
+```
+job_posting_id → job_category_id → job_category_name   (transitiva ❌)
+```
 
-## 🚀 Instrucciones
+La columna `job_category_name` depende de `job_category_id`. Si se renombra
+una categoría, habría que tocar miles de filas de ofertas.
 
-1. Trabaja en el directorio `starter/`
-2. Lee los comentarios `-- TODO:` en cada archivo y completa el código
-3. Prueba tu solución ejecutando los scripts en PostgreSQL 16+
-4. Documenta tus decisiones de diseño en este README
+### Desnormalización Documentada — `job_applications_count`
+
+La columna `job_applications_count INTEGER DEFAULT 0` en `job_postings` es
+**redundante**: su valor podría calcularse con `COUNT(*) FROM job_applications
+WHERE job_posting_id = ...`. Sin embargo, el listado de ofertas se ejecuta
+~30,000 veces por día y leer el contador directamente evita un JOIN y GROUP BY
+costoso. Esta decisión **debe estar documentada** en el DDL.
+
+## Requerimientos Funcionales
+
+- **RF-01:** Extraer `countries(country_code PK, country_name)` y referenciarla desde `users`
+- **RF-02:** Extraer `job_categories(job_category_id PK, job_category_name)` y referenciarla desde `job_postings`
+- **RF-03:** Verificar con consultas diagnóstico que ya no hay transitivas en el modelo
+- **RF-04:** Evaluar si el modelo resultante está en FNBC (justificar con FDs)
+- **RF-05:** Documentar la decisión de desnormalización de `job_applications_count` con el formato estándar (razón, trade-off, mecanismo de sincronización)
+- **RF-06:** Escribir el trigger o el comentario de qué trigger haría falta para mantener `job_applications_count` sincronizado
+
+## Restricciones de Diseño
+
+- Usar `UUID DEFAULT gen_random_uuid()` para todas las PKs nuevas
+- `country_code CHAR(2)` como PK de `countries` (clave natural — código ISO 3166-1 alpha-2)
+- `job_category_id SMALLINT GENERATED ALWAYS AS IDENTITY` en `job_categories`
+- Todas las `FOREIGN KEY` con política `ON DELETE` explícita y justificada
+- Nombres de constraints en formato `tipo_tabla_columna`
+
+## Entregables
+
+1. Script `starter/connectpro-normalizacion-3fn.sql` completado con:
+   - DDL de `countries` y `job_categories`
+   - `ALTER TABLE` para modificar `users` y `job_postings`
+   - Consultas de verificación
+   - Análisis de FNBC comentado
+   - Bloque de documentación de la desnormalización
+
+## Instrucciones
+
+1. Abre `starter/connectpro-normalizacion-3fn.sql`
+2. Sigue los `-- TODO:` en orden — cada uno corresponde a un RF
+3. Ejecuta sección por sección en pgAdmin o DBeaver
+4. Verifica con las consultas diagnóstico incluidas al final
+
+---
+
+← [Práctica](../2-practicas/README.md) | → [Recursos](../4-recursos/ebooks-free/README.md)
 
 ## ✅ Criterios de Aceptación
 

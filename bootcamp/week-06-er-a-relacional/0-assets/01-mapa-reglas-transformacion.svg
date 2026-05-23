@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440">
+  <!-- Background -->
+  <rect width="900" height="440" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">Las 7 Reglas de Transformación ER → Modelo Relacional</text>
+
+  <!-- ── Column headers ── -->
+  <!-- Col 1: ER Element -->
+  <rect x="10" y="32" width="240" height="24" rx="3" fill="#252535"/>
+  <text x="130" y="48" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#89b4fa">Elemento ER (Conceptual)</text>
+  <!-- Col 2: Arrow -->
+  <!-- Col 3: Relacional -->
+  <rect x="290" y="32" width="200" height="24" rx="3" fill="#252535"/>
+  <text x="390" y="48" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">Resultado Relacional</text>
+  <!-- Col 4: SQL key -->
+  <rect x="510" y="32" width="380" height="24" rx="3" fill="#252535"/>
+  <text x="700" y="48" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f9e2af">Clave SQL</text>
+
+  <!-- Horizontal rules helper -->
+  <!-- ROW function: y_base, rule_num, color, er_text, rel_text, sql_text -->
+
+  <!-- R1 -->
+  <rect x="10" y="60" width="880" height="42" rx="3" fill="#1f2d1f"/>
+  <rect x="10" y="60" width="6" height="42" rx="2" fill="#a6e3a1"/>
+  <text x="24" y="76" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">R1</text>
+  <text x="50" y="76" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Entidad fuerte</text>
+  <text x="50" y="94" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">CUSTOMER(id, name, email)</text>
+  <text x="265" y="85" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="76" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Tabla con sus atributos simples</text>
+  <text x="300" y="94" font-family="Consolas, Monaco, monospace" font-size="10" fill="#a6e3a1">CREATE TABLE customers (...)</text>
+  <text x="520" y="76" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">UUID DEFAULT gen_random_uuid() PRIMARY KEY</text>
+  <text x="520" y="94" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">NOT NULL para obligatorios, NULL para opcionales</text>
+
+  <!-- R2 -->
+  <rect x="10" y="106" width="880" height="42" rx="3" fill="#1a2a2a"/>
+  <rect x="10" y="106" width="6" height="42" rx="2" fill="#89dceb"/>
+  <text x="24" y="122" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#89dceb">R2</text>
+  <text x="50" y="122" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Entidad débil</text>
+  <text x="50" y="140" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">ORDER_ITEM depende de ORDER</text>
+  <text x="265" y="131" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="122" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Tabla con FK al identificador</text>
+  <text x="300" y="140" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89dceb">order_id FK + clave_parcial</text>
+  <text x="520" y="122" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">REFERENCES owner ON DELETE CASCADE</text>
+  <text x="520" y="140" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">PK compuesta (fk, partial_key) o UUID + UNIQUE</text>
+
+  <!-- R3 -->
+  <rect x="10" y="152" width="880" height="42" rx="3" fill="#29201a"/>
+  <rect x="10" y="152" width="6" height="42" rx="2" fill="#f9e2af"/>
+  <text x="24" y="168" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f9e2af">R3</text>
+  <text x="50" y="168" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Relación 1:1</text>
+  <text x="50" y="186" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">EMPLOYEE — gestiona — DEPT</text>
+  <text x="265" y="177" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="168" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">FK en lado con participación total</text>
+  <text x="300" y="186" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">manager_id FK UNIQUE NOT NULL</text>
+  <text x="520" y="168" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">UNIQUE + NOT NULL en el lado total</text>
+  <text x="520" y="186" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">Ambos parciales → tabla de unión separada</text>
+
+  <!-- R4 -->
+  <rect x="10" y="198" width="880" height="42" rx="3" fill="#1f1f2e"/>
+  <rect x="10" y="198" width="6" height="42" rx="2" fill="#cba6f7"/>
+  <text x="24" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#cba6f7">R4</text>
+  <text x="50" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Relación 1:N</text>
+  <text x="50" y="232" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">CATEGORY (1) ── PRODUCT (N)</text>
+  <text x="265" y="223" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">FK en la tabla del lado N</text>
+  <text x="300" y="232" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cba6f7">products.category_id FK</text>
+  <text x="520" y="214" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">NOT NULL si total · NULL si parcial</text>
+  <text x="520" y="232" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">ON DELETE RESTRICT | CASCADE | SET NULL</text>
+
+  <!-- R5 -->
+  <rect x="10" y="244" width="880" height="42" rx="3" fill="#291e26"/>
+  <rect x="10" y="244" width="6" height="42" rx="2" fill="#f38ba8"/>
+  <text x="24" y="260" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f38ba8">R5</text>
+  <text x="50" y="260" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Relación N:M</text>
+  <text x="50" y="278" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">STUDENT (N) ── COURSE (M)</text>
+  <text x="265" y="269" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="260" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Tabla de intersección</text>
+  <text x="300" y="278" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">enrollments(student_id FK, course_id FK)</text>
+  <text x="520" y="260" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">PK(fk1, fk2) o UUID + UNIQUE(fk1, fk2)</text>
+  <text x="520" y="278" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">Atributos de la relación van en la tabla pivot</text>
+
+  <!-- R6 -->
+  <rect x="10" y="290" width="880" height="42" rx="3" fill="#2a2620"/>
+  <rect x="10" y="290" width="6" height="42" rx="2" fill="#fab387"/>
+  <text x="24" y="306" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#fab387">R6</text>
+  <text x="50" y="306" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Atributo multivaluado</text>
+  <text x="50" y="324" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">customer.phones = {mobile, home}</text>
+  <text x="265" y="315" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="306" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Tabla separada con FK</text>
+  <text x="300" y="324" font-family="Consolas, Monaco, monospace" font-size="10" fill="#fab387">customer_phones(customer_id FK, phone)</text>
+  <text x="520" y="306" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">PK(customer_id, phone) o UUID + UNIQUE</text>
+  <text x="520" y="324" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">ON DELETE CASCADE (depende del padre)</text>
+
+  <!-- R7 -->
+  <rect x="10" y="336" width="880" height="42" rx="3" fill="#201e2a"/>
+  <rect x="10" y="336" width="6" height="42" rx="2" fill="#b4befe"/>
+  <text x="24" y="352" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#b4befe">R7</text>
+  <text x="50" y="352" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">Jerarquía IS-A</text>
+  <text x="50" y="370" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">STAFF → {DOCTOR, NURSE, ADMIN}</text>
+  <text x="265" y="361" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="16" fill="#89b4fa">→</text>
+  <text x="300" y="352" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#cdd6f4">STI, CTI o Concrete (elegir)</text>
+  <text x="300" y="370" font-family="Consolas, Monaco, monospace" font-size="10" fill="#b4befe">CTI: staff + doctors + nurses + ...</text>
+  <text x="520" y="352" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">CTI recomendado: PK subtipo = FK supertipo</text>
+  <text x="520" y="370" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f9e2af">STI: discriminator NOT NULL + CHECK</text>
+
+  <!-- Legend bar bottom -->
+  <rect x="10" y="392" width="880" height="40" rx="4" fill="#181825"/>
+  <text x="50" y="407" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#a6e3a1">■ R1–R2 Entidades</text>
+  <text x="160" y="407" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f9e2af">■ R3–R5 Relaciones</text>
+  <text x="280" y="407" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#fab387">■ R6 Atributos</text>
+  <text x="370" y="407" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#b4befe">■ R7 Herencia</text>
+  <text x="460" y="407" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">  |  Reglas según Elmasri &amp; Navathe — Fundamentals of Database Systems</text>
+  <text x="50" y="425" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">Atributo compuesto → descomponer en columnas simples  |  Atributo derivado → NO almacenar, calcular en query  |  Relación ternaria → tabla con 3 FKs (extensión de R5)</text>
+</svg>

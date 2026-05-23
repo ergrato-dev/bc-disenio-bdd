@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">R7 — Herencia IS-A: STI vs CTI vs Concrete — Comparativa de Trade-offs</text>
+
+  <!-- Column headers -->
+  <rect x="10" y="30" width="278" height="26" rx="3" fill="#1f2d1f"/>
+  <text x="149" y="47" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1">STI</text>
+  <text x="149" y="55" font-family="Inter, Roboto, system-ui, sans-serif" font-size="0" fill="#6c7086">placeholder</text>
+
+  <rect x="10" y="30" width="278" height="26" rx="3" fill="#1f2d1f"/>
+  <text x="149" y="50" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1">STI — Single Table Inheritance</text>
+  <rect x="312" y="30" width="276" height="26" rx="3" fill="#1d2e3a"/>
+  <text x="450" y="50" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89b4fa">CTI — Class Table Inheritance ⭐</text>
+  <rect x="612" y="30" width="278" height="26" rx="3" fill="#2a2040"/>
+  <text x="751" y="50" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#cba6f7">Concrete Table Inheritance</text>
+
+  <!-- Vertical dividers -->
+  <line x1="300" y1="30" x2="300" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="602" y1="30" x2="602" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- ═════════ STI Column ═════════ -->
+  <!-- Schema mockup -->
+  <rect x="16" y="62" width="278" height="110" rx="4" fill="#181825"/>
+  <text x="26" y="78" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#a6e3a1">CREATE TABLE vehicles (</text>
+  <text x="26" y="92" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#89b4fa">  vehicle_id   UUID PK,</text>
+  <text x="26" y="106" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">  vehicle_type VARCHAR NOT NULL,  -- discriminador</text>
+  <text x="26" y="120" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cdd6f4">  vehicle_brand  VARCHAR NOT NULL,</text>
+  <text x="26" y="134" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#6c7086">  car_doors    SMALLINT,  -- NULL si no es car</text>
+  <text x="26" y="148" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#6c7086">  truck_tons   NUMERIC    -- NULL si no es truck</text>
+  <text x="26" y="162" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cdd6f4">);</text>
+
+  <!-- Pros STI -->
+  <rect x="16" y="182" width="278" height="68" rx="4" fill="#1f2d1f"/>
+  <text x="26" y="198" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">✅ Ventajas</text>
+  <text x="26" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Una sola tabla, sin JOIN</text>
+  <text x="26" y="230" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">COUNT(*) global simple</text>
+  <text x="26" y="246" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Fácil agregar subtipos</text>
+
+  <!-- Cons STI -->
+  <rect x="16" y="258" width="278" height="82" rx="4" fill="#291a1a"/>
+  <text x="26" y="274" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">❌ Desventajas</text>
+  <text x="26" y="290" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Muchas columnas NULL</text>
+  <text x="26" y="306" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">NO se puede NOT NULL en subtipos</text>
+  <text x="26" y="322" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Tabla crece horizontalmente</text>
+  <text x="26" y="338" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Riesgo de inconsistencias</text>
+
+  <!-- When to use STI -->
+  <rect x="16" y="348" width="278" height="52" rx="4" fill="#252535"/>
+  <text x="26" y="364" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Usar cuando:</text>
+  <text x="26" y="380" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Subtipos con 1-2 atributos exclusivos</text>
+  <text x="26" y="396" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Se consulta toda la jerarquía junta</text>
+
+  <!-- ═════════ CTI Column ═════════ -->
+  <!-- Schema mockup CTI -->
+  <rect x="316" y="62" width="280" height="110" rx="4" fill="#181825"/>
+  <text x="326" y="78" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#89b4fa">CREATE TABLE staff (staff_id UUID PK,</text>
+  <text x="326" y="92" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">  staff_type VARCHAR NOT NULL, ...);</text>
+  <text x="326" y="106" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#89b4fa">CREATE TABLE doctors (</text>
+  <text x="326" y="120" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#89b4fa">  staff_id UUID PK</text>
+  <text x="326" y="134" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">    REFERENCES staff(staff_id),  -- PK=FK</text>
+  <text x="326" y="148" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cdd6f4">  doctor_specialty VARCHAR NOT NULL);</text>
+  <text x="326" y="162" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#6c7086">-- idem para nurses, admin_staff...</text>
+
+  <!-- Pros CTI -->
+  <rect x="316" y="182" width="280" height="82" rx="4" fill="#1f2d1f"/>
+  <text x="326" y="198" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">✅ Ventajas</text>
+  <text x="326" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Sin columnas NULL innecesarias</text>
+  <text x="326" y="230" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">NOT NULL garantizado en subtipos</text>
+  <text x="326" y="246" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Estructura limpia y escalable</text>
+  <text x="326" y="262" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Estándar en proyectos reales</text>
+
+  <!-- Cons CTI -->
+  <rect x="316" y="272" width="280" height="68" rx="4" fill="#291a1a"/>
+  <text x="326" y="288" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">❌ Desventajas</text>
+  <text x="326" y="304" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">JOIN obligatorio para datos completos</text>
+  <text x="326" y="320" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Más tablas en el esquema</text>
+  <text x="326" y="336" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">INSERT requiere dos operaciones</text>
+
+  <!-- When to use CTI -->
+  <rect x="316" y="348" width="280" height="68" rx="4" fill="#1d2e3a" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="326" y="364" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">⭐ Usar en la mayoría de casos:</text>
+  <text x="326" y="380" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Subtipos con varios atributos exclusivos</text>
+  <text x="326" y="396" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Se necesita integridad en subtipos</text>
+  <text x="326" y="412" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Jerarquía puede crecer con más subtipos</text>
+
+  <!-- ═════════ Concrete Column ═════════ -->
+  <!-- Schema mockup Concrete -->
+  <rect x="616" y="62" width="278" height="110" rx="4" fill="#181825"/>
+  <text x="626" y="78" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cba6f7">CREATE TABLE doctors (</text>
+  <text x="626" y="92" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#89b4fa">  doctor_id    UUID PK,</text>
+  <text x="626" y="106" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">  staff_name   VARCHAR NOT NULL,  -- duplicado</text>
+  <text x="626" y="120" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">  staff_email  VARCHAR NOT NULL,  -- duplicado</text>
+  <text x="626" y="134" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cdd6f4">  doctor_specialty VARCHAR NOT NULL);</text>
+  <text x="626" y="148" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#6c7086">-- Igual para nurses, admin_staff</text>
+  <text x="626" y="162" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">-- Sin tabla padre 'staff'</text>
+
+  <!-- Pros Concrete -->
+  <rect x="616" y="182" width="278" height="68" rx="4" fill="#1f2d1f"/>
+  <text x="626" y="198" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">✅ Ventajas</text>
+  <text x="626" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Sin JOINs para un subtipo específico</text>
+  <text x="626" y="230" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Consultas de subtipo muy eficientes</text>
+  <text x="626" y="246" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Independencia total entre subtipos</text>
+
+  <!-- Cons Concrete -->
+  <rect x="616" y="258" width="278" height="82" rx="4" fill="#291a1a"/>
+  <text x="626" y="274" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">❌ Desventajas</text>
+  <text x="626" y="290" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Duplicación de columnas en todas las tablas</text>
+  <text x="626" y="306" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Cambios en supertipo → N ALTER TABLE</text>
+  <text x="626" y="322" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Consultas globales necesitan UNION ALL</text>
+  <text x="626" y="338" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Sin FK genérica al "tipo padre"</text>
+
+  <!-- When to use Concrete -->
+  <rect x="616" y="348" width="278" height="52" rx="4" fill="#252535"/>
+  <text x="626" y="364" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Usar cuando:</text>
+  <text x="626" y="380" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Subtipos raramente consultados juntos</text>
+  <text x="626" y="396" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Muchos atributos exclusivos, pocos comunes</text>
+
+  <!-- Summary bar -->
+  <rect x="10" y="420" width="880" height="72" rx="4" fill="#181825"/>
+  <text x="450" y="438" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Matriz de Decisión Rápida</text>
+  <!-- headers -->
+  <text x="100" y="454" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">Criterio</text>
+  <text x="310" y="454" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#a6e3a1">STI</text>
+  <text x="490" y="454" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#89b4fa">CTI ⭐</text>
+  <text x="720" y="454" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#cba6f7">Concrete</text>
+  <line x1="20" y1="458" x2="880" y2="458" stroke="#45475a" stroke-width="0.5"/>
+  <text x="100" y="472" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Necesito NOT NULL en subtipos</text>
+  <text x="310" y="472" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">❌ Imposible</text>
+  <text x="490" y="472" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#a6e3a1">✅ Garantizado</text>
+  <text x="720" y="472" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#a6e3a1">✅ Garantizado</text>
+  <text x="100" y="486" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Consulto toda la jerarquía frecuentemente</text>
+  <text x="310" y="486" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#a6e3a1">✅ Sin JOIN</text>
+  <text x="490" y="486" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f9e2af">⚠️ Con JOIN</text>
+  <text x="720" y="486" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">❌ UNION ALL</text>
+</svg>

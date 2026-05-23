@@ -1,0 +1,173 @@
+// ============================================
+// ConnectPro — Modelo Relacional (Semana 06)
+// Red social profesional
+//
+// Aplica las 7 reglas de transformación ER → Relacional
+// aprendidas en la Semana 06 para completar este DBML.
+//
+// Instrucciones:
+// - Busca cada sección marcada con // TODO y complétala
+// - Agrega un comentario // Decision: con tu justificación
+// - Sube el DBML a dbdiagram.io para validar visualmente
+// ============================================
+
+// ─────────────────────────────────────────────
+// R1: Entidades Fuertes
+// ─────────────────────────────────────────────
+
+Table users {
+  user_id        uuid        [pk, default: `gen_random_uuid()`]
+  user_name      varchar(100) [not null]
+  user_email     varchar(150) [not null, unique]
+  user_headline  varchar(220)
+  // TODO: Agregar columna user_location (ciudad, país) — ¿qué tipo usarías?
+  // TODO: Agregar columna company_id como FK hacia companies
+  //       Decision R4: ¿es NOT NULL o NULL? Justifica.
+  created_at     timestamptz [not null, default: `now()`]
+
+  indexes {
+    user_email [unique, name: "uq_users_email"]
+    // TODO: Agregar índice en company_id
+  }
+}
+
+Table companies {
+  company_id      uuid        [pk, default: `gen_random_uuid()`]
+  company_name    varchar(150) [not null]
+  company_website varchar(255)
+  company_size    varchar(20) [note: "startup|small|medium|large|enterprise"]
+  created_at      timestamptz [not null, default: `now()`]
+
+  // TODO: ¿Debería company_name tener UNIQUE? Justifica.
+
+  indexes {
+    company_name [name: "ix_companies_name"]
+  }
+}
+
+// TODO: Tabla posts — RF-10 (USER 1:N POST)
+// Decision R4: la FK author_user_id va en posts (lado N)
+// Columnas sugeridas: post_id, author_user_id, post_content, post_type, created_at
+// ¿ON DELETE CASCADE o RESTRICT si se borra el usuario? Justifica.
+
+// Table posts {
+//   post_id         uuid  [pk, default: `gen_random_uuid()`]
+//   author_user_id  uuid  [not null]    // TODO: agregar ref a users
+//   post_content    text  [not null]
+//   post_type       varchar(20)
+//   created_at      timestamptz [not null, default: `now()`]
+// }
+
+// TODO: Tabla job_postings — RF-04 + RF-07 (COMPANY 1:N JOB_POSTING)
+// Columnas: job_posting_id, company_id, job_title, job_description,
+//           job_location, job_salary_min, job_salary_max, job_status, created_at
+// ¿ON DELETE CASCADE o RESTRICT si se borra la empresa? Justifica.
+
+// Table job_postings {
+//   job_posting_id    uuid        [pk, default: `gen_random_uuid()`]
+//   company_id        uuid        [not null]    // TODO: ref a companies
+//   job_title         varchar(150) [not null]
+//   job_description   text
+//   job_location      varchar(100)
+//   job_salary_min    numeric(12,2)
+//   job_salary_max    numeric(12,2)
+//   job_status        varchar(15) [not null, default: "open"]
+//   created_at        timestamptz [not null, default: `now()`]
+// }
+
+// ─────────────────────────────────────────────
+// R2: Entidades Débiles
+// ─────────────────────────────────────────────
+
+// TODO: Tabla experiences — RF-05 (entidad débil de USER)
+// Decision R2: FK user_id NOT NULL + ON DELETE CASCADE
+// Columnas: experience_id, user_id, experience_company_name, experience_role,
+//           experience_start_date, experience_end_date, experience_description
+// Nota: experience_end_date puede ser NULL (empleo actual)
+
+// Table experiences {
+//   experience_id           uuid  [pk, default: `gen_random_uuid()`]
+//   user_id                 uuid  [not null]  // TODO: ref a users + ON DELETE CASCADE
+//   experience_company_name varchar(150) [not null]
+//   experience_role         varchar(150) [not null]
+//   experience_start_date   date         [not null]
+//   experience_end_date     date
+//   experience_description  text
+// }
+
+// ─────────────────────────────────────────────
+// R5: Relaciones N:M
+// ─────────────────────────────────────────────
+
+// TODO: Tabla connections — RF-09 (USER N:M USER reflexiva)
+// Decision R5: tabla de intersección con dos FK hacia users
+// Columnas: user_id_a, user_id_b, connection_status, connected_at
+// Desafío: ¿cómo evitas (A→B) y (B→A) como dos filas duplicadas?
+//          Pista: CHECK (user_id_a < user_id_b) en PostgreSQL
+// ¿PK compuesta o UUID? Justifica.
+
+// Table connections {
+//   user_id_a         uuid  [not null]  // TODO: ref a users
+//   user_id_b         uuid  [not null]  // TODO: ref a users
+//   connection_status varchar(15) [not null, default: "pending"]
+//   connected_at      timestamptz [not null, default: `now()`]
+//
+//   indexes {
+//     (user_id_a, user_id_b) [pk]
+//   }
+// }
+
+// TODO: Tabla job_applications — RF-08 (USER N:M JOB_POSTING)
+// Decision R5: tabla de intersección con FK a users y job_postings
+// Columnas: user_id, job_posting_id, application_status, application_date, cover_letter
+// ¿ON DELETE CASCADE para ambas FK? Justifica.
+
+// Table job_applications {
+//   user_id         uuid  [not null]  // TODO: ref a users
+//   job_posting_id  uuid  [not null]  // TODO: ref a job_postings
+//   application_status varchar(20) [not null, default: "submitted"]
+//   application_date   date        [not null, default: `now()`]
+//   cover_letter       text
+//
+//   indexes {
+//     (user_id, job_posting_id) [pk]
+//   }
+// }
+
+// ─────────────────────────────────────────────
+// R7: Jerarquía IS-A de tipos de cuenta (CTI)
+// ─────────────────────────────────────────────
+// La jerarquía es TOTAL + EXCLUSIVA
+// Supertipo: users (ya tiene columna user_account_type como discriminador)
+// Subtipos: free_accounts, premium_accounts, recruiter_accounts
+
+// TODO: Agregar columna user_account_type a la tabla users arriba
+// CHECK: user_account_type IN ('free', 'premium', 'recruiter')
+
+// TODO: Tabla free_accounts — subtipo (PK = FK hacia users)
+// Columnas específicas del subtipo free:
+//   free_account_profile_views_limit INTEGER NOT NULL DEFAULT 30
+
+// Table free_accounts {
+//   user_id                         uuid [pk]  // TODO: ref: - a users + ON DELETE CASCADE
+//   free_account_profile_views_limit integer [not null, default: 30]
+// }
+
+// TODO: Tabla premium_accounts — subtipo
+// Columnas: subscription_start_date, subscription_end_date, premium_inmail_credits
+
+// Table premium_accounts {
+//   user_id                    uuid [pk]  // TODO: ref: - a users + ON DELETE CASCADE
+//   subscription_start_date    date [not null]
+//   subscription_end_date      date [not null]
+//   premium_inmail_credits     smallint [not null, default: 15]
+// }
+
+// TODO: Tabla recruiter_accounts — subtipo
+// Columnas: recruiter_company_id (FK a companies), recruiter_job_posting_limit
+
+// Table recruiter_accounts {
+//   user_id                    uuid [pk]  // TODO: ref: - a users + ON DELETE CASCADE
+//   recruiter_company_id       uuid       // TODO: ref a companies
+//   recruiter_job_posting_limit smallint [not null, default: 5]
+// }

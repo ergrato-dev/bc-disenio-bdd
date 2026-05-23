@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">R1 y R2: Entidades Fuertes, Débiles y Atributos Multivaluados</text>
+
+  <!-- ═══════════════════════════════
+       SECTION 1: R1 Entidad Fuerte
+       ═══════════════════════════════ -->
+  <rect x="10" y="32" width="870" height="26" rx="3" fill="#1d2e3a"/>
+  <rect x="10" y="32" width="6" height="26" rx="2" fill="#a6e3a1"/>
+  <text x="26" y="50" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1">R1 — Entidad Fuerte</text>
+  <text x="200" y="50" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#6c7086">Cada entidad fuerte se convierte en una tabla. Sus atributos → columnas. PK del ER → PK de la tabla.</text>
+
+  <!-- ER diagram (left) -->
+  <!-- Entity box -->
+  <rect x="20" y="64" width="170" height="110" rx="6" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="20" y="64" width="170" height="26" rx="6" fill="#1a302a"/>
+  <text x="105" y="81" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#a6e3a1">PRODUCT (ER)</text>
+  <text x="30" y="102" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">🔑 product_id</text>
+  <text x="30" y="118" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   product_name</text>
+  <text x="30" y="134" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   product_price</text>
+  <text x="30" y="150" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">   product_desc?</text>
+  <text x="30" y="166" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">   (atributo derivado)</text>
+
+  <!-- Arrow R1 -->
+  <line x1="195" y1="120" x2="235" y2="120" stroke="#89b4fa" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="215" y="113" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#89b4fa">R1</text>
+
+  <!-- Table result -->
+  <rect x="240" y="64" width="290" height="120" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="240" y="64" width="290" height="26" rx="6" fill="#1d2e3a"/>
+  <text x="385" y="81" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89b4fa">CREATE TABLE products</text>
+  <text x="252" y="102" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">product_id   UUID    DEFAULT gen_random_uuid() PK</text>
+  <text x="252" y="118" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">product_name VARCHAR(150)  NOT NULL</text>
+  <text x="252" y="134" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">product_price NUMERIC(10,2) NOT NULL</text>
+  <text x="252" y="150" font-family="Consolas, Monaco, monospace" font-size="10" fill="#6c7086">product_desc TEXT  -- opcional: acepta NULL</text>
+  <text x="252" y="166" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">-- derivado: NO almacenar, calcular en query</text>
+
+  <!-- Annotations: atributo compuesto -->
+  <rect x="548" y="64" width="342" height="120" rx="6" fill="#252535" stroke="#f9e2af" stroke-width="1.5"/>
+  <rect x="548" y="64" width="342" height="24" rx="6" fill="#2e2a14"/>
+  <text x="719" y="80" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f9e2af">Atributo compuesto → descomponer</text>
+  <text x="560" y="100" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">-- ❌ INCORRECTO</text>
+  <text x="560" y="116" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">address VARCHAR(300),</text>
+  <text x="560" y="136" font-family="Consolas, Monaco, monospace" font-size="10" fill="#a6e3a1">-- ✅ CORRECTO</text>
+  <text x="560" y="152" font-family="Consolas, Monaco, monospace" font-size="10" fill="#a6e3a1">address_street  VARCHAR(150),</text>
+  <text x="560" y="168" font-family="Consolas, Monaco, monospace" font-size="10" fill="#a6e3a1">address_city    VARCHAR(80),</text>
+
+  <!-- ═══════════════════════════════
+       SECTION 2: R2 Entidad Débil
+       ═══════════════════════════════ -->
+  <rect x="10" y="196" width="870" height="26" rx="3" fill="#1a2a2a"/>
+  <rect x="10" y="196" width="6" height="26" rx="2" fill="#89dceb"/>
+  <text x="26" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#89dceb">R2 — Entidad Débil</text>
+  <text x="200" y="214" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#6c7086">La entidad débil no tiene identidad propia. Su tabla incluye FK al identificador + política ON DELETE.</text>
+
+  <!-- Identificadora: ORDER -->
+  <rect x="20" y="228" width="140" height="84" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="20" y="228" width="140" height="24" rx="6" fill="#1d2e3a"/>
+  <text x="90" y="244" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#89b4fa">orders</text>
+  <text x="30" y="264" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">🔑 order_id uuid</text>
+  <text x="30" y="280" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   order_date</text>
+  <text x="30" y="296" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   order_status</text>
+
+  <!-- Relación doble (entidad débil: línea doble en ER) -->
+  <line x1="162" y1="270" x2="188" y2="270" stroke="#89dceb" stroke-width="2"/>
+  <line x1="162" y1="274" x2="188" y2="274" stroke="#89dceb" stroke-width="1"/>
+  <text x="175" y="265" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8" fill="#89dceb">1:N</text>
+
+  <!-- Entidad débil -->
+  <rect x="190" y="228" width="160" height="84" rx="6" fill="#1a2a2a" stroke="#89dceb" stroke-width="2" stroke-dasharray="6,3"/>
+  <rect x="190" y="228" width="160" height="24" rx="6" fill="#0e2020"/>
+  <text x="270" y="244" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#89dceb">order_items (débil)</text>
+  <text x="200" y="264" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">🔑 item_id uuid</text>
+  <text x="200" y="280" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89dceb">🔗 order_id FK</text>
+  <text x="200" y="296" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   item_quantity</text>
+
+  <!-- Arrow R2 -->
+  <line x1="355" y1="270" x2="390" y2="270" stroke="#89b4fa" stroke-width="2"/>
+  <text x="372" y="263" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#89b4fa">R2</text>
+
+  <!-- DDL result -->
+  <rect x="395" y="222" width="495" height="96" rx="6" fill="#181825" stroke="#89dceb" stroke-width="1.5"/>
+  <text x="407" y="240" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89dceb">CREATE TABLE order_items (</text>
+  <text x="407" y="256" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">    item_id     UUID  DEFAULT gen_random_uuid() PRIMARY KEY,</text>
+  <text x="407" y="272" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">    order_id    UUID  NOT NULL REFERENCES orders(order_id)</text>
+  <text x="407" y="288" font-family="Consolas, Monaco, monospace" font-size="10" fill="#f38ba8">                      ON DELETE CASCADE,  -- si se borra ORDER → borra ítems</text>
+  <text x="407" y="304" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">    item_quantity SMALLINT NOT NULL CHECK (item_quantity &gt; 0)</text>
+
+  <!-- ON DELETE legend -->
+  <rect x="10" y="330" width="870" height="50" rx="4" fill="#252535"/>
+  <text x="20" y="347" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Políticas ON DELETE para entidades débiles:</text>
+  <text x="20" y="365" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">CASCADE — borra dependientes automáticamente (ítems, líneas de factura)</text>
+  <text x="300" y="365" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">RESTRICT — impide borrar si hay dependientes (pedidos con pagos)</text>
+  <text x="580" y="365" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">SET NULL — FK queda NULL (relaciones opcionales)</text>
+
+  <!-- ═══════════════════════════════
+       SECTION 3: R6 Multivaluado
+       ═══════════════════════════════ -->
+  <rect x="10" y="390" width="870" height="26" rx="3" fill="#2a2620"/>
+  <rect x="10" y="390" width="6" height="26" rx="2" fill="#fab387"/>
+  <text x="26" y="408" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#fab387">R6 — Atributo Multivaluado</text>
+  <text x="250" y="408" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#6c7086">Un cliente puede tener varios teléfonos. No se puede almacenar en una columna → tabla separada.</text>
+
+  <!-- Customer box -->
+  <rect x="20" y="424" width="120" height="60" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="20" y="424" width="120" height="22" rx="6" fill="#1d2e3a"/>
+  <text x="80" y="439" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="10" font-weight="bold" fill="#89b4fa">customers</text>
+  <text x="30" y="458" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">🔑 customer_id</text>
+  <text x="30" y="474" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   customer_name</text>
+
+  <!-- Arrow R6 -->
+  <line x1="144" y1="455" x2="178" y2="455" stroke="#fab387" stroke-width="2"/>
+  <text x="161" y="448" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#fab387">R6</text>
+
+  <!-- Phones table -->
+  <rect x="182" y="420" width="280" height="68" rx="6" fill="#2a2620" stroke="#fab387" stroke-width="1.5"/>
+  <rect x="182" y="420" width="280" height="22" rx="6" fill="#1a1606"/>
+  <text x="322" y="435" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="10" font-weight="bold" fill="#fab387">CREATE TABLE customer_phones</text>
+  <text x="192" y="454" font-family="Consolas, Monaco, monospace" font-size="10" fill="#fab387">🔗 customer_id UUID NOT NULL REFERENCES customers</text>
+  <text x="192" y="470" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   phone_number VARCHAR(20) NOT NULL,</text>
+  <text x="192" y="486" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">PRIMARY KEY (customer_id, phone_number)</text>
+
+  <!-- Note: when to convert to entity -->
+  <rect x="480" y="420" width="400" height="68" rx="6" fill="#252535"/>
+  <text x="492" y="436" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">⚠️ ¿Cuándo el atributo multivaluado se vuelve entidad?</text>
+  <text x="492" y="452" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Si el valor necesita atributos propios (descripción, color)</text>
+  <text x="492" y="468" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">o si otras tablas necesitan referenciarlo directamente,</text>
+  <text x="492" y="484" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#a6e3a1">→ crear entidad TAGS + relación N:M (aplicar R5)</text>
+
+  <!-- Arrow defs -->
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#89b4fa"/>
+    </marker>
+  </defs>
+</svg>

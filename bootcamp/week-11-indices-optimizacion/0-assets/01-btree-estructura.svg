@@ -1,0 +1,158 @@
+<svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="460" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="32" fill="#cdd6f4" font-size="17" font-weight="700" text-anchor="middle">Índice B-tree — Estructura Interna y Búsqueda</text>
+
+  <!-- ─── LEFT: HEAP (table without index) ─── -->
+  <rect x="20" y="50" width="260" height="290" rx="8" fill="#313244"/>
+  <rect x="20" y="50" width="260" height="24" rx="8" fill="#f38ba8"/>
+  <text x="150" y="67" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">❌ Sin índice — Seq Scan</text>
+
+  <!-- pages -->
+  <rect x="30" y="82" width="240" height="246" rx="5" fill="#181825"/>
+  <text x="150" y="98" fill="#45475a" font-size="9" text-anchor="middle">Tabla: orders (heap, 4 páginas)</text>
+
+  <!-- page 1 -->
+  <rect x="40" y="105" width="220" height="44" rx="4" fill="#313244" stroke="#45475a" stroke-width="1"/>
+  <text x="52" y="120" fill="#cdd6f4" font-size="8">Página 1: order_id=7, status=shipped</text>
+  <text x="52" y="133" fill="#cdd6f4" font-size="8">          order_id=3, status=pending  ← 👁</text>
+  <text x="52" y="144" fill="#cdd6f4" font-size="8">          order_id=9, status=cancelled</text>
+
+  <!-- page 2 -->
+  <rect x="40" y="153" width="220" height="44" rx="4" fill="#313244" stroke="#45475a" stroke-width="1"/>
+  <text x="52" y="168" fill="#cdd6f4" font-size="8">Página 2: order_id=1, status=delivered</text>
+  <text x="52" y="181" fill="#cdd6f4" font-size="8">          order_id=5, status=pending  ← 👁</text>
+  <text x="52" y="192" fill="#cdd6f4" font-size="8">          order_id=2, status=shipped</text>
+
+  <!-- page 3 -->
+  <rect x="40" y="201" width="220" height="44" rx="4" fill="#313244" stroke="#45475a" stroke-width="1"/>
+  <text x="52" y="216" fill="#cdd6f4" font-size="8">Página 3: order_id=8, status=pending ← 👁</text>
+  <text x="52" y="229" fill="#cdd6f4" font-size="8">          order_id=4, status=delivered</text>
+  <text x="52" y="240" fill="#cdd6f4" font-size="8">          order_id=6, status=cancelled</text>
+
+  <!-- page 4 -->
+  <rect x="40" y="249" width="220" height="44" rx="4" fill="#313244" stroke="#45475a" stroke-width="1"/>
+  <text x="52" y="264" fill="#cdd6f4" font-size="8">Página 4: order_id=11, status=shipped</text>
+  <text x="52" y="277" fill="#cdd6f4" font-size="8">          order_id=10, status=pending ← 👁</text>
+  <text x="52" y="288" fill="#cdd6f4" font-size="8">          order_id=12, status=confirmed</text>
+
+  <text x="150" y="315" fill="#f38ba8" font-size="9" text-anchor="middle">Lee TODAS las páginas para</text>
+  <text x="150" y="327" fill="#f38ba8" font-size="9" text-anchor="middle">encontrar status='pending'</text>
+
+  <!-- ─── CENTER: B-tree structure ─── -->
+  <rect x="296" y="50" width="400" height="380" rx="8" fill="#313244"/>
+  <rect x="296" y="50" width="400" height="24" rx="8" fill="#89b4fa"/>
+  <text x="496" y="67" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">✅ Con índice B-tree — Index Scan</text>
+
+  <!-- Root node -->
+  <rect x="386" y="88" width="220" height="30" rx="5" fill="#181825" stroke="#89b4fa" stroke-width="2"/>
+  <text x="496" y="106" fill="#89b4fa" font-size="10" font-weight="700" text-anchor="middle">Nodo Raíz: [5]</text>
+
+  <!-- Branch level arrows from root -->
+  <line x1="430" y1="118" x2="376" y2="148" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="562" y1="118" x2="616" y2="148" stroke="#89b4fa" stroke-width="1.5"/>
+
+  <!-- Branch nodes -->
+  <rect x="326" y="148" width="100" height="28" rx="4" fill="#181825" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="376" y="166" fill="#cba6f7" font-size="10" text-anchor="middle">Rama: [2, 4]</text>
+
+  <rect x="566" y="148" width="100" height="28" rx="4" fill="#181825" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="616" y="166" fill="#cba6f7" font-size="10" text-anchor="middle">Rama: [7, 9]</text>
+
+  <!-- Branch to leaf arrows -->
+  <line x1="336" y1="176" x2="316" y2="210" stroke="#cba6f7" stroke-width="1"/>
+  <line x1="376" y1="176" x2="376" y2="210" stroke="#cba6f7" stroke-width="1"/>
+  <line x1="416" y1="176" x2="436" y2="210" stroke="#cba6f7" stroke-width="1"/>
+  <line x1="576" y1="176" x2="556" y2="210" stroke="#cba6f7" stroke-width="1"/>
+  <line x1="616" y1="176" x2="616" y2="210" stroke="#cba6f7" stroke-width="1"/>
+  <line x1="656" y1="176" x2="676" y2="210" stroke="#cba6f7" stroke-width="1"/>
+
+  <!-- Leaf nodes -->
+  <rect x="296" y="210" width="76" height="50" rx="4" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="334" y="228" fill="#a6e3a1" font-size="8" text-anchor="middle">Hoja</text>
+  <text x="334" y="241" fill="#cdd6f4" font-size="7" text-anchor="middle">id=1 → p2r2</text>
+  <text x="334" y="253" fill="#cdd6f4" font-size="7" text-anchor="middle">id=2 → p2r3</text>
+
+  <rect x="376" y="210" width="76" height="50" rx="4" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="414" y="228" fill="#a6e3a1" font-size="8" text-anchor="middle">Hoja</text>
+  <text x="414" y="241" fill="#cdd6f4" font-size="7" text-anchor="middle">id=3 → p1r2</text>
+  <text x="414" y="253" fill="#cdd6f4" font-size="7" text-anchor="middle">id=4 → p3r2</text>
+
+  <rect x="456" y="210" width="76" height="50" rx="4" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="494" y="228" fill="#a6e3a1" font-size="8" text-anchor="middle">Hoja</text>
+  <text x="494" y="241" fill="#cdd6f4" font-size="7" text-anchor="middle">id=5 → p2r2</text>
+  <text x="494" y="253" fill="#cdd6f4" font-size="7" text-anchor="middle">id=6 → p3r3</text>
+
+  <rect x="536" y="210" width="76" height="50" rx="4" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="574" y="228" fill="#a6e3a1" font-size="8" text-anchor="middle">Hoja</text>
+  <text x="574" y="241" fill="#cdd6f4" font-size="7" text-anchor="middle">id=7 → p1r1</text>
+  <text x="574" y="253" fill="#cdd6f4" font-size="7" text-anchor="middle">id=8 → p3r1</text>
+
+  <rect x="616" y="210" width="76" height="50" rx="4" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="654" y="228" fill="#a6e3a1" font-size="8" text-anchor="middle">Hoja</text>
+  <text x="654" y="241" fill="#cdd6f4" font-size="7" text-anchor="middle">id=9 → p1r3</text>
+  <text x="654" y="253" fill="#cdd6f4" font-size="7" text-anchor="middle">id=10 → p4r2</text>
+
+  <!-- Leaf nodes linked -->
+  <line x1="372" y1="235" x2="376" y2="235" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="452" y1="235" x2="456" y2="235" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="532" y1="235" x2="536" y2="235" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="612" y1="235" x2="616" y2="235" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="496" y="282" fill="#45475a" font-size="8" text-anchor="middle">← Hojas enlazadas para escaneo de rango →</text>
+
+  <!-- Leaf → heap arrows -->
+  <text x="496" y="306" fill="#a6e3a1" font-size="9" text-anchor="middle">Cada hoja contiene: valor_clave + ctid (página, fila)</text>
+  <text x="496" y="320" fill="#a6e3a1" font-size="9" text-anchor="middle">→ acceso directo al heap sin leer páginas innecesarias</text>
+
+  <!-- Search path highlight -->
+  <rect x="310" y="338" width="372" height="82" rx="5" fill="#181825"/>
+  <text x="496" y="355" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Búsqueda: WHERE order_id = 5</text>
+  <text x="310" y="371" fill="#cdd6f4" font-size="8" dx="10">1. Raíz: 5 &lt; 5? No. → Ir a rama izquierda</text>
+  <text x="310" y="384" fill="#cdd6f4" font-size="8" dx="10">2. Rama [2,4]: 5 > 4 → ir a hoja siguiente</text>
+  <text x="310" y="397" fill="#cdd6f4" font-size="8" dx="10">3. Hoja: encontrado id=5 → ctid=(p2,r2)</text>
+  <text x="310" y="410" fill="#a6e3a1" font-size="8" dx="10">4. Fetch: leer solo página 2, fila 2 del heap ✅</text>
+
+  <!-- ─── RIGHT: Composite index ─── -->
+  <rect x="710" y="50" width="190" height="380" rx="8" fill="#313244"/>
+  <rect x="710" y="50" width="190" height="24" rx="8" fill="#f9e2af"/>
+  <text x="805" y="67" fill="#1e1e2e" font-size="10" font-weight="700" text-anchor="middle">Índice Compuesto</text>
+
+  <rect x="720" y="82" width="170" height="340" rx="5" fill="#181825"/>
+  <text x="805" y="100" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Regla del prefijo izquierdo</text>
+  <text x="728" y="116" fill="#cba6f7" font-size="8">CREATE INDEX idx</text>
+  <text x="728" y="129" fill="#cba6f7" font-size="8">ON tasks (project_id, status);</text>
+
+  <line x1="720" y1="138" x2="890" y2="138" stroke="#45475a" stroke-width="1"/>
+
+  <text x="805" y="156" fill="#a6e3a1" font-size="8" text-anchor="middle">✅ Usa el índice:</text>
+  <text x="728" y="170" fill="#cdd6f4" font-size="8">WHERE project_id = '...'</text>
+  <text x="728" y="183" fill="#cdd6f4" font-size="8">WHERE project_id = '...'</text>
+  <text x="728" y="194" fill="#cdd6f4" font-size="8">  AND status = 'active'</text>
+
+  <line x1="720" y1="203" x2="890" y2="203" stroke="#45475a" stroke-width="1"/>
+
+  <text x="805" y="221" fill="#f38ba8" font-size="8" text-anchor="middle">❌ NO usa el índice:</text>
+  <text x="728" y="236" fill="#45475a" font-size="8">WHERE status = 'active'</text>
+  <text x="728" y="248" fill="#45475a" font-size="8">(saltó project_id)</text>
+
+  <line x1="720" y1="260" x2="890" y2="260" stroke="#45475a" stroke-width="1"/>
+
+  <text x="805" y="278" fill="#cdd6f4" font-size="8" text-anchor="middle">Partial Index:</text>
+  <text x="728" y="293" fill="#cba6f7" font-size="8">CREATE INDEX idx_active</text>
+  <text x="728" y="306" fill="#cba6f7" font-size="8">ON tasks (assignee_id)</text>
+  <text x="728" y="319" fill="#cba6f7" font-size="8">WHERE status = 'in_progress';</text>
+  <text x="728" y="337" fill="#a6e3a1" font-size="8">Solo indexa filas activas</text>
+  <text x="728" y="350" fill="#a6e3a1" font-size="8">→ índice más pequeño</text>
+  <text x="728" y="363" fill="#a6e3a1" font-size="8">→ búsquedas más rápidas</text>
+
+  <!-- ─── BOTTOM ─── -->
+  <rect x="20" y="353" width="260" height="87" rx="8" fill="#313244"/>
+  <rect x="20" y="353" width="260" height="22" rx="8" fill="#a6e3a1"/>
+  <text x="150" y="369" fill="#1e1e2e" font-size="10" font-weight="700" text-anchor="middle">Ventajas del B-tree</text>
+  <rect x="30" y="381" width="240" height="52" rx="4" fill="#181825"/>
+  <text x="40" y="397" fill="#cdd6f4" font-size="8">✅ Búsqueda: O(log n)</text>
+  <text x="40" y="411" fill="#cdd6f4" font-size="8">✅ Soporte: =, &lt;, &gt;, BETWEEN, LIKE 'x%'</text>
+  <text x="40" y="425" fill="#cdd6f4" font-size="8">✅ Hojas enlazadas para escaneos de rango</text>
+</svg>

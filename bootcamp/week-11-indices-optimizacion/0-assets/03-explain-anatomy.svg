@@ -1,0 +1,160 @@
+<svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="460" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="30" fill="#cdd6f4" font-size="16" font-weight="700" text-anchor="middle">EXPLAIN ANALYZE — Anatomía del Plan de Ejecución</text>
+
+  <!-- ─── PLAN OUTPUT CODE BLOCK ─── -->
+  <rect x="20" y="44" width="535" height="310" rx="8" fill="#181825"/>
+  <text x="30" y="62" fill="#89b4fa" font-size="9" font-weight="700">-- EXPLAIN (ANALYZE, BUFFERS) sobre orders</text>
+  <!-- line 1 -->
+  <text x="30"  y="82" fill="#a6e3a1" font-size="9">Hash Join</text>
+  <text x="104" y="82" fill="#cdd6f4" font-size="9"> (cost=</text>
+  <text x="163" y="82" fill="#f9e2af" font-size="9">150.00..820.00</text>
+  <text x="261" y="82" fill="#cdd6f4" font-size="9"> rows=</text>
+  <text x="300" y="82" fill="#cba6f7" font-size="9">2000</text>
+  <text x="325" y="82" fill="#cdd6f4" font-size="9"> width=</text>
+  <text x="368" y="82" fill="#cba6f7" font-size="9">512</text>
+  <text x="385" y="82" fill="#cdd6f4" font-size="9">)</text>
+  <!-- line 2 -->
+  <text x="30"  y="97" fill="#cdd6f4" font-size="9">  Hash Cond: (order_items.order_id = orders.order_id)</text>
+  <!-- line 3 -->
+  <text x="30"  y="112" fill="#45475a" font-size="9">  Actual Time=</text>
+  <text x="120" y="112" fill="#a6e3a1" font-size="9">3.141..289.457</text>
+  <text x="215" y="112" fill="#45475a" font-size="9"> rows=</text>
+  <text x="249" y="112" fill="#a6e3a1" font-size="9">1983</text>
+  <text x="274" y="112" fill="#45475a" font-size="9"> loops=</text>
+  <text x="314" y="112" fill="#a6e3a1" font-size="9">1</text>
+  <!-- line 4 sep -->
+  <text x="30"  y="127" fill="#89b4fa" font-size="9">  Buffers: shared hit=</text>
+  <text x="168" y="127" fill="#89b4fa" font-size="9">1204</text>
+  <text x="196" y="127" fill="#89b4fa" font-size="9"> read=</text>
+  <text x="228" y="127" fill="#f38ba8" font-size="9">312</text>
+  <!-- line 5 -->
+  <text x="30"  y="148" fill="#a6e3a1" font-size="9">  -&gt; Seq Scan on order_items</text>
+  <text x="195" y="148" fill="#cdd6f4" font-size="9"> (cost=</text>
+  <text x="234" y="148" fill="#f9e2af" font-size="9">0.00..3820.00</text>
+  <text x="313" y="148" fill="#cdd6f4" font-size="9"> rows=</text>
+  <text x="348" y="148" fill="#cba6f7" font-size="9">250000</text>
+  <text x="390" y="148" fill="#cdd6f4" font-size="9">)</text>
+  <!-- line 6 -->
+  <text x="30"  y="163" fill="#45475a" font-size="9">       Actual Time=</text>
+  <text x="141" y="163" fill="#a6e3a1" font-size="9">0.040..95.820</text>
+  <text x="228" y="163" fill="#45475a" font-size="9"> rows=</text>
+  <text x="262" y="163" fill="#f38ba8" font-size="9">249870</text>
+  <text x="305" y="163" fill="#45475a" font-size="9"> loops=</text>
+  <text x="345" y="163" fill="#a6e3a1" font-size="9">1</text>
+  <!-- line 7 -->
+  <text x="30"  y="184" fill="#a6e3a1" font-size="9">  -&gt; Hash</text>
+  <!-- line 8 -->
+  <text x="30"  y="199" fill="#a6e3a1" font-size="9">      -&gt; Index Scan using ix_orders_pk on orders</text>
+  <!-- line 9 -->
+  <text x="30"  y="214" fill="#cdd6f4" font-size="9">          (cost=</text>
+  <text x="110" y="214" fill="#f9e2af" font-size="9">0.42..4.44</text>
+  <text x="166" y="214" fill="#cdd6f4" font-size="9"> rows=</text>
+  <text x="200" y="214" fill="#cba6f7" font-size="9">2</text>
+  <text x="210" y="214" fill="#cdd6f4" font-size="9"> width=200)</text>
+  <!-- line 10 -->
+  <text x="30"  y="229" fill="#45475a" font-size="9">           Actual Time=</text>
+  <text x="157" y="229" fill="#a6e3a1" font-size="9">0.021..0.023</text>
+  <text x="234" y="229" fill="#45475a" font-size="9"> rows=</text>
+  <text x="268" y="229" fill="#a6e3a1" font-size="9">2</text>
+  <text x="278" y="229" fill="#45475a" font-size="9"> loops=</text>
+  <text x="318" y="229" fill="#a6e3a1" font-size="9">1</text>
+
+  <!-- separator -->
+  <line x1="30" y1="243" x2="545" y2="243" stroke="#45475a" stroke-width="1"/>
+
+  <!-- ALERT: rows mismatch -->
+  <rect x="30" y="250" width="515" height="36" rx="4" fill="#45475a"/>
+  <text x="40" y="264" fill="#f38ba8" font-size="9" font-weight="700">⚠️ ALERTA: rows=250000 estimado vs actual rows=249870</text>
+  <text x="40" y="278" fill="#cdd6f4" font-size="8">La estimación es bastante precisa. Si la diferencia fuera 100x → ejecutar ANALYZE</text>
+
+  <!-- ALERT: external sort -->
+  <rect x="30" y="293" width="515" height="34" rx="4" fill="#313244"/>
+  <text x="40" y="307" fill="#f38ba8" font-size="9" font-weight="700">⚠️ Sort Method: external merge</text>
+  <text x="40" y="320" fill="#cdd6f4" font-size="8">→ work_mem insuficiente. SET work_mem = '64MB' para esta sesión</text>
+
+  <!-- ─── CALLOUT ARROWS ─── -->
+  <!-- cost arrow -->
+  <line x1="196" y1="80" x2="196" y2="58" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="196,74 192,82 200,82" fill="#f9e2af"/>
+  <!-- actual time arrow -->
+  <line x1="160" y1="110" x2="160" y2="340" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- ─── RIGHT SIDE LEGEND ─── -->
+  <rect x="570" y="44" width="330" height="310" rx="8" fill="#313244"/>
+  <rect x="570" y="44" width="330" height="22" rx="8" fill="#45475a"/>
+  <text x="735" y="59" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">Campos Clave del Plan</text>
+
+  <!-- cost -->
+  <rect x="580" y="74" width="310" height="52" rx="4" fill="#181825"/>
+  <text x="590" y="90" fill="#f9e2af" font-size="10" font-weight="700">cost=X..Y</text>
+  <text x="590" y="104" fill="#cdd6f4" font-size="8">Unidades abstractas del planificador (NO ms).</text>
+  <text x="590" y="116" fill="#cdd6f4" font-size="8">X = arranque, Y = costo total. Solo para comparar.</text>
+
+  <!-- actual time -->
+  <rect x="580" y="132" width="310" height="52" rx="4" fill="#181825"/>
+  <text x="590" y="148" fill="#a6e3a1" font-size="10" font-weight="700">actual time=X..Y</text>
+  <text x="590" y="162" fill="#cdd6f4" font-size="8">Tiempo REAL en milisegundos por ejecución.</text>
+  <text x="590" y="174" fill="#cdd6f4" font-size="8">Requiere ANALYZE en el comando EXPLAIN.</text>
+
+  <!-- rows -->
+  <rect x="580" y="190" width="150" height="52" rx="4" fill="#181825"/>
+  <text x="590" y="206" fill="#cba6f7" font-size="10" font-weight="700">rows / actual rows</text>
+  <text x="590" y="220" fill="#cdd6f4" font-size="8">Estimado vs real.</text>
+  <text x="590" y="232" fill="#cdd6f4" font-size="8">Gran diferencia → ANALYZE</text>
+
+  <!-- buffers -->
+  <rect x="740" y="190" width="150" height="52" rx="4" fill="#181825"/>
+  <text x="750" y="206" fill="#89b4fa" font-size="10" font-weight="700">Buffers</text>
+  <text x="750" y="220" fill="#a6e3a1" font-size="8">shared hit: de caché</text>
+  <text x="750" y="232" fill="#f38ba8" font-size="8">read: de disco (lento)</text>
+
+  <!-- node types -->
+  <rect x="580" y="248" width="310" height="98" rx="4" fill="#181825"/>
+  <text x="590" y="264" fill="#cdd6f4" font-size="9" font-weight="700">Tipos de Nodo (leer de abajo → arriba)</text>
+  <text x="590" y="280" fill="#a6e3a1" font-size="8">Seq Scan         — lee toda la tabla O(n)</text>
+  <text x="590" y="293" fill="#89b4fa" font-size="8">Index Scan       — índice + heap por cada fila</text>
+  <text x="590" y="306" fill="#cba6f7" font-size="8">Index Only Scan  — solo desde el índice (covering)</text>
+  <text x="590" y="319" fill="#f9e2af" font-size="8">Bitmap Heap Scan — páginas en lote (intermedio)</text>
+  <text x="590" y="332" fill="#f38ba8" font-size="8">Hash / Nested Loop / Merge — estrategias JOIN</text>
+
+  <!-- ─── BOTTOM: Read order ─── -->
+  <rect x="20" y="362" width="880" height="82" rx="8" fill="#313244"/>
+  <rect x="20" y="362" width="880" height="22" rx="8" fill="#45475a"/>
+  <text x="460" y="377" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">Flujo de Lectura del Plan</text>
+  <!-- boxes -->
+  <rect x="40"  y="392" width="140" height="42" rx="4" fill="#181825"/>
+  <text x="110" y="408" fill="#a6e3a1" font-size="9" text-anchor="middle">1. Nodo más interno</text>
+  <text x="110" y="422" fill="#cdd6f4" font-size="8" text-anchor="middle">(se ejecuta primero)</text>
+
+  <polygon points="194,413 200,408 200,418" fill="#89b4fa"/>
+  <line x1="180" y1="413" x2="200" y2="413" stroke="#89b4fa" stroke-width="1.5"/>
+
+  <rect x="210" y="392" width="140" height="42" rx="4" fill="#181825"/>
+  <text x="280" y="408" fill="#a6e3a1" font-size="9" text-anchor="middle">2. Nodo padre</text>
+  <text x="280" y="422" fill="#cdd6f4" font-size="8" text-anchor="middle">(recibe filas del hijo)</text>
+
+  <polygon points="364,413 370,408 370,418" fill="#89b4fa"/>
+  <line x1="350" y1="413" x2="370" y2="413" stroke="#89b4fa" stroke-width="1.5"/>
+
+  <rect x="380" y="392" width="160" height="42" rx="4" fill="#181825"/>
+  <text x="460" y="408" fill="#a6e3a1" font-size="9" text-anchor="middle">3. Señales de alerta</text>
+  <text x="460" y="422" fill="#f38ba8" font-size="8" text-anchor="middle">rows estimados ≠ reales</text>
+
+  <polygon points="554,413 560,408 560,418" fill="#89b4fa"/>
+  <line x1="540" y1="413" x2="560" y2="413" stroke="#89b4fa" stroke-width="1.5"/>
+
+  <rect x="570" y="392" width="140" height="42" rx="4" fill="#181825"/>
+  <text x="640" y="408" fill="#a6e3a1" font-size="9" text-anchor="middle">4. Acción correctiva</text>
+  <text x="640" y="422" fill="#cdd6f4" font-size="8" text-anchor="middle">ANALYZE / CREATE INDEX</text>
+
+  <polygon points="724,413 730,408 730,418" fill="#89b4fa"/>
+  <line x1="710" y1="413" x2="730" y2="413" stroke="#89b4fa" stroke-width="1.5"/>
+
+  <rect x="740" y="392" width="140" height="42" rx="4" fill="#181825"/>
+  <text x="810" y="408" fill="#a6e3a1" font-size="9" text-anchor="middle">5. Volver a medir</text>
+  <text x="810" y="422" fill="#cdd6f4" font-size="8" text-anchor="middle">EXPLAIN ANALYZE de nuevo</text>
+</svg>

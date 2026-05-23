@@ -1,0 +1,128 @@
+<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="380" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="30" fill="#cdd6f4" font-size="16" font-weight="700" text-anchor="middle">Estrategia de Indexación — ¿Cuándo Crear un Índice?</text>
+
+  <!-- ─── LEFT: Decision tree ─── -->
+  <rect x="20" y="44" width="580" height="320" rx="8" fill="#313244"/>
+  <rect x="20" y="44" width="580" height="22" rx="8" fill="#45475a"/>
+  <text x="310" y="59" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">Flujo de Decisión</text>
+
+  <!-- START -->
+  <rect x="210" y="74" width="200" height="28" rx="14" fill="#89b4fa"/>
+  <text x="310" y="93" fill="#1e1e2e" font-size="10" font-weight="700" text-anchor="middle">¿Agregar índice a esta columna?</text>
+
+  <!-- Q1 -->
+  <line x1="310" y1="102" x2="310" y2="124" stroke="#cdd6f4" stroke-width="1.5"/>
+  <polygon points="310,120 305,114 315,114" fill="#cdd6f4"/>
+  <rect x="160" y="124" width="300" height="26" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="310" y="141" fill="#89b4fa" font-size="9" text-anchor="middle">¿La query filtra / ordena / hace JOIN por esta columna?</text>
+
+  <!-- Q1 NO -->
+  <line x1="160" y1="137" x2="80" y2="137" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="120" y="133" fill="#f38ba8" font-size="8" text-anchor="middle">NO</text>
+  <rect x="30" y="124" width="50" height="26" rx="5" fill="#f38ba8"/>
+  <text x="55" y="141" fill="#1e1e2e" font-size="9" font-weight="700" text-anchor="middle">❌ No</text>
+
+  <!-- Q1 YES → Q2 -->
+  <line x1="310" y1="150" x2="310" y2="172" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="320" y="163" fill="#a6e3a1" font-size="8">SÍ</text>
+  <polygon points="310,168 305,162 315,162" fill="#a6e3a1"/>
+
+  <rect x="160" y="172" width="300" height="26" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="310" y="189" fill="#89b4fa" font-size="9" text-anchor="middle">¿La tabla tiene más de ~1 000 filas?</text>
+
+  <!-- Q2 NO -->
+  <line x1="160" y1="185" x2="80" y2="185" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="120" y="181" fill="#f38ba8" font-size="8" text-anchor="middle">NO</text>
+  <rect x="30" y="172" width="50" height="26" rx="5" fill="#f38ba8"/>
+  <text x="55" y="189" fill="#1e1e2e" font-size="9" font-weight="700" text-anchor="middle">❌ No</text>
+
+  <!-- Q2 YES → Q3 -->
+  <line x1="310" y1="198" x2="310" y2="220" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="320" y="211" fill="#a6e3a1" font-size="8">SÍ</text>
+  <polygon points="310,216 305,210 315,210" fill="#a6e3a1"/>
+
+  <rect x="130" y="220" width="360" height="26" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="310" y="237" fill="#89b4fa" font-size="9" text-anchor="middle">¿La selectividad es alta? (&lt;10% de filas devueltas)</text>
+
+  <!-- Q3 NO -->
+  <line x1="130" y1="233" x2="80" y2="233" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="105" y="229" fill="#f38ba8" font-size="8" text-anchor="middle">NO</text>
+  <rect x="30" y="220" width="50" height="26" rx="5" fill="#f38ba8"/>
+  <text x="55" y="237" fill="#1e1e2e" font-size="9" font-weight="700" text-anchor="middle">❌ No</text>
+
+  <!-- Q3 YES → Q4 -->
+  <line x1="310" y1="246" x2="310" y2="268" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="320" y="259" fill="#a6e3a1" font-size="8">SÍ</text>
+  <polygon points="310,264 305,258 315,258" fill="#a6e3a1"/>
+
+  <rect x="160" y="268" width="300" height="26" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="310" y="285" fill="#89b4fa" font-size="9" text-anchor="middle">¿Es columna FK o tiene patrón específico?</text>
+
+  <!-- Q4 FK branch -->
+  <line x1="160" y1="281" x2="105" y2="310" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="117" y="300" fill="#a6e3a1" font-size="8">FK</text>
+  <rect x="30" y="302" width="75" height="28" rx="5" fill="#a6e3a1"/>
+  <text x="67" y="316" fill="#1e1e2e" font-size="8" font-weight="700" text-anchor="middle">✅ B-tree</text>
+  <text x="67" y="325" fill="#1e1e2e" font-size="7" text-anchor="middle">siempre</text>
+
+  <!-- Q4 JSONB/Array branch -->
+  <line x1="236" y1="294" x2="196" y2="330" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="208" y="320" fill="#a6e3a1" font-size="8">JSONB</text>
+  <rect x="130" y="330" width="66" height="28" rx="5" fill="#a6e3a1"/>
+  <text x="163" y="344" fill="#1e1e2e" font-size="8" font-weight="700" text-anchor="middle">✅ GIN</text>
+  <text x="163" y="353" fill="#1e1e2e" font-size="7" text-anchor="middle">@&gt; / ? / @@</text>
+
+  <!-- Q4 temporal branch -->
+  <line x1="380" y1="294" x2="360" y2="330" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="380" y="318" fill="#a6e3a1" font-size="8">Timestamp</text>
+  <rect x="305" y="330" width="66" height="28" rx="5" fill="#f9e2af"/>
+  <text x="338" y="344" fill="#1e1e2e" font-size="8" font-weight="700" text-anchor="middle">✅ BRIN</text>
+  <text x="338" y="353" fill="#1e1e2e" font-size="7" text-anchor="middle">secuencial</text>
+
+  <!-- Q4 range branch -->
+  <line x1="430" y1="294" x2="470" y2="330" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="462" y="315" fill="#a6e3a1" font-size="8">Rango</text>
+  <rect x="440" y="330" width="66" height="28" rx="5" fill="#f38ba8"/>
+  <text x="473" y="344" fill="#1e1e2e" font-size="8" font-weight="700" text-anchor="middle">✅ GiST</text>
+  <text x="473" y="353" fill="#1e1e2e" font-size="7" text-anchor="middle">&&amp; / @&gt;</text>
+
+  <!-- Q4 default branch -->
+  <line x1="460" y1="281" x2="530" y2="310" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="510" y="302" fill="#a6e3a1" font-size="8">General</text>
+  <rect x="510" y="315" width="66" height="28" rx="5" fill="#89b4fa"/>
+  <text x="543" y="329" fill="#1e1e2e" font-size="8" font-weight="700" text-anchor="middle">✅ B-tree</text>
+  <text x="543" y="341" fill="#1e1e2e" font-size="7" text-anchor="middle">defecto</text>
+
+  <!-- ─── RIGHT: Cost reminders ─── -->
+  <rect x="614" y="44" width="286" height="320" rx="8" fill="#313244"/>
+  <rect x="614" y="44" width="286" height="22" rx="8" fill="#f38ba8"/>
+  <text x="757" y="59" fill="#1e1e2e" font-size="10" font-weight="700" text-anchor="middle">Costo de Mantener un Índice</text>
+
+  <rect x="624" y="74" width="266" height="274" rx="5" fill="#181825"/>
+
+  <text x="634" y="94" fill="#f38ba8" font-size="9" font-weight="700">Cada índice adicional implica:</text>
+  <text x="634" y="112" fill="#cdd6f4" font-size="8">📦 Más espacio en disco</text>
+  <text x="634" y="127" fill="#cdd6f4" font-size="8">    (B-tree ocupa ~10–30% del tamaño de la tabla)</text>
+  <text x="634" y="147" fill="#cdd6f4" font-size="8">✍️  INSERT / UPDATE / DELETE más lentos</text>
+  <text x="634" y="160" fill="#cdd6f4" font-size="8">    (hay que actualizar todos los índices)</text>
+  <text x="634" y="180" fill="#cdd6f4" font-size="8">🔄 VACUUM / autovacuum adicional</text>
+  <text x="634" y="193" fill="#cdd6f4" font-size="8">    (fragmentación con el tiempo)</text>
+
+  <line x1="624" y1="206" x2="890" y2="206" stroke="#45475a" stroke-width="1"/>
+
+  <text x="634" y="224" fill="#a6e3a1" font-size="9" font-weight="700">Índices que SIEMPRE debes crear:</text>
+  <text x="634" y="242" fill="#a6e3a1" font-size="8">✅ PRIMARY KEY (automático)</text>
+  <text x="634" y="257" fill="#a6e3a1" font-size="8">✅ Todas las FOREIGN KEY</text>
+  <text x="634" y="272" fill="#a6e3a1" font-size="8">✅ Columnas con UNIQUE constraint</text>
+
+  <line x1="624" y1="284" x2="890" y2="284" stroke="#45475a" stroke-width="1"/>
+
+  <text x="634" y="302" fill="#f9e2af" font-size="9" font-weight="700">Señal de índice inútil:</text>
+  <text x="634" y="318" fill="#cdd6f4" font-size="8">pg_stat_user_indexes.idx_scan = 0</text>
+  <text x="634" y="331" fill="#cdd6f4" font-size="8">después de semanas en producción</text>
+  <text x="634" y="344" fill="#f38ba8" font-size="8">→ DROP INDEX CONCURRENTLY ix_...</text>
+</svg>

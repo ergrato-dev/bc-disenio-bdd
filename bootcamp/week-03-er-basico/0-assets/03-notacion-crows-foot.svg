@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560">
+  <!-- Background -->
+  <rect width="900" height="560" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="36" font-family="Inter,Roboto,system-ui,sans-serif" font-size="17" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Notación Crow's Foot — Tarjeta de Referencia</text>
+  <text x="450" y="56" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Cada extremo de la línea tiene DOS marcas: interior (participación) + exterior (cardinalidad)</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- Header row                                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="15" y="68" width="870" height="36" rx="4" fill="#313244"/>
+  <text x="120" y="91" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">SÍMBOLO</text>
+  <text x="340" y="91" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">NOMBRE</text>
+  <text x="510" y="91" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">MIN · MAX</text>
+  <text x="720" y="91" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#89b4fa" text-anchor="middle">EJEMPLO DE LECTURA</text>
+
+  <!-- Dividers -->
+  <line x1="220" y1="68" x2="220" y2="530" stroke="#45475a" stroke-width="1"/>
+  <line x1="440" y1="68" x2="440" y2="530" stroke="#45475a" stroke-width="1"/>
+  <line x1="590" y1="68" x2="590" y2="530" stroke="#45475a" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 1: || — Exactamente uno                          -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="15" y="104" width="870" height="100" rx="0" fill="#181825" opacity="0.6"/>
+  <line x1="15" y1="104" x2="885" y2="104" stroke="#313244" stroke-width="1"/>
+
+  <!-- Symbol drawing: || -->
+  <!-- mini entity left -->
+  <rect x="32" y="128" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="58" y="150" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">A</text>
+  <!-- line -->
+  <line x1="84" y1="145" x2="168" y2="145" stroke="#6c7086" stroke-width="1.5"/>
+  <!-- || symbol at right side (close to right entity) -->
+  <line x1="152" y1="135" x2="152" y2="155" stroke="#a6e3a1" stroke-width="2.5"/>
+  <line x1="161" y1="135" x2="161" y2="155" stroke="#a6e3a1" stroke-width="2.5"/>
+  <!-- mini entity right -->
+  <rect x="168" y="128" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="194" y="150" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">B</text>
+  <!-- text code -->
+  <text x="120" y="192" font-family="Inter,Roboto,Courier New,monospace" font-size="16" font-weight="bold" fill="#a6e3a1" text-anchor="middle">||</text>
+
+  <text x="340" y="142" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Exactamente uno</text>
+  <text x="340" y="162" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Obligatorio · Singular</text>
+  <text x="340" y="180" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">mínimo = 1, máximo = 1</text>
+
+  <text x="510" y="150" font-family="Inter,Roboto,system-ui,sans-serif" font-size="22" font-weight="bold" fill="#f9e2af" text-anchor="middle">1..1</text>
+
+  <text x="720" y="140" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Cada libro tiene exactamente</text>
+  <text x="720" y="156" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">una editorial</text>
+  <text x="720" y="175" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#a6e3a1" text-anchor="middle" font-style="italic">LIBRO ||——... EDITORIAL</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 2: o| — Cero o uno                               -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="15" y="204" width="870" height="100" rx="0" fill="#1e1e2e" opacity="0.6"/>
+  <line x1="15" y1="204" x2="885" y2="204" stroke="#313244" stroke-width="1"/>
+
+  <!-- Symbol drawing: o| -->
+  <rect x="32" y="225" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="58" y="247" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">A</text>
+  <line x1="84" y1="242" x2="168" y2="242" stroke="#6c7086" stroke-width="1.5"/>
+  <!-- circle (optional) inner near entity -->
+  <circle cx="161" cy="242" r="7" fill="#1e1e2e" stroke="#94e2d5" stroke-width="2"/>
+  <!-- bar (one) outer -->
+  <line x1="147" y1="232" x2="147" y2="252" stroke="#94e2d5" stroke-width="2.5"/>
+  <rect x="168" y="225" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="194" y="247" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">B</text>
+  <text x="120" y="289" font-family="Inter,Roboto,Courier New,monospace" font-size="14" font-weight="bold" fill="#94e2d5" text-anchor="middle">○|</text>
+
+  <text x="340" y="239" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Cero o uno</text>
+  <text x="340" y="259" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Opcional · Singular</text>
+  <text x="340" y="277" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">mínimo = 0, máximo = 1</text>
+
+  <text x="510" y="248" font-family="Inter,Roboto,system-ui,sans-serif" font-size="22" font-weight="bold" fill="#f9e2af" text-anchor="middle">0..1</text>
+
+  <text x="720" y="237" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Un empleado puede tener</text>
+  <text x="720" y="253" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">cero o un vehículo asignado</text>
+  <text x="720" y="272" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#94e2d5" text-anchor="middle" font-style="italic">EMPLEADO ...○|—— VEHICULO</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 3: |< — Uno o muchos                             -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="15" y="304" width="870" height="100" rx="0" fill="#181825" opacity="0.6"/>
+  <line x1="15" y1="304" x2="885" y2="304" stroke="#313244" stroke-width="1"/>
+
+  <!-- Symbol drawing: |< -->
+  <rect x="32" y="322" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="58" y="344" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">A</text>
+  <line x1="84" y1="339" x2="168" y2="339" stroke="#6c7086" stroke-width="1.5"/>
+  <!-- bar (mandatory) inner near entity -->
+  <line x1="161" y1="329" x2="161" y2="349" stroke="#cba6f7" stroke-width="2.5"/>
+  <!-- crow's foot outer -->
+  <line x1="144" y1="339" x2="156" y2="339" stroke="#cba6f7" stroke-width="2"/>
+  <line x1="144" y1="339" x2="156" y2="329" stroke="#cba6f7" stroke-width="2"/>
+  <line x1="144" y1="339" x2="156" y2="349" stroke="#cba6f7" stroke-width="2"/>
+  <rect x="168" y="322" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="194" y="344" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">B</text>
+  <text x="120" y="386" font-family="Inter,Roboto,Courier New,monospace" font-size="14" font-weight="bold" fill="#cba6f7" text-anchor="middle">|&lt;</text>
+
+  <text x="340" y="336" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Uno o muchos</text>
+  <text x="340" y="356" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Obligatorio · Plural</text>
+  <text x="340" y="374" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">mínimo = 1, máximo = N</text>
+
+  <text x="510" y="348" font-family="Inter,Roboto,system-ui,sans-serif" font-size="22" font-weight="bold" fill="#f9e2af" text-anchor="middle">1..N</text>
+
+  <text x="720" y="334" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Un pedido tiene una o</text>
+  <text x="720" y="350" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">muchas líneas de detalle</text>
+  <text x="720" y="369" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cba6f7" text-anchor="middle" font-style="italic">PEDIDO ...——|&lt; LINEA</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 4: o< — Cero o muchos                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="15" y="404" width="870" height="100" rx="0" fill="#1e1e2e" opacity="0.6"/>
+  <line x1="15" y1="404" x2="885" y2="404" stroke="#313244" stroke-width="1"/>
+
+  <!-- Symbol drawing: o< -->
+  <rect x="32" y="422" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="58" y="444" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">A</text>
+  <line x1="84" y1="439" x2="168" y2="439" stroke="#6c7086" stroke-width="1.5"/>
+  <!-- circle (optional) inner near entity -->
+  <circle cx="161" cy="439" r="7" fill="#1e1e2e" stroke="#fab387" stroke-width="2"/>
+  <!-- crow's foot outer -->
+  <line x1="140" y1="439" x2="154" y2="439" stroke="#fab387" stroke-width="2"/>
+  <line x1="140" y1="439" x2="154" y2="429" stroke="#fab387" stroke-width="2"/>
+  <line x1="140" y1="439" x2="154" y2="449" stroke="#fab387" stroke-width="2"/>
+  <rect x="168" y="422" width="52" height="34" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="194" y="444" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#89b4fa" text-anchor="middle">B</text>
+  <text x="120" y="486" font-family="Inter,Roboto,Courier New,monospace" font-size="14" font-weight="bold" fill="#fab387" text-anchor="middle">○&lt;</text>
+
+  <text x="340" y="436" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Cero o muchos</text>
+  <text x="340" y="456" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Opcional · Plural</text>
+  <text x="340" y="474" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">mínimo = 0, máximo = N</text>
+
+  <text x="510" y="448" font-family="Inter,Roboto,system-ui,sans-serif" font-size="22" font-weight="bold" fill="#f9e2af" text-anchor="middle">0..N</text>
+
+  <text x="720" y="434" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Un cliente puede tener</text>
+  <text x="720" y="450" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">cero o muchos pedidos</text>
+  <text x="720" y="469" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#fab387" text-anchor="middle" font-style="italic">CLIENTE ——○&lt; PEDIDO</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- Footer                                                -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="15" y="512" width="870" height="36" rx="4" fill="#313244"/>
+  <text x="450" y="527" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2" text-anchor="middle">Regla de lectura: el símbolo al extremo de una entidad responde</text>
+  <text x="450" y="542" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cdd6f4" text-anchor="middle">"¿Cuántas instancias de ESTA entidad participan respecto a UNA instancia de la OTRA?"</text>
+</svg>

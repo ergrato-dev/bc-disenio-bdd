@@ -20,11 +20,11 @@ Al finalizar esta semana, serás capaz de:
 
 | #   | Tipo        | Tema                        | Tiempo |
 | --- | ----------- | --------------------------- | ------ |
-| 1   | 📖 Teoría   | Entidades y atributos: el vocabulario del ER | ~Xh    |
-| 2   | 📖 Teoría   | Relaciones y cardinalidades | ~Xh    |
-| 3   | 📖 Teoría   | Notación Chen vs. Crow's Foot | ~Xh    |
-| 4   | 💻 Práctica | Modelado ER de un sistema de reservas de hotel  | ~3h    |
-| 5   | 🏗️ Proyecto | Diagrama ER completo para un sistema de gestión de cursos universitarios | ~2h    |
+| 1   | 📖 Teoría   | Entidades y atributos: el vocabulario del ER | ~45min |
+| 2   | 📖 Teoría   | Relaciones y cardinalidades | ~45min |
+| 3   | 📖 Teoría   | Notación Crow's Foot en la práctica | ~30min |
+| 4   | 💻 Práctica | Modelado ER guiado — Sistema de Reservas de Hotel | ~3h    |
+| 5   | 🏗️ Proyecto | Diagrama ER completo — Universidad TechEdu | ~2h    |
 
 ## ⏱️ Distribución del Tiempo (8 horas)
 
@@ -37,8 +37,14 @@ Al finalizar esta semana, serás capaz de:
 
 ## 📌 Entregables
 
-- [ ] Diagrama ER exportado como SVG desde draw.io
-- [ ] Listado de entidades, atributos y relaciones con justificación
+- [ ] Análisis de entidades y atributos con justificación de decisiones
+- [ ] Tabla de relaciones con cardinalidades documentadas
+- [ ] Diagrama ER completo exportado como SVG desde draw.io
+
+## 🔗 Recursos principales
+
+- [draw.io](https://app.diagrams.net) — herramienta para crear diagramas ER
+- [Documentación PostgreSQL 16](https://www.postgresql.org/docs/16/)
 
 ## 🔗 Navegación
 

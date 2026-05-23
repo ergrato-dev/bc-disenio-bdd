@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640">
+  <!-- Background -->
+  <rect width="900" height="640" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="36" font-family="Inter,Roboto,system-ui,sans-serif" font-size="17" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Cardinalidades en Notación Crow's Foot</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 1 — 1:1  Exactamente uno a uno                   -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="0" y="52" width="900" height="178" fill="#181825" opacity="0.7"/>
+  <text x="450" y="74" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#f9e2af" text-anchor="middle">1 : 1 — Exactamente uno a uno</text>
+
+  <!-- Entity: PERSONA -->
+  <rect x="55" y="85" width="175" height="55" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="142" y="118" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">PERSONA</text>
+
+  <!-- Entity: PASAPORTE -->
+  <rect x="670" y="85" width="175" height="55" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="757" y="118" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">PASAPORTE</text>
+
+  <!-- Relationship line -->
+  <line x1="230" y1="112" x2="670" y2="112" stroke="#6c7086" stroke-width="2"/>
+  <!-- Relation label -->
+  <text x="450" y="106" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#a6e3a1" text-anchor="middle" font-style="italic">tiene</text>
+
+  <!-- Symbol LEFT (||) near PERSONA right edge x=230 -->
+  <!-- inner bar (participation) -->
+  <line x1="243" y1="100" x2="243" y2="124" stroke="#f9e2af" stroke-width="2.5"/>
+  <!-- outer bar (cardinality) -->
+  <line x1="253" y1="100" x2="253" y2="124" stroke="#f9e2af" stroke-width="2.5"/>
+
+  <!-- Symbol RIGHT (||) near PASAPORTE left edge x=670 -->
+  <!-- inner bar -->
+  <line x1="657" y1="100" x2="657" y2="124" stroke="#f9e2af" stroke-width="2.5"/>
+  <!-- outer bar -->
+  <line x1="647" y1="100" x2="647" y2="124" stroke="#f9e2af" stroke-width="2.5"/>
+
+  <!-- Notation labels -->
+  <text x="270" y="108" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af">||</text>
+  <text x="618" y="108" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af">||</text>
+
+  <!-- Business rule -->
+  <text x="450" y="155" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Una persona tiene exactamente un pasaporte. Un pasaporte pertenece a exactamente una persona.</text>
+  <text x="450" y="171" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">Cada instancia de ambas entidades participa obligatoriamente y de forma única.</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 2 — 1:N  Uno a muchos                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="0" y="236" width="900" height="188" fill="#1a1a2e" opacity="0.7"/>
+  <text x="450" y="259" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#f9e2af" text-anchor="middle">1 : N — Uno a muchos</text>
+
+  <!-- Entity: EDITORIAL -->
+  <rect x="55" y="272" width="175" height="55" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="142" y="305" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">EDITORIAL</text>
+
+  <!-- Entity: LIBRO -->
+  <rect x="670" y="272" width="175" height="55" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="757" y="305" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">LIBRO</text>
+
+  <!-- Relationship line -->
+  <line x1="230" y1="299" x2="670" y2="299" stroke="#6c7086" stroke-width="2"/>
+  <text x="450" y="293" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#a6e3a1" text-anchor="middle" font-style="italic">publica</text>
+
+  <!-- Symbol LEFT (||) — exactly one editorial per libro -->
+  <line x1="243" y1="287" x2="243" y2="311" stroke="#f9e2af" stroke-width="2.5"/>
+  <line x1="253" y1="287" x2="253" y2="311" stroke="#f9e2af" stroke-width="2.5"/>
+
+  <!-- Symbol RIGHT (o<) — zero or many libros per editorial -->
+  <!-- circle (optional) — inner, close to LIBRO -->
+  <circle cx="658" cy="299" r="8" fill="#1e1e2e" stroke="#f9e2af" stroke-width="2"/>
+  <!-- crow's foot (many) — outer, on line -->
+  <!-- point at x=638, toes toward x=650 -->
+  <line x1="638" y1="299" x2="650" y2="299" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="638" y1="299" x2="650" y2="288" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="638" y1="299" x2="650" y2="310" stroke="#f9e2af" stroke-width="2"/>
+
+  <!-- Notation labels -->
+  <text x="270" y="295" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af">||</text>
+  <text x="608" y="295" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af">o&lt;</text>
+
+  <!-- Business rule -->
+  <text x="450" y="345" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Cada libro pertenece a exactamente una editorial (||). Una editorial puede tener cero o muchos libros (o&lt;).</text>
+  <text x="450" y="361" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">La FK va en el lado N: LIBRO.editorial_id → EDITORIAL.id</text>
+  <text x="450" y="377" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">Variante: usar |&lt; si una editorial debe tener al menos un libro publicado.</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROW 3 — N:M  Muchos a muchos                         -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="0" y="430" width="900" height="188" fill="#181825" opacity="0.7"/>
+  <text x="450" y="452" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" font-weight="bold" fill="#f9e2af" text-anchor="middle">N : M — Muchos a muchos</text>
+
+  <!-- Entity: ESTUDIANTE -->
+  <rect x="55" y="465" width="175" height="55" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="142" y="498" font-family="Inter,Roboto,system-ui,sans-serif" font-size="14" font-weight="bold" fill="#89b4fa" text-anchor="middle">ESTUDIANTE</text>
+
+  <!-- Entity: CURSO -->
+  <rect x="670" y="465" width="175" height="55" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="757" y="498" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">CURSO</text>
+
+  <!-- Relationship line -->
+  <line x1="230" y1="492" x2="670" y2="492" stroke="#6c7086" stroke-width="2"/>
+  <text x="450" y="486" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#a6e3a1" text-anchor="middle" font-style="italic">se inscribe en</text>
+
+  <!-- Symbol LEFT (o<) — zero or many students per course -->
+  <circle cx="242" cy="492" r="8" fill="#1e1e2e" stroke="#f9e2af" stroke-width="2"/>
+  <!-- crow's foot pointing toward ESTUDIANTE (left) -->
+  <line x1="262" y1="492" x2="250" y2="492" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="262" y1="492" x2="250" y2="481" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="262" y1="492" x2="250" y2="503" stroke="#f9e2af" stroke-width="2"/>
+
+  <!-- Symbol RIGHT (o<) — zero or many courses per student -->
+  <circle cx="658" cy="492" r="8" fill="#1e1e2e" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="638" y1="492" x2="650" y2="492" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="638" y1="492" x2="650" y2="481" stroke="#f9e2af" stroke-width="2"/>
+  <line x1="638" y1="492" x2="650" y2="503" stroke="#f9e2af" stroke-width="2"/>
+
+  <!-- Notation labels -->
+  <text x="278" y="488" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af">o&lt;</text>
+  <text x="608" y="488" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af">o&lt;</text>
+
+  <!-- Business rule -->
+  <text x="450" y="538" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#9399b2" text-anchor="middle">Un estudiante toma cero o muchos cursos. Un curso tiene cero o muchos estudiantes.</text>
+  <text x="450" y="554" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle" font-style="italic">⚠ Las relaciones N:M se resuelven con una tabla intermedia: ESTUDIANTE ← inscripciones → CURSO</text>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- Footer legend                                         -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <rect x="0" y="618" width="900" height="22" fill="#181825"/>
+  <text x="450" y="633" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle">|| exactamente uno &nbsp;·&nbsp; | uno &nbsp;·&nbsp; ○ cero (opcional) &nbsp;·&nbsp; &lt; muchos (crow's foot) &nbsp;·&nbsp; cada símbolo se lee desde su entidad hacia la otra</text>
+</svg>

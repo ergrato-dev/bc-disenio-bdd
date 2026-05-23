@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620">
+  <!-- Background -->
+  <rect width="900" height="620" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="36" font-family="Inter,Roboto,system-ui,sans-serif" font-size="17" font-weight="bold" fill="#cdd6f4" text-anchor="middle">Entidad y Tipos de Atributos — Notación Chen</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- Entity box: LIBRO — center (450, 279)       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="345" y="245" width="210" height="68" rx="5" fill="#313244" stroke="#89b4fa" stroke-width="2.5"/>
+  <text x="450" y="288" font-family="Inter,Roboto,system-ui,sans-serif" font-size="20" font-weight="bold" fill="#89b4fa" text-anchor="middle">LIBRO</text>
+
+  <!-- ═══════════════════ LINES ═══════════════════ -->
+  <!-- isbn (top center) -->
+  <line x1="450" y1="245" x2="450" y2="133" stroke="#585b70" stroke-width="1.5"/>
+  <!-- titulo (upper right) -->
+  <line x1="522" y1="256" x2="693" y2="134" stroke="#585b70" stroke-width="1.5"/>
+  <!-- precio (right) -->
+  <line x1="555" y1="279" x2="762" y2="279" stroke="#585b70" stroke-width="1.5"/>
+  <!-- año_publicacion (lower right) -->
+  <line x1="520" y1="302" x2="666" y2="419" stroke="#585b70" stroke-width="1.5"/>
+  <!-- editorial (lower left) -->
+  <line x1="400" y1="302" x2="283" y2="413" stroke="#585b70" stroke-width="1.5"/>
+  <!-- editorial → nombre_editorial -->
+  <line x1="255" y1="467" x2="190" y2="518" stroke="#585b70" stroke-width="1.5"/>
+  <!-- editorial → pais_editorial -->
+  <line x1="280" y1="468" x2="360" y2="518" stroke="#585b70" stroke-width="1.5"/>
+  <!-- idiomas (left) -->
+  <line x1="345" y1="279" x2="192" y2="279" stroke="#585b70" stroke-width="1.5"/>
+
+  <!-- ═══════════════════ ATTRIBUTES ═══════════════════ -->
+
+  <!-- isbn — IDENTIFICADOR (gold, underlined text) -->
+  <ellipse cx="450" cy="106" rx="66" ry="28" fill="#1e1e2e" stroke="#f9e2af" stroke-width="2"/>
+  <text x="450" y="103" font-family="Inter,Roboto,system-ui,sans-serif" font-size="14" fill="#f9e2af" text-anchor="middle">isbn</text>
+  <line x1="422" y1="107" x2="478" y2="107" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="450" y="120" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#f9e2af" text-anchor="middle" font-style="italic">identificador</text>
+
+  <!-- titulo — SIMPLE (green) -->
+  <ellipse cx="762" cy="107" rx="74" ry="28" fill="#1e1e2e" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="762" y="112" font-family="Inter,Roboto,system-ui,sans-serif" font-size="14" fill="#a6e3a1" text-anchor="middle">titulo</text>
+
+  <!-- precio — SIMPLE (green) -->
+  <ellipse cx="822" cy="279" rx="60" ry="28" fill="#1e1e2e" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="822" y="285" font-family="Inter,Roboto,system-ui,sans-serif" font-size="14" fill="#a6e3a1" text-anchor="middle">precio</text>
+
+  <!-- año_publicacion — DERIVADO (teal, dashed) -->
+  <ellipse cx="754" cy="447" rx="96" ry="30" fill="#1e1e2e" stroke="#94e2d5" stroke-width="2" stroke-dasharray="7,3"/>
+  <text x="754" y="443" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" fill="#94e2d5" text-anchor="middle">año_publicacion</text>
+  <text x="754" y="460" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#94e2d5" text-anchor="middle" font-style="italic">derivado</text>
+
+  <!-- editorial — COMPUESTO (orange) -->
+  <ellipse cx="265" cy="440" rx="70" ry="28" fill="#1e1e2e" stroke="#fab387" stroke-width="2"/>
+  <text x="265" y="446" font-family="Inter,Roboto,system-ui,sans-serif" font-size="14" fill="#fab387" text-anchor="middle">editorial</text>
+
+  <!-- sub-oval: nombre_editorial -->
+  <ellipse cx="172" cy="543" rx="76" ry="24" fill="#1e1e2e" stroke="#fab387" stroke-width="1.5"/>
+  <text x="172" y="549" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#fab387" text-anchor="middle">nombre</text>
+
+  <!-- sub-oval: pais_editorial -->
+  <ellipse cx="370" cy="543" rx="64" ry="24" fill="#1e1e2e" stroke="#fab387" stroke-width="1.5"/>
+  <text x="370" y="549" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#fab387" text-anchor="middle">país</text>
+
+  <!-- idiomas — MULTIVALUADO (purple, double oval) -->
+  <ellipse cx="122" cy="279" rx="72" ry="32" fill="#1e1e2e" stroke="#cba6f7" stroke-width="2"/>
+  <ellipse cx="122" cy="279" rx="58" ry="20" fill="#1e1e2e" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="122" y="285" font-family="Inter,Roboto,system-ui,sans-serif" font-size="13" fill="#cba6f7" text-anchor="middle">idiomas</text>
+
+  <!-- ═══════════════════ LEGEND ═══════════════════ -->
+  <rect x="16" y="583" width="868" height="30" rx="6" fill="#181825" stroke="#313244" stroke-width="1"/>
+
+  <!-- Simple -->
+  <ellipse cx="54" cy="598" rx="26" ry="11" fill="#1e1e2e" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="54" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="10" fill="#a6e3a1" text-anchor="middle">Atr</text>
+  <text x="88" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2">Simple</text>
+
+  <!-- Identificador -->
+  <ellipse cx="170" cy="598" rx="26" ry="11" fill="#1e1e2e" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="170" y="596" font-family="Inter,Roboto,system-ui,sans-serif" font-size="10" fill="#f9e2af" text-anchor="middle">Key</text>
+  <line x1="150" y1="600" x2="190" y2="600" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="212" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2">Identificador</text>
+
+  <!-- Derivado -->
+  <ellipse cx="318" cy="598" rx="26" ry="11" fill="#1e1e2e" stroke="#94e2d5" stroke-width="1.5" stroke-dasharray="5,2"/>
+  <text x="318" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="10" fill="#94e2d5" text-anchor="middle">Atr</text>
+  <text x="352" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2">Derivado</text>
+
+  <!-- Multivaluado -->
+  <ellipse cx="464" cy="598" rx="28" ry="13" fill="#1e1e2e" stroke="#cba6f7" stroke-width="1.5"/>
+  <ellipse cx="464" cy="598" rx="20" ry="8" fill="#1e1e2e" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="464" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="9" fill="#cba6f7" text-anchor="middle">Mul</text>
+  <text x="502" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2">Multivaluado</text>
+
+  <!-- Compuesto -->
+  <ellipse cx="614" cy="598" rx="26" ry="11" fill="#1e1e2e" stroke="#fab387" stroke-width="1.5"/>
+  <text x="614" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="10" fill="#fab387" text-anchor="middle">Comp</text>
+  <text x="650" y="602" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#9399b2">Compuesto</text>
+
+  <!-- Entidad -->
+  <rect x="754" y="587" width="110" height="24" rx="3" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="809" y="604" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#89b4fa" text-anchor="middle">Entidad</text>
+</svg>

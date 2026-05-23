@@ -1,33 +1,97 @@
-# Proyecto Semana 03 — Diagrama ER completo para un sistema de gestión de cursos universitarios
+# Proyecto Semana 03 — Sistema de Gestión Académica: Universidad TechEdu
 
-> **Fase:** Modelo Conceptual &nbsp;|&nbsp; **Semana:** 03 de 14
+> **Fase:** Modelo Conceptual &nbsp;|&nbsp; **Semana:** 03 de 14  
+> **Herramienta:** draw.io (app.diagrams.net)  
+> **Entrega:** Diagrama ER en SVG + hoja de análisis completada
 
 ## 📋 Contexto del Negocio
 
-<!-- TODO: Describir el contexto de negocio del proyecto (2-3 párrafos) -->
+**Universidad TechEdu** es una institución de educación superior con sede en varios
+campus. Necesita un sistema para gestionar su oferta académica: cursos, profesores,
+estudiantes e inscripciones.
 
-## 🎯 Objetivo
+El sistema debe reemplazar hojas de cálculo dispersas y permitir responder preguntas
+como: ¿qué cursos ofrece cada departamento?, ¿qué estudiantes están inscritos en
+este semestre?, ¿cuál es el historial académico de un estudiante?, ¿qué carga
+tiene cada profesor?
 
-Aplicar los conceptos aprendidos en la Semana 03 para diseñar e implementar una solución
-de base de datos que resuelva el problema planteado.
+## 📐 Requerimientos del negocio
 
-## 📐 Requerimientos
+### Departamentos y profesores
 
-<!-- TODO: Listar los requerimientos funcionales del sistema (entidades, relaciones, reglas de negocio) -->
+- La universidad se organiza en **departamentos** (Ingeniería de Software, Matemáticas,
+  Diseño UX, etc.). Cada departamento tiene un nombre, código único y un edificio donde
+  opera.
+- Cada departamento tiene un **director** (que es un profesor) designado. Un profesor
+  puede ser director de un departamento como máximo.
+- Los **profesores** tienen nombre, email institucional, título académico (licenciatura,
+  maestría, doctorado) y fecha de contratación. Cada profesor pertenece a exactamente
+  un departamento.
 
-### Requerimientos funcionales
+### Cursos y clases
 
-- [ ] RF-01:
-- [ ] RF-02:
-- [ ] RF-03:
+- Los **cursos** son la oferta académica: "Fundamentos de SQL", "Cálculo I", etc.
+  Cada curso tiene un código único, nombre, descripción, créditos y nivel
+  (pregrado / posgrado). Cada curso pertenece a un departamento.
+- Un curso puede tener **prerequisitos**: otros cursos que el estudiante debe haber
+  aprobado antes. Un curso puede requerir varios prerequisitos, y puede ser
+  prerequisito de varios otros cursos.
+- Cada semestre se abren **clases** (grupos): es la impartición concreta de un curso.
+  Una clase tiene un número de grupo, semestre (ej: "2026-1"), aula, horario y
+  cupo máximo. Una clase es impartida por exactamente un profesor. Un profesor puede
+  impartir cero o muchas clases por semestre.
 
-### Restricciones de diseño
+### Estudiantes e inscripciones
 
-- [ ] Aplicar las convenciones de nomenclatura del bootcamp
-- [ ] Normalizar hasta mínimo 3FN (salvo justificación documentada)
-- [ ] Todas las `FOREIGN KEY` deben tener política `ON DELETE` explícita
+- Los **estudiantes** tienen número de matrícula (único), nombre, email, fecha de
+  nacimiento y carrera. La carrera es un atributo simple (texto), no una entidad
+  (el sistema no gestiona el detalle de las carreras).
+- Un estudiante puede **inscribirse** en cero o muchas clases por semestre. Una clase
+  puede tener cero o muchos estudiantes inscritos (hasta el cupo máximo).
+- La inscripción registra la fecha en que se realizó, la calificación final (puede
+  ser NULL si el semestre no ha terminado) y el estado (inscrito, retirado, aprobado,
+  reprobado).
+
+## 🎯 Objetivo del Proyecto
+
+Diseñar el diagrama ER completo para el sistema de **Universidad TechEdu** aplicando
+los conceptos de la Semana 03:
+
+1. Identificar todas las entidades del dominio
+2. Definir atributos para cada entidad (con tipos)
+3. Identificar todas las relaciones y determinar su cardinalidad
+4. Documentar las decisiones de diseño más importantes
+5. Crear el diagrama en draw.io y exportarlo como SVG
 
 ## 📦 Entregables
+
+| Entregable | Archivo | Descripción |
+|------------|---------|-------------|
+| Hoja de análisis | `starter/analisis-er.md` | Completar las secciones con TODO |
+| Diagrama ER | `mi-diagrama-er.svg` | Exportado desde draw.io |
+
+## 📌 Instrucciones
+
+1. Lee el enunciado completo antes de empezar
+2. Abre `starter/analisis-er.md` y completa las secciones marcadas con `TODO`
+3. Crea el diagrama en draw.io basándote en tu análisis
+4. Verifica que el diagrama y el análisis son coherentes entre sí
+5. Exporta el diagrama como SVG con opción "Incluir una copia del diagrama"
+
+## ✅ Criterios de aceptación
+
+- [ ] El diagrama incluye todas las entidades del enunciado
+- [ ] Cada entidad tiene su atributo identificador marcado
+- [ ] Todas las relaciones tienen cardinalidad y participación correctas
+- [ ] Las relaciones están etiquetadas con un verbo descriptivo
+- [ ] La relación de prerequisitos (reflexiva) está representada
+- [ ] La relación de director entre PROFESOR y DEPARTAMENTO está representada
+- [ ] El diagrama está exportado como SVG desde draw.io
+- [ ] La hoja de análisis está completada
+
+---
+
+← [Práctica](../2-practicas/README.md) &nbsp;&nbsp;|&nbsp;&nbsp; [Semana 04 →](../../week-04-er-intermedio/README.md)
 
 - [ ] Diagrama ER exportado como SVG desde draw.io
 - [ ] Listado de entidades, atributos y relaciones con justificación

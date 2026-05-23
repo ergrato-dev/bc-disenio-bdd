@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Fondo -->
+  <rect width="820" height="420" fill="#1e1e2e" rx="12"/>
+
+  <!-- Título -->
+  <text x="410" y="36" text-anchor="middle" font-size="17" font-weight="700" fill="#cdd6f4">Arquitectura del entorno de desarrollo</text>
+
+  <!-- ====== Tu máquina (host) ====== -->
+  <rect x="20" y="55" width="780" height="340" rx="10" fill="#181825" stroke="#585b70" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="40" y="78" font-size="11" fill="#585b70">Tu máquina (host)</text>
+
+  <!-- Navegador -->
+  <rect x="40" y="88" width="130" height="56" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="105" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="#89b4fa">Navegador</text>
+  <text x="105" y="128" text-anchor="middle" font-size="10" fill="#585b70">localhost:5050</text>
+
+  <!-- Terminal / DBeaver -->
+  <rect x="40" y="164" width="130" height="56" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="105" y="186" text-anchor="middle" font-size="11" font-weight="700" fill="#89b4fa">Terminal / DBeaver</text>
+  <text x="105" y="202" text-anchor="middle" font-size="10" fill="#585b70">localhost:5432</text>
+
+  <!-- Código / archivos -->
+  <rect x="40" y="240" width="130" height="56" rx="8" fill="#313244" stroke="#585b70" stroke-width="1"/>
+  <text x="105" y="262" text-anchor="middle" font-size="11" font-weight="700" fill="#cdd6f4">Archivos .sql</text>
+  <text x="105" y="278" text-anchor="middle" font-size="10" fill="#585b70">scripts/init/</text>
+
+  <!-- Flecha host → docker engine -->
+  <line x1="172" y1="116" x2="230" y2="116" stroke="#89b4fa" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="172" y1="192" x2="230" y2="192" stroke="#89b4fa" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="172" y1="268" x2="230" y2="268" stroke="#585b70" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arr2)"/>
+
+  <!-- ====== Docker Engine ====== -->
+  <rect x="230" y="72" width="550" height="300" rx="10" fill="#1e1e2e" stroke="#313244" stroke-width="1.5"/>
+  <text x="250" y="95" font-size="11" fill="#45475a">Docker Engine</text>
+
+  <!-- Red interna -->
+  <rect x="245" y="104" width="520" height="248" rx="8" fill="#181825" stroke="#45475a" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="265" y="124" font-size="10" fill="#45475a">bootcamp-net (red interna Docker)</text>
+
+  <!-- Contenedor pgAdmin -->
+  <rect x="265" y="132" width="220" height="100" rx="8" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="265" y="132" width="220" height="28" rx="8" fill="#a6e3a1"/>
+  <rect x="265" y="148" width="220" height="12" fill="#a6e3a1"/>
+  <text x="375" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">pgAdmin 4</text>
+  <text x="375" y="176" text-anchor="middle" font-size="10" fill="#cdd6f4">Interfaz web de administración</text>
+  <text x="375" y="192" text-anchor="middle" font-size="10" fill="#585b70">imagen: dpage/pgadmin4</text>
+  <text x="375" y="210" text-anchor="middle" font-size="10" fill="#89b4fa">puerto interno: 80</text>
+  <text x="375" y="226" text-anchor="middle" font-size="10" fill="#f9e2af">→ host: localhost:5050</text>
+
+  <!-- Contenedor PostgreSQL -->
+  <rect x="520" y="132" width="220" height="100" rx="8" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="520" y="132" width="220" height="28" rx="8" fill="#89b4fa"/>
+  <rect x="520" y="148" width="220" height="12" fill="#89b4fa"/>
+  <text x="630" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">PostgreSQL 16</text>
+  <text x="630" y="176" text-anchor="middle" font-size="10" fill="#cdd6f4">Servidor de base de datos</text>
+  <text x="630" y="192" text-anchor="middle" font-size="10" fill="#585b70">imagen: postgres:16-alpine</text>
+  <text x="630" y="210" text-anchor="middle" font-size="10" fill="#89b4fa">puerto interno: 5432</text>
+  <text x="630" y="226" text-anchor="middle" font-size="10" fill="#f9e2af">→ host: localhost:5432</text>
+
+  <!-- Flecha pgAdmin → PostgreSQL (red interna) -->
+  <line x1="485" y1="182" x2="518" y2="182" stroke="#f9e2af" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <text x="502" y="175" text-anchor="middle" font-size="9" fill="#f9e2af">postgres:5432</text>
+
+  <!-- Volumen de datos -->
+  <rect x="520" y="252" width="220" height="80" rx="8" fill="#181825" stroke="#585b70" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="630" y="276" text-anchor="middle" font-size="11" font-weight="700" fill="#585b70">bootcamp_postgres_data</text>
+  <text x="630" y="292" text-anchor="middle" font-size="10" fill="#45475a">Volumen Docker (datos persistentes)</text>
+  <text x="630" y="308" text-anchor="middle" font-size="10" fill="#45475a">/var/lib/postgresql/data</text>
+  <line x1="630" y1="232" x2="630" y2="251" stroke="#585b70" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- scripts/init montados -->
+  <rect x="265" y="252" width="220" height="80" rx="8" fill="#181825" stroke="#585b70" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="375" y="276" text-anchor="middle" font-size="11" font-weight="700" fill="#585b70">scripts/init/</text>
+  <text x="375" y="292" text-anchor="middle" font-size="10" fill="#45475a">Volumen bind-mount</text>
+  <text x="375" y="308" text-anchor="middle" font-size="10" fill="#45475a">01-init.sql (auto-ejecutado)</text>
+  <line x1="375" y1="232" x2="375" y2="251" stroke="#585b70" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Definición de flechas -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#89b4fa"/>
+    </marker>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#585b70"/>
+    </marker>
+    <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f9e2af"/>
+    </marker>
+  </defs>
+
+  <!-- Leyenda inferior -->
+  <text x="410" y="390" text-anchor="middle" font-size="10" fill="#45475a">Los archivos SQL de tu máquina se montan en el contenedor PostgreSQL mediante bind-mount.</text>
+  <text x="410" y="406" text-anchor="middle" font-size="10" fill="#45475a">pgAdmin se conecta a postgres (nombre interno Docker) en el puerto 5432, no a localhost.</text>
+</svg>

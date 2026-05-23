@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" width="820" height="480" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Fondo -->
+  <rect width="820" height="480" fill="#1e1e2e" rx="12"/>
+
+  <!-- Título -->
+  <text x="410" y="36" text-anchor="middle" font-size="17" font-weight="700" fill="#cdd6f4">Tipos de datos en PostgreSQL — Guía de selección</text>
+
+  <!-- ====== Grupo: Numéricos ====== -->
+  <rect x="30" y="55" width="235" height="190" rx="8" fill="#181825" stroke="#89b4fa" stroke-width="1.5"/>
+  <rect x="30" y="55" width="235" height="28" rx="8" fill="#89b4fa"/>
+  <rect x="30" y="70" width="235" height="13" fill="#89b4fa"/>
+  <text x="147" y="74" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">Numéricos</text>
+
+  <text x="48" y="102" font-size="11" font-weight="700" fill="#cdd6f4">SMALLINT</text>
+  <text x="280" y="102" text-anchor="end" font-size="10" fill="#585b70">-32k a 32k · 2B</text>
+  <text x="48" y="116" font-size="10" fill="#6c7086">estados, flags, contadores pequeños</text>
+
+  <text x="48" y="136" font-size="11" font-weight="700" fill="#cdd6f4">INTEGER</text>
+  <text x="280" y="136" text-anchor="end" font-size="10" fill="#585b70">±2.1B · 4B</text>
+  <text x="48" y="150" font-size="10" fill="#6c7086">cantidades, IDs pequeños</text>
+
+  <text x="48" y="170" font-size="11" font-weight="700" fill="#a6e3a1">BIGINT ✓ PKs</text>
+  <text x="280" y="170" text-anchor="end" font-size="10" fill="#585b70">±9.2×10¹⁸ · 8B</text>
+  <text x="48" y="184" font-size="10" fill="#6c7086">PKs, IDs de sistemas grandes</text>
+
+  <text x="48" y="204" font-size="11" font-weight="700" fill="#a6e3a1">NUMERIC(p,s) ✓ dinero</text>
+  <text x="48" y="218" font-size="10" fill="#6c7086">precios, montos financieros</text>
+  <rect x="48" y="227" width="80" height="12" rx="3" fill="#313244"/>
+  <text x="88" y="237" text-anchor="middle" font-size="9" fill="#f38ba8">NUNCA FLOAT para dinero</text>
+
+  <!-- ====== Grupo: Texto ====== -->
+  <rect x="285" y="55" width="235" height="190" rx="8" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <rect x="285" y="55" width="235" height="28" rx="8" fill="#a6e3a1"/>
+  <rect x="285" y="70" width="235" height="13" fill="#a6e3a1"/>
+  <text x="402" y="74" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">Texto</text>
+
+  <text x="303" y="102" font-size="11" font-weight="700" fill="#a6e3a1">VARCHAR(n)</text>
+  <text x="510" y="102" text-anchor="end" font-size="10" fill="#585b70">máx. n caracteres</text>
+  <text x="303" y="116" font-size="10" fill="#6c7086">nombres, emails, códigos, URLs</text>
+
+  <text x="303" y="136" font-size="11" font-weight="700" fill="#cdd6f4">TEXT</text>
+  <text x="510" y="136" text-anchor="end" font-size="10" fill="#585b70">sin límite</text>
+  <text x="303" y="150" font-size="10" fill="#6c7086">descripciones largas, contenido HTML</text>
+
+  <text x="303" y="170" font-size="11" font-weight="700" fill="#585b70">CHAR(n)</text>
+  <text x="510" y="170" text-anchor="end" font-size="10" fill="#585b70">exactamente n</text>
+  <text x="303" y="184" font-size="10" fill="#6c7086">códigos fijos (ISO, IATA) — raro</text>
+
+  <rect x="303" y="200" width="200" height="30" rx="4" fill="#313244"/>
+  <text x="403" y="212" text-anchor="middle" font-size="10" fill="#f9e2af">VARCHAR y TEXT:</text>
+  <text x="403" y="226" text-anchor="middle" font-size="10" fill="#f9e2af">mismo rendimiento en PostgreSQL</text>
+
+  <!-- ====== Grupo: Fecha y hora ====== -->
+  <rect x="540" y="55" width="250" height="190" rx="8" fill="#181825" stroke="#f9e2af" stroke-width="1.5"/>
+  <rect x="540" y="55" width="250" height="28" rx="8" fill="#f9e2af"/>
+  <rect x="540" y="70" width="250" height="13" fill="#f9e2af"/>
+  <text x="665" y="74" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">Fecha y Hora</text>
+
+  <text x="558" y="102" font-size="11" font-weight="700" fill="#cdd6f4">DATE</text>
+  <text x="782" y="102" text-anchor="end" font-size="10" fill="#585b70">YYYY-MM-DD</text>
+  <text x="558" y="116" font-size="10" fill="#6c7086">fecha de nacimiento, vencimiento</text>
+
+  <text x="558" y="136" font-size="11" font-weight="700" fill="#f38ba8">TIMESTAMP</text>
+  <text x="782" y="136" text-anchor="end" font-size="10" fill="#f38ba8">⚠ sin zona horaria</text>
+  <text x="558" y="150" font-size="10" fill="#6c7086">evitar — ambiguo en sistemas globales</text>
+
+  <text x="558" y="170" font-size="11" font-weight="700" fill="#a6e3a1">TIMESTAMPTZ ✓ siempre</text>
+  <text x="782" y="170" text-anchor="end" font-size="10" fill="#585b70">con TZ</text>
+  <text x="558" y="184" font-size="10" fill="#6c7086">created_at, updated_at, auditoría</text>
+
+  <text x="558" y="204" font-size="11" font-weight="700" fill="#cdd6f4">INTERVAL</text>
+  <text x="558" y="218" font-size="10" fill="#6c7086">duraciones, diferencias de tiempo</text>
+
+  <!-- ====== Grupo: Especiales ====== -->
+  <rect x="30" y="260" width="365" height="195" rx="8" fill="#181825" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="30" y="260" width="365" height="28" rx="8" fill="#cba6f7"/>
+  <rect x="30" y="275" width="365" height="13" fill="#cba6f7"/>
+  <text x="212" y="279" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">Tipos especiales</text>
+
+  <text x="48" y="307" font-size="11" font-weight="700" fill="#a6e3a1">BOOLEAN</text>
+  <text x="385" y="307" text-anchor="end" font-size="10" fill="#585b70">TRUE / FALSE</text>
+  <text x="48" y="321" font-size="10" fill="#6c7086">is_active, is_verified, is_deleted</text>
+  <rect x="48" y="328" width="120" height="12" rx="3" fill="#313244"/>
+  <text x="108" y="338" text-anchor="middle" font-size="9" fill="#f38ba8">nunca SMALLINT o CHAR(1)</text>
+
+  <text x="48" y="360" font-size="11" font-weight="700" fill="#a6e3a1">UUID</text>
+  <text x="385" y="360" text-anchor="end" font-size="10" fill="#585b70">128 bits</text>
+  <text x="48" y="374" font-size="10" fill="#6c7086">IDs distribuidos, opacos al exterior</text>
+  <text x="48" y="388" font-size="10" fill="#6c7086">gen_random_uuid() · pgcrypto</text>
+
+  <text x="48" y="408" font-size="11" font-weight="700" fill="#cdd6f4">JSONB</text>
+  <text x="385" y="408" text-anchor="end" font-size="10" fill="#585b70">JSON binario indexable</text>
+  <text x="48" y="422" font-size="10" fill="#6c7086">atributos variables, datos de terceros</text>
+  <rect x="48" y="430" width="150" height="12" rx="3" fill="#313244"/>
+  <text x="123" y="440" text-anchor="middle" font-size="9" fill="#f9e2af">no reemplaza normalización</text>
+
+  <!-- ====== Regla de oro ====== -->
+  <rect x="415" y="260" width="375" height="195" rx="8" fill="#181825" stroke="#f38ba8" stroke-width="1.5"/>
+  <rect x="415" y="260" width="375" height="28" rx="8" fill="#f38ba8"/>
+  <rect x="415" y="275" width="375" height="13" fill="#f38ba8"/>
+  <text x="602" y="279" text-anchor="middle" font-size="12" font-weight="700" fill="#1e1e2e">Reglas de oro</text>
+
+  <text x="433" y="308" font-size="11" fill="#a6e3a1">✓ PK autoincremental:</text>
+  <text x="433" y="322" font-size="10" fill="#cdd6f4">  BIGINT GENERATED ALWAYS AS IDENTITY</text>
+
+  <text x="433" y="342" font-size="11" fill="#a6e3a1">✓ Dinero / precios:</text>
+  <text x="433" y="356" font-size="10" fill="#cdd6f4">  NUMERIC(12, 2) — nunca FLOAT</text>
+
+  <text x="433" y="376" font-size="11" fill="#a6e3a1">✓ Timestamps:</text>
+  <text x="433" y="390" font-size="10" fill="#cdd6f4">  TIMESTAMPTZ — nunca TIMESTAMP</text>
+
+  <text x="433" y="410" font-size="11" fill="#a6e3a1">✓ Booleanos:</text>
+  <text x="433" y="424" font-size="10" fill="#cdd6f4">  BOOLEAN — nunca SMALLINT o CHAR(1)</text>
+
+  <text x="433" y="444" font-size="11" fill="#f38ba8">✗ Evitar siempre:</text>
+  <text x="433" y="458" font-size="10" fill="#cdd6f4">  FLOAT, REAL, TIMESTAMP, SERIAL</text>
+</svg>

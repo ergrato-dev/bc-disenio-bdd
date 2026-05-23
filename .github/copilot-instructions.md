@@ -586,20 +586,42 @@ volumes:
 
 ## ✅ Checklist para Nuevas Semanas
 
-Cuando crees contenido para una nueva semana:
+### Orden de Generación de Contenido
 
-- [ ] Crear estructura de carpetas completa
-- [ ] `README.md` con objetivos y estructura de la semana
-- [ ] Material teórico en `1-teoria/` (mínimo 1 archivo por tema)
-- [ ] Ejercicios prácticos SQL en `2-practicas/` (formato: código comentado)
-- [ ] Proyecto integrador en `3-proyecto/` (con TODOs en `starter/`)
-- [ ] Recursos adicionales en `4-recursos/`
-- [ ] Glosario de términos en `5-glosario/README.md`
-- [ ] Rúbrica de evaluación (`rubrica-evaluacion.md`)
-- [ ] Diagramas SVG en `0-assets/` vinculados desde teoría
+El contenido de cada semana **debe generarse en este orden estricto**:
+
+1. **`README.md`** — Descripción general, objetivos de aprendizaje y estructura de la semana
+2. **`rubrica-evaluacion.md`** — Criterios de evaluación detallados (conocimiento, desempeño, producto)
+3. **Archivos de teoría** (`1-teoria/`) — Material conceptual completo, sin referencias a SVG aún
+4. **Assets SVG** (`0-assets/`) — Diagramas de apoyo a la comprensión, nombrados en orden lógico de lectura:
+   - Formato obligatorio: `01-nombre-descriptivo.svg`, `02-nombre-descriptivo.svg`, …
+   - El número refleja el orden en que el estudiante los encontrará al leer la teoría
+5. **Renderizar SVGs en teoría** — Insertar las referencias `![](../0-assets/0N-nombre.svg)` en los archivos de teoría donde corresponda
+6. **Prácticas** (`2-practicas/`) — Ejercicios guiados con código SQL comentado
+7. **Proyecto** (`3-proyecto/`) — Proyecto integrador con `starter/` (TODOs) y `solution/` (oculta)
+8. **Recursos** (`4-recursos/`) — Ebooks, videografía y webografía complementaria
+9. **Glosario** (`5-glosario/README.md`) — Términos clave de la semana en orden A-Z
+10. eliminar .gitkeep innecesarios
+11. commit + push con conventional commits en inglés + what? for? impact? (ej: `feat(week-01): add initial theory content and SVG assets`)
+
+### Checklist de Verificación Final
+
+- [ ] `README.md` con objetivos, tabla de contenido y navegación ← / →
+- [ ] `rubrica-evaluacion.md` con los tres tipos de evidencia (conocimiento, desempeño, producto)
+- [ ] Archivos de teoría en `1-teoria/` (mínimo 1 archivo por tema, con navegación al final)
+- [ ] SVGs en `0-assets/` numerados (`01-`, `02-`, …) en orden lógico de lectura
+- [ ] SVGs referenciados con `![descripción](../0-assets/0N-nombre.svg)` en los archivos de teoría
+- [ ] Prácticas en `2-practicas/README.md` (código SQL comentado, paso a paso ejecutable)
+- [ ] Proyecto en `3-proyecto/README.md` (contexto de negocio real, RFs concretos, sin TODOs en README)
+- [ ] Proyecto `starter/` con TODOs guiados para el estudiante
+- [ ] Recursos en `4-recursos/ebooks-free/README.md` (libros gratuitos con URL y justificación)
+- [ ] Recursos en `4-recursos/videografia/README.md` (videos con URL, duración e idioma)
+- [ ] Recursos en `4-recursos/webgrafia/README.md` (referencias web organizadas por tema)
+- [ ] Glosario en `5-glosario/README.md` (términos A-Z con definición y ejemplo)
+- [ ] `.gitkeep` eliminados de carpetas que ya tienen contenido
 - [ ] Verificar coherencia con semanas anteriores
-- [ ] Revisar progresión de dificultad
 - [ ] Probar que todos los scripts SQL ejecutan correctamente en PostgreSQL 16+
+- [ ] Commit + push: `feat(week-XX): <what> for <for> — <impact>`
 
 ---
 

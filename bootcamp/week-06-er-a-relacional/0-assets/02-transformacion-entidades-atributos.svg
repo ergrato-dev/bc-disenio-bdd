@@ -119,9 +119,9 @@
   <rect x="182" y="420" width="280" height="68" rx="6" fill="#2a2620" stroke="#fab387" stroke-width="1.5"/>
   <rect x="182" y="420" width="280" height="22" rx="6" fill="#1a1606"/>
   <text x="322" y="435" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="10" font-weight="bold" fill="#fab387">CREATE TABLE customer_phones</text>
-  <text x="192" y="454" font-family="Consolas, Monaco, monospace" font-size="10" fill="#fab387">🔗 customer_id UUID NOT NULL REFERENCES customers</text>
-  <text x="192" y="470" font-family="Consolas, Monaco, monospace" font-size="10" fill="#cdd6f4">   phone_number VARCHAR(20) NOT NULL,</text>
-  <text x="192" y="486" font-family="Consolas, Monaco, monospace" font-size="10" fill="#89b4fa">PRIMARY KEY (customer_id, phone_number)</text>
+  <text x="192" y="454" font-family="Consolas, Monaco, monospace" font-size="9" fill="#fab387">🔗 customer_id UUID NOT NULL REFERENCES customers</text>
+  <text x="192" y="470" font-family="Consolas, Monaco, monospace" font-size="9" fill="#cdd6f4">   phone_number VARCHAR(20) NOT NULL,</text>
+  <text x="192" y="486" font-family="Consolas, Monaco, monospace" font-size="9" fill="#89b4fa">PRIMARY KEY (customer_id, phone_number)</text>
 
   <!-- Note: when to convert to entity -->
   <rect x="480" y="420" width="400" height="68" rx="6" fill="#252535"/>

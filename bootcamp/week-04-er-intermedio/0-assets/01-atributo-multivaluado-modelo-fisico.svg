@@ -11,28 +11,28 @@
   <text x="215" y="62" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" font-weight="bold" fill="#9399b2" text-anchor="middle">Modelo Conceptual (Chen)</text>
 
   <!-- Entity: PRODUCT -->
-  <rect x="90" y="75" width="150" height="50" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
-  <text x="165" y="106" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">PRODUCT</text>
+  <rect x="140" y="75" width="150" height="50" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="215" y="106" font-family="Inter,Roboto,system-ui,sans-serif" font-size="15" font-weight="bold" fill="#89b4fa" text-anchor="middle">PRODUCT</text>
 
-  <!-- Attribute: id (key) -->
-  <ellipse cx="105" cy="200" rx="52" ry="20" fill="#313244" stroke="#f9e2af" stroke-width="2"/>
-  <text x="105" y="204" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af" text-anchor="middle" text-decoration="underline">product_id</text>
-  <line x1="105" y1="180" x2="130" y2="125" stroke="#585b70" stroke-width="1.5"/>
+  <!-- Attribute: id (key) — cx=90 → right edge 142 -->
+  <ellipse cx="90" cy="215" rx="52" ry="20" fill="#313244" stroke="#f9e2af" stroke-width="2"/>
+  <text x="90" y="219" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#f9e2af" text-anchor="middle" text-decoration="underline">product_id</text>
+  <line x1="90" y1="195" x2="165" y2="125" stroke="#585b70" stroke-width="1.5"/>
 
-  <!-- Attribute: name -->
-  <ellipse cx="165" cy="210" rx="50" ry="20" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
-  <text x="165" y="214" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#a6e3a1" text-anchor="middle">product_name</text>
-  <line x1="165" y1="190" x2="165" y2="125" stroke="#585b70" stroke-width="1.5"/>
+  <!-- Attribute: name — cx=215, left edge 160 (gap 18px from product_id) -->
+  <ellipse cx="215" cy="230" rx="55" ry="20" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="215" y="234" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#a6e3a1" text-anchor="middle">product_name</text>
+  <line x1="215" y1="210" x2="215" y2="125" stroke="#585b70" stroke-width="1.5"/>
 
-  <!-- Attribute: tags (multivalued) — double oval -->
-  <ellipse cx="250" cy="200" rx="38" ry="22" fill="#313244" stroke="#cba6f7" stroke-width="2"/>
-  <ellipse cx="250" cy="200" rx="30" ry="14" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
-  <text x="250" y="204" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#cba6f7" text-anchor="middle">tags</text>
-  <line x1="234" y1="178" x2="210" y2="125" stroke="#585b70" stroke-width="1.5"/>
+  <!-- Attribute: tags (multivalued) — cx=345, left edge 307 (gap 37px from product_name) -->
+  <ellipse cx="345" cy="215" rx="38" ry="22" fill="#313244" stroke="#cba6f7" stroke-width="2"/>
+  <ellipse cx="345" cy="215" rx="30" ry="14" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="345" y="219" font-family="Inter,Roboto,system-ui,sans-serif" font-size="12" fill="#cba6f7" text-anchor="middle">tags</text>
+  <line x1="329" y1="193" x2="255" y2="125" stroke="#585b70" stroke-width="1.5"/>
 
-  <!-- Note: multivalued indicator -->
-  <rect x="210" y="232" width="120" height="28" rx="4" fill="#181825" stroke="#cba6f7" stroke-width="1"/>
-  <text x="270" y="250" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cba6f7" text-anchor="middle">&#8635; multivaluado</text>
+  <!-- Note: multivalued indicator (centered on tags cx=345) -->
+  <rect x="285" y="246" width="120" height="28" rx="4" fill="#181825" stroke="#cba6f7" stroke-width="1"/>
+  <text x="345" y="264" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#cba6f7" text-anchor="middle">&#8635; multivaluado</text>
 
   <!-- Problem annotation -->
   <rect x="60" y="270" width="300" height="48" rx="6" fill="#1a1a2e" stroke="#f38ba8" stroke-width="1.5"/>

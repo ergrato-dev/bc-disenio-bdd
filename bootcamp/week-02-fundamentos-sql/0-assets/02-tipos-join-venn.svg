@@ -87,30 +87,30 @@
   <!-- INNER -->
   <rect x="40" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#89b4fa" stroke-width="1"/>
   <text x="140" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#89b4fa">INNER JOIN</text>
-  <text x="56" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
-  <text x="56" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">INNER JOIN orders AS o</text>
-  <text x="56" y="438" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.customer_id</text>
+  <text x="56" y="408" font-size="9" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
+  <text x="56" y="423" font-size="9" font-family="monospace" fill="#cdd6f4">INNER JOIN orders AS o</text>
+  <text x="56" y="438" font-size="9" font-family="monospace" fill="#cdd6f4">ON o.customer_id = c.customer_id</text>
 
   <!-- LEFT -->
   <rect x="256" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#a6e3a1" stroke-width="1"/>
   <text x="356" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#a6e3a1">LEFT JOIN</text>
-  <text x="272" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
-  <text x="272" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">LEFT JOIN orders AS o</text>
-  <text x="272" y="438" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.customer_id</text>
+  <text x="272" y="408" font-size="9" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
+  <text x="272" y="423" font-size="9" font-family="monospace" fill="#cdd6f4">LEFT JOIN orders AS o</text>
+  <text x="272" y="438" font-size="9" font-family="monospace" fill="#cdd6f4">ON o.customer_id = c.customer_id</text>
 
   <!-- ANTI-JOIN -->
   <rect x="472" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#f38ba8" stroke-width="1"/>
   <text x="572" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#f38ba8">ANTI-JOIN (sin pedidos)</text>
-  <text x="488" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">... LEFT JOIN orders AS o</text>
-  <text x="488" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.customer_id</text>
-  <text x="488" y="438" font-size="10" font-family="monospace" fill="#f38ba8">WHERE o.order_id IS NULL</text>
+  <text x="488" y="408" font-size="9" font-family="monospace" fill="#cdd6f4">... LEFT JOIN orders AS o</text>
+  <text x="488" y="423" font-size="9" font-family="monospace" fill="#cdd6f4">ON o.customer_id = c.customer_id</text>
+  <text x="488" y="438" font-size="9" font-family="monospace" fill="#f38ba8">WHERE o.order_id IS NULL</text>
 
   <!-- FULL -->
-  <rect x="688" y="373" width="192" height="82" fill="#181825" rx="6" stroke="#f9e2af" stroke-width="1"/>
-  <text x="784" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#f9e2af">FULL JOIN</text>
-  <text x="704" y="408" font-size="10" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
-  <text x="704" y="423" font-size="10" font-family="monospace" fill="#cdd6f4">FULL JOIN orders AS o</text>
-  <text x="704" y="438" font-size="10" font-family="monospace" fill="#cdd6f4">  ON o.customer_id = c.customer_id</text>
+  <rect x="688" y="373" width="200" height="82" fill="#181825" rx="6" stroke="#f9e2af" stroke-width="1"/>
+  <text x="788" y="391" text-anchor="middle" font-size="11" font-weight="700" fill="#f9e2af">FULL JOIN</text>
+  <text x="704" y="408" font-size="9" font-family="monospace" fill="#cdd6f4">FROM customers AS c</text>
+  <text x="704" y="423" font-size="9" font-family="monospace" fill="#cdd6f4">FULL JOIN orders AS o</text>
+  <text x="704" y="438" font-size="9" font-family="monospace" fill="#cdd6f4">ON o.customer_id = c.customer_id</text>
 
   <!-- Nota final -->
   <rect x="40" y="468" width="840" height="68" fill="#313244" rx="8"/>

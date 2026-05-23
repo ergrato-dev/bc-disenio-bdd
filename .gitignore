@@ -1,0 +1,73 @@
+# ──────────────────────────────────────────────────────────────
+# Bootcamp: Diseño de Bases de Datos Relacionales
+# .gitignore · solo-dev, publicación directa en main
+# ──────────────────────────────────────────────────────────────
+
+# ── Soluciones (solo instructores) ───────────────────────────
+**/3-proyecto/solution/
+
+# ── Secretos y entorno ────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+docker-compose.override.yml
+
+# ── Datos persistentes de Docker ─────────────────────────────
+postgres_data/
+pgadmin_data/
+
+# ── Backups / volcados de PostgreSQL ─────────────────────────
+*.sql.gz
+*.dump
+*.backup
+*.pg_dump
+*.dmp
+
+# ── Recursos binarios descargados (ebooks, etc.) ─────────────
+4-recursos/ebooks-free/*.pdf
+4-recursos/ebooks-free/*.epub
+4-recursos/ebooks-free/*.mobi
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Windows ───────────────────────────────────────────────────
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── Linux ─────────────────────────────────────────────────────
+*~
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+# ── Editores ──────────────────────────────────────────────────
+.idea/
+*.swp
+*.swo
+*.orig
+*.rej
+.vscode/settings.json
+.vscode/launch.json
+
+# ── DBeaver ───────────────────────────────────────────────────
+.dbeaver/
+*.dbeaver-data-sources.xml
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Python (scripts de utilidad) ──────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo

@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380">
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Background                                                 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect width="900" height="380" fill="#1e1e2e"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="4" height="380" fill="#89b4fa"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- LEFT SECTION — Title + Stats                               -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+
+  <!-- BOOTCAMP badge -->
+  <rect x="24" y="44" width="116" height="24" rx="4" fill="#313244"/>
+  <text x="82" y="60" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="700" fill="#89b4fa" text-anchor="middle" letter-spacing="2">BOOTCAMP</text>
+
+  <!-- Title line 1 -->
+  <text x="24" y="118" font-family="Inter, Roboto, system-ui, sans-serif" font-size="32" font-weight="800" fill="#cdd6f4">Diseño de Bases</text>
+
+  <!-- Title line 2 -->
+  <text x="24" y="158" font-family="Inter, Roboto, system-ui, sans-serif" font-size="32" font-weight="800" fill="#cdd6f4">de Datos Relacionales</text>
+
+  <!-- Zero to Hero subtitle -->
+  <text x="24" y="194" font-family="Inter, Roboto, system-ui, sans-serif" font-size="19" font-weight="500" fill="#89b4fa">Zero to Hero</text>
+
+  <!-- Divider -->
+  <line x1="24" y1="214" x2="452" y2="214" stroke="#45475a" stroke-width="1"/>
+
+  <!-- Badge: 14 semanas -->
+  <rect x="24" y="226" width="116" height="26" rx="4" fill="#313244"/>
+  <text x="82" y="243" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" fill="#f9e2af" text-anchor="middle">14 semanas</text>
+
+  <!-- Badge: 112 horas -->
+  <rect x="148" y="226" width="96" height="26" rx="4" fill="#313244"/>
+  <text x="196" y="243" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" fill="#f9e2af" text-anchor="middle">112 horas</text>
+
+  <!-- Badge: PostgreSQL 16+ -->
+  <rect x="252" y="226" width="132" height="26" rx="4" fill="#1c2e5b"/>
+  <text x="318" y="243" font-family="Inter, Roboto, system-ui, sans-serif" font-size="12" fill="#89b4fa" text-anchor="middle">PostgreSQL 16+</text>
+
+  <!-- Tagline -->
+  <text x="24" y="292" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" fill="#585b70">De cero a Diseñador de Bases de Datos Junior</text>
+  <text x="24" y="312" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" fill="#585b70">8 horas semanales · 14 semanas · 112 horas totales</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- RIGHT SECTION — ER Diagram panel                           -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+
+  <!-- Drop shadow -->
+  <rect x="479" y="30" width="398" height="326" rx="8" fill="#0d0d14"/>
+
+  <!-- Panel body -->
+  <rect x="476" y="26" width="398" height="326" rx="8" fill="#11111b"/>
+  <rect x="476" y="26" width="398" height="326" rx="8" fill="none" stroke="#313244" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M484,26 Q476,26 476,34 L476,62 L874,62 L874,34 Q874,26 866,26 Z" fill="#181825"/>
+
+  <!-- Window control dots -->
+  <circle cx="499" cy="44" r="5.5" fill="#f38ba8"/>
+  <circle cx="518" cy="44" r="5.5" fill="#f9e2af"/>
+  <circle cx="537" cy="44" r="5.5" fill="#a6e3a1"/>
+
+  <!-- Panel title tab -->
+  <text x="675" y="48" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" fill="#585b70" text-anchor="middle">er-diagram.dbml</text>
+
+  <!-- Bottom caption -->
+  <text x="675" y="338" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#45475a" text-anchor="middle">Notación Crow's Foot · Modelo Relacional</text>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- RELATIONSHIP LINES (drawn before entities)       -->
+  <!-- ════════════════════════════════════════════════ -->
+
+  <!-- Rel 1: customers ──|< orders  (1:N) — horizontal y=121 -->
+  <line x1="604" y1="121" x2="738" y2="121" stroke="#89b4fa" stroke-width="1.5" stroke-opacity="0.55"/>
+  <!-- "One" end — two vertical bars near customers right -->
+  <line x1="611" y1="114" x2="611" y2="128" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="616" y1="114" x2="616" y2="128" stroke="#89b4fa" stroke-width="1.5"/>
+  <!-- "Many" end — crow's foot near orders left (apex x=726, tines at x=738) -->
+  <line x1="726" y1="121" x2="738" y2="114" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="726" y1="121" x2="738" y2="121" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="726" y1="121" x2="738" y2="128" stroke="#89b4fa" stroke-width="1.5"/>
+  <!-- Label -->
+  <text x="671" y="114" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#45475a" text-anchor="middle">1 : N</text>
+
+  <!-- Rel 2: orders ──|< order_items  (1:N) — vertical x=797 -->
+  <line x1="797" y1="168" x2="797" y2="224" stroke="#89b4fa" stroke-width="1.5" stroke-opacity="0.55"/>
+  <!-- "One" end — two horizontal bars near orders bottom -->
+  <line x1="790" y1="175" x2="804" y2="175" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="790" y1="180" x2="804" y2="180" stroke="#89b4fa" stroke-width="1.5"/>
+  <!-- "Many" end — crow's foot near order_items top (apex y=212, tines at y=224) -->
+  <line x1="797" y1="212" x2="790" y2="224" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="797" y1="212" x2="797" y2="224" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="797" y1="212" x2="804" y2="224" stroke="#89b4fa" stroke-width="1.5"/>
+  <!-- Label -->
+  <text x="812" y="199" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#45475a">1 : N</text>
+
+  <!-- Rel 3: products ──|< order_items  (1:N) — horizontal y=271 -->
+  <line x1="604" y1="271" x2="738" y2="271" stroke="#89b4fa" stroke-width="1.5" stroke-opacity="0.55"/>
+  <!-- "One" end — two vertical bars near products right -->
+  <line x1="611" y1="264" x2="611" y2="278" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="616" y1="264" x2="616" y2="278" stroke="#89b4fa" stroke-width="1.5"/>
+  <!-- "Many" end — crow's foot near order_items left -->
+  <line x1="726" y1="271" x2="738" y2="264" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="726" y1="271" x2="738" y2="271" stroke="#89b4fa" stroke-width="1.5"/>
+  <line x1="726" y1="271" x2="738" y2="278" stroke="#89b4fa" stroke-width="1.5"/>
+  <!-- Label -->
+  <text x="671" y="264" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#45475a" text-anchor="middle">1 : N</text>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- ENTITY: customers  (top-left, x=488 y=74 w=116 h=94) -->
+  <!-- ════════════════════════════════════════════════ -->
+  <rect x="488" y="74" width="116" height="94" rx="4" fill="#11111b" stroke="#313244" stroke-width="1"/>
+  <!-- Header -->
+  <rect x="488" y="74" width="116" height="22" rx="4" fill="#313244"/>
+  <rect x="488" y="86" width="116" height="10" fill="#313244"/>
+  <text x="546" y="89" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#cdd6f4" text-anchor="middle">customers</text>
+  <!-- Row dividers -->
+  <line x1="488" y1="96" x2="604" y2="96" stroke="#313244" stroke-width="0.5"/>
+  <line x1="488" y1="114" x2="604" y2="114" stroke="#313244" stroke-width="0.5"/>
+  <line x1="488" y1="132" x2="604" y2="132" stroke="#313244" stroke-width="0.5"/>
+  <line x1="488" y1="150" x2="604" y2="150" stroke="#313244" stroke-width="0.5"/>
+  <!-- Rows -->
+  <text x="496" y="109" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#f9e2af">PK </tspan>
+    <tspan fill="#cdd6f4">id</tspan>
+  </text>
+  <text x="496" y="127" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   full_name</text>
+  <text x="496" y="145" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   email</text>
+  <text x="496" y="163" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   is_active</text>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- ENTITY: orders  (top-right, x=738 y=74 w=118 h=94) -->
+  <!-- ════════════════════════════════════════════════ -->
+  <rect x="738" y="74" width="118" height="94" rx="4" fill="#11111b" stroke="#313244" stroke-width="1"/>
+  <rect x="738" y="74" width="118" height="22" rx="4" fill="#313244"/>
+  <rect x="738" y="86" width="118" height="10" fill="#313244"/>
+  <text x="797" y="89" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#cdd6f4" text-anchor="middle">orders</text>
+  <line x1="738" y1="96" x2="856" y2="96" stroke="#313244" stroke-width="0.5"/>
+  <line x1="738" y1="114" x2="856" y2="114" stroke="#313244" stroke-width="0.5"/>
+  <line x1="738" y1="132" x2="856" y2="132" stroke="#313244" stroke-width="0.5"/>
+  <line x1="738" y1="150" x2="856" y2="150" stroke="#313244" stroke-width="0.5"/>
+  <text x="746" y="109" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#f9e2af">PK </tspan>
+    <tspan fill="#cdd6f4">id</tspan>
+  </text>
+  <text x="746" y="127" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#a6e3a1">FK </tspan>
+    <tspan fill="#cdd6f4">customer_id</tspan>
+  </text>
+  <text x="746" y="145" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   status</text>
+  <text x="746" y="163" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   total</text>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- ENTITY: products  (bottom-left, x=488 y=224 w=116 h=94) -->
+  <!-- ════════════════════════════════════════════════ -->
+  <rect x="488" y="224" width="116" height="94" rx="4" fill="#11111b" stroke="#313244" stroke-width="1"/>
+  <rect x="488" y="224" width="116" height="22" rx="4" fill="#313244"/>
+  <rect x="488" y="236" width="116" height="10" fill="#313244"/>
+  <text x="546" y="239" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#cdd6f4" text-anchor="middle">products</text>
+  <line x1="488" y1="246" x2="604" y2="246" stroke="#313244" stroke-width="0.5"/>
+  <line x1="488" y1="264" x2="604" y2="264" stroke="#313244" stroke-width="0.5"/>
+  <line x1="488" y1="282" x2="604" y2="282" stroke="#313244" stroke-width="0.5"/>
+  <line x1="488" y1="300" x2="604" y2="300" stroke="#313244" stroke-width="0.5"/>
+  <text x="496" y="259" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#f9e2af">PK </tspan>
+    <tspan fill="#cdd6f4">id</tspan>
+  </text>
+  <text x="496" y="277" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   name</text>
+  <text x="496" y="295" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   price</text>
+  <text x="496" y="313" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   stock</text>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- ENTITY: order_items  (bottom-right, x=738 y=224 w=118 h=94) -->
+  <!-- ════════════════════════════════════════════════ -->
+  <rect x="738" y="224" width="118" height="94" rx="4" fill="#11111b" stroke="#313244" stroke-width="1"/>
+  <rect x="738" y="224" width="118" height="22" rx="4" fill="#313244"/>
+  <rect x="738" y="236" width="118" height="10" fill="#313244"/>
+  <text x="797" y="239" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#cdd6f4" text-anchor="middle">order_items</text>
+  <line x1="738" y1="246" x2="856" y2="246" stroke="#313244" stroke-width="0.5"/>
+  <line x1="738" y1="264" x2="856" y2="264" stroke="#313244" stroke-width="0.5"/>
+  <line x1="738" y1="282" x2="856" y2="282" stroke="#313244" stroke-width="0.5"/>
+  <line x1="738" y1="300" x2="856" y2="300" stroke="#313244" stroke-width="0.5"/>
+  <text x="746" y="259" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#f9e2af">PK </tspan>
+    <tspan fill="#cdd6f4">id</tspan>
+  </text>
+  <text x="746" y="277" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#a6e3a1">FK </tspan>
+    <tspan fill="#cdd6f4">order_id</tspan>
+  </text>
+  <text x="746" y="295" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5">
+    <tspan fill="#a6e3a1">FK </tspan>
+    <tspan fill="#cdd6f4">product_id</tspan>
+  </text>
+  <text x="746" y="313" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="9.5" fill="#585b70">   quantity</text>
+
+</svg>

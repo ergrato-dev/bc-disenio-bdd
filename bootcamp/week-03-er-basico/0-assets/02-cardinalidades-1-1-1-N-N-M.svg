@@ -127,5 +127,5 @@
   <!-- Footer legend                                         -->
   <!-- ══════════════════════════════════════════════════════ -->
   <rect x="0" y="618" width="900" height="22" fill="#181825"/>
-  <text x="450" y="633" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle">|| exactamente uno &nbsp;·&nbsp; | uno &nbsp;·&nbsp; ○ cero (opcional) &nbsp;·&nbsp; &lt; muchos (crow's foot) &nbsp;·&nbsp; cada símbolo se lee desde su entidad hacia la otra</text>
+  <text x="450" y="633" font-family="Inter,Roboto,system-ui,sans-serif" font-size="11" fill="#585b70" text-anchor="middle">|| exactamente uno &#160;·&#160; | uno &#160;·&#160; ○ cero (opcional) &#160;·&#160; &lt; muchos (crow's foot) &#160;·&#160; cada símbolo se lee desde su entidad hacia la otra</text>
 </svg>

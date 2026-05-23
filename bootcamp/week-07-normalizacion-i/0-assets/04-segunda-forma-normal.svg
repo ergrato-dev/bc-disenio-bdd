@@ -122,7 +122,8 @@
 
   <!-- order_items table -->
   <rect x="412" y="216" width="480" height="20" fill="#313244"/>
-  <text x="420" y="230" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">order_items  <tspan font-size="8" fill="#6c7086">(tabla de cruce — solo FDs completas)</tspan></text>
+  <text x="420" y="230" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">order_items  <tspan font-size="8" fill="#6c7086">(tabla de cruce — solo FDs completas)</tspan>
+  </text>
   <rect x="412" y="236" width="480" height="20" fill="#252535"/>
   <text x="510" y="250" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">order_id (FK+PK)</text>
   <text x="640" y="250" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">product_id (FK+PK)</text>

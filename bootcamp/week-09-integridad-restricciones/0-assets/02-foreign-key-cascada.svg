@@ -1,4 +1,5 @@
-<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+<svg viewBox="0 0 920 500"
+  xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
   <!-- Background -->
   <rect width="920" height="500" fill="#1e1e2e"/>
 
@@ -35,7 +36,7 @@
   <!-- FK syntax snippet -->
   <rect x="280" y="60" width="360" height="100" rx="6" fill="#181825"/>
   <text x="460" y="80" fill="#f9e2af" font-size="10" font-weight="700" text-anchor="middle">-- Sintaxis completa</text>
-  <text x="294" y="97"  fill="#cba6f7" font-size="9">CONSTRAINT fk_order_items_order_id</text>
+  <text x="294" y="97" fill="#cba6f7" font-size="9">CONSTRAINT fk_order_items_order_id</text>
   <text x="294" y="112" fill="#cdd6f4" font-size="9">    FOREIGN KEY (order_id)</text>
   <text x="294" y="127" fill="#cdd6f4" font-size="9">    REFERENCES orders(order_id)</text>
   <text x="294" y="142" fill="#a6e3a1" font-size="9">        ON DELETE CASCADE</text>

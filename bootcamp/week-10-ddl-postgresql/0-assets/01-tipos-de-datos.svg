@@ -1,4 +1,5 @@
-<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+<svg viewBox="0 0 920 500"
+  xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
   <!-- Background -->
   <rect width="920" height="500" fill="#1e1e2e"/>
 
@@ -15,26 +16,26 @@
   <text x="155" y="103" fill="#cdd6f4" font-size="9" font-weight="700" text-anchor="middle">Enteros</text>
   <!-- rows -->
   <rect x="30" y="109" width="250" height="18" rx="0" fill="#181825"/>
-  <text x="80"  y="122" fill="#a6e3a1" font-size="9" text-anchor="middle">SMALLINT</text>
+  <text x="80" y="122" fill="#a6e3a1" font-size="9" text-anchor="middle">SMALLINT</text>
   <text x="200" y="122" fill="#cdd6f4" font-size="9" text-anchor="middle">Flags, prioridad, qty &lt; 32K</text>
   <rect x="30" y="127" width="250" height="18" rx="0" fill="#313244"/>
-  <text x="80"  y="140" fill="#a6e3a1" font-size="9" text-anchor="middle">INTEGER</text>
+  <text x="80" y="140" fill="#a6e3a1" font-size="9" text-anchor="middle">INTEGER</text>
   <text x="200" y="140" fill="#cdd6f4" font-size="9" text-anchor="middle">Stock, contadores generales</text>
   <rect x="30" y="145" width="250" height="18" rx="0" fill="#181825"/>
-  <text x="80"  y="158" fill="#a6e3a1" font-size="9" text-anchor="middle">BIGINT</text>
+  <text x="80" y="158" fill="#a6e3a1" font-size="9" text-anchor="middle">BIGINT</text>
   <text x="200" y="158" fill="#cdd6f4" font-size="9" text-anchor="middle">#factura, #ticket, métricas</text>
 
   <!-- decimal row header -->
   <rect x="30" y="169" width="250" height="20" rx="3" fill="#45475a"/>
   <text x="155" y="183" fill="#cdd6f4" font-size="9" font-weight="700" text-anchor="middle">Decimales</text>
   <rect x="30" y="189" width="250" height="18" rx="0" fill="#181825"/>
-  <text x="80"  y="202" fill="#a6e3a1" font-size="9" text-anchor="middle">NUMERIC(p,s)</text>
+  <text x="80" y="202" fill="#a6e3a1" font-size="9" text-anchor="middle">NUMERIC(p,s)</text>
   <text x="200" y="202" fill="#cdd6f4" font-size="9" text-anchor="middle">Dinero, tasas (exacto)</text>
   <rect x="30" y="207" width="250" height="18" rx="0" fill="#313244"/>
-  <text x="80"  y="220" fill="#f38ba8" font-size="9" text-anchor="middle">REAL/DOUBLE</text>
+  <text x="80" y="220" fill="#f38ba8" font-size="9" text-anchor="middle">REAL/DOUBLE</text>
   <text x="200" y="220" fill="#f38ba8" font-size="9" text-anchor="middle">❌ nunca para dinero</text>
   <rect x="30" y="225" width="250" height="18" rx="0" fill="#181825"/>
-  <text x="80"  y="238" fill="#f38ba8" font-size="9" text-anchor="middle">MONEY</text>
+  <text x="80" y="238" fill="#f38ba8" font-size="9" text-anchor="middle">MONEY</text>
   <text x="200" y="238" fill="#f38ba8" font-size="9" text-anchor="middle">❌ legacy, evitar</text>
 
   <!-- ─── TEXT section ─── -->
@@ -152,13 +153,13 @@
   <rect x="20" y="410" width="880" height="74" rx="8" fill="#313244"/>
   <text x="460" y="430" fill="#cdd6f4" font-size="12" font-weight="700" text-anchor="middle">Decisión Rápida</text>
 
-  <text x="60"  y="450" fill="#a6e3a1" font-size="9">PK interna → UUID</text>
+  <text x="60" y="450" fill="#a6e3a1" font-size="9">PK interna → UUID</text>
   <text x="185" y="450" fill="#a6e3a1" font-size="9">N° visible usuario → BIGINT IDENTITY</text>
   <text x="380" y="450" fill="#a6e3a1" font-size="9">Dinero → NUMERIC(10,2)</text>
   <text x="540" y="450" fill="#a6e3a1" font-size="9">Nombre / email → VARCHAR(n)</text>
   <text x="720" y="450" fill="#a6e3a1" font-size="9">Descripción → TEXT</text>
 
-  <text x="60"  y="468" fill="#cdd6f4" font-size="9">Fecha+hora → TIMESTAMPTZ</text>
+  <text x="60" y="468" fill="#cdd6f4" font-size="9">Fecha+hora → TIMESTAMPTZ</text>
   <text x="225" y="468" fill="#cdd6f4" font-size="9">Solo fecha → DATE</text>
   <text x="350" y="468" fill="#cdd6f4" font-size="9">Flag → BOOLEAN</text>
   <text x="460" y="468" fill="#cdd6f4" font-size="9">Cantidad pequeña → SMALLINT</text>

@@ -1,0 +1,132 @@
+<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="36" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">FOREIGN KEY — Anatomía e Integridad Referencial</text>
+
+  <!-- ─── TOP: FK anatomy ─── -->
+  <!-- Parent table -->
+  <rect x="40" y="60" width="220" height="100" rx="6" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="40" y="60" width="220" height="28" rx="6" fill="#89b4fa"/>
+  <text x="150" y="79" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">orders (PARENT)</text>
+  <text x="60" y="104" fill="#a6e3a1" font-size="10">▶ order_id UUID PK</text>
+  <text x="60" y="120" fill="#cdd6f4" font-size="10">  customer_id UUID FK</text>
+  <text x="60" y="136" fill="#cdd6f4" font-size="10">  order_status VARCHAR</text>
+
+  <!-- Child table -->
+  <rect x="660" y="60" width="220" height="100" rx="6" fill="#313244" stroke="#cba6f7" stroke-width="2"/>
+  <rect x="660" y="60" width="220" height="28" rx="6" fill="#cba6f7"/>
+  <text x="770" y="79" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">order_items (CHILD)</text>
+  <text x="680" y="104" fill="#a6e3a1" font-size="10">▶ order_item_id UUID PK</text>
+  <text x="680" y="120" fill="#f38ba8" font-size="10" font-weight="700">  order_id UUID FK  ←</text>
+  <text x="680" y="136" fill="#cdd6f4" font-size="10">  product_id UUID FK</text>
+
+  <!-- arrow -->
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f9e2af"/>
+    </marker>
+  </defs>
+  <line x1="660" y1="120" x2="265" y2="120" stroke="#f9e2af" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="460" y="113" fill="#f9e2af" font-size="10" font-weight="700" text-anchor="middle">FOREIGN KEY (order_id) REFERENCES orders(order_id)</text>
+  <text x="460" y="128" fill="#cdd6f4" font-size="9" text-anchor="middle">Garantía: todo order_id en order_items debe existir en orders</text>
+
+  <!-- FK syntax snippet -->
+  <rect x="280" y="60" width="360" height="100" rx="6" fill="#181825"/>
+  <text x="460" y="80" fill="#f9e2af" font-size="10" font-weight="700" text-anchor="middle">-- Sintaxis completa</text>
+  <text x="294" y="97"  fill="#cba6f7" font-size="9">CONSTRAINT fk_order_items_order_id</text>
+  <text x="294" y="112" fill="#cdd6f4" font-size="9">    FOREIGN KEY (order_id)</text>
+  <text x="294" y="127" fill="#cdd6f4" font-size="9">    REFERENCES orders(order_id)</text>
+  <text x="294" y="142" fill="#a6e3a1" font-size="9">        ON DELETE CASCADE</text>
+  <text x="294" y="153" fill="#cdd6f4" font-size="9">        ON UPDATE RESTRICT</text>
+
+  <!-- ─── SEPARATOR ─── -->
+  <line x1="20" y1="172" x2="900" y2="172" stroke="#45475a" stroke-width="1"/>
+  <text x="460" y="190" fill="#cdd6f4" font-size="13" font-weight="700" text-anchor="middle">Políticas ON DELETE — Árbol de Decisión</text>
+
+  <!-- ─── 5 policy boxes ─── -->
+  <!-- RESTRICT -->
+  <rect x="20" y="200" width="164" height="150" rx="8" fill="#313244" stroke="#f38ba8" stroke-width="1.5"/>
+  <rect x="20" y="200" width="164" height="28" rx="8" fill="#f38ba8"/>
+  <text x="102" y="218" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">RESTRICT</text>
+  <text x="102" y="248" fill="#cdd6f4" font-size="9" text-anchor="middle">Error inmediato si</text>
+  <text x="102" y="260" fill="#cdd6f4" font-size="9" text-anchor="middle">el padre tiene hijos.</text>
+  <line x1="34" y1="272" x2="170" y2="272" stroke="#45475a" stroke-width="1"/>
+  <text x="102" y="286" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Cuándo usar:</text>
+  <text x="102" y="298" fill="#cdd6f4" font-size="9" text-anchor="middle">Datos de negocio que</text>
+  <text x="102" y="310" fill="#cdd6f4" font-size="9" text-anchor="middle">no deben perderse.</text>
+  <text x="102" y="324" fill="#89b4fa" font-size="9" text-anchor="middle">product → order_items</text>
+  <text x="102" y="336" fill="#89b4fa" font-size="9" text-anchor="middle">customer → orders</text>
+
+  <!-- NO ACTION -->
+  <rect x="196" y="200" width="164" height="150" rx="8" fill="#313244" stroke="#f38ba8" stroke-width="1" stroke-dasharray="4,2"/>
+  <rect x="196" y="200" width="164" height="28" rx="8" fill="#45475a"/>
+  <text x="278" y="218" fill="#cdd6f4" font-size="11" font-weight="700" text-anchor="middle">NO ACTION</text>
+  <text x="278" y="248" fill="#cdd6f4" font-size="9" text-anchor="middle">Igual a RESTRICT pero</text>
+  <text x="278" y="260" fill="#cdd6f4" font-size="9" text-anchor="middle">el check es diferido</text>
+  <text x="278" y="272" fill="#cdd6f4" font-size="9" text-anchor="middle">(al fin de la txn).</text>
+  <line x1="210" y1="284" x2="346" y2="284" stroke="#45475a" stroke-width="1"/>
+  <text x="278" y="298" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Cuándo usar:</text>
+  <text x="278" y="310" fill="#cdd6f4" font-size="9" text-anchor="middle">Default del sistema.</text>
+  <text x="278" y="322" fill="#cdd6f4" font-size="9" text-anchor="middle">Mismo efecto visible</text>
+  <text x="278" y="334" fill="#cdd6f4" font-size="9" text-anchor="middle">que RESTRICT.</text>
+
+  <!-- CASCADE -->
+  <rect x="372" y="200" width="176" height="150" rx="8" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="372" y="200" width="176" height="28" rx="8" fill="#a6e3a1"/>
+  <text x="460" y="218" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">CASCADE</text>
+  <text x="460" y="248" fill="#cdd6f4" font-size="9" text-anchor="middle">Borrar el padre borra</text>
+  <text x="460" y="260" fill="#cdd6f4" font-size="9" text-anchor="middle">todos sus hijos.</text>
+  <line x1="386" y1="272" x2="534" y2="272" stroke="#45475a" stroke-width="1"/>
+  <text x="460" y="286" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Cuándo usar:</text>
+  <text x="460" y="300" fill="#cdd6f4" font-size="9" text-anchor="middle">Hijos son "parte" del padre.</text>
+  <text x="460" y="314" fill="#89b4fa" font-size="9" text-anchor="middle">order_items → orders</text>
+  <text x="460" y="326" fill="#f38ba8" font-size="9" font-weight="700" text-anchor="middle">⚠ borra silenciosamente</text>
+  <text x="460" y="340" fill="#f38ba8" font-size="9" text-anchor="middle">muchas filas</text>
+
+  <!-- SET NULL -->
+  <rect x="560" y="200" width="164" height="150" rx="8" fill="#313244" stroke="#f9e2af" stroke-width="2"/>
+  <rect x="560" y="200" width="164" height="28" rx="8" fill="#f9e2af"/>
+  <text x="642" y="218" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">SET NULL</text>
+  <text x="642" y="248" fill="#cdd6f4" font-size="9" text-anchor="middle">La FK del hijo queda</text>
+  <text x="642" y="260" fill="#cdd6f4" font-size="9" text-anchor="middle">en NULL.</text>
+  <line x1="574" y1="272" x2="710" y2="272" stroke="#45475a" stroke-width="1"/>
+  <text x="642" y="286" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Cuándo usar:</text>
+  <text x="642" y="298" fill="#cdd6f4" font-size="9" text-anchor="middle">Hijo sobrevive sin padre.</text>
+  <text x="642" y="312" fill="#89b4fa" font-size="9" text-anchor="middle">posts.author_id → users</text>
+  <text x="642" y="326" fill="#cdd6f4" font-size="9" text-anchor="middle">Columna FK debe ser</text>
+  <text x="642" y="338" fill="#cdd6f4" font-size="9" text-anchor="middle">nullable (sin NOT NULL).</text>
+
+  <!-- SET DEFAULT -->
+  <rect x="736" y="200" width="164" height="150" rx="8" fill="#313244" stroke="#cba6f7" stroke-width="1.5"/>
+  <rect x="736" y="200" width="164" height="28" rx="8" fill="#cba6f7"/>
+  <text x="818" y="218" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">SET DEFAULT</text>
+  <text x="818" y="248" fill="#cdd6f4" font-size="9" text-anchor="middle">FK toma el valor</text>
+  <text x="818" y="260" fill="#cdd6f4" font-size="9" text-anchor="middle">DEFAULT de la columna.</text>
+  <line x1="750" y1="272" x2="886" y2="272" stroke="#45475a" stroke-width="1"/>
+  <text x="818" y="286" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Cuándo usar:</text>
+  <text x="818" y="298" fill="#cdd6f4" font-size="9" text-anchor="middle">Existe un valor sustituto</text>
+  <text x="818" y="310" fill="#cdd6f4" font-size="9" text-anchor="middle">bien definido.</text>
+  <text x="818" y="324" fill="#89b4fa" font-size="9" text-anchor="middle">assignee_id → 'unassigned'</text>
+  <text x="818" y="338" fill="#f38ba8" font-size="9" text-anchor="middle">Poco frecuente.</text>
+
+  <!-- ─── BOTTOM: index reminder + self-ref ─── -->
+  <rect x="20" y="362" width="420" height="120" rx="8" fill="#313244"/>
+  <text x="230" y="382" fill="#f38ba8" font-size="12" font-weight="700" text-anchor="middle">Índice en columna FK — obligatorio</text>
+  <rect x="32" y="390" width="396" height="82" rx="5" fill="#181825"/>
+  <text x="230" y="407" fill="#cdd6f4" font-size="9" text-anchor="middle">PostgreSQL NO crea índice automático en la columna FK del hijo.</text>
+  <text x="230" y="421" fill="#cdd6f4" font-size="9" text-anchor="middle">Sin índice: cada DELETE en orders hace un Seq Scan en order_items.</text>
+  <text x="60" y="440" fill="#a6e3a1" font-size="9">CREATE INDEX ix_order_items_order_id</text>
+  <text x="60" y="454" fill="#a6e3a1" font-size="9">    ON order_items (order_id);</text>
+  <text x="60" y="466" fill="#89b4fa" font-size="9">-- Convención: ix_childtable_fkcolumn</text>
+
+  <rect x="452" y="362" width="448" height="120" rx="8" fill="#313244"/>
+  <text x="676" y="382" fill="#cba6f7" font-size="12" font-weight="700" text-anchor="middle">FK Auto-referenciante (Jerarquías)</text>
+  <rect x="464" y="390" width="424" height="82" rx="5" fill="#181825"/>
+  <text x="676" y="407" fill="#cdd6f4" font-size="9" text-anchor="middle">Una FK puede apuntar a la misma tabla para modelar árboles.</text>
+  <text x="480" y="424" fill="#a6e3a1" font-size="9">CREATE TABLE categories (</text>
+  <text x="480" y="438" fill="#a6e3a1" font-size="9">    category_id   SMALLINT GENERATED ALWAYS AS IDENTITY,</text>
+  <text x="480" y="452" fill="#a6e3a1" font-size="9">    parent_id     SMALLINT REFERENCES categories(category_id),</text>
+  <text x="480" y="466" fill="#a6e3a1" font-size="9">    ...</text>
+</svg>

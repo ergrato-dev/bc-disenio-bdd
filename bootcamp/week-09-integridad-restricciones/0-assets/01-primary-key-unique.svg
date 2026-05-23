@@ -1,0 +1,152 @@
+<svg viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="480" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="38" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">PRIMARY KEY vs UNIQUE — Garantías de Identidad</text>
+
+  <!-- ─── LEFT PANEL: PRIMARY KEY anatomy ─── -->
+  <rect x="20" y="60" width="280" height="200" rx="8" fill="#313244"/>
+  <text x="160" y="85" fill="#89b4fa" font-size="13" font-weight="700" text-anchor="middle">PRIMARY KEY</text>
+
+  <!-- icon shield outline -->
+  <path d="M120,100 L200,100 L200,135 Q160,160 120,135 Z" fill="none" stroke="#89b4fa" stroke-width="2"/>
+  <text x="160" y="125" fill="#89b4fa" font-size="11" font-weight="700" text-anchor="middle">PK</text>
+
+  <!-- three pillars -->
+  <rect x="36" y="165" width="74" height="32" rx="5" fill="#1e1e2e"/>
+  <text x="73" y="183" fill="#a6e3a1" font-size="10" font-weight="700" text-anchor="middle">NOT NULL</text>
+  <text x="73" y="193" fill="#a6e3a1" font-size="8" text-anchor="middle">siempre presente</text>
+
+  <rect x="122" y="165" width="74" height="32" rx="5" fill="#1e1e2e"/>
+  <text x="159" y="183" fill="#a6e3a1" font-size="10" font-weight="700" text-anchor="middle">UNIQUE</text>
+  <text x="159" y="193" fill="#a6e3a1" font-size="8" text-anchor="middle">sin duplicados</text>
+
+  <rect x="208" y="165" width="74" height="32" rx="5" fill="#1e1e2e"/>
+  <text x="245" y="183" fill="#a6e3a1" font-size="10" font-weight="700" text-anchor="middle">INDEX</text>
+  <text x="245" y="193" fill="#a6e3a1" font-size="8" text-anchor="middle">B-tree implícito</text>
+
+  <!-- lines from PK icon to pillars -->
+  <line x1="140" y1="155" x2="73"  y2="165" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="160" y1="160" x2="159" y2="165" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="180" y1="155" x2="245" y2="165" stroke="#45475a" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <text x="160" y="220" fill="#cdd6f4" font-size="10" text-anchor="middle">Solo 1 por tabla</text>
+  <text x="160" y="235" fill="#cdd6f4" font-size="10" text-anchor="middle">Identidad de la fila</text>
+  <text x="160" y="250" fill="#cdd6f4" font-size="10" text-anchor="middle">Convención: pk_nombretabla</text>
+
+  <!-- ─── CENTER PANEL: comparison table ─── -->
+  <rect x="320" y="60" width="280" height="280" rx="8" fill="#313244"/>
+  <text x="460" y="85" fill="#f9e2af" font-size="13" font-weight="700" text-anchor="middle">PK vs UNIQUE — Comparación</text>
+
+  <!-- header row -->
+  <rect x="330" y="95" width="260" height="26" rx="4" fill="#45475a"/>
+  <text x="385" y="113" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">Propiedad</text>
+  <text x="480" y="113" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">PRIMARY KEY</text>
+  <text x="565" y="113" fill="#cdd6f4" font-size="10" font-weight="700" text-anchor="middle">UNIQUE</text>
+
+  <!-- divider lines -->
+  <line x1="434" y1="95" x2="434" y2="375" stroke="#45475a" stroke-width="1"/>
+  <line x1="524" y1="95" x2="524" y2="375" stroke="#45475a" stroke-width="1"/>
+
+  <!-- rows -->
+  <!-- row 1 -->
+  <rect x="330" y="121" width="260" height="26" rx="0" fill="#1e1e2e"/>
+  <text x="385" y="139" fill="#cdd6f4" font-size="10" text-anchor="middle">NULLs permitidos</text>
+  <text x="480" y="139" fill="#f38ba8" font-size="12" font-weight="700" text-anchor="middle">✗</text>
+  <text x="565" y="139" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓ múltiples</text>
+
+  <!-- row 2 -->
+  <rect x="330" y="147" width="260" height="26" rx="0" fill="#313244"/>
+  <text x="385" y="165" fill="#cdd6f4" font-size="10" text-anchor="middle">Límite por tabla</text>
+  <text x="480" y="165" fill="#f38ba8" font-size="10" font-weight="700" text-anchor="middle">Solo 1</text>
+  <text x="565" y="165" fill="#a6e3a1" font-size="10" font-weight="700" text-anchor="middle">Ilimitadas</text>
+
+  <!-- row 3 -->
+  <rect x="330" y="173" width="260" height="26" rx="0" fill="#1e1e2e"/>
+  <text x="385" y="191" fill="#cdd6f4" font-size="10" text-anchor="middle">Índice implícito</text>
+  <text x="480" y="191" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+  <text x="565" y="191" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+
+  <!-- row 4 -->
+  <rect x="330" y="199" width="260" height="26" rx="0" fill="#313244"/>
+  <text x="385" y="217" fill="#cdd6f4" font-size="10" text-anchor="middle">Define identidad</text>
+  <text x="480" y="217" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+  <text x="565" y="217" fill="#f38ba8" font-size="12" font-weight="700" text-anchor="middle">✗</text>
+
+  <!-- row 5 -->
+  <rect x="330" y="225" width="260" height="26" rx="0" fill="#1e1e2e"/>
+  <text x="385" y="243" fill="#cdd6f4" font-size="10" text-anchor="middle">Referenciable (FK)</text>
+  <text x="480" y="243" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+  <text x="565" y="243" fill="#a6e3a1" font-size="11" font-weight="700" text-anchor="middle">✓ (posible)</text>
+
+  <!-- row 6 -->
+  <rect x="330" y="251" width="260" height="26" rx="0" fill="#313244"/>
+  <text x="385" y="269" fill="#cdd6f4" font-size="10" text-anchor="middle">Puede ser compuesta</text>
+  <text x="480" y="269" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+  <text x="565" y="269" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+
+  <!-- naming convention note -->
+  <rect x="330" y="290" width="260" height="40" rx="4" fill="#181825"/>
+  <text x="460" y="307" fill="#cba6f7" font-size="9" text-anchor="middle">Convenciones de nombre:</text>
+  <text x="460" y="320" fill="#cba6f7" font-size="9" text-anchor="middle">pk_tabla · uq_tabla_columna · uq_tabla_col1_col2</text>
+
+  <!-- ─── RIGHT PANEL: UUID vs BIGINT IDENTITY ─── -->
+  <rect x="620" y="60" width="280" height="280" rx="8" fill="#313244"/>
+  <text x="760" y="85" fill="#cba6f7" font-size="13" font-weight="700" text-anchor="middle">UUID vs BIGINT IDENTITY</text>
+
+  <!-- UUID box -->
+  <rect x="636" y="98" width="248" height="110" rx="6" fill="#1e1e2e"/>
+  <rect x="636" y="98" width="248" height="24" rx="6" fill="#89b4fa"/>
+  <text x="760" y="114" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">UUID (default del bootcamp)</text>
+
+  <text x="648" y="136" fill="#cdd6f4" font-size="9">✓  No predecible (seguridad)</text>
+  <text x="648" y="151" fill="#cdd6f4" font-size="9">✓  Generación en cliente posible</text>
+  <text x="648" y="166" fill="#cdd6f4" font-size="9">✓  Apto para arquitecturas distribuidas</text>
+  <text x="648" y="181" fill="#f9e2af" font-size="9">≈  16 bytes (índice más grande)</text>
+  <text x="648" y="196" fill="#f38ba8" font-size="9">✗  Poco legible para el usuario final</text>
+
+  <!-- BIGINT IDENTITY box -->
+  <rect x="636" y="222" width="248" height="110" rx="6" fill="#1e1e2e"/>
+  <rect x="636" y="222" width="248" height="24" rx="6" fill="#f9e2af"/>
+  <text x="760" y="238" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">BIGINT GENERATED ALWAYS AS IDENTITY</text>
+
+  <text x="648" y="260" fill="#cdd6f4" font-size="9">✓  Número corto y legible</text>
+  <text x="648" y="275" fill="#cdd6f4" font-size="9">✓  Útil para #factura, #ticket visibles</text>
+  <text x="648" y="290" fill="#f38ba8" font-size="9">✗  Enumerable (expone volumen del negocio)</text>
+  <text x="648" y="305" fill="#f38ba8" font-size="9">✗  Conflictos en sharding/multi-DB</text>
+  <text x="648" y="320" fill="#f38ba8" font-size="9">✗  No se puede generar en cliente</text>
+
+  <!-- decision rule -->
+  <rect x="620" y="355" width="280" height="36" rx="6" fill="#181825"/>
+  <text x="760" y="371" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">Regla: UUID para toda entidad interna.</text>
+  <text x="760" y="383" fill="#f9e2af" font-size="9" text-anchor="middle">BIGINT IDENTITY solo para secuencias visibles al negocio.</text>
+
+  <!-- ─── BOTTOM: NULL behavior in UNIQUE ─── -->
+  <rect x="20" y="275" width="580" height="90" rx="8" fill="#313244"/>
+  <text x="310" y="296" fill="#cdd6f4" font-size="12" font-weight="700" text-anchor="middle">Comportamiento de NULL en UNIQUE (PostgreSQL)</text>
+
+  <rect x="32" y="306" width="268" height="48" rx="5" fill="#181825"/>
+  <text x="166" y="322" fill="#a6e3a1" font-size="10" font-weight="700" text-anchor="middle">UNIQUE permite múltiples NULLs</text>
+  <text x="166" y="336" fill="#cdd6f4" font-size="9" text-anchor="middle">NULL ≠ NULL en comparación de unicidad</text>
+  <text x="166" y="348" fill="#cdd6f4" font-size="9" text-anchor="middle">→ dos filas con NULL son distintas</text>
+
+  <rect x="312" y="306" width="276" height="48" rx="5" fill="#181825"/>
+  <text x="450" y="322" fill="#f9e2af" font-size="10" font-weight="700" text-anchor="middle">Índice parcial para "solo un NULL"</text>
+  <text x="450" y="336" fill="#cdd6f4" font-size="9" text-anchor="middle">CREATE UNIQUE INDEX uix_t_col ON t(col)</text>
+  <text x="450" y="348" fill="#cdd6f4" font-size="9" text-anchor="middle">  WHERE col IS NOT NULL;</text>
+
+  <!-- ─── BOTTOM 2: composite PK note ─── -->
+  <rect x="20" y="378" width="580" height="84" rx="8" fill="#313244"/>
+  <text x="310" y="399" fill="#cdd6f4" font-size="12" font-weight="700" text-anchor="middle">PK Compuesta vs Surrogate Key</text>
+
+  <rect x="32" y="408" width="258" height="46" rx="5" fill="#181825"/>
+  <text x="161" y="424" fill="#a6e3a1" font-size="10" font-weight="700" text-anchor="middle">PK Compuesta — cuándo usarla</text>
+  <text x="161" y="438" fill="#cdd6f4" font-size="9" text-anchor="middle">Tablas de unión (m:n) sin datos propios.</text>
+  <text x="161" y="450" fill="#cdd6f4" font-size="9" text-anchor="middle">Ej: (student_id, course_id) en enrollments</text>
+
+  <rect x="302" y="408" width="286" height="46" rx="5" fill="#181825"/>
+  <text x="445" y="424" fill="#f9e2af" font-size="10" font-weight="700" text-anchor="middle">Surrogate Key — cuándo preferirla</text>
+  <text x="445" y="438" fill="#cdd6f4" font-size="9" text-anchor="middle">Cuando la tabla tiene hijos que la referencian.</text>
+  <text x="445" y="450" fill="#cdd6f4" font-size="9" text-anchor="middle">Ej: enrollment_id UUID para enrollment_history</text>
+</svg>

@@ -1,0 +1,86 @@
+<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="380" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="36" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">Mapa Completo de Constraints en PostgreSQL</text>
+  <text x="460" y="54" fill="#45475a" font-size="11" text-anchor="middle">Tipos de restricciones · Garantía · Comando DDL · Convención de nombre</text>
+
+  <!-- ─── HEADER ROW ─── -->
+  <rect x="20" y="66" width="880" height="28" rx="6" fill="#45475a"/>
+  <text x="104" y="85" fill="#cdd6f4" font-size="11" font-weight="700" text-anchor="middle">Constraint</text>
+  <text x="290" y="85" fill="#cdd6f4" font-size="11" font-weight="700" text-anchor="middle">Garantiza</text>
+  <text x="530" y="85" fill="#cdd6f4" font-size="11" font-weight="700" text-anchor="middle">Comando DDL (ejemplo)</text>
+  <text x="790" y="85" fill="#cdd6f4" font-size="11" font-weight="700" text-anchor="middle">Nombre convención</text>
+
+  <!-- vertical dividers -->
+  <line x1="188" y1="66" x2="188" y2="370" stroke="#45475a" stroke-width="1"/>
+  <line x1="400" y1="66" x2="400" y2="370" stroke="#45475a" stroke-width="1"/>
+  <line x1="670" y1="66" x2="670" y2="370" stroke="#45475a" stroke-width="1"/>
+
+  <!-- ─── ROW 1: PRIMARY KEY ─── -->
+  <rect x="20" y="94" width="880" height="44" rx="0" fill="#313244"/>
+  <!-- badge -->
+  <rect x="32" y="100" width="130" height="22" rx="4" fill="#89b4fa"/>
+  <text x="97" y="115" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">PRIMARY KEY</text>
+  <text x="290" y="112" fill="#cdd6f4" font-size="9" text-anchor="middle">Identidad única de la fila.</text>
+  <text x="290" y="126" fill="#cdd6f4" font-size="9" text-anchor="middle">NOT NULL + UNIQUE implícito.</text>
+  <text x="535" y="112" fill="#a6e3a1" font-size="9" text-anchor="middle">CONSTRAINT pk_users PRIMARY KEY (user_id)</text>
+  <text x="790" y="119" fill="#cba6f7" font-size="10" font-weight="700" text-anchor="middle">pk_tabla</text>
+
+  <!-- ─── ROW 2: UNIQUE ─── -->
+  <rect x="20" y="138" width="880" height="44" rx="0" fill="#1e1e2e"/>
+  <rect x="32" y="144" width="130" height="22" rx="4" fill="#cba6f7"/>
+  <text x="97" y="159" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">UNIQUE</text>
+  <text x="290" y="156" fill="#cdd6f4" font-size="9" text-anchor="middle">Sin valores duplicados</text>
+  <text x="290" y="170" fill="#cdd6f4" font-size="9" text-anchor="middle">en columna/grupo. NULLs permitidos.</text>
+  <text x="535" y="156" fill="#a6e3a1" font-size="9" text-anchor="middle">CONSTRAINT uq_users_email UNIQUE (user_email)</text>
+  <text x="535" y="170" fill="#a6e3a1" font-size="9" text-anchor="middle">CONSTRAINT uq_team_pair UNIQUE (team_id, user_id)</text>
+  <text x="790" y="163" fill="#cba6f7" font-size="10" font-weight="700" text-anchor="middle">uq_tabla_columna</text>
+
+  <!-- ─── ROW 3: NOT NULL ─── -->
+  <rect x="20" y="182" width="880" height="44" rx="0" fill="#313244"/>
+  <rect x="32" y="188" width="130" height="22" rx="4" fill="#a6e3a1"/>
+  <text x="97" y="203" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">NOT NULL</text>
+  <text x="290" y="200" fill="#cdd6f4" font-size="9" text-anchor="middle">Columna siempre tiene</text>
+  <text x="290" y="214" fill="#cdd6f4" font-size="9" text-anchor="middle">un valor (no acepta NULL).</text>
+  <text x="535" y="200" fill="#a6e3a1" font-size="9" text-anchor="middle">user_name  VARCHAR(100)  NOT NULL</text>
+  <text x="535" y="214" fill="#89b4fa" font-size="9" text-anchor="middle">-- se declara inline en la columna, no tiene nombre propio</text>
+  <text x="790" y="207" fill="#cba6f7" font-size="10" font-weight="700" text-anchor="middle">(sin nombre)</text>
+
+  <!-- ─── ROW 4: FOREIGN KEY ─── -->
+  <rect x="20" y="226" width="880" height="44" rx="0" fill="#1e1e2e"/>
+  <rect x="32" y="232" width="130" height="22" rx="4" fill="#f9e2af"/>
+  <text x="97" y="247" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">FOREIGN KEY</text>
+  <text x="290" y="244" fill="#cdd6f4" font-size="9" text-anchor="middle">FK apunta a fila existente</text>
+  <text x="290" y="258" fill="#cdd6f4" font-size="9" text-anchor="middle">en la tabla padre.</text>
+  <text x="535" y="244" fill="#a6e3a1" font-size="9" text-anchor="middle">CONSTRAINT fk_order_items_order_id</text>
+  <text x="535" y="258" fill="#a6e3a1" font-size="9" text-anchor="middle">    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE</text>
+  <text x="790" y="251" fill="#cba6f7" font-size="10" font-weight="700" text-anchor="middle">fk_childtable_column</text>
+
+  <!-- ─── ROW 5: CHECK ─── -->
+  <rect x="20" y="270" width="880" height="44" rx="0" fill="#313244"/>
+  <rect x="32" y="276" width="130" height="22" rx="4" fill="#f38ba8"/>
+  <text x="97" y="291" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">CHECK</text>
+  <text x="290" y="288" fill="#cdd6f4" font-size="9" text-anchor="middle">Expresión booleana</text>
+  <text x="290" y="302" fill="#cdd6f4" font-size="9" text-anchor="middle">válida en la fila. Sin subconsultas.</text>
+  <text x="535" y="288" fill="#a6e3a1" font-size="9" text-anchor="middle">CONSTRAINT ck_products_price  CHECK (product_price &gt; 0)</text>
+  <text x="535" y="302" fill="#a6e3a1" font-size="9" text-anchor="middle">CONSTRAINT ck_promos_dates    CHECK (ends_at &gt; starts_at)</text>
+  <text x="790" y="295" fill="#cba6f7" font-size="10" font-weight="700" text-anchor="middle">ck_tabla_descripcion</text>
+
+  <!-- ─── ROW 6: EXCLUDE (bonus) ─── -->
+  <rect x="20" y="314" width="880" height="44" rx="0" fill="#1e1e2e"/>
+  <rect x="32" y="320" width="130" height="22" rx="4" fill="#45475a"/>
+  <text x="97" y="335" fill="#cdd6f4" font-size="11" font-weight="700" text-anchor="middle">EXCLUDE</text>
+  <text x="290" y="332" fill="#45475a" font-size="9" text-anchor="middle">Prohíbe que dos filas satisfagan</text>
+  <text x="290" y="346" fill="#45475a" font-size="9" text-anchor="middle">un operador (p.ej. rangos solapados).</text>
+  <text x="535" y="332" fill="#45475a" font-size="9" text-anchor="middle">CONSTRAINT excl_rooms_overlap</text>
+  <text x="535" y="346" fill="#45475a" font-size="9" text-anchor="middle">    EXCLUDE USING gist (room_id WITH =, during WITH &amp;&amp;)</text>
+  <text x="790" y="339" fill="#45475a" font-size="10" font-weight="700" text-anchor="middle">excl_tabla_descripcion</text>
+  <!-- "avanzado" badge -->
+  <rect x="756" y="322" width="64" height="14" rx="3" fill="#313244"/>
+  <text x="788" y="332" fill="#cba6f7" font-size="8" text-anchor="middle">semana 12+</text>
+
+  <!-- bottom label -->
+  <text x="460" y="368" fill="#45475a" font-size="9" text-anchor="middle">pg_constraint · contype: p=PK · u=UNIQUE · n=NOT NULL · f=FK · c=CHECK · x=EXCLUDE</text>
+</svg>

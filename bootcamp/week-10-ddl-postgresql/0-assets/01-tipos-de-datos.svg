@@ -1,0 +1,166 @@
+<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="36" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">Tipos de Datos en PostgreSQL 16 — Guía de Selección</text>
+
+  <!-- ─── NUMBERS section ─── -->
+  <rect x="20" y="55" width="270" height="210" rx="8" fill="#313244"/>
+  <rect x="20" y="55" width="270" height="26" rx="8" fill="#cba6f7"/>
+  <text x="155" y="73" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">Números</text>
+
+  <!-- integer row header -->
+  <rect x="30" y="89" width="250" height="20" rx="3" fill="#45475a"/>
+  <text x="155" y="103" fill="#cdd6f4" font-size="9" font-weight="700" text-anchor="middle">Enteros</text>
+  <!-- rows -->
+  <rect x="30" y="109" width="250" height="18" rx="0" fill="#181825"/>
+  <text x="80"  y="122" fill="#a6e3a1" font-size="9" text-anchor="middle">SMALLINT</text>
+  <text x="200" y="122" fill="#cdd6f4" font-size="9" text-anchor="middle">Flags, prioridad, qty &lt; 32K</text>
+  <rect x="30" y="127" width="250" height="18" rx="0" fill="#313244"/>
+  <text x="80"  y="140" fill="#a6e3a1" font-size="9" text-anchor="middle">INTEGER</text>
+  <text x="200" y="140" fill="#cdd6f4" font-size="9" text-anchor="middle">Stock, contadores generales</text>
+  <rect x="30" y="145" width="250" height="18" rx="0" fill="#181825"/>
+  <text x="80"  y="158" fill="#a6e3a1" font-size="9" text-anchor="middle">BIGINT</text>
+  <text x="200" y="158" fill="#cdd6f4" font-size="9" text-anchor="middle">#factura, #ticket, métricas</text>
+
+  <!-- decimal row header -->
+  <rect x="30" y="169" width="250" height="20" rx="3" fill="#45475a"/>
+  <text x="155" y="183" fill="#cdd6f4" font-size="9" font-weight="700" text-anchor="middle">Decimales</text>
+  <rect x="30" y="189" width="250" height="18" rx="0" fill="#181825"/>
+  <text x="80"  y="202" fill="#a6e3a1" font-size="9" text-anchor="middle">NUMERIC(p,s)</text>
+  <text x="200" y="202" fill="#cdd6f4" font-size="9" text-anchor="middle">Dinero, tasas (exacto)</text>
+  <rect x="30" y="207" width="250" height="18" rx="0" fill="#313244"/>
+  <text x="80"  y="220" fill="#f38ba8" font-size="9" text-anchor="middle">REAL/DOUBLE</text>
+  <text x="200" y="220" fill="#f38ba8" font-size="9" text-anchor="middle">❌ nunca para dinero</text>
+  <rect x="30" y="225" width="250" height="18" rx="0" fill="#181825"/>
+  <text x="80"  y="238" fill="#f38ba8" font-size="9" text-anchor="middle">MONEY</text>
+  <text x="200" y="238" fill="#f38ba8" font-size="9" text-anchor="middle">❌ legacy, evitar</text>
+
+  <!-- ─── TEXT section ─── -->
+  <rect x="302" y="55" width="250" height="210" rx="8" fill="#313244"/>
+  <rect x="302" y="55" width="250" height="26" rx="8" fill="#89b4fa"/>
+  <text x="427" y="73" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">Texto</text>
+
+  <rect x="312" y="89" width="230" height="120" rx="5" fill="#181825"/>
+  <text x="312" y="104" fill="#cdd6f4" font-size="8" dx="8">CHAR(n)</text>
+  <text x="312" y="117" fill="#45475a" font-size="8" dx="8">Solo longitud fija: códigos ISO, IATA</text>
+  <line x1="312" y1="122" x2="542" y2="122" stroke="#45475a" stroke-width="1"/>
+  <text x="312" y="136" fill="#a6e3a1" font-size="8" dx="8">VARCHAR(n)</text>
+  <text x="312" y="149" fill="#cdd6f4" font-size="8" dx="8">Longitud máxima conocida: email, nombre</text>
+  <text x="312" y="160" fill="#cdd6f4" font-size="8" dx="8">user_name VARCHAR(100), sku VARCHAR(40)</text>
+  <line x1="312" y1="165" x2="542" y2="165" stroke="#45475a" stroke-width="1"/>
+  <text x="312" y="179" fill="#a6e3a1" font-size="8" dx="8">TEXT</text>
+  <text x="312" y="192" fill="#cdd6f4" font-size="8" dx="8">Sin límite: descripción, cuerpo de msg</text>
+  <text x="312" y="203" fill="#89b4fa" font-size="7" dx="8">VARCHAR(n) y TEXT = mismo almacenamiento</text>
+
+  <rect x="312" y="219" width="230" height="35" rx="5" fill="#181825"/>
+  <text x="427" y="233" fill="#f9e2af" font-size="8" font-weight="700" text-anchor="middle">Tip: VARCHAR(n) en columnas indexadas</text>
+  <text x="427" y="247" fill="#cdd6f4" font-size="8" text-anchor="middle">mejora estimaciones del planificador</text>
+
+  <!-- ─── DATE/TIME section ─── -->
+  <rect x="564" y="55" width="336" height="210" rx="8" fill="#313244"/>
+  <rect x="564" y="55" width="336" height="26" rx="8" fill="#f9e2af"/>
+  <text x="732" y="73" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">Fecha y Hora</text>
+
+  <!-- rows -->
+  <rect x="574" y="89" width="316" height="20" rx="3" fill="#45475a"/>
+  <text x="635" y="103" fill="#cdd6f4" font-size="9" font-weight="700" text-anchor="middle">Tipo</text>
+  <text x="778" y="103" fill="#cdd6f4" font-size="9" font-weight="700" text-anchor="middle">Uso recomendado</text>
+
+  <rect x="574" y="109" width="316" height="18" fill="#181825"/>
+  <text x="635" y="122" fill="#a6e3a1" font-size="9" text-anchor="middle">TIMESTAMPTZ</text>
+  <text x="778" y="122" fill="#a6e3a1" font-size="9" font-weight="700" text-anchor="middle">✅ Siempre por defecto</text>
+
+  <rect x="574" y="127" width="316" height="18" fill="#313244"/>
+  <text x="635" y="140" fill="#cdd6f4" font-size="9" text-anchor="middle">DATE</text>
+  <text x="778" y="140" fill="#cdd6f4" font-size="9" text-anchor="middle">Cumpleaños, vencimiento</text>
+
+  <rect x="574" y="145" width="316" height="18" fill="#181825"/>
+  <text x="635" y="158" fill="#cdd6f4" font-size="9" text-anchor="middle">INTERVAL</text>
+  <text x="778" y="158" fill="#cdd6f4" font-size="9" text-anchor="middle">Duraciones, períodos</text>
+
+  <rect x="574" y="163" width="316" height="18" fill="#313244"/>
+  <text x="635" y="176" fill="#f38ba8" font-size="9" text-anchor="middle">TIMESTAMP</text>
+  <text x="778" y="176" fill="#f38ba8" font-size="9" text-anchor="middle">⚠️ Solo datos históricos legacy</text>
+
+  <rect x="574" y="181" width="316" height="18" fill="#181825"/>
+  <text x="635" y="194" fill="#45475a" font-size="9" text-anchor="middle">TIME / TIMETZ</text>
+  <text x="778" y="194" fill="#45475a" font-size="9" text-anchor="middle">Raramente necesario</text>
+
+  <rect x="574" y="209" width="316" height="44" rx="5" fill="#181825"/>
+  <text x="732" y="225" fill="#f9e2af" font-size="9" font-weight="700" text-anchor="middle">TIMESTAMP vs TIMESTAMPTZ</text>
+  <text x="732" y="240" fill="#cdd6f4" font-size="8" text-anchor="middle">TIMESTAMP: no guarda zona horaria — peligroso en apps globales</text>
+  <text x="732" y="252" fill="#a6e3a1" font-size="8" text-anchor="middle">TIMESTAMPTZ: siempre en UTC internamente, muestra en TZ local</text>
+
+  <!-- ─── BOTTOM ROW: boolean + UUID + JSON + special ─── -->
+  <!-- BOOLEAN -->
+  <rect x="20" y="278" width="148" height="120" rx="8" fill="#313244"/>
+  <rect x="20" y="278" width="148" height="24" rx="8" fill="#a6e3a1"/>
+  <text x="94" y="295" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">BOOLEAN</text>
+  <rect x="30" y="308" width="128" height="80" rx="4" fill="#181825"/>
+  <text x="94" y="326" fill="#a6e3a1" font-size="9" text-anchor="middle">is_active BOOLEAN</text>
+  <text x="94" y="340" fill="#cdd6f4" font-size="9" text-anchor="middle">NOT NULL DEFAULT TRUE</text>
+  <line x1="30" y1="348" x2="158" y2="348" stroke="#45475a" stroke-width="1"/>
+  <text x="94" y="362" fill="#f38ba8" font-size="8" text-anchor="middle">❌ nunca SMALLINT</text>
+  <text x="94" y="374" fill="#f38ba8" font-size="8" text-anchor="middle">ni VARCHAR para flags</text>
+
+  <!-- UUID -->
+  <rect x="179" y="278" width="148" height="120" rx="8" fill="#313244"/>
+  <rect x="179" y="278" width="148" height="24" rx="8" fill="#89b4fa"/>
+  <text x="253" y="295" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">UUID</text>
+  <rect x="189" y="308" width="128" height="80" rx="4" fill="#181825"/>
+  <text x="253" y="323" fill="#a6e3a1" font-size="8" text-anchor="middle">DEFAULT gen_random_uuid()</text>
+  <text x="253" y="336" fill="#cdd6f4" font-size="8" text-anchor="middle">16 bytes, no predecible</text>
+  <line x1="189" y1="345" x2="317" y2="345" stroke="#45475a" stroke-width="1"/>
+  <text x="253" y="359" fill="#cdd6f4" font-size="8" text-anchor="middle">Sin extensión desde PG 13</text>
+  <text x="253" y="372" fill="#89b4fa" font-size="8" text-anchor="middle">Ideal para toda PK interna</text>
+
+  <!-- JSONB -->
+  <rect x="338" y="278" width="148" height="120" rx="8" fill="#313244"/>
+  <rect x="338" y="278" width="148" height="24" rx="8" fill="#cba6f7"/>
+  <text x="412" y="295" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">JSON / JSONB</text>
+  <rect x="348" y="308" width="128" height="80" rx="4" fill="#181825"/>
+  <text x="412" y="323" fill="#a6e3a1" font-size="9" text-anchor="middle">JSONB (binario)</text>
+  <text x="412" y="336" fill="#cdd6f4" font-size="8" text-anchor="middle">Indexable con GIN</text>
+  <line x1="348" y1="345" x2="476" y2="345" stroke="#45475a" stroke-width="1"/>
+  <text x="412" y="359" fill="#f38ba8" font-size="8" text-anchor="middle">JSON (texto literal)</text>
+  <text x="412" y="372" fill="#45475a" font-size="8" text-anchor="middle">Solo si preservar orden</text>
+
+  <!-- SPECIAL -->
+  <rect x="497" y="278" width="403" height="120" rx="8" fill="#313244"/>
+  <rect x="497" y="278" width="403" height="24" rx="8" fill="#f38ba8"/>
+  <text x="698" y="295" fill="#1e1e2e" font-size="11" font-weight="700" text-anchor="middle">Tipos Especiales</text>
+  <rect x="507" y="308" width="385" height="80" rx="4" fill="#181825"/>
+
+  <text x="523" y="326" fill="#a6e3a1" font-size="9">INET / CIDR</text>
+  <text x="523" y="340" fill="#cdd6f4" font-size="8">Direcciones y bloques de red IPv4/IPv6</text>
+
+  <text x="660" y="326" fill="#a6e3a1" font-size="9">BYTEA</text>
+  <text x="660" y="340" fill="#cdd6f4" font-size="8">Datos binarios (archivos, imágenes)</text>
+
+  <text x="780" y="326" fill="#a6e3a1" font-size="9">CHAR(7)</text>
+  <text x="780" y="340" fill="#cdd6f4" font-size="8">Colores HEX #RRGGBB</text>
+
+  <text x="523" y="358" fill="#f9e2af" font-size="9">DATERANGE / NUMRANGE</text>
+  <text x="523" y="371" fill="#cdd6f4" font-size="8">Rangos nativos — útil para horarios y precios por rango</text>
+
+  <text x="730" y="358" fill="#45475a" font-size="9">CREATE TYPE AS ENUM</text>
+  <text x="730" y="371" fill="#45475a" font-size="8">Preferir CHECK + VARCHAR (más flexible)</text>
+
+  <!-- ─── BOTTOM: quick-ref strip ─── -->
+  <rect x="20" y="410" width="880" height="74" rx="8" fill="#313244"/>
+  <text x="460" y="430" fill="#cdd6f4" font-size="12" font-weight="700" text-anchor="middle">Decisión Rápida</text>
+
+  <text x="60"  y="450" fill="#a6e3a1" font-size="9">PK interna → UUID</text>
+  <text x="185" y="450" fill="#a6e3a1" font-size="9">N° visible usuario → BIGINT IDENTITY</text>
+  <text x="380" y="450" fill="#a6e3a1" font-size="9">Dinero → NUMERIC(10,2)</text>
+  <text x="540" y="450" fill="#a6e3a1" font-size="9">Nombre / email → VARCHAR(n)</text>
+  <text x="720" y="450" fill="#a6e3a1" font-size="9">Descripción → TEXT</text>
+
+  <text x="60"  y="468" fill="#cdd6f4" font-size="9">Fecha+hora → TIMESTAMPTZ</text>
+  <text x="225" y="468" fill="#cdd6f4" font-size="9">Solo fecha → DATE</text>
+  <text x="350" y="468" fill="#cdd6f4" font-size="9">Flag → BOOLEAN</text>
+  <text x="460" y="468" fill="#cdd6f4" font-size="9">Cantidad pequeña → SMALLINT</text>
+  <text x="660" y="468" fill="#cdd6f4" font-size="9">Metadatos → JSONB</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="360" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="32" fill="#cdd6f4" font-size="17" font-weight="700" text-anchor="middle">DDL Idempotente — Scripts Seguros para Ejecutar N Veces</text>
+
+  <!-- ─── LEFT: NON-IDEMPOTENT ─── -->
+  <rect x="20" y="50" width="418" height="295" rx="8" fill="#313244"/>
+  <rect x="20" y="50" width="418" height="26" rx="8" fill="#f38ba8"/>
+  <text x="229" y="68" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">❌ Script NO Idempotente</text>
+
+  <rect x="30" y="84" width="398" height="248" rx="5" fill="#181825"/>
+  <text x="42" y="101" fill="#45475a" font-size="9">-- Primera ejecución: ✅ funciona</text>
+  <text x="42" y="116" fill="#cba6f7" font-size="9">CREATE SCHEMA app;</text>
+  <text x="42" y="130" fill="#45475a" font-size="9">-- ERROR en segunda ejecución:</text>
+  <text x="42" y="144" fill="#f38ba8" font-size="9">-- ERROR: schema "app" already exists</text>
+
+  <line x1="30" y1="155" x2="428" y2="155" stroke="#45475a" stroke-width="1"/>
+
+  <text x="42" y="171" fill="#cba6f7" font-size="9">CREATE TABLE app.users (</text>
+  <text x="42" y="184" fill="#cba6f7" font-size="9">    user_id UUID PRIMARY KEY,</text>
+  <text x="42" y="197" fill="#cba6f7" font-size="9">    user_email VARCHAR(150) NOT NULL</text>
+  <text x="42" y="210" fill="#cba6f7" font-size="9">);</text>
+  <text x="42" y="224" fill="#f38ba8" font-size="9">-- ERROR: relation "users" already exists</text>
+
+  <line x1="30" y1="235" x2="428" y2="235" stroke="#45475a" stroke-width="1"/>
+
+  <text x="42" y="251" fill="#cba6f7" font-size="9">ALTER TABLE app.users</text>
+  <text x="42" y="264" fill="#cba6f7" font-size="9">    ADD COLUMN user_phone VARCHAR(20);</text>
+  <text x="42" y="278" fill="#f38ba8" font-size="9">-- ERROR: column "user_phone" already exists</text>
+
+  <text x="42" y="305" fill="#f9e2af" font-size="8">Consecuencia: el script falla a mitad de camino,</text>
+  <text x="42" y="318" fill="#f9e2af" font-size="8">dejando la BD en un estado inconsistente.</text>
+
+  <!-- ─── RIGHT: IDEMPOTENT ─── -->
+  <rect x="482" y="50" width="418" height="295" rx="8" fill="#313244"/>
+  <rect x="482" y="50" width="418" height="26" rx="8" fill="#a6e3a1"/>
+  <text x="691" y="68" fill="#1e1e2e" font-size="12" font-weight="700" text-anchor="middle">✅ Script Idempotente (Patrón Correcto)</text>
+
+  <rect x="492" y="84" width="398" height="248" rx="5" fill="#181825"/>
+  <text x="504" y="101" fill="#45475a" font-size="9">-- Envuelto en transacción:</text>
+  <text x="504" y="114" fill="#a6e3a1" font-size="9">BEGIN;</text>
+  <text x="504" y="127" fill="#45475a" font-size="9">-- No falla si el schema ya existe:</text>
+  <text x="504" y="140" fill="#a6e3a1" font-size="9">CREATE SCHEMA IF NOT EXISTS app;</text>
+  <text x="504" y="153" fill="#a6e3a1" font-size="9">SET search_path = app;</text>
+
+  <line x1="492" y1="162" x2="890" y2="162" stroke="#45475a" stroke-width="1"/>
+
+  <text x="504" y="176" fill="#45475a" font-size="9">-- No falla si la tabla ya existe:</text>
+  <text x="504" y="189" fill="#a6e3a1" font-size="9">CREATE TABLE IF NOT EXISTS app.users (</text>
+  <text x="504" y="202" fill="#a6e3a1" font-size="9">    user_id    UUID NOT NULL DEFAULT gen_random_uuid(),</text>
+  <text x="504" y="215" fill="#a6e3a1" font-size="9">    user_email VARCHAR(150) NOT NULL,</text>
+  <text x="504" y="228" fill="#a6e3a1" font-size="9">    CONSTRAINT pk_users PRIMARY KEY (user_id)</text>
+  <text x="504" y="241" fill="#a6e3a1" font-size="9">);</text>
+
+  <line x1="492" y1="250" x2="890" y2="250" stroke="#45475a" stroke-width="1"/>
+
+  <text x="504" y="264" fill="#45475a" font-size="9">-- Agregar columna solo si no existe (PG 9.6+):</text>
+  <text x="504" y="277" fill="#a6e3a1" font-size="9">ALTER TABLE app.users</text>
+  <text x="504" y="290" fill="#a6e3a1" font-size="9">    ADD COLUMN IF NOT EXISTS user_phone VARCHAR(20);</text>
+
+  <text x="504" y="313" fill="#a6e3a1" font-size="9">COMMIT;</text>
+
+  <!-- ─── BOTTOM STRIP ─── -->
+  <rect x="20" y="355" width="0" height="0"/>
+</svg>

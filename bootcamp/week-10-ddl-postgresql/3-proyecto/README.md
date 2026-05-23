@@ -1,52 +1,97 @@
-# Proyecto Semana 10 — Script DDL completo y probado para un sistema de gestión de proyectos
+# Proyecto Semana 10 — TaskFlow: Sistema de Gestión de Proyectos
 
 > **Fase:** Modelo Físico &nbsp;|&nbsp; **Semana:** 10 de 14
 
-## 📋 Contexto del Negocio
+## Contexto del Negocio
 
-<!-- TODO: Describir el contexto de negocio del proyecto (2-3 párrafos) -->
+**TaskFlow** es una plataforma de gestión de proyectos que permite a equipos
+de desarrollo organizar su trabajo mediante proyectos, tareas y etiquetas.
+Funciona de forma similar a Linear o Jira: cada organización gestiona
+múltiples proyectos, y cada proyecto tiene tareas asignadas a sus miembros.
 
-## 🎯 Objetivo
+La plataforma exige que cada tarea tenga un **número de ticket visible**
+(ej: `TASK-42`) para facilitar la comunicación entre el equipo, además de un
+identificador interno UUID para las integraciones de API.
 
-Aplicar los conceptos aprendidos en la Semana 10 para diseñar e implementar una solución
-de base de datos que resuelva el problema planteado.
+---
 
-## 📐 Requerimientos
+## Objetivo
 
-<!-- TODO: Listar los requerimientos funcionales del sistema (entidades, relaciones, reglas de negocio) -->
+Escribir el script DDL completo para TaskFlow aplicando los conceptos de la
+Semana 10: selección de tipos de datos, organización en schema, uso correcto
+de `GENERATED ALWAYS AS IDENTITY` para el número de ticket, y patrón de
+script idempotente.
 
-### Requerimientos funcionales
+---
 
-- [ ] RF-01:
-- [ ] RF-02:
-- [ ] RF-03:
+## Requerimientos Funcionales
 
-### Restricciones de diseño
+| Código | Requerimiento |
+|--------|---------------|
+| RF-01  | El sistema gestiona **organizaciones** que agrupan miembros y proyectos |
+| RF-02  | Un **miembro** pertenece a una organización y tiene un rol (`admin`, `manager`, `developer`, `viewer`) |
+| RF-03  | Un miembro puede ser **miembro de proyecto** con un rol adicional (`lead`, `developer`, `reviewer`, `observer`) |
+| RF-04  | Cada **proyecto** tiene un código corto único dentro de su organización (`project_key`, máx. 10 chars) |
+| RF-05  | Un proyecto puede estar en estado `active`, `on_hold`, `completed` o `archived` |
+| RF-06  | Cada **tarea** tiene un `task_number` auto-incremental visible al usuario y un `task_id` UUID interno |
+| RF-07  | Las tareas tienen prioridad numérica del 1 (crítica) al 4 (baja) |
+| RF-08  | Las tareas tienen estado: `backlog`, `in_progress`, `in_review`, `done`, `cancelled` |
+| RF-09  | Cada proyecto puede tener **etiquetas** (`labels`) con nombre y color hexadecimal (#RRGGBB) |
+| RF-10  | Una tarea puede tener múltiples etiquetas (relación N:M) |
+| RF-11  | Los miembros pueden escribir **comentarios** en las tareas |
+| RF-12  | Se pueden adjuntar **archivos** a las tareas, guardando nombre y tamaño en bytes |
 
-- [ ] Aplicar las convenciones de nomenclatura del bootcamp
-- [ ] Normalizar hasta mínimo 3FN (salvo justificación documentada)
-- [ ] Todas las `FOREIGN KEY` deben tener política `ON DELETE` explícita
+---
 
-## 📦 Entregables
+## Diagrama de Entidades
 
-- [ ] Script DDL idempotente ejecutable en PostgreSQL 16+
-- [ ] Script de datos de prueba (`INSERT`s) que respetan todas las constraints
+```
+organizations
+    ├── members  (FK → organizations)
+    ├── projects (FK → organizations, owner_id → members)
+    │     ├── project_members (FK → projects, members)
+    │     ├── labels          (FK → projects)
+    │     └── tasks           (FK → projects, assignee → members, reporter → members)
+    │           ├── task_labels  (FK → tasks, labels)
+    │           ├── comments     (FK → tasks, author → members)
+    │           └── attachments  (FK → tasks, uploaded_by → members)
+```
 
-## 🚀 Instrucciones
+---
 
-1. Trabaja en el directorio `starter/`
-2. Lee los comentarios `-- TODO:` en cada archivo y completa el código
-3. Prueba tu solución ejecutando los scripts en PostgreSQL 16+
-4. Documenta tus decisiones de diseño en este README
+## Decisiones de Diseño que Debes Tomar
 
-## ✅ Criterios de Aceptación
+Antes de escribir el DDL, responde estas preguntas en un comentario dentro
+de tu script:
 
-- [ ] Todos los scripts SQL ejecutan sin errores en PostgreSQL 16+
-- [ ] Las constraints nombradas siguen la convención `tipo_tabla_columna`
-- [ ] El diseño está justificado en comentarios SQL o en este README
+1. ¿Qué tipo usas para `task_priority`? ¿Por qué no `VARCHAR`?
+2. ¿Por qué `task_number` es `BIGINT GENERATED ALWAYS AS IDENTITY` en lugar
+   de `UUID` o `SERIAL`?
+3. ¿Qué tipo usas para `label_color`? ¿Cómo validas el formato `#RRGGBB`?
+4. ¿Qué política `ON DELETE` aplicas en `task_labels.task_id`? ¿Y en
+   `task_labels.label_id`?
+5. ¿Por qué `project_members` tiene una PK propia UUID en lugar de una PK
+   compuesta `(project_id, member_id)`?
 
-## 🔗 Referencias
+---
 
-- [Semana 10 — Teoría](../1-teoria/)
-- [Semana 10 — Prácticas](../2-practicas/)
-- [Documentación PostgreSQL 16](https://www.postgresql.org/docs/16/)
+## Entregables
+
+- [ ] Archivo `starter/taskflow-ddl.sql` completado y probado en PostgreSQL 16
+- [ ] El script debe ejecutarse sin errores dos veces seguidas (idempotente)
+- [ ] El script debe incluir al menos 2 filas de datos de prueba por tabla
+- [ ] Responde las 5 preguntas de diseño en comentarios dentro del SQL
+
+### Criterios de Evaluación
+
+| Criterio                                           | Puntaje |
+|----------------------------------------------------|---------|
+| Tipos de datos correctos y justificados            | 25 %    |
+| Constraints nombrados con la convención del bootcamp | 25 %  |
+| Script idempotente (`IF NOT EXISTS`)               | 20 %    |
+| Índices en todas las columnas FK                   | 15 %    |
+| Datos de prueba coherentes y respuestas de diseño  | 15 %    |
+
+---
+
+← [Práctica: ShopHub DDL](../2-practicas/README.md) | → [Recursos](../4-recursos/ebooks-free/README.md)

@@ -1,0 +1,101 @@
+<svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="420" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="32" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">Estrategias de Multi-Tenancy</text>
+  <text x="460" y="52" fill="#6c7086" font-size="13" text-anchor="middle">Múltiples clientes comparten la misma base de datos, aislados entre sí</text>
+
+  <!-- Divider -->
+  <line x1="460" y1="65" x2="460" y2="330" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+  <!-- ═══ LEFT: Schema per tenant ═══ -->
+  <text x="230" y="80" fill="#89b4fa" font-size="13" font-weight="700" text-anchor="middle">Estrategia 1 — Schema por Tenant</text>
+
+  <!-- Schema Acme box -->
+  <rect x="30" y="92" width="186" height="130" rx="8" fill="#1e3a5f" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="123" y="112" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">schema_acme</text>
+  <rect x="46" y="120" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="123" y="133" fill="#6c7086" font-size="10" text-anchor="middle">📋 products</text>
+  <rect x="46" y="142" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="123" y="155" fill="#6c7086" font-size="10" text-anchor="middle">👤 customers</text>
+  <rect x="46" y="164" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="123" y="177" fill="#6c7086" font-size="10" text-anchor="middle">🧾 orders</text>
+  <rect x="46" y="186" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="123" y="199" fill="#6c7086" font-size="10" text-anchor="middle">📦 inventory</text>
+
+  <!-- Schema Globex box -->
+  <rect x="234" y="92" width="186" height="130" rx="8" fill="#1e3a5f" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="327" y="112" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">schema_globex</text>
+  <rect x="250" y="120" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="327" y="133" fill="#6c7086" font-size="10" text-anchor="middle">📋 products</text>
+  <rect x="250" y="142" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="327" y="155" fill="#6c7086" font-size="10" text-anchor="middle">👤 customers</text>
+  <rect x="250" y="164" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="327" y="177" fill="#6c7086" font-size="10" text-anchor="middle">🧾 orders</text>
+  <rect x="250" y="186" width="154" height="18" rx="3" fill="#313244"/>
+  <text x="327" y="199" fill="#6c7086" font-size="10" text-anchor="middle">📦 inventory</text>
+
+  <!-- Routers / app access -->
+  <text x="230" y="242" fill="#6c7086" font-size="11" text-anchor="middle">La aplicación cambia el esquema activo:</text>
+  <rect x="68" y="250" width="324" height="20" rx="3" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="230" y="264" fill="#cba6f7" font-size="10" text-anchor="middle" font-family="monospace">SET search_path = schema_acme;</text>
+
+  <text x="230" y="290" fill="#a6e3a1" font-size="10" text-anchor="middle">✅ Aislamiento total por schema</text>
+  <text x="230" y="306" fill="#a6e3a1" font-size="10" text-anchor="middle">✅ Backup por tenant nativo</text>
+  <text x="230" y="322" fill="#f38ba8" font-size="10" text-anchor="middle">❌ Migraciones complejas (N schemas)</text>
+
+  <!-- ═══ RIGHT: Column tenant_id + RLS ═══ -->
+  <text x="690" y="80" fill="#a6e3a1" font-size="13" font-weight="700" text-anchor="middle">Estrategia 2 — Column tenant_id + RLS</text>
+
+  <!-- Single table with 3 colored rows -->
+  <!-- Table header -->
+  <rect x="480" y="92" width="420" height="24" rx="4" fill="#313244"/>
+  <text x="500" y="108" fill="#6c7086" font-size="10" font-weight="600">product_id</text>
+  <text x="590" y="108" fill="#6c7086" font-size="10" font-weight="600">product_name</text>
+  <text x="750" y="108" fill="#f38ba8" font-size="10" font-weight="600">tenant_id</text>
+  <text x="840" y="108" fill="#6c7086" font-size="10" font-weight="600">price</text>
+
+  <rect x="480" y="116" width="420" height="20" rx="0" fill="#1e3a5f" stroke="#89b4fa" stroke-width="1"/>
+  <text x="500" y="130" fill="#6c7086" font-size="10">...aa1...</text>
+  <text x="590" y="130" fill="#cdd6f4" font-size="10">Laptop Acme</text>
+  <text x="750" y="130" fill="#89b4fa" font-size="10" font-weight="700">acme</text>
+  <text x="840" y="130" fill="#cdd6f4" font-size="10">999.00</text>
+
+  <rect x="480" y="136" width="420" height="20" rx="0" fill="#2a1a3e" stroke="#cba6f7" stroke-width="1"/>
+  <text x="500" y="150" fill="#6c7086" font-size="10">...bb2...</text>
+  <text x="590" y="150" fill="#cdd6f4" font-size="10">Monitor Globex</text>
+  <text x="750" y="150" fill="#cba6f7" font-size="10" font-weight="700">globex</text>
+  <text x="840" y="150" fill="#cdd6f4" font-size="10">349.00</text>
+
+  <rect x="480" y="156" width="420" height="20" rx="0" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="500" y="170" fill="#6c7086" font-size="10">...cc3...</text>
+  <text x="590" y="170" fill="#cdd6f4" font-size="10">Tablet Stark</text>
+  <text x="750" y="170" fill="#a6e3a1" font-size="10" font-weight="700">stark</text>
+  <text x="840" y="170" fill="#cdd6f4" font-size="10">599.00</text>
+
+  <rect x="480" y="176" width="420" height="20" rx="0" fill="#1e3a5f" stroke="#89b4fa" stroke-width="1"/>
+  <text x="500" y="190" fill="#6c7086" font-size="10">...dd4...</text>
+  <text x="590" y="190" fill="#cdd6f4" font-size="10">Mouse Acme</text>
+  <text x="750" y="190" fill="#89b4fa" font-size="10" font-weight="700">acme</text>
+  <text x="840" y="190" fill="#cdd6f4" font-size="10">29.00</text>
+
+  <!-- RLS policy box -->
+  <rect x="480" y="206" width="420" height="58" rx="6" fill="#181825" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="690" y="223" fill="#f9e2af" font-size="10" font-weight="700" text-anchor="middle">Row Level Security (RLS)</text>
+  <text x="490" y="240" fill="#6c7086" font-size="10" font-family="monospace">ALTER TABLE products ENABLE ROW LEVEL SECURITY;</text>
+  <text x="490" y="255" fill="#6c7086" font-size="10" font-family="monospace">CREATE POLICY policy_tenant ON products</text>
+  <text x="490" y="269" fill="#a6e3a1" font-size="10" font-family="monospace">  USING (tenant_id = current_setting('app.tenant_id')::UUID);</text>
+
+  <text x="690" y="296" fill="#a6e3a1" font-size="10" text-anchor="middle">✅ Una sola migración para todos los tenants</text>
+  <text x="690" y="312" fill="#a6e3a1" font-size="10" text-anchor="middle">✅ Escala a miles o millones de tenants</text>
+  <text x="690" y="328" fill="#f38ba8" font-size="10" text-anchor="middle">❌ Aislamiento lógico (requiere RLS correcta)</text>
+
+  <!-- ─── Comparison bar ─── -->
+  <line x1="20" y1="348" x2="900" y2="348" stroke="#45475a" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <rect x="20" y="358" width="880" height="50" rx="6" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="460" y="374" fill="#f9e2af" font-size="11" font-weight="600" text-anchor="middle">¿Cuándo usar cada estrategia?</text>
+  <text x="230" y="394" fill="#89b4fa" font-size="10" text-anchor="middle">Schema-per-tenant → SaaS B2B regulado, pocos tenants grandes</text>
+  <text x="690" y="394" fill="#a6e3a1" font-size="10" text-anchor="middle">tenant_id + RLS → SaaS B2C/B2B, muchos tenants, alta escala</text>
+</svg>

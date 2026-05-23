@@ -1,0 +1,129 @@
+<svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="460" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="32" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">Patrón Soft Delete</text>
+  <text x="460" y="52" fill="#6c7086" font-size="13" text-anchor="middle">deleted_at IS NULL → activo · deleted_at NOT NULL → eliminado lógicamente</text>
+
+  <!-- ─── LEFT: Table products ─── -->
+  <text x="230" y="78" fill="#89b4fa" font-size="13" font-weight="600" text-anchor="middle">Tabla: products (estado real en disco)</text>
+
+  <!-- Table header -->
+  <rect x="20" y="86" width="420" height="28" rx="4" fill="#313244"/>
+  <text x="36" y="105" fill="#6c7086" font-size="11" font-weight="600">product_id</text>
+  <text x="136" y="105" fill="#6c7086" font-size="11" font-weight="600">product_name</text>
+  <text x="270" y="105" fill="#6c7086" font-size="11" font-weight="600">price</text>
+  <text x="340" y="105" fill="#6c7086" font-size="11" font-weight="600">deleted_at</text>
+
+  <!-- Row 1 active -->
+  <rect x="20" y="114" width="420" height="28" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="36" y="133" fill="#6c7086" font-size="11">...a1b2...</text>
+  <text x="136" y="133" fill="#cdd6f4" font-size="11">Laptop Pro 15"</text>
+  <text x="270" y="133" fill="#cdd6f4" font-size="11">999.00</text>
+  <text x="340" y="133" fill="#a6e3a1" font-size="11">NULL</text>
+  <rect x="406" y="119" width="26" height="16" rx="3" fill="#1a2a1a"/>
+  <text x="419" y="130" fill="#a6e3a1" font-size="9" font-weight="700" text-anchor="middle">✓</text>
+
+  <!-- Row 2 active -->
+  <rect x="20" y="142" width="420" height="28" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="36" y="161" fill="#6c7086" font-size="11">...c3d4...</text>
+  <text x="136" y="161" fill="#cdd6f4" font-size="11">Mouse Ergonómico</text>
+  <text x="270" y="161" fill="#cdd6f4" font-size="11">29.99</text>
+  <text x="340" y="161" fill="#a6e3a1" font-size="11">NULL</text>
+  <rect x="406" y="147" width="26" height="16" rx="3" fill="#1a2a1a"/>
+  <text x="419" y="158" fill="#a6e3a1" font-size="9" font-weight="700" text-anchor="middle">✓</text>
+
+  <!-- Row 3 DELETED -->
+  <rect x="20" y="170" width="420" height="28" rx="0" fill="#2a0a0a" stroke="#f38ba8" stroke-width="1"/>
+  <text x="36" y="189" fill="#6c7086" font-size="11">...e5f6...</text>
+  <text x="136" y="189" fill="#585b70" font-size="11" text-decoration="line-through">Teclado Gamer</text>
+  <text x="270" y="189" fill="#585b70" font-size="11">59.00</text>
+  <text x="340" y="189" fill="#f38ba8" font-size="10">2026-03-15 10:23</text>
+  <rect x="406" y="175" width="26" height="16" rx="3" fill="#2a0a0a" stroke="#f38ba8" stroke-width="1"/>
+  <text x="419" y="186" fill="#f38ba8" font-size="9" font-weight="700" text-anchor="middle">✗</text>
+
+  <!-- Row 4 active -->
+  <rect x="20" y="198" width="420" height="28" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="36" y="217" fill="#6c7086" font-size="11">...g7h8...</text>
+  <text x="136" y="217" fill="#cdd6f4" font-size="11">Monitor 27" 4K</text>
+  <text x="270" y="217" fill="#cdd6f4" font-size="11">499.00</text>
+  <text x="340" y="217" fill="#a6e3a1" font-size="11">NULL</text>
+  <rect x="406" y="203" width="26" height="16" rx="3" fill="#1a2a1a"/>
+  <text x="419" y="214" fill="#a6e3a1" font-size="9" font-weight="700" text-anchor="middle">✓</text>
+
+  <!-- Legend rows -->
+  <rect x="20" y="240" width="200" height="20" rx="3" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="30" y="254" fill="#a6e3a1" font-size="10">deleted_at IS NULL = ACTIVO</text>
+  <rect x="240" y="240" width="200" height="20" rx="3" fill="#2a0a0a" stroke="#f38ba8" stroke-width="1"/>
+  <text x="250" y="254" fill="#f38ba8" font-size="10">deleted_at IS NOT NULL = ELIMINADO</text>
+
+  <!-- Arrow to view -->
+  <line x1="455" y1="155" x2="480" y2="155" stroke="#89b4fa" stroke-width="2"/>
+  <polygon points="478,150 478,160 486,155" fill="#89b4fa"/>
+  <text x="468" y="148" fill="#89b4fa" font-size="9" text-anchor="middle">WHERE</text>
+  <text x="468" y="162" fill="#89b4fa" font-size="9" text-anchor="middle">IS NULL</text>
+
+  <!-- ─── RIGHT: View ─── -->
+  <text x="690" y="78" fill="#89b4fa" font-size="13" font-weight="600" text-anchor="middle">Vista: vw_active_products</text>
+
+  <!-- View header -->
+  <rect x="492" y="86" width="408" height="28" rx="4" fill="#313244"/>
+  <text x="508" y="105" fill="#6c7086" font-size="11" font-weight="600">product_id</text>
+  <text x="608" y="105" fill="#6c7086" font-size="11" font-weight="600">product_name</text>
+  <text x="752" y="105" fill="#6c7086" font-size="11" font-weight="600">price</text>
+  <text x="822" y="105" fill="#6c7086" font-size="11" font-weight="600">stock</text>
+
+  <!-- View row 1 -->
+  <rect x="492" y="114" width="408" height="28" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="508" y="133" fill="#6c7086" font-size="11">...a1b2...</text>
+  <text x="608" y="133" fill="#cdd6f4" font-size="11">Laptop Pro 15"</text>
+  <text x="752" y="133" fill="#cdd6f4" font-size="11">999.00</text>
+  <text x="822" y="133" fill="#cdd6f4" font-size="11">12</text>
+
+  <!-- View row 2 -->
+  <rect x="492" y="142" width="408" height="28" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="508" y="161" fill="#6c7086" font-size="11">...c3d4...</text>
+  <text x="608" y="161" fill="#cdd6f4" font-size="11">Mouse Ergonómico</text>
+  <text x="752" y="161" fill="#cdd6f4" font-size="11">29.99</text>
+  <text x="822" y="161" fill="#cdd6f4" font-size="11">85</text>
+
+  <!-- Row 3 skipped (grayed out note) -->
+  <rect x="492" y="170" width="408" height="28" rx="0" fill="#181825" stroke="#313244" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="690" y="189" fill="#45475a" font-size="11" text-anchor="middle">← fila eliminada filtrada por WHERE deleted_at IS NULL →</text>
+
+  <!-- View row 4 -->
+  <rect x="492" y="198" width="408" height="28" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="508" y="217" fill="#6c7086" font-size="11">...g7h8...</text>
+  <text x="608" y="217" fill="#cdd6f4" font-size="11">Monitor 27" 4K</text>
+  <text x="752" y="217" fill="#cdd6f4" font-size="11">499.00</text>
+  <text x="822" y="217" fill="#cdd6f4" font-size="11">3</text>
+
+  <!-- View definition box -->
+  <rect x="492" y="240" width="408" height="24" rx="4" fill="#181825" stroke="#89b4fa" stroke-width="1"/>
+  <text x="700" y="256" fill="#89b4fa" font-size="10" font-weight="600" text-anchor="middle">CREATE VIEW vw_active_products AS SELECT ... WHERE deleted_at IS NULL</text>
+
+  <!-- ─── BOTTOM: Partial index ─── -->
+  <line x1="20" y1="284" x2="900" y2="284" stroke="#45475a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="460" y="306" fill="#f9e2af" font-size="13" font-weight="600" text-anchor="middle">Problema con UNIQUE y Soft Delete — Solución: Índice Parcial</text>
+
+  <!-- Problem box -->
+  <rect x="20" y="316" width="420" height="100" rx="6" fill="#2a0a0a" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="230" y="336" fill="#f38ba8" font-size="11" font-weight="700" text-anchor="middle">❌ UNIQUE constraint normal — FALLA</text>
+  <text x="36" y="356" fill="#6c7086" font-size="11" font-family="monospace">-- email: user@example.com → activo</text>
+  <text x="36" y="372" fill="#6c7086" font-size="11" font-family="monospace">-- usuario se da de baja (soft delete)</text>
+  <text x="36" y="388" fill="#6c7086" font-size="11" font-family="monospace">-- nuevo registro con mismo email → ERROR</text>
+  <text x="36" y="406" fill="#f38ba8" font-size="10" font-family="monospace">-- duplicate key: (customer_email)=...</text>
+
+  <!-- Solution box -->
+  <rect x="500" y="316" width="400" height="100" rx="6" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="700" y="336" fill="#a6e3a1" font-size="11" font-weight="700" text-anchor="middle">✅ Índice Parcial — FUNCIONA</text>
+  <text x="516" y="356" fill="#6c7086" font-size="11" font-family="monospace">CREATE UNIQUE INDEX uq_customers_email</text>
+  <text x="516" y="372" fill="#6c7086" font-size="11" font-family="monospace">  ON customers (customer_email)</text>
+  <text x="516" y="388" fill="#a6e3a1" font-size="11" font-family="monospace">  WHERE deleted_at IS NULL;</text>
+  <text x="516" y="406" fill="#6c7086" font-size="10">Solo aplica unicidad a filas activas</text>
+
+  <!-- Bottom strip -->
+  <rect x="20" y="430" width="880" height="22" rx="3" fill="#181825"/>
+  <text x="460" y="445" fill="#6c7086" font-size="10" text-anchor="middle">Soft delete = UPDATE deleted_at = NOW() · Restaurar = UPDATE deleted_at = NULL · Purgar = DELETE WHERE deleted_at &lt; NOW() - INTERVAL '1 year'</text>
+</svg>

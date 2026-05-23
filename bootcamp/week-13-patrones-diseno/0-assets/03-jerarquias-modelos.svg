@@ -1,0 +1,170 @@
+<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Roboto, system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="460" y="32" fill="#cdd6f4" font-size="18" font-weight="700" text-anchor="middle">Modelos para Almacenar Jerarquías</text>
+  <text x="460" y="52" fill="#6c7086" font-size="13" text-anchor="middle">El mismo árbol representado con 4 patrones distintos</text>
+
+  <!-- ─── Tree diagram (center reference) ─── -->
+  <!-- Electronics(1) → Laptops(2), Phones(3) → Gaming(4) child of Laptops -->
+  <text x="460" y="74" fill="#f9e2af" font-size="11" font-weight="600" text-anchor="middle">Árbol de referencia: Electronics → Laptops → Gaming · Electronics → Phones</text>
+
+  <!-- ═══ PATTERN 1: Adjacency List ═══ -->
+  <rect x="20" y="84" width="210" height="190" rx="6" fill="#181825" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="125" y="103" fill="#89b4fa" font-size="12" font-weight="700" text-anchor="middle">Adjacency List</text>
+
+  <!-- Mini table -->
+  <rect x="30" y="110" width="190" height="22" rx="3" fill="#313244"/>
+  <text x="46" y="125" fill="#6c7086" font-size="10" font-weight="600">id</text>
+  <text x="76" y="125" fill="#6c7086" font-size="10" font-weight="600">name</text>
+  <text x="168" y="125" fill="#6c7086" font-size="10" font-weight="600">parent_id</text>
+
+  <rect x="30" y="132" width="190" height="20" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="46" y="146" fill="#cdd6f4" font-size="10">1</text>
+  <text x="76" y="146" fill="#a6e3a1" font-size="10">Electronics</text>
+  <text x="168" y="146" fill="#f38ba8" font-size="10">NULL</text>
+
+  <rect x="30" y="152" width="190" height="20" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="46" y="166" fill="#cdd6f4" font-size="10">2</text>
+  <text x="76" y="166" fill="#a6e3a1" font-size="10">Laptops</text>
+  <text x="168" y="166" fill="#89b4fa" font-size="10">1</text>
+
+  <rect x="30" y="172" width="190" height="20" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="46" y="186" fill="#cdd6f4" font-size="10">3</text>
+  <text x="76" y="186" fill="#a6e3a1" font-size="10">Phones</text>
+  <text x="168" y="186" fill="#89b4fa" font-size="10">1</text>
+
+  <rect x="30" y="192" width="190" height="20" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="46" y="206" fill="#cdd6f4" font-size="10">4</text>
+  <text x="76" y="206" fill="#a6e3a1" font-size="10">Gaming</text>
+  <text x="168" y="206" fill="#89b4fa" font-size="10">2</text>
+
+  <text x="125" y="232" fill="#6c7086" font-size="10" text-anchor="middle">Navega con WITH RECURSIVE</text>
+  <text x="125" y="246" fill="#f9e2af" font-size="10" text-anchor="middle">✅ Simple · ❌ Recursión para subárbol</text>
+  <text x="125" y="260" fill="#6c7086" font-size="10" text-anchor="middle">Mejor para: la mayoría de casos</text>
+
+  <!-- ═══ PATTERN 2: Path Enumeration ═══ -->
+  <rect x="248" y="84" width="210" height="190" rx="6" fill="#181825" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="353" y="103" fill="#cba6f7" font-size="12" font-weight="700" text-anchor="middle">Path Enumeration</text>
+
+  <rect x="258" y="110" width="190" height="22" rx="3" fill="#313244"/>
+  <text x="274" y="125" fill="#6c7086" font-size="10" font-weight="600">id</text>
+  <text x="304" y="125" fill="#6c7086" font-size="10" font-weight="600">name</text>
+  <text x="390" y="125" fill="#6c7086" font-size="10" font-weight="600">path</text>
+
+  <rect x="258" y="132" width="190" height="20" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="274" y="146" fill="#cdd6f4" font-size="10">1</text>
+  <text x="304" y="146" fill="#a6e3a1" font-size="10">Electronics</text>
+  <text x="390" y="146" fill="#cba6f7" font-size="10">'1/'</text>
+
+  <rect x="258" y="152" width="190" height="20" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="274" y="166" fill="#cdd6f4" font-size="10">2</text>
+  <text x="304" y="166" fill="#a6e3a1" font-size="10">Laptops</text>
+  <text x="390" y="166" fill="#cba6f7" font-size="10">'1/2/'</text>
+
+  <rect x="258" y="172" width="190" height="20" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="274" y="186" fill="#cdd6f4" font-size="10">3</text>
+  <text x="304" y="186" fill="#a6e3a1" font-size="10">Phones</text>
+  <text x="390" y="186" fill="#cba6f7" font-size="10">'1/3/'</text>
+
+  <rect x="258" y="192" width="190" height="20" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="274" y="206" fill="#cdd6f4" font-size="10">4</text>
+  <text x="304" y="206" fill="#a6e3a1" font-size="10">Gaming</text>
+  <text x="390" y="206" fill="#cba6f7" font-size="10">'1/2/4/'</text>
+
+  <text x="353" y="232" fill="#6c7086" font-size="10" text-anchor="middle">WHERE path LIKE '1/%'</text>
+  <text x="353" y="246" fill="#f9e2af" font-size="10" text-anchor="middle">✅ Ancestros fácil · ❌ Mover = UPDATE masivo</text>
+  <text x="353" y="260" fill="#6c7086" font-size="10" text-anchor="middle">Mejor para: breadcrumbs, paths estáticos</text>
+
+  <!-- ═══ PATTERN 3: Nested Sets ═══ -->
+  <rect x="476" y="84" width="210" height="190" rx="6" fill="#181825" stroke="#f9e2af" stroke-width="1.5"/>
+  <text x="581" y="103" fill="#f9e2af" font-size="12" font-weight="700" text-anchor="middle">Nested Sets</text>
+
+  <rect x="486" y="110" width="190" height="22" rx="3" fill="#313244"/>
+  <text x="502" y="125" fill="#6c7086" font-size="10" font-weight="600">id</text>
+  <text x="532" y="125" fill="#6c7086" font-size="10" font-weight="600">name</text>
+  <text x="614" y="125" fill="#6c7086" font-size="10" font-weight="600">lft · rgt</text>
+
+  <rect x="486" y="132" width="190" height="20" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="502" y="146" fill="#cdd6f4" font-size="10">1</text>
+  <text x="532" y="146" fill="#a6e3a1" font-size="10">Electronics</text>
+  <text x="614" y="146" fill="#f9e2af" font-size="10">1 · 8</text>
+
+  <rect x="486" y="152" width="190" height="20" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="502" y="166" fill="#cdd6f4" font-size="10">2</text>
+  <text x="532" y="166" fill="#a6e3a1" font-size="10">Laptops</text>
+  <text x="614" y="166" fill="#f9e2af" font-size="10">2 · 5</text>
+
+  <rect x="486" y="172" width="190" height="20" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="502" y="186" fill="#cdd6f4" font-size="10">3</text>
+  <text x="532" y="186" fill="#a6e3a1" font-size="10">Phones</text>
+  <text x="614" y="186" fill="#f9e2af" font-size="10">6 · 7</text>
+
+  <rect x="486" y="192" width="190" height="20" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="502" y="206" fill="#cdd6f4" font-size="10">4</text>
+  <text x="532" y="206" fill="#a6e3a1" font-size="10">Gaming</text>
+  <text x="614" y="206" fill="#f9e2af" font-size="10">3 · 4</text>
+
+  <text x="581" y="232" fill="#6c7086" font-size="10" text-anchor="middle">WHERE lft BETWEEN 1 AND 8</text>
+  <text x="581" y="246" fill="#f9e2af" font-size="10" text-anchor="middle">✅ Lecturas sin recursión · ❌ INSERT caro</text>
+  <text x="581" y="260" fill="#6c7086" font-size="10" text-anchor="middle">Mejor para: árboles de solo lectura</text>
+
+  <!-- ═══ PATTERN 4: Closure Table ═══ -->
+  <rect x="704" y="84" width="210" height="190" rx="6" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="809" y="103" fill="#a6e3a1" font-size="12" font-weight="700" text-anchor="middle">Closure Table</text>
+
+  <rect x="714" y="110" width="190" height="22" rx="3" fill="#313244"/>
+  <text x="726" y="125" fill="#6c7086" font-size="10" font-weight="600">ancestor</text>
+  <text x="790" y="125" fill="#6c7086" font-size="10" font-weight="600">descendant</text>
+  <text x="876" y="125" fill="#6c7086" font-size="10" font-weight="600">d</text>
+
+  <rect x="714" y="132" width="190" height="16" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="726" y="144" fill="#cdd6f4" font-size="9">1 (Electr.)</text><text x="790" y="144" fill="#cdd6f4" font-size="9">1 (Electr.)</text><text x="876" y="144" fill="#a6e3a1" font-size="9">0</text>
+  <rect x="714" y="148" width="190" height="16" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="726" y="160" fill="#cdd6f4" font-size="9">1 (Electr.)</text><text x="790" y="160" fill="#cdd6f4" font-size="9">2 (Laptops)</text><text x="876" y="160" fill="#a6e3a1" font-size="9">1</text>
+  <rect x="714" y="164" width="190" height="16" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="726" y="176" fill="#cdd6f4" font-size="9">1 (Electr.)</text><text x="790" y="176" fill="#cdd6f4" font-size="9">4 (Gaming)</text><text x="876" y="176" fill="#a6e3a1" font-size="9">2</text>
+  <rect x="714" y="180" width="190" height="16" rx="0" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="726" y="192" fill="#cdd6f4" font-size="9">2 (Laptops)</text><text x="790" y="192" fill="#cdd6f4" font-size="9">2 (Laptops)</text><text x="876" y="192" font-size="9" fill="#a6e3a1">0</text>
+  <rect x="714" y="196" width="190" height="16" rx="0" fill="#1e1e2e" stroke="#313244" stroke-width="1"/>
+  <text x="726" y="208" fill="#cdd6f4" font-size="9">2 (Laptops)</text><text x="790" y="208" fill="#cdd6f4" font-size="9">4 (Gaming)</text><text x="876" y="208" font-size="9" fill="#a6e3a1">1</text>
+
+  <text x="809" y="232" fill="#6c7086" font-size="10" text-anchor="middle">JOIN donde ancestor_id = raíz</text>
+  <text x="809" y="246" fill="#f9e2af" font-size="10" text-anchor="middle">✅ Balance lectura/escritura · ❌ Complejo</text>
+  <text x="809" y="260" fill="#6c7086" font-size="10" text-anchor="middle">Mejor para: workloads mixtos</text>
+
+  <!-- ─── Comparison table ─── -->
+  <line x1="20" y1="290" x2="900" y2="290" stroke="#45475a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="460" y="314" fill="#f9e2af" font-size="12" font-weight="600" text-anchor="middle">Regla de elección rápida</text>
+
+  <!-- Comparison boxes -->
+  <rect x="20" y="322" width="210" height="64" rx="6" fill="#1e3a5f" stroke="#89b4fa" stroke-width="1"/>
+  <text x="125" y="340" fill="#89b4fa" font-size="11" font-weight="700" text-anchor="middle">Adjacency List</text>
+  <text x="125" y="358" fill="#6c7086" font-size="10" text-anchor="middle">La mayoría de los casos.</text>
+  <text x="125" y="374" fill="#6c7086" font-size="10" text-anchor="middle">Simple. WITH RECURSIVE.</text>
+
+  <rect x="248" y="322" width="210" height="64" rx="6" fill="#2a1a3e" stroke="#cba6f7" stroke-width="1"/>
+  <text x="353" y="340" fill="#cba6f7" font-size="11" font-weight="700" text-anchor="middle">Path Enumeration</text>
+  <text x="353" y="358" fill="#6c7086" font-size="10" text-anchor="middle">Breadcrumbs, paths URL.</text>
+  <text x="353" y="374" fill="#6c7086" font-size="10" text-anchor="middle">Árbol poco cambiante.</text>
+
+  <rect x="476" y="322" width="210" height="64" rx="6" fill="#2d1e00" stroke="#f9e2af" stroke-width="1"/>
+  <text x="581" y="340" fill="#f9e2af" font-size="11" font-weight="700" text-anchor="middle">Nested Sets</text>
+  <text x="581" y="358" fill="#6c7086" font-size="10" text-anchor="middle">Reportes de subárboles</text>
+  <text x="581" y="374" fill="#6c7086" font-size="10" text-anchor="middle">en árboles estáticos.</text>
+
+  <rect x="704" y="322" width="210" height="64" rx="6" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="809" y="340" fill="#a6e3a1" font-size="11" font-weight="700" text-anchor="middle">Closure Table</text>
+  <text x="809" y="358" fill="#6c7086" font-size="10" text-anchor="middle">Árbol con lecturas y</text>
+  <text x="809" y="374" fill="#6c7086" font-size="10" text-anchor="middle">escrituras frecuentes.</text>
+
+  <!-- Recursive CTE example -->
+  <rect x="20" y="402" width="880" height="80" rx="6" fill="#181825" stroke="#313244" stroke-width="1"/>
+  <text x="460" y="420" fill="#89b4fa" font-size="11" font-weight="700" text-anchor="middle">Adjacency List — Consulta de árbol completo con WITH RECURSIVE</text>
+  <text x="36" y="440" fill="#6c7086" font-size="10" font-family="monospace">WITH RECURSIVE tree AS (</text>
+  <text x="36" y="455" fill="#6c7086" font-size="10" font-family="monospace">  SELECT category_id, category_name, parent_id, 0 AS depth  FROM categories  WHERE parent_id IS NULL</text>
+  <text x="36" y="470" fill="#6c7086" font-size="10" font-family="monospace">  UNION ALL</text>
+  <text x="36" y="484" fill="#6c7086" font-size="10" font-family="monospace">  SELECT c.category_id, c.category_name, c.parent_id, t.depth + 1  FROM categories c JOIN tree t ON t.category_id = c.parent_id</text>
+  <text x="680" y="484" fill="#cba6f7" font-size="10" font-family="monospace">) SELECT * FROM tree ORDER BY depth, category_name;</text>
+</svg>

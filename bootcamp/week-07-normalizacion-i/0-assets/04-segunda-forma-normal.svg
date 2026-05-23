@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">Segunda Forma Normal (2FN) — Descomposición</text>
+
+  <!-- ═══════ LEFT: Before (1NF but not 2NF) ═══════ -->
+  <rect x="10" y="30" width="380" height="24" rx="3" fill="#2a1a1a"/>
+  <text x="200" y="46" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f38ba8">❌ En 1FN pero NO en 2FN</text>
+
+  <!-- orders_raw table -->
+  <text x="16" y="68" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#cdd6f4">orders_raw — PK compuesta: {order_id, product_id}</text>
+
+  <!-- Column header -->
+  <rect x="10" y="74" width="380" height="20" fill="#313244"/>
+  <text x="75" y="88" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">order_id</text>
+  <text x="155" y="88" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">product_id</text>
+  <text x="245" y="88" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#f38ba8">customer_name</text>
+  <text x="325" y="88" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#f38ba8">product_name</text>
+  <text x="378" y="88" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#a6e3a1">qty</text>
+
+  <!-- Row 1 -->
+  <rect x="10" y="94" width="380" height="18" fill="#181825"/>
+  <text x="75" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-001</text>
+  <text x="155" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-001</text>
+  <text x="245" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">Ana López</text>
+  <text x="325" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">SQL Avanzado</text>
+  <text x="378" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">2</text>
+  <!-- Row 2 -->
+  <rect x="10" y="112" width="380" height="18" fill="#252535"/>
+  <text x="75" y="124" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-001</text>
+  <text x="155" y="124" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-002</text>
+  <text x="245" y="124" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">Ana López</text>
+  <text x="325" y="124" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">Python Pro</text>
+  <text x="378" y="124" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">1</text>
+  <!-- Row 3 -->
+  <rect x="10" y="130" width="380" height="18" fill="#181825"/>
+  <text x="75" y="142" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-002</text>
+  <text x="155" y="142" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-001</text>
+  <text x="245" y="142" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">Beto Ruiz</text>
+  <text x="325" y="142" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">SQL Avanzado</text>
+  <text x="378" y="142" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">3</text>
+
+  <!-- Arrows showing partial dependencies -->
+  <!-- order_id → customer_name -->
+  <line x1="75" y1="94" x2="75" y2="166" stroke="#f38ba8" stroke-width="1.5" stroke-dasharray="0"/>
+  <line x1="75" y1="166" x2="245" y2="166" stroke="#f38ba8" stroke-width="1.5"/>
+  <polygon points="241,161 251,166 241,171" fill="#f38ba8"/>
+  <text x="155" y="176" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8" fill="#f38ba8">order_id → customer_name  (PARCIAL ❌)</text>
+
+  <!-- product_id → product_name -->
+  <line x1="155" y1="94" x2="155" y2="192" stroke="#f38ba8" stroke-width="1.5" stroke-dasharray="0"/>
+  <line x1="155" y1="192" x2="325" y2="192" stroke="#f38ba8" stroke-width="1.5"/>
+  <polygon points="321,187 331,192 321,197" fill="#f38ba8"/>
+  <text x="240" y="202" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8" fill="#f38ba8">product_id → product_name  (PARCIAL ❌)</text>
+
+  <!-- {order_id, product_id} → qty (FULL OK) -->
+  <line x1="50" y1="74" x2="50" y2="218" stroke="#a6e3a1" stroke-width="1"/>
+  <line x1="170" y1="74" x2="170" y2="218" stroke="#a6e3a1" stroke-width="1"/>
+  <line x1="50" y1="218" x2="378" y2="218" stroke="#a6e3a1" stroke-width="1"/>
+  <polygon points="374,213 384,218 374,223" fill="#a6e3a1"/>
+  <text x="215" y="230" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8" fill="#a6e3a1">{order_id, product_id} → quantity  (COMPLETA ✅)</text>
+
+  <!-- Anomaly warning -->
+  <rect x="10" y="238" width="380" height="52" rx="4" fill="#2a1a1a"/>
+  <text x="20" y="255" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#f38ba8">Anomalías resultantes:</text>
+  <text x="20" y="270" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Inserción: No puedo agregar producto sin pedido</text>
+  <text x="20" y="284" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Actualización: Cambiar nombre → N filas a actualizar</text>
+
+  <!-- ═══════ SEPARATOR ═══════ -->
+  <rect x="398" y="30" width="6" height="456" rx="3" fill="#313244"/>
+  <text x="401" y="260" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af" transform="rotate(-90,401,260)">Descomposición 2FN</text>
+
+  <!-- ═══════ RIGHT: After (2NF) ═══════ -->
+  <rect x="412" y="30" width="480" height="24" rx="3" fill="#1f2d1f"/>
+  <text x="652" y="46" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">✅ DESPUÉS — En 2FN (4 tablas)</text>
+
+  <!-- customers table -->
+  <rect x="412" y="60" width="216" height="20" fill="#313244"/>
+  <text x="420" y="74" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">customers</text>
+  <text x="515" y="74" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">customer_id (PK)</text>
+  <text x="620" y="74" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">customer_name</text>
+  <rect x="412" y="80" width="216" height="16" fill="#181825"/>
+  <text x="515" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">c-001</text>
+  <text x="620" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">Ana López</text>
+  <rect x="412" y="96" width="216" height="16" fill="#252535"/>
+  <text x="515" y="108" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">c-002</text>
+  <text x="620" y="108" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">Beto Ruiz</text>
+
+  <!-- products table -->
+  <rect x="640" y="60" width="252" height="20" fill="#313244"/>
+  <text x="648" y="74" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">products</text>
+  <text x="738" y="74" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">product_id (PK)</text>
+  <text x="852" y="74" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">product_name</text>
+  <rect x="640" y="80" width="252" height="16" fill="#181825"/>
+  <text x="738" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-001</text>
+  <text x="852" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">SQL Avanzado</text>
+  <rect x="640" y="96" width="252" height="16" fill="#252535"/>
+  <text x="738" y="108" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-002</text>
+  <text x="852" y="108" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">Python Pro</text>
+
+  <!-- orders table -->
+  <rect x="412" y="136" width="300" height="20" fill="#313244"/>
+  <text x="420" y="150" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">orders</text>
+  <text x="510" y="150" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">order_id (PK)</text>
+  <text x="615" y="150" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#f38ba8">customer_id (FK)</text>
+  <text x="700" y="150" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">order_date</text>
+  <rect x="412" y="156" width="300" height="16" fill="#181825"/>
+  <text x="510" y="167" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-001</text>
+  <text x="615" y="167" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">c-001</text>
+  <text x="700" y="167" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">2025-01-15</text>
+  <rect x="412" y="172" width="300" height="16" fill="#252535"/>
+  <text x="510" y="183" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-002</text>
+  <text x="615" y="183" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">c-002</text>
+  <text x="700" y="183" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">2025-01-16</text>
+
+  <!-- FK arrow orders → customers -->
+  <line x1="615" y1="152" x2="615" y2="122" stroke="#f38ba8" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="615" y1="122" x2="515" y2="122" stroke="#f38ba8" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="515" y1="122" x2="515" y2="112" stroke="#f38ba8" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- order_items table -->
+  <rect x="412" y="216" width="480" height="20" fill="#313244"/>
+  <text x="420" y="230" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">order_items  <tspan font-size="8" fill="#6c7086">(tabla de cruce — solo FDs completas)</tspan></text>
+  <rect x="412" y="236" width="480" height="20" fill="#252535"/>
+  <text x="510" y="250" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">order_id (FK+PK)</text>
+  <text x="640" y="250" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#89b4fa">product_id (FK+PK)</text>
+  <text x="760" y="250" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#a6e3a1">quantity</text>
+  <text x="860" y="250" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#a6e3a1">unit_price</text>
+  <rect x="412" y="256" width="480" height="16" fill="#181825"/>
+  <text x="510" y="267" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-001</text>
+  <text x="640" y="267" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-001</text>
+  <text x="760" y="267" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">2</text>
+  <text x="860" y="267" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">29.99</text>
+  <rect x="412" y="272" width="480" height="16" fill="#252535"/>
+  <text x="510" y="283" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">o-001</text>
+  <text x="640" y="283" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">p-002</text>
+  <text x="760" y="283" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">1</text>
+  <text x="860" y="283" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">49.99</text>
+
+  <!-- FK arrows order_items → orders and products -->
+  <line x1="510" y1="232" x2="510" y2="196" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="640" y1="232" x2="640" y2="116" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="640" y1="116" x2="738" y2="116" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="738" y1="116" x2="738" y2="112" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- 3NF note -->
+  <rect x="412" y="300" width="480" height="42" rx="4" fill="#252535"/>
+  <text x="422" y="316" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cba6f7">⚠️  Nota: orders todavía puede violar 3FN si hay deps. transitivas</text>
+  <text x="422" y="332" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">Ej: order_id → customer_id → customer_name (customer_id no es PK) → Semana 08</text>
+
+  <!-- Bottom: 3-step process -->
+  <rect x="10" y="356" width="880" height="118" rx="4" fill="#181825"/>
+  <text x="450" y="374" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Algoritmo de Normalización a 2FN (3 pasos)</text>
+
+  <!-- Step 1 -->
+  <rect x="18" y="382" width="276" height="84" rx="4" fill="#1e2d1e"/>
+  <text x="156" y="398" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">Paso 1: Identificar</text>
+  <text x="28" y="414" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">¿Es la PK compuesta?</text>
+  <text x="28" y="430" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">Si NO → ya está en 2FN ✅</text>
+  <text x="28" y="446" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">Si SÍ → listar todos los atributos</text>
+  <text x="28" y="462" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">y su determinante</text>
+
+  <!-- Step 2 -->
+  <rect x="306" y="382" width="276" height="84" rx="4" fill="#2a1f1a"/>
+  <text x="444" y="398" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Paso 2: Detectar parciales</text>
+  <text x="316" y="414" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">¿Algún atributo depende de</text>
+  <text x="316" y="430" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">solo PARTE de la PK?</text>
+  <text x="316" y="446" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#f38ba8">→ Es una FD parcial ❌</text>
+  <text x="316" y="462" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">Anotar: subconjunto → atributo</text>
+
+  <!-- Step 3 -->
+  <rect x="594" y="382" width="288" height="84" rx="4" fill="#1a1f2e"/>
+  <text x="738" y="398" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">Paso 3: Extraer</text>
+  <text x="604" y="414" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">Crear tabla nueva:</text>
+  <text x="604" y="430" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">• PK = el subconjunto determinante</text>
+  <text x="604" y="446" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">• Mover ahí los atributos dependientes</text>
+  <text x="604" y="462" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9.5" fill="#cdd6f4">• FK en tabla original → nueva tabla</text>
+</svg>

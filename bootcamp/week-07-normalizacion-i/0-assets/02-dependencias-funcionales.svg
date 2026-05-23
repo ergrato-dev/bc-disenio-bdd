@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">Dependencias Funcionales — Tipos y Notación</text>
+
+  <!-- ════════ LEFT: Example table ════════ -->
+  <rect x="10" y="30" width="290" height="20" rx="3" fill="#252535"/>
+  <text x="155" y="45" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Tabla: orders_raw (desnormalizada)</text>
+
+  <!-- Table header -->
+  <rect x="10" y="52" width="290" height="20" rx="0" fill="#313244"/>
+  <text x="70" y="66" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">order_id</text>
+  <text x="148" y="66" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">product_id</text>
+  <text x="228" y="66" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">customer_name</text>
+  <text x="290" y="66" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">qty</text>
+  <!-- Row 1 -->
+  <rect x="10" y="72" width="290" height="20" fill="#181825"/>
+  <text x="70" y="86" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">o-001</text>
+  <text x="148" y="86" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cba6f7">p-001</text>
+  <text x="228" y="86" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">Ana López</text>
+  <text x="290" y="86" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">2</text>
+  <!-- Row 2 -->
+  <rect x="10" y="92" width="290" height="20" fill="#252535"/>
+  <text x="70" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">o-001</text>
+  <text x="148" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cba6f7">p-002</text>
+  <text x="228" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">Ana López</text>
+  <text x="290" y="106" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">1</text>
+  <!-- Row 3 -->
+  <rect x="10" y="112" width="290" height="20" fill="#181825"/>
+  <text x="70" y="126" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">o-002</text>
+  <text x="148" y="126" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cba6f7">p-001</text>
+  <text x="228" y="126" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">Beto Ruiz</text>
+  <text x="290" y="126" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">3</text>
+  <!-- Row 4 -->
+  <rect x="10" y="132" width="290" height="20" fill="#252535"/>
+  <text x="70" y="146" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#a6e3a1">o-002</text>
+  <text x="148" y="146" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cba6f7">p-003</text>
+  <text x="228" y="146" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">Beto Ruiz</text>
+  <text x="290" y="146" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">1</text>
+
+  <!-- Observation below table -->
+  <rect x="10" y="158" width="290" height="52" rx="4" fill="#2a2020"/>
+  <text x="20" y="174" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">⚠️ customer_name se repite en filas del</text>
+  <text x="20" y="188" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">mismo order_id — dato redundante.</text>
+  <text x="20" y="202" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">Si Ana cambia de apellido, ¿cuántas filas</text>
+  <text x="20" y="213" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">hay que actualizar?</text>
+
+  <!-- ════════ CENTER: Notation + Types ════════ -->
+  <line x1="310" y1="30" x2="310" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="610" y1="30" x2="610" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Notation box -->
+  <rect x="320" y="30" width="278" height="30" rx="3" fill="#252535"/>
+  <text x="459" y="50" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f9e2af">Notación y Definición</text>
+
+  <rect x="320" y="68" width="278" height="70" rx="4" fill="#181825"/>
+  <text x="459" y="85" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="20" font-weight="bold" fill="#f9e2af">X → Y</text>
+  <text x="459" y="105" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">"X determina Y" / "Y depende de X"</text>
+  <text x="459" y="122" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">Para t₁, t₂: si t₁[X] = t₂[X] → t₁[Y] = t₂[Y]</text>
+  <text x="459" y="136" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">Conocer X es suficiente para conocer Y</text>
+
+  <!-- Examples -->
+  <rect x="320" y="146" width="278" height="100" rx="4" fill="#181825"/>
+  <text x="330" y="162" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#a6e3a1">order_id → customer_name</text>
+  <text x="330" y="178" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">mismo order_id → siempre misma person</text>
+  <text x="330" y="196" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cba6f7">product_id → product_name</text>
+  <text x="330" y="212" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">mismo product_id → siempre mismo nombre</text>
+  <text x="330" y="230" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#89b4fa">{order_id, product_id} → quantity</text>
+  <text x="330" y="245" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">la combinación determina la cantidad</text>
+
+  <!-- Trivial vs non-trivial -->
+  <rect x="320" y="254" width="278" height="72" rx="4" fill="#252535"/>
+  <text x="330" y="270" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#cdd6f4">FD Trivial vs No Trivial</text>
+  <text x="330" y="286" font-family="Consolas, Monaco, monospace" font-size="9" fill="#6c7086">Trivial:     {A,B} → A     (Y ⊆ X)</text>
+  <text x="330" y="300" font-family="Consolas, Monaco, monospace" font-size="9" fill="#6c7086">             Siempre cierta, no aporta info</text>
+  <text x="330" y="316" font-family="Consolas, Monaco, monospace" font-size="9" fill="#f9e2af">No trivial:  order_id → customer_name</text>
+  <text x="330" y="328" font-family="Consolas, Monaco, monospace" font-size="9" fill="#f9e2af">             Aporta información semántica ✅</text>
+
+  <!-- Closure shorthand -->
+  <rect x="320" y="334" width="278" height="52" rx="4" fill="#181825"/>
+  <text x="330" y="350" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">Cierre de atributos X⁺</text>
+  <text x="330" y="366" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Todo lo que X puede determinar</text>
+  <text x="330" y="382" font-family="Consolas, Monaco, monospace" font-size="9" fill="#cdd6f4">{order_id}⁺ = {order_id, customer_id, ...}</text>
+
+  <!-- ════════ RIGHT: Three types ════════ -->
+  <rect x="620" y="30" width="272" height="30" rx="3" fill="#252535"/>
+  <text x="756" y="50" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f9e2af">Tipos de Dependencia</text>
+
+  <!-- Full FD -->
+  <rect x="620" y="68" width="272" height="96" rx="4" fill="#1e2d1e" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="756" y="84" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">FD COMPLETA ✅</text>
+  <text x="630" y="100" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Y depende de TODO X (no se puede reducir X)</text>
+  <rect x="630" y="108" width="252" height="48" rx="3" fill="#181825"/>
+  <text x="640" y="124" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#a6e3a1">{order_id, product_id} → quantity</text>
+  <text x="640" y="140" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Sin product_id no sé la cantidad del pedido</text>
+  <text x="640" y="153" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Sin order_id tampoco → clave minimal ✅</text>
+
+  <!-- Partial FD -->
+  <rect x="620" y="172" width="272" height="106" rx="4" fill="#2a1f1a" stroke="#f38ba8" stroke-width="1.5"/>
+  <text x="756" y="188" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">FD PARCIAL ⚠️ → viola 2FN</text>
+  <text x="630" y="204" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Y depende de PARTE de la clave compuesta</text>
+  <rect x="630" y="212" width="252" height="58" rx="3" fill="#181825"/>
+  <text x="640" y="228" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#f38ba8">{order_id, product_id} → customer_name</text>
+  <text x="640" y="244" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Pero: order_id → customer_name (sin product_id)</text>
+  <text x="640" y="256" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#f38ba8">→ Parcial sobre la PK compuesta ❌</text>
+  <text x="640" y="270" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Solución: mover a tabla customers</text>
+
+  <!-- Transitive FD -->
+  <rect x="620" y="286" width="272" height="106" rx="4" fill="#2a1a20" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="756" y="302" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#cba6f7">FD TRANSITIVA ⚠️ → viola 3FN</text>
+  <text x="630" y="318" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">A → B → C (B no es clave candidata)</text>
+  <rect x="630" y="326" width="252" height="58" rx="3" fill="#181825"/>
+  <text x="640" y="342" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#cba6f7">order_id → customer_id → customer_name</text>
+  <text x="640" y="358" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">customer_id no es PK del pedido</text>
+  <text x="640" y="370" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#cba6f7">→ Transitiva: customer_name en su propia tabla ❌</text>
+  <text x="640" y="382" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Semana 08 →</text>
+
+  <!-- Bottom summary bar -->
+  <rect x="10" y="400" width="880" height="92" rx="4" fill="#181825"/>
+  <text x="450" y="418" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Axiomas de Armstrong (reglas de inferencia)</text>
+  <text x="20" y="436" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">Reflexividad</text>
+  <text x="20" y="452" font-family="Consolas, Monaco, monospace" font-size="9" fill="#cdd6f4">Si Y ⊆ X → X → Y</text>
+  <text x="20" y="466" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">{A,B} → A siempre</text>
+  <text x="230" y="436" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">Aumento</text>
+  <text x="230" y="452" font-family="Consolas, Monaco, monospace" font-size="9" fill="#cdd6f4">Si X → Y → XZ → YZ</text>
+  <text x="230" y="466" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Se agrega Z a ambos lados</text>
+  <text x="450" y="436" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">Transitividad</text>
+  <text x="450" y="452" font-family="Consolas, Monaco, monospace" font-size="9" fill="#cdd6f4">Si X → Y e Y → Z → X → Z</text>
+  <text x="450" y="466" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Base de las deps. transitivas</text>
+  <text x="670" y="436" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#89b4fa">Unión / Descomposición</text>
+  <text x="670" y="452" font-family="Consolas, Monaco, monospace" font-size="9" fill="#cdd6f4">X→Y, X→Z ↔ X→YZ</text>
+  <text x="670" y="466" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8.5" fill="#6c7086">Se pueden combinar o separar</text>
+</svg>

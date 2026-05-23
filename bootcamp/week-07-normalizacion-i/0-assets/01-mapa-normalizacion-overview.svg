@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <!-- Background -->
+  <rect width="900" height="420" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">Formas Normales — Mapa de la Normalización</text>
+
+  <!-- "Esta semana" banner behind 1NF + 2NF -->
+  <rect x="218" y="38" width="336" height="246" rx="6" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="386" y="54" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#a6e3a1">⬅ Semana 07 ➡</text>
+
+  <!-- "Semana 08" banner -->
+  <rect x="566" y="38" width="326" height="246" rx="6" fill="#1a1a2a" stroke="#89b4fa" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="729" y="54" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#89b4fa">⬅ Semana 08 ➡</text>
+
+  <!-- UNF Box -->
+  <rect x="10" y="60" width="190" height="216" rx="6" fill="#313244" stroke="#45475a" stroke-width="1.5"/>
+  <rect x="10" y="60" width="190" height="28" rx="6" fill="#2a1a1a"/>
+  <text x="105" y="78" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" font-weight="bold" fill="#f38ba8">UNF</text>
+  <text x="105" y="91" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Forma No Normalizada</text>
+  <text x="20" y="112" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Cualquier estructura:</text>
+  <text x="20" y="128" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">• Grupos repetitivos</text>
+  <text x="20" y="144" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">• Valores multivaluados</text>
+  <text x="20" y="160" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">• Atributos no atómicos</text>
+  <text x="20" y="176" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">• Sin PK definida</text>
+  <rect x="20" y="186" width="170" height="56" rx="4" fill="#181825"/>
+  <text x="30" y="202" font-family="Consolas, Monaco, monospace" font-size="9" fill="#f38ba8">orders(</text>
+  <text x="30" y="216" font-family="Consolas, Monaco, monospace" font-size="9" fill="#f38ba8">  phones TEXT,  -- "a,b"</text>
+  <text x="30" y="230" font-family="Consolas, Monaco, monospace" font-size="9" fill="#f38ba8">  tag_1, tag_2, tag_3</text>
+  <text x="30" y="244" font-family="Consolas, Monaco, monospace" font-size="9" fill="#f38ba8">)</text>
+
+  <!-- Arrow UNF → 1NF -->
+  <line x1="200" y1="168" x2="228" y2="168" stroke="#a6e3a1" stroke-width="2"/>
+  <polygon points="224,163 234,168 224,173" fill="#a6e3a1"/>
+  <text x="214" y="158" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="8" fill="#a6e3a1">→</text>
+
+  <!-- 1NF Box -->
+  <rect x="228" y="60" width="164" height="216" rx="6" fill="#1e2d1e" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="228" y="60" width="164" height="28" rx="6" fill="#1f3a1f"/>
+  <text x="310" y="78" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" font-weight="bold" fill="#a6e3a1">1FN</text>
+  <text x="310" y="91" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#a6e3a1">Primera Forma Normal</text>
+  <text x="238" y="112" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Requiere:</text>
+  <text x="238" y="128" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Valores atómicos</text>
+  <text x="238" y="144" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Sin grupos repetitivos</text>
+  <text x="238" y="160" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ PK definida</text>
+  <text x="238" y="180" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Elimina:</text>
+  <text x="238" y="196" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">❌ Multivaluados</text>
+  <text x="238" y="212" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">❌ Columnas repetidas</text>
+  <text x="238" y="228" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">❌ Atributos compuestos</text>
+  <text x="238" y="248" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">phones → tabla separada</text>
+  <text x="238" y="262" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">tags → tabla separada</text>
+
+  <!-- Arrow 1NF → 2NF -->
+  <line x1="392" y1="168" x2="404" y2="168" stroke="#a6e3a1" stroke-width="2"/>
+  <polygon points="400,163 410,168 400,173" fill="#a6e3a1"/>
+
+  <!-- 2NF Box -->
+  <rect x="392" y="60" width="164" height="216" rx="6" fill="#1e2d1e" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="392" y="60" width="164" height="28" rx="6" fill="#1f3a1f"/>
+  <text x="474" y="78" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" font-weight="bold" fill="#a6e3a1">2FN</text>
+  <text x="474" y="91" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#a6e3a1">Segunda Forma Normal</text>
+  <text x="402" y="112" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Requiere:</text>
+  <text x="402" y="128" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ 1FN</text>
+  <text x="402" y="144" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Sin deps. parciales</text>
+  <text x="402" y="164" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Elimina:</text>
+  <text x="402" y="180" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">❌ Deps. parciales en</text>
+  <text x="402" y="196" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">   claves compuestas</text>
+  <text x="402" y="216" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#6c7086">Solo aplica cuando</text>
+  <text x="402" y="232" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#6c7086">PK es compuesta</text>
+  <text x="402" y="252" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">product_name → su propia</text>
+  <text x="402" y="266" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">tabla products</text>
+
+  <!-- Arrow 2NF → 3NF -->
+  <line x1="556" y1="168" x2="576" y2="168" stroke="#89b4fa" stroke-width="2"/>
+  <polygon points="572,163 582,168 572,173" fill="#89b4fa"/>
+
+  <!-- 3NF Box -->
+  <rect x="576" y="60" width="150" height="216" rx="6" fill="#1a1f2e" stroke="#89b4fa" stroke-width="1.5"/>
+  <rect x="576" y="60" width="150" height="28" rx="6" fill="#1a253a"/>
+  <text x="651" y="78" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" font-weight="bold" fill="#89b4fa">3FN</text>
+  <text x="651" y="91" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#89b4fa">Tercera Forma Normal</text>
+  <text x="586" y="112" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Requiere:</text>
+  <text x="586" y="128" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ 2FN</text>
+  <text x="586" y="144" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Sin deps. transitivas</text>
+  <text x="586" y="164" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Elimina:</text>
+  <text x="586" y="180" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">❌ A → B → C cuando</text>
+  <text x="586" y="196" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">   B no es clave</text>
+  <text x="586" y="220" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">Próxima semana →</text>
+
+  <!-- Arrow 3NF → BCNF -->
+  <line x1="726" y1="168" x2="744" y2="168" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="740,163 750,168 740,173" fill="#89b4fa"/>
+
+  <!-- BCNF Box -->
+  <rect x="744" y="60" width="148" height="216" rx="6" fill="#1a1f2e" stroke="#89b4fa" stroke-width="1.5"/>
+  <rect x="744" y="60" width="148" height="28" rx="6" fill="#1a253a"/>
+  <text x="818" y="78" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="13" font-weight="bold" fill="#89b4fa">FNBC</text>
+  <text x="818" y="91" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#89b4fa">Boyce-Codd NF</text>
+  <text x="754" y="112" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Requiere:</text>
+  <text x="754" y="128" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ 3FN</text>
+  <text x="754" y="144" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Todo determinante</text>
+  <text x="754" y="160" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">   es superclave</text>
+  <text x="754" y="180" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Elimina:</text>
+  <text x="754" y="196" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">❌ Anomalías residuales</text>
+  <text x="754" y="212" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#f38ba8">   de 3FN</text>
+  <text x="754" y="232" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#6c7086">Próxima semana →</text>
+
+  <!-- Summary table -->
+  <rect x="10" y="296" width="880" height="112" rx="4" fill="#181825"/>
+  <text x="450" y="313" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af">Guía rápida de diagnóstico</text>
+  <!-- headers -->
+  <text x="20" y="330" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#6c7086">Pregunta</text>
+  <text x="340" y="330" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#6c7086">Respuesta SÍ</text>
+  <text x="550" y="330" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" font-weight="bold" fill="#6c7086">Acción</text>
+  <line x1="20" y1="334" x2="880" y2="334" stroke="#45475a" stroke-width="0.5"/>
+  <text x="20" y="348" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">¿Hay valores multivaluados o columnas repetidas?</text>
+  <text x="340" y="348" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Viola 1FN</text>
+  <text x="550" y="348" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Crear tabla separada, FK + ON DELETE CASCADE</text>
+  <text x="20" y="364" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">¿La PK es compuesta y hay atributo que depende solo de parte?</text>
+  <text x="340" y="364" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Viola 2FN</text>
+  <text x="550" y="364" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Extraer a tabla propia cuya PK es ese subconjunto</text>
+  <text x="20" y="380" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">¿Hay atributo A → B → C donde B no es superclave?</text>
+  <text x="340" y="380" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Viola 3FN</text>
+  <text x="550" y="380" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Extraer B y C a su propia tabla (Semana 08)</text>
+  <text x="20" y="396" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">¿Hay determinante que no es superclave?</text>
+  <text x="340" y="396" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">Viola FNBC</text>
+  <text x="550" y="396" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#cdd6f4">Descomposición FNBC — puede perder FDs (Semana 08)</text>
+</svg>

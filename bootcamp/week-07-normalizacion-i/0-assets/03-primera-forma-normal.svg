@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="490" viewBox="0 0 900 490">
+  <!-- Background -->
+  <rect width="900" height="490" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#cdd6f4">Primera Forma Normal (1FN) — Antes y Después</text>
+
+  <!-- ═══ LEFT: BEFORE ═══ -->
+  <rect x="10" y="30" width="410" height="24" rx="3" fill="#2a1a1a"/>
+  <text x="215" y="46" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f38ba8">❌ ANTES — Viola 1FN</text>
+
+  <!-- Table: customers_bad -->
+  <text x="16" y="72" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Violación 1: valor multivaluado (customer_phones)</text>
+  <rect x="10" y="78" width="410" height="20" rx="0" fill="#313244"/>
+  <text x="70" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">customer_id</text>
+  <text x="185" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">customer_name</text>
+  <text x="355" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#f38ba8">customer_phones ⚠️</text>
+  <rect x="10" y="98" width="410" height="20" fill="#181825"/>
+  <text x="70" y="112" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">c-001</text>
+  <text x="185" y="112" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">Ana López</text>
+  <text x="355" y="112" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#f38ba8">"555-1234, 555-5678"</text>
+  <rect x="10" y="118" width="410" height="20" fill="#252535"/>
+  <text x="70" y="132" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">c-002</text>
+  <text x="185" y="132" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">Beto Ruiz</text>
+  <text x="355" y="132" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#f38ba8">"555-9012"</text>
+
+  <!-- Problem note -->
+  <rect x="10" y="144" width="410" height="34" rx="3" fill="#2a1a1a"/>
+  <text x="20" y="158" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">No puedo filtrar por número individual: WHERE phones LIKE '%555-1234%' ← lento</text>
+  <text x="20" y="172" font-family="Inter, Roboto, system-ui, sans-serif" font-size="9" fill="#f38ba8">No puedo indexar números individuales. No puedo validar formato. Viola atomicidad.</text>
+
+  <!-- Table: products_bad (repeating groups) -->
+  <text x="16" y="200" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f38ba8">Violación 2: columnas repetidas (tags)</text>
+  <rect x="10" y="206" width="410" height="20" rx="0" fill="#313244"/>
+  <text x="70" y="220" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">product_id</text>
+  <text x="185" y="220" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#f38ba8">tag_1 ⚠️</text>
+  <text x="295" y="220" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#f38ba8">tag_2 ⚠️</text>
+  <text x="390" y="220" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#f38ba8">tag_3 ⚠️</text>
+  <rect x="10" y="226" width="410" height="20" fill="#181825"/>
+  <text x="70" y="240" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">p-001</text>
+  <text x="185" y="240" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">SQL</text>
+  <text x="295" y="240" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">PostgreSQL</text>
+  <text x="390" y="240" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#6c7086">NULL</text>
+  <rect x="10" y="246" width="410" height="20" fill="#252535"/>
+  <text x="70" y="260" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">p-002</text>
+  <text x="185" y="260" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">Python</text>
+  <text x="295" y="260" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">Data</text>
+  <text x="390" y="260" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">ML</text>
+
+  <!-- 1FN Rules in the center -->
+  <line x1="430" y1="30" x2="430" y2="490" stroke="#45475a" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <rect x="438" y="30" width="24" height="440" rx="4" fill="#252535"/>
+  <text x="450" y="260" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f9e2af" transform="rotate(-90,450,260)">Reglas 1FN →</text>
+
+  <!-- ═══ RIGHT: AFTER ═══ -->
+  <rect x="470" y="30" width="420" height="24" rx="3" fill="#1f2d1f"/>
+  <text x="680" y="46" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="11" font-weight="bold" fill="#a6e3a1">✅ DESPUÉS — En 1FN</text>
+
+  <!-- customers table (clean) -->
+  <text x="476" y="72" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">customers</text>
+  <rect x="470" y="78" width="240" height="20" rx="0" fill="#313244"/>
+  <text x="540" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">customer_id (PK)</text>
+  <text x="660" y="92" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">customer_name</text>
+  <rect x="470" y="98" width="240" height="20" fill="#181825"/>
+  <text x="540" y="112" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">c-001</text>
+  <text x="660" y="112" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">Ana López</text>
+  <rect x="470" y="118" width="240" height="20" fill="#252535"/>
+  <text x="540" y="132" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">c-002</text>
+  <text x="660" y="132" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8" fill="#cdd6f4">Beto Ruiz</text>
+
+  <!-- customer_phones table -->
+  <text x="476" y="158" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">customer_phones  <tspan font-size="9" fill="#6c7086">(nueva tabla)</tspan>
+  </text>
+  <rect x="470" y="164" width="420" height="20" rx="0" fill="#313244"/>
+  <text x="545" y="178" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">phone_id (PK)</text>
+  <text x="665" y="178" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#f38ba8">customer_id (FK)</text>
+  <text x="795" y="178" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">phone_number</text>
+  <text x="875" y="178" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">type</text>
+  <rect x="470" y="184" width="420" height="18" fill="#181825"/>
+  <text x="545" y="196" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">ph-001</text>
+  <text x="665" y="196" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">c-001</text>
+  <text x="795" y="196" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">555-1234</text>
+  <text x="875" y="196" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">mobile</text>
+  <rect x="470" y="202" width="420" height="18" fill="#252535"/>
+  <text x="545" y="214" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">ph-002</text>
+  <text x="665" y="214" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">c-001</text>
+  <text x="795" y="214" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">555-5678</text>
+  <text x="875" y="214" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">home</text>
+  <!-- FK arrow -->
+  <line x1="665" y1="160" x2="665" y2="140" stroke="#f38ba8" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="665" y1="140" x2="530" y2="140" stroke="#f38ba8" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="530" y1="140" x2="530" y2="134" stroke="#f38ba8" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- product_tags table -->
+  <text x="476" y="244" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">product_tags  <tspan font-size="9" fill="#6c7086">(reemplaza tag_1/2/3)</tspan>
+  </text>
+  <rect x="470" y="250" width="420" height="20" rx="0" fill="#313244"/>
+  <text x="545" y="264" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#89b4fa">tag_id (PK)</text>
+  <text x="665" y="264" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#f38ba8">product_id (FK)</text>
+  <text x="795" y="264" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#cdd6f4">tag_name</text>
+  <rect x="470" y="270" width="420" height="18" fill="#181825"/>
+  <text x="545" y="282" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">tg-001</text>
+  <text x="665" y="282" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">p-001</text>
+  <text x="795" y="282" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">SQL</text>
+  <rect x="470" y="288" width="420" height="18" fill="#252535"/>
+  <text x="545" y="300" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">tg-002</text>
+  <text x="665" y="300" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">p-001</text>
+  <text x="795" y="300" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">PostgreSQL</text>
+  <rect x="470" y="306" width="420" height="18" fill="#181825"/>
+  <text x="545" y="318" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">tg-003</text>
+  <text x="665" y="318" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#f38ba8">p-002</text>
+  <text x="795" y="318" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="7.5" fill="#cdd6f4">Python</text>
+
+  <!-- Checklist -->
+  <rect x="470" y="336" width="420" height="110" rx="4" fill="#1e2d1e"/>
+  <text x="480" y="352" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" font-weight="bold" fill="#a6e3a1">Checklist 1FN</text>
+  <text x="480" y="370" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Cada celda tiene un solo valor atómico</text>
+  <text x="480" y="386" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Sin columnas numeradas (tag_1, tag_2…)</text>
+  <text x="480" y="402" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Valores multivaluados → tabla separada + FK</text>
+  <text x="480" y="418" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ ON DELETE CASCADE en la tabla derivada</text>
+  <text x="480" y="434" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">✅ Todos los valores de la columna mismo tipo</text>
+
+  <!-- Bottom bar -->
+  <rect x="10" y="456" width="880" height="30" rx="4" fill="#181825"/>
+  <text x="450" y="476" text-anchor="middle" font-family="Inter, Roboto, system-ui, sans-serif" font-size="10" fill="#cdd6f4">Llevar a 1FN equivale a aplicar la Regla R6 del ER → Relacional (Semana 06): atributo multivaluado → tabla propia</text>
+</svg>

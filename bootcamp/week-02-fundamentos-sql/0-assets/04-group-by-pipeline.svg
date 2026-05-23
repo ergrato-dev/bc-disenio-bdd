@@ -72,12 +72,12 @@
   <rect x="402" y="138" width="102" height="60" fill="#89dceb" fill-opacity="0.10" rx="4"/>
   <text x="453" y="153" text-anchor="middle" font-size="10" fill="#89dceb" font-weight="600">Ana</text>
   <text x="453" y="169" text-anchor="middle" font-size="10" fill="#a6adc8">120, 200, 90</text>
-  <text x="453" y="187" text-anchor="middle" font-size="10" fill="#a6adc8">SUM=410  COUNT=3</text>
+  <text x="453" y="187" text-anchor="middle" font-size="10" fill="#a6adc8">SUM=410 COUNT=3</text>
   <!-- Grupo Bob -->
   <rect x="402" y="210" width="102" height="60" fill="#a6e3a1" fill-opacity="0.10" rx="4"/>
   <text x="453" y="225" text-anchor="middle" font-size="10" fill="#a6e3a1" font-weight="600">Bob</text>
   <text x="453" y="241" text-anchor="middle" font-size="10" fill="#a6adc8">80, 300</text>
-  <text x="453" y="259" text-anchor="middle" font-size="10" fill="#a6adc8">SUM=380  COUNT=2</text>
+  <text x="453" y="259" text-anchor="middle" font-size="10" fill="#a6adc8">SUM=380 COUNT=2</text>
   <text x="453" y="280" text-anchor="middle" font-size="10" font-style="italic" fill="#6c7086">2 grupos</text>
 
   <!-- Flecha 3→4 -->
